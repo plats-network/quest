@@ -120,8 +120,8 @@
             <h2 class="text-base font-semibold leading-4 text-gray-800 2dark:text-white">Support</h2>
             <a href="javascript:void(0)" class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 2dark:text-white cursor-pointer">Legal policy</a>
             <a href="javascript:void(0)" class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 2dark:text-white cursor-pointer">Status policy</a>
-            <a href="javascript:void(0)" class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 2dark:text-white cursor-pointer">Privacy policy</a>
-            <a href="javascript:void(0)" class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 2dark:text-white cursor-pointer">Terms of service</a>
+            <a href="{{route('quest.privacy')}}" class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 2dark:text-white cursor-pointer">Privacy policy</a>
+            <a href="{{route('quest.terms')}}" class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 2dark:text-white cursor-pointer">Terms of service</a>
         </div>
         <div class="mt-10 lg:block hidden">
             <label class="text-xl font-medium leading-5 text-gray-800 2dark:text-white">Get updates</label>

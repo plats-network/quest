@@ -57,7 +57,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('quest')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/quest-start.php'));
+                ->group(base_path('routes/frontend-quest.php'));
         });
     }
 

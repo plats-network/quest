@@ -28,7 +28,7 @@ class FrontendController extends Controller
     {
         $body_class = '';
 
-        return view('frontend.privacy', compact('body_class'));
+        return view('quest.privacy', compact('body_class'));
     }
 
     /**
@@ -40,7 +40,7 @@ class FrontendController extends Controller
     {
         $body_class = '';
 
-        return view('frontend.terms', compact('body_class'));
+        return view('quest.terms', compact('body_class'));
     }
 
     //wallet

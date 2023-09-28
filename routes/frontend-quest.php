@@ -22,6 +22,8 @@ use App\Http\Controllers\Auth\GoogleSocialiteController;
 |
 */
 
+// Auth Routes
+require __DIR__.'/auth-quest.php';
 
 // Language Switch
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
@@ -41,6 +43,9 @@ Route::group(['as' => 'quest.'], function () {
 
     Route::get('/', [FrontendController::class, 'index'])->name('index');
 
+    Route::get('home', [FrontendController::class, 'index'])->name('home');
+    Route::get('privacy', [FrontendController::class, 'privacy'])->name('privacy');
+    Route::get('terms', [FrontendController::class, 'terms'])->name('terms');
     /*
     *
     *  Posts Routes
