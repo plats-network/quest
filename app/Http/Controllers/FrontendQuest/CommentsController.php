@@ -60,7 +60,7 @@ class CommentsController extends Controller
         $$module_name = Comment::latest()->published()->paginate();
 
         return view(
-            "frontend.comments.index",
+            "quest.comments.index",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
         );
     }
@@ -90,7 +90,7 @@ class CommentsController extends Controller
         }
 
         return view(
-            "frontend.comments.show",
+            "quest.comments.show",
             compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
         );
     }

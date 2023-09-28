@@ -72,7 +72,7 @@ class UserController extends Controller
         $meta_page_type = 'profile';
 
         return view(
-            "frontend.users.show",
+            "quest.users.show",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class', 'meta_page_type')
         );
     }
@@ -108,7 +108,7 @@ class UserController extends Controller
 
         $meta_page_type = 'profile';
 
-        return view("frontend.users.profile", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'body_class', 'userprofile', 'meta_page_type'));
+        return view("quest.users.profile", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'body_class', 'userprofile', 'meta_page_type'));
     }
 
     /**
@@ -147,7 +147,7 @@ class UserController extends Controller
         $body_class = 'profile-page';
 
         return view(
-            "frontend.users.profileEdit",
+            "quest.users.profileEdit",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile', 'body_class')
         );
     }
@@ -243,7 +243,7 @@ class UserController extends Controller
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.changePassword", compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class'));
+        return view("quest.$module_name.changePassword", compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class'));
     }
 
     /**

@@ -56,7 +56,7 @@ class TagsController extends Controller
         $$module_name = Tag::latest()->with('posts')->paginate();
 
         return view(
-            "frontend.tags.index",
+            "quest.tags.index",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
         );
     }
@@ -84,7 +84,7 @@ class TagsController extends Controller
         $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->paginate();
 
         return view(
-            "frontend.tags.show",
+            "quest.tags.show",
             compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
         );
     }

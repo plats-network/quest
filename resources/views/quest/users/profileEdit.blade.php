@@ -18,7 +18,7 @@
                     This information will be displayed publicly so be careful what you share.
                 </p>
                 <p class="pt-4">
-                    <a href="{{ route("frontend.users.profile", encode_id($$module_name_singular->id)) }}">
+                    <a href="{{ route("quest.users.profile", encode_id($$module_name_singular->id)) }}">
                         <div class="w-full text-center px-6 py-2 transition ease-in duration-200 rounded text-gray-500 hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
                             @lang('View Profile')
                         </div>

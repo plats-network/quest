@@ -28,7 +28,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         @foreach ($posts as $post)
         @php
-        $details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
+        $details_url = route("quest.posts.show",[encode_id($post->id), $post->slug]);
         @endphp
 
         <div class="">

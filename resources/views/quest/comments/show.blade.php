@@ -59,7 +59,7 @@
         <div class="">
             @php
             $post = $$module_name_singular->post;
-            $post_details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
+            $post_details_url = route("quest.posts.show",[encode_id($post->id), $post->slug]);
             @endphp
             <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex flex-col items-stretch">

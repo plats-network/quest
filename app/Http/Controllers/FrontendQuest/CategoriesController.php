@@ -56,7 +56,7 @@ class CategoriesController extends Controller
         $$module_name = Category::with(['posts'])->paginate();
 
         return view(
-            "frontend.categories.index",
+            "quest.categories.index",
             compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
         );
     }
@@ -84,7 +84,7 @@ class CategoriesController extends Controller
         $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->paginate();
 
         return view(
-            "frontend.categories.show",
+            "quest.categories.show",
             compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
         );
     }

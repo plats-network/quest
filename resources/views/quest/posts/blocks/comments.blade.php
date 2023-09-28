@@ -30,7 +30,7 @@
                     </div>
                 </div>
 
-                {{ html()->form('POST', route("frontend.comments.store"))->class('form')->open() }}
+                {{ html()->form('POST', route("quest.comments.store"))->class('form')->open() }}
                 <div class="mb-6">
                     <?php
                     $field_name = 'name';
@@ -115,7 +115,7 @@
                         <a href="{{route('login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-sm float-end m-0"><i class="fas fa-user-shield"></i> Login & Reply</a>
                         @else
                         <div class="mt-4">
-                            {{ html()->form('POST', route("frontend.comments.store"))->class('form flex flex-row')->open() }}
+                            {{ html()->form('POST', route("quest.comments.store"))->class('form flex flex-row')->open() }}
 
                             <?php
                             $field_name = 'parent_id';
