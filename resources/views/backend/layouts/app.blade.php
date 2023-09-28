@@ -34,7 +34,6 @@
 
     @stack('after-styles')
 
-    <x-google-analytics />
 
     @livewireStyles
 

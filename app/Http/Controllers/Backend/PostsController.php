@@ -172,7 +172,7 @@ class PostsController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -185,11 +185,30 @@ class PostsController extends Controller
 
         $categories = Category::pluck('name', 'id');
 
+        $isCopy = $request->get('copy');
+        //Get id from param categories/create?1 will get 1
+        //Get id value
+        $idModel = $request->get('idModel');
+        //Check has id then copy model
+        if ($isCopy) {
+            $post  = Post::findOrFail($idModel);
+            $$module_name_singular = $post->replicate();
+            //Add Post name Copy text
+            $$module_name_singular->name = $post->name.' - Copy' . $post->id;
+            //Update Slug
+            $$module_name_singular->slug = $post->slug.'-copy' . $post->id;
+        } else {
+            $$module_name_singular = new Post();
+            $$module_name_singular->type = 'Article';
+            $$module_name_singular->is_featured = 0;
+        }
+
+
         Log::info(label_case('Posts'.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
             'backend.posts.create',
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', 'categories')
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'categories')
         );
     }
 

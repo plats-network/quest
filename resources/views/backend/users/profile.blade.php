@@ -164,6 +164,16 @@
                                 </ul>
                             </td>
                         </tr>
+                        {{--Language --}}
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.language') }}</th>
+                            <td>
+                                @if($user->language)
+                                <span class="badge badge-success">{{ $user->language->name }}</span>
+                                @else
+                                <span class="badge badge-danger">No Language</span>
+                                @endif
+                            </td>
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.status') }}</th>

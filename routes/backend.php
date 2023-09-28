@@ -100,21 +100,31 @@ Route::group([ 'as' => 'backend.', 'middleware' => ['web', 'auth', 'can:view_bac
     $module_name = 'users';
     $controller_name = 'UserController';
 
+    // User Profile
     Route::get('users/profile/{id}', [UserController::class, 'profile'])->name('users.profile');
+
+    // User Profile Edit
     Route::get('users/profile/{id}/edit', [UserController::class, 'profileEdit'])->name('users.profileEdit');
+    // User Profile Update
     Route::patch('users/profile/{id}/edit', [UserController::class, 'profileUpdate'])->name('users.profileUpdate');
+
     Route::get('users/emailConfirmationResend/{id}', [UserController::class, 'emailConfirmationResend'])->name('users.emailConfirmationResend');
     Route::delete('users/userProviderDestroy', [UserController::class, 'userProviderDestroy'])->name('users.userProviderDestroy');
+
     Route::get('users/profile/changeProfilePassword/{id}', [UserController::class, 'changeProfilePassword'])->name('users.changeProfilePassword');
     Route::patch('users/profile/changeProfilePassword/{id}', [UserController::class, 'changeProfilePasswordUpdate'])->name('users.changeProfilePasswordUpdate');
+
     Route::get('users/changePassword/{id}', [UserController::class, 'changePassword'])->name('users.changePassword');
     Route::patch('users/changePassword/{id}', [UserController::class, 'changePasswordUpdate'])->name('users.changePasswordUpdate');
+
     Route::get('users/trashed', [UserController::class, 'trashed'])->name('users.trashed');
     Route::patch('users/trashed/{id}', [UserController::class, 'restore'])->name('users.restore');
+
     Route::get('users/index_data', [UserController::class, 'index_data'])->name('users.index_data');
     Route::get('users/index_list', [UserController::class, 'index_list'])->name('users.index_list');
 
     Route::resource('users', UserController::class);
+
     Route::patch('users/{id}/block', [UserController::class, 'block'])->name('users.block')->middleware('permission:block_users');
     Route::patch('users/{id}/unblock', [UserController::class, 'unblock'])->name('users.unblock')->middleware('permission:block_users');
 

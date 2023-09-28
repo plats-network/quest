@@ -6,14 +6,15 @@
     </div>
     @else
     <div class="card-body">
-        
+
         <x-backend.section-header :module_name="$module_name" :module_title="$module_title" :module_icon="$module_icon" :module_action="$module_action" />
 
         <div class="row mt-4">
             <div class="col">
-                {{ html()->form('POST', route("backend.$module_name.store"))->class('form')->acceptsFiles()->open() }}
+                {{ html()->modelForm($data, 'POST', route("backend.$module_name.store", $data))->class('form')->acceptsFiles()->open() }}
 
-                @include ("$module_path.$module_name.form")
+
+                @include ("backend.$module_name.form")
 
                 <div class="row">
                     <div class="col-6">
@@ -35,7 +36,7 @@
     <div class="card-footer">
         <div class="row">
             <div class="col">
-                @if ($data != "")
+                @if ($data != "" && $data->id != "")
                 <small class="float-end text-muted">
                     @lang('Updated at'): {{$data->updated_at->diffForHumans()}},
                     @lang('Created at'): {{$data->created_at->isoFormat('LLLL')}}

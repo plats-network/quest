@@ -250,6 +250,12 @@ class Category extends BaseModel
         return $fields;
     }
 
+    //Total Post Attribute
+    public function getTotalPostAttribute()
+    {
+        return $this->posts()->count();
+    }
+
     /**
      * @param $input
      * @return LengthAwarePaginator|Collection|mixed

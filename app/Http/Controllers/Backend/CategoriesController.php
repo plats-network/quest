@@ -139,7 +139,7 @@ class CategoriesController extends Controller
                 $diff = Carbon::now()->diffInHours($data->updated_at);
 
                 if ($diff < 25) {
-                    return $data->updated_at->diffForHumans();
+                    return $data->updated_at. ' '. $data->updated_at->diffForHumans();
                 } else {
                     return $data->updated_at->isoFormat('LLLL');
                 }
@@ -172,15 +172,20 @@ class CategoriesController extends Controller
         if ($isCopy) {
             $post  = Category::findOrFail($idModel);
             $$module_name_singular = $post->replicate();
+            //Add Title copy
+            $$module_name_singular->name = $post->name.' Copy' . $post->id;
+            //update slug
+            $$module_name_singular->slug = $post->slug.'-copy' . $post->id;
         } else {
             $$module_name_singular = new $module_model();
         }
+
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
             "backend.categories.create",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
         );
     }
 
@@ -246,7 +251,7 @@ class CategoriesController extends Controller
 
         return view(
             "backend.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'posts')
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'posts')
         );
     }
 
@@ -273,7 +278,7 @@ class CategoriesController extends Controller
 
         return view(
             "backend.categories.edit",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
         );
     }
 

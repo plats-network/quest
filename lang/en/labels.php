@@ -88,6 +88,7 @@ return [
                 'roles' => 'Roles',
                 'permissions' => 'Permissions',
                 'social' => 'Social',
+                'langueage' => 'language',
                 'picture' => 'Picture',
                 'avatar' => 'Avatar',
                 'status' => 'Status',
@@ -128,6 +129,8 @@ return [
 
         ],
         'action' => 'Action',
+        'name' => 'Name',
+        'updated_at' => 'Updated At',
         'create' => 'Create',
         'edit' => 'Edit',
         'changePassword' => 'Change Password',

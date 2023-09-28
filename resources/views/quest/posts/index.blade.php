@@ -25,7 +25,7 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
         @foreach ($$module_name as $$module_name_singular)
         @php
-        $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
+        $details_url = route("quest.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
         @endphp
 
         <div class="">

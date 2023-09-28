@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Support\Str;
 
-class PostsController extends Controller
+class TasksController extends Controller
 {
     public $module_title;
 

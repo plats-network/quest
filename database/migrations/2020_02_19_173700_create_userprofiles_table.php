@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('mobile')->nullable();
             $table->string('gender')->nullable();
+            $table->string('language', 32)->nullable()->default('en');
 
             $table->string('url_website')->nullable();
             $table->string('url_facebook')->nullable();

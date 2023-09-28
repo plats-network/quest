@@ -14,16 +14,27 @@ return new class extends Migration
         Schema::create('sponsors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            //Name Email Phone Address City State Zip
             $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->string('city')->nullable();
-            //Note
-            $table->string('note')->nullable();
-            //Status
-            $table->boolean('status')->default(1);
+            $table->string('slug')->nullable();
+            $table->text('description')->nullable();
+            //Type
+            $table->string('type')->nullable();
+
+            $table->string('group_name')->nullable();
+            $table->string('image')->nullable();
+
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->text('meta_keyword')->nullable();
+
+            $table->string('order')->nullable();
+            $table->smallInteger('status')->nullable()->default(1);
+
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
+
+            $table->softDeletes();
         });
     }
 

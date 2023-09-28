@@ -15,12 +15,16 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
+
             $table->string('name');
             $table->string('slug')->nullable();
             $table->text('intro')->nullable();
             $table->text('content')->nullable();
             $table->string('type')->nullable();
+
             $table->integer('category_id')->unsigned()->nullable();
+            $table->integer('sponsors_id')->unsigned()->nullable();
+
             $table->string('category_name')->nullable();
             $table->integer('is_featured')->nullable();
             $table->string('featured_image')->nullable();
@@ -43,6 +47,9 @@ class CreatePostsTable extends Migration
             $table->string('created_by_alias')->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
+            //Start, end datetime
+            $table->dateTime('start_at')->nullable();
+            $table->dateTime('end_at')->nullable();
 
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

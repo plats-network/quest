@@ -109,6 +109,22 @@ return [
     'faker_locale' => 'en_US',
 
     /*
+   |--------------------------------------------------------------------------
+   | Available Locales
+   |--------------------------------------------------------------------------
+   |
+   | Available locales will be used any location in code , that need to show
+   | all available languages
+   |
+   */
+
+    'available_locales' => [
+        'ar' => 'العربی (AR)',
+        'bn' => 'বাংলা (BN)',
+        'en' => 'English (EN)',
+        'vi' => 'Vietnamese (VI)',
+    ],
+    /*
     |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------

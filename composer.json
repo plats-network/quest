@@ -34,6 +34,7 @@
         "hammerstone/fast-paginate": "^0.1.10",
         "hashids/hashids": "^5.0",
         "http-interop/http-factory-guzzle": "^1.2",
+        "hypefactors/laravel-follow": "^9.0",
         "illuminate/config": "^10.x-dev",
         "illuminate/database": "^10.x-dev",
         "illuminate/support": "^10.0",

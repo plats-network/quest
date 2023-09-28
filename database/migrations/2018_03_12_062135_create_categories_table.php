@@ -28,7 +28,7 @@ class CreateCategoriesTable extends Migration
             $table->text('meta_keyword')->nullable();
 
             $table->string('order')->nullable();
-            $table->string('status')->default('Active');
+            $table->string('status')->nullable()->default('Active');
 
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
