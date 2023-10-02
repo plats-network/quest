@@ -5,6 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Cache;
 
+/**
+ * @property integer $id
+ * @property string $name
+ * @property string $val
+ * @property string $option
+ * @property string $value
+ * @property string $type
+ * @property integer $created_by
+ * @property integer $updated_by
+ * @property integer $deleted_by
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $deleted_at
+ */
 class Setting extends BaseModel
 {
     use SoftDeletes;

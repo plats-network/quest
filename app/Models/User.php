@@ -14,6 +14,55 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @property integer $id
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $gender
+ * @property string $email
+ * @property string $password
+ * @property string $pin
+ * @property boolean $default_pin
+ * @property string $address
+ * @property string $number
+ * @property string $city
+ * @property string $ZIP
+ * @property string $email_verified_at
+ * @property string $phone
+ * @property string $role
+ * @property string $social_id
+ * @property string $social_type
+ * @property string $facebook_id
+ * @property string $google_id
+ * @property string $github_id
+ * @property string $twitter_id
+ * @property string $contact_name
+ * @property string $company_name
+ * @property string $website
+ * @property boolean $enable_portal
+ * @property integer $currency_id
+ * @property string $name
+ * @property string $username
+ * @property string $mobile
+ * @property string $date_of_birth
+ * @property string $avatar
+ * @property boolean $status
+ * @property integer $created_by
+ * @property integer $updated_by
+ * @property integer $deleted_by
+ * @property integer $creator_id
+ * @property string $guard_name
+ * @property string $remember_token
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $deleted_at
+ * @property string $stripe_id
+ * @property string $pm_type
+ * @property string $pm_last_four
+ * @property string $trial_ends_at
+ * @property OldPin[] $oldPins
+ * @property RequirePin[] $requirePins
+ */
 class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubject
 {
     use HasFactory;

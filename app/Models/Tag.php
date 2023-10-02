@@ -8,6 +8,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 
+/**
+ * @property integer $id
+ * @property string $name
+ * @property string $slug
+ * @property string $group_name
+ * @property string $description
+ * @property string $image
+ * @property boolean $status
+ * @property string $meta_title
+ * @property string $meta_description
+ * @property string $meta_keyword
+ * @property integer $created_by
+ * @property integer $updated_by
+ * @property integer $deleted_by
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $deleted_at
+ */
 class Tag extends BaseModel
 {
     use HasFactory;

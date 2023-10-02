@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 
+/**
+ * @property string $id
+ * @property string $type
+ * @property string $notifiable_type
+ * @property integer $notifiable_id
+ * @property string $data
+ * @property string $read_at
+ * @property string $created_at
+ * @property string $updated_at
+ */
 class Notification extends Model
 {
     protected $table = 'notifications';

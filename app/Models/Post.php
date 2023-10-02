@@ -13,6 +13,37 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
+/**
+ * @property integer $id
+ * @property string $name
+ * @property string $slug
+ * @property string $intro
+ * @property string $content
+ * @property string $type
+ * @property integer $category_id
+ * @property string $category_name
+ * @property integer $is_featured
+ * @property string $featured_image
+ * @property string $meta_title
+ * @property string $meta_keywords
+ * @property string $meta_description
+ * @property string $meta_og_image
+ * @property string $meta_og_url
+ * @property integer $hits
+ * @property integer $order
+ * @property boolean $status
+ * @property integer $moderated_by
+ * @property string $moderated_at
+ * @property integer $created_by
+ * @property string $created_by_name
+ * @property string $created_by_alias
+ * @property integer $updated_by
+ * @property integer $deleted_by
+ * @property string $published_at
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $deleted_at
+ */
 class Post extends BaseModel
 {
     use HasFactory;

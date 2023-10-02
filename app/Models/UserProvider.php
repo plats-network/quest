@@ -5,6 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property integer $id
+ * @property integer $user_id
+ * @property string $provider
+ * @property string $provider_id
+ * @property string $avatar
+ * @property string $created_at
+ * @property string $updated_at
+ */
+/**
  * User Provider Model.
  */
 class UserProvider extends Model

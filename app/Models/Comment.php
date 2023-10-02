@@ -12,6 +12,28 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
+/**
+ * @property integer $id
+ * @property string $name
+ * @property string $slug
+ * @property string $comment
+ * @property integer $parent_id
+ * @property integer $commentable_id
+ * @property string $commentable_type
+ * @property integer $user_id
+ * @property string $user_name
+ * @property string $order
+ * @property boolean $status
+ * @property integer $moderated_by
+ * @property string $moderated_at
+ * @property string $published_at
+ * @property integer $created_by
+ * @property integer $updated_by
+ * @property integer $deleted_by
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $deleted_at
+ */
 class Comment extends BaseModel
 {
     use HasFactory;

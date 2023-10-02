@@ -15,6 +15,20 @@ use Illuminate\Support\Facades\DB;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
+/**
+ * @property integer $id
+ * @property string $name
+ * @property string $slug
+ * @property string $description
+ * @property string $order
+ * @property string $status
+ * @property integer $created_by
+ * @property integer $updated_by
+ * @property integer $deleted_by
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $deleted_at
+ */
 class Category extends BaseModel
 {
     use HasFactory;
