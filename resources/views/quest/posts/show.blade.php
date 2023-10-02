@@ -7,24 +7,107 @@
 
         <section data-section-id="1" data-share="" data-category="blog-content-white-pattern" data-component-id="5d44a180_02_awz" class="py-16 md:py-24 bg-white" style="background-image: url('https://shuffle.dev/flex-ui-assets/elements/pattern-white.svg'); background-repeat: no-repeat; background-position: center top;" data-config-id="auto-img-4">
             <div class="container px-4 mx-auto">
-                <div class="md:max-w-2xl mx-auto mb-12 text-center">
-                    <div class="inline-block py-1 px-3 mb-6 text-xs leading-5 text-green-500 font-medium uppercase bg-green-100 rounded-full shadow-sm" data-config-id="auto-txt-1-2">Technology</div>
-                    <div class="flex items-center justify-center">
-                        <p class="inline-block text-green-500 font-medium" data-config-id="auto-txt-2-2">{{isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : $$module_name_singular->created_by_name}}</p>
-                        <span class="mx-1 text-green-500" data-config-id="auto-txt-3-2">&bull;</span>
-                        <p class="inline-block text-green-500 font-medium" data-config-id="auto-txt-4-2">{{$$module_name_singular->published_at->isoFormat('llll')}}</p>
+                <div class="md:max-w-3xl mx-auto mb-5 text-left">
+
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="flex items-center">
+                            <address class="flex items-center mb-6 not-italic">
+                                <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                                    <img class="mr-4 w-16 h-16 rounded-full" src="https://res.cloudinary.com/dhploi5y1/image/upload/v1696240313/a49dc6a0-8564-48dd-b99d-16b008957acc_oexjni.png" alt="Jese Leos">
+                                    <div>
+                                        <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">Altlayer
+                                            <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full dark:bg-gray-700 dark:text-blue-400">
+                                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
+                                                <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
+                                              </svg>
+                                             <span class="sr-only">Icon description</span>
+                                            </span>
+
+                                                <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                    <svg class="w-4 h-4 mr-2 -ml-1 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                                    </svg>
+                                                    Folow 150k+
+                                                </button>
+                                        </a>
+
+
+                                    </div>
+                                </div>
+                            </address>
+                        </div>
+                        <div class="flex justify-end space-x-4 font-mono text-white text-sm font-bold leading-6 bg-stripes-cyan rounded-lg">
+
+                            <span class="inline-block py-px px-2 mb-4 text-xs leading-5 text-white bg-green-500 uppercase rounded-9xl" data-config-id="auto-txt-13-1">Web3</span>
+                            <span class="inline-block py-px px-2 mb-4 text-xs leading-5 text-white bg-green-500 uppercase rounded-9xl" data-config-id="auto-txt-13-1">Infrastructure</span>
+                            <span class="inline-block py-px px-2 mb-4 text-xs leading-5 text-white bg-green-500 uppercase rounded-9xl" data-config-id="auto-txt-13-1">Layer 2</span>
+
+                        </div>
                     </div>
-                    <h3 class="mb-4 text-3xl md:text-4xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter" data-config-id="auto-txt-5-2">{{$$module_name_singular->name}}</h3>
+
+
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="flex items-center">
+                            <h3 class="mb-4 text-3xl md:text-4xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter" data-config-id="auto-txt-5-2">{{$$module_name_singular->name}}</h3>
+                        </div>
+                        <div class="flex justify-end space-x-4 font-mono text-white text-sm font-bold leading-6 bg-stripes-cyan rounded-lg">
+                            <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+
+                                <svg class="w-4 h-4 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13v-3a9 9 0 1 0-18 0v3m2-3h3v7H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2Zm11 0h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3v-7Z"/>
+                                </svg>
+                                <span class="sr-only">Icon description</span>
+                            </button>
+                            <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                                <svg class=w-4 h-4 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path fill="currentColor" d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z"/>
+                                </svg>
+
+                                <span class="sr-only">Icon description</span>
+                            </button>
+                            <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m11.479 1.712 2.367 4.8a.532.532 0 0 0 .4.292l5.294.769a.534.534 0 0 1 .3.91l-3.83 3.735a.534.534 0 0 0-.154.473l.9 5.272a.535.535 0 0 1-.775.563l-4.734-2.49a.536.536 0 0 0-.5 0l-4.73 2.487a.534.534 0 0 1-.775-.563l.9-5.272a.534.534 0 0 0-.154-.473L2.158 8.48a.534.534 0 0 1 .3-.911l5.294-.77a.532.532 0 0 0 .4-.292l2.367-4.8a.534.534 0 0 1 .96.004Z"/>
+                                </svg>
+                                <span class="sr-only">Icon description</span>
+                            </button>
+
+                            <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="button">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
+                                    <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown menu -->
+                            <div id="dropdownDots" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+
+                                <div class="py-2">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                        <span><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1v18M1 3.652v9c5.6-5.223 8.4 2.49 14-.08v-9c-5.6 2.57-8.4-5.143-14 .08Z"/>
+                                        </svg></span>Report</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                     <p class="mb-10 text-lg md:text-xl font-medium text-coolGray-500" data-config-id="auto-txt-6-2">{{$$module_name_singular->intro}}</p>
-                    <div class="flex items-center justify-center text-left -mx-2">
-                        <div class="w-auto px-2">
-                            <img src="https://shuffle.dev/flex-ui-assets/images/blog/avatar.png" alt="" data-config-id="auto-img-1-2">
+                    <p class="mb-10 text-lg md:text-xl font-medium text-coolGray-500" data-config-id="auto-txt-6-2">{{$$module_name_singular->content}}</p>
+
+                    <div class="mb-5 flex ">
+                        <div class="flex -space-x-4">
+                            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="">
+                            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="">
+                            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="">
+                            <a class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" href="#">+99</a>
                         </div>
-                        <div class="w-auto px-2">
-                            <h4 class="text-base md:text-lg font-bold text-coolGray-800" data-config-id="auto-txt-7-2">John Doe</h4>
-                            <p class="text-base md:text-lg text-coolGray-500" data-config-id="auto-txt-8-2">12 October 2021</p>
+                        <div class="flex -space-x-4 justify-between">
+                           <p class="inline-block text-green-500 font-medium justify-between ml-5 mt-3"> 2023/09/26 14:30 - 2023/10/30 07:00 GMT+07:00</p>
                         </div>
                     </div>
+                    <p class="inline-block text-green-500 font-medium" data-config-id="auto-txt-4-2">Get 1 OAT & 25 Points</p>
+
                 </div>
             </div>
             <div class="container px-4 mx-auto">
@@ -229,5 +312,35 @@
             //https://github.com/twitterdev/Twitter-API-v2-sample-code/blob/main/Follows-Lookup/following_lookup.js
 
         });
+    </script>
+
+    <!-- Javascript code -->
+    {{--https://www.kindacode.com/article/tailwind-css-creating-a-read-more-read-less-button/--}}
+    <script>
+        function toggleText() {
+            var dots = document.getElementById("dots");
+            var moreText = document.getElementById("more");
+            var button = document.getElementById("button");
+
+            if (dots.classList.contains("hidden")) {
+                // Show the dots
+                dots.classList.remove("hidden");
+
+                // Hide the more text
+                moreText.classList.add("hidden");
+
+                // change text of the button
+                button.innerHTML = "Read more";
+            } else {
+                // Hide the dots
+                dots.classList.add("hidden");
+
+                // hide the more text
+                moreText.classList.remove("hidden");
+
+                // change text of the button
+                button.innerHTML = "Read less";
+            }
+        }
     </script>
 @endpush
