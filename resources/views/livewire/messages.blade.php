@@ -1,4 +1,4 @@
-<title>Volt Laravel Dashboard - Messages</title>
+<title>{{ env('APP_NAME', 'Plats') }} Dashboard - Messages</title>
 <div class="d-flex justify-content-between align-items-center pb-2 pt-4 pb-md-4">
     <div>
         <a href="single-message" class="btn btn-secondary d-inline-flex align-items-center mb-3 mb-md-0">

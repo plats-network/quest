@@ -24,9 +24,6 @@
               aria-describedby="topbar-addon">
           </div>
         </form>
-        <a href="https://themesberg.com/product/laravel/volt-admin-dashboard-template" target="_blank"><button
-            class="btn mx-1 me-2 btn-secondary" type="button"><i
-              class="fas fa-arrow-down mx-1"></i>@lang('Download')</button></a>
       </div>
       <!-- Navbar links -->
       <ul class="navbar-nav align-items-center">
@@ -43,7 +40,8 @@
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-center mt-2 py-0">
             <div class="list-group list-group-flush">
               <a href="#" class="text-center text-primary fw-bold border-bottom border-light py-3">@lang('Notifications')</a>
-              <a href="#" class="list-group-item list-group-item-action border-bottom">
+              {{--
+                <a href="#" class="list-group-item list-group-item-action border-bottom">
                 <div class="row align-items-center">
                   <div class="col-auto">
                     <!-- Avatar -->
@@ -139,6 +137,7 @@
                   </div>
                 </div>
               </a>
+              --}}
               <a href="#" class="dropdown-item text-center fw-bold rounded-bottom py-3">
                 <svg class="icon icon-xxs text-gray-400 me-1" fill="currentColor" viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg">
@@ -156,7 +155,7 @@
           <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             <div class="media d-flex align-items-center">
-              <img class="avatar rounded-circle" alt="Image placeholder" src="/assets/img/team/profile-picture-1.jpg">
+              <img class="avatar rounded-circle" alt="Image placeholder" src="/assets/img/team/no-avatar.png">
               <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
                 <span
                   class="mb-0 font-small fw-bold text-gray-900">{{  auth()->user()->first_name ? auth()->user()->first_name . ' ' . auth()->user()->last_name : 'User Name'}}</span>

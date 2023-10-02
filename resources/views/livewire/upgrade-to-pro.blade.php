@@ -1,4 +1,4 @@
-<title>Volt Laravel Dashboard - Upgrade to Pro</title>
+<title>{{ env('APP_NAME', 'Plats') }} Dashboard - Upgrade to Pro</title>
 <div class="row justify-content-center pt-5 pb-4">
     <div class="col-12 col-xl-9 text-center">
         <h1 class="fw-extrabold text-center d-inline-flex align-items-center mb-4">
@@ -9,7 +9,7 @@
                     clip-rule="evenodd"></path>
             </svg>
         </h1>
-        <p class="lead">Take front-end development to the next level by upgrading to the PRO version of Volt Laravel
+        <p class="lead">Take front-end development to the next level by upgrading to the PRO version of {{ env('APP_NAME', 'Plats') }}
             Admin Dashboard featuring over 3 times more components, plugin and pages and 5 times more Laravel features.
             You also get 6 months of premium support and free updates.</p>
     </div>
