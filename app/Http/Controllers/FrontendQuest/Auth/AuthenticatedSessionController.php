@@ -18,7 +18,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('quest.auth.login');
+        //Sample Login
+        $sampleUser = [
+            'email' => 'super@admin.com',
+            'password' => 'secret',
+        ];
+
+        $data = [
+            'sampleUser' => $sampleUser,
+        ];
+
+        return view('quest.auth.login', $data);
     }
 
     /**
@@ -37,12 +47,12 @@ class AuthenticatedSessionController extends Controller
         $password = $request->password;
         $remember = $request->remember_me;
 
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 1], $remember)) {
+        if (Auth::guard('quest')->attempt(['email' => $email, 'password' => $password, 'status' => 1], $remember)) {
             $request->session()->regenerate();
 
-            event(new UserLoginSuccess($request, auth()->user()));
+            event(new UserLoginSuccess($request, auth()->guard('quest')->user()));
 
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()->intended(route('quest.index'));
         }
 
         return back()->withErrors([
@@ -55,12 +65,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        Auth::guard('quest')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect(route('quest.index'));
     }
 }

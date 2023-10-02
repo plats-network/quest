@@ -46,6 +46,8 @@ Route::group(['as' => 'quest.'], function () {
     Route::get('home', [FrontendController::class, 'index'])->name('home');
     Route::get('privacy', [FrontendController::class, 'privacy'])->name('privacy');
     Route::get('terms', [FrontendController::class, 'terms'])->name('terms');
+    //me
+    Route::get('me', [FrontendController::class, 'me'])->name('me');
 
     Route::group(['middleware' => ['auth:quest']], function () {
         /*
@@ -83,7 +85,7 @@ Route::group(['as' => 'quest.'], function () {
     Route::get('posts/{id}/{slug?}', [PostsController::class, 'show'])->name('posts.show');
 
     //Task detail
-    Route::get('tasks/{id}/{slug?}', [PostsController::class, 'show'])->name('posts.show');
+    Route::get('tasks/{id}/{slug?}', [PostsController::class, 'show'])->name('tasks.show');
     /*
     *
     *  Categories Routes

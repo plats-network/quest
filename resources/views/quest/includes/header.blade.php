@@ -59,7 +59,7 @@
                         @else
                         <button @click="isUserMenuOpen = !isUserMenuOpen" @keydown.escape="isUserMenuOpen = false" type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-cyan-800 focus:ring-white transition ease-out duration-300" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">{{__('Open main menu')}}</span>
-                            <img class="h-10 w-10 rounded-full border-transparent border hover:border-cyan-600" src="{{asset(auth()->user()->avatar)}}" alt="{{asset(auth()->user()->name)}}">
+                            <img class="h-10 w-10 rounded-full border-transparent border hover:border-cyan-600" src="{{asset(auth()->guard('quest')->user()->avatar)}}" alt="{{asset(auth()->guard('quest')->user()->name)}}">
                         </button>
                         @endguest
                     </div>
@@ -72,10 +72,10 @@
                             <i class="fas fa-tachometer-alt fa-fw"></i>&nbsp;{{__('Admin Dashboard')}}
                         </a>
                         @endif
-                        <a href="{{ route('frontend.users.profile', encode_id(auth()->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-600 hover:text-white" role="menuitem">
-                            <i class="fas fa-user fa-fw"></i>&nbsp;{{ Auth::user()->name }}
+                        <a href="{{ route('frontend.users.profile', encode_id(auth()->guard('quest')->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-600 hover:text-white" role="menuitem">
+                            <i class="fas fa-user fa-fw"></i>&nbsp;{{ Auth::guard('quest')->user()->name }}
                         </a>
-                        <a href="{{ route('frontend.users.profileEdit', encode_id(auth()->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-600 hover:text-white" role="menuitem">
+                        <a href="{{ route('frontend.users.profileEdit', encode_id(auth()->guard('quest')->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-600 hover:text-white" role="menuitem">
                             <i class="fas fa-cogs fa-fw"></i>&nbsp;{{__('Settings')}}
                         </a>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-600 hover:text-white" role="menuitem">

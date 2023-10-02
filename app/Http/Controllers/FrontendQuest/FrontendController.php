@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontendQuest;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
@@ -14,9 +15,24 @@ class FrontendController extends Controller
     public function index()
     {
         $body_class = '';
+        $userQuest = Auth::guard('quest')->user();
 
         // return view('dashboard', compact('body_class'));
         return view('quest.index', compact('body_class'));
+    }
+
+    //me
+    public function me()
+    {
+        $body_class = '';
+        $questUser = Auth::guard('quest')->user();
+        if ($questUser){
+            dd($questUser);
+        }
+
+
+        // return view('dashboard', compact('body_class'));
+        return view('quest.me', compact('body_class'));
     }
 
     /**

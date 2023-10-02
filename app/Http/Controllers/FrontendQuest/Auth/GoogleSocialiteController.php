@@ -4,9 +4,9 @@ namespace App\Http\Controllers\FrontendQuest\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Exception;
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
 
 class GoogleSocialiteController extends Controller
 {

@@ -11,7 +11,7 @@
                 <h1 class="display-2 mb-4">
                     {{$$module_name_singular->name}}
                     @auth
-                    @if(auth()->user()->id == $$module_name_singular->id)
+                    @if(auth()->guard('web')->user()->id == $$module_name_singular->id)
                     <small>
                         <a href="{{ route('frontend.users.profileEdit', encode_id($$module_name_singular->id)) }}" class="btn btn-primary btn-sm">@lang('Show')</a>
                     </small>
@@ -41,7 +41,7 @@
                     <div class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-5">
                         <div class="row mt-4 mb-4">
                             <div class="col">
-                                {{ html()->form('PATCH', route('frontend.users.changePasswordUpdate', auth()->user()->username))->class('form-horizontal')->open() }}
+                                {{ html()->form('PATCH', route('frontend.users.changePasswordUpdate', auth()->guard('web')->user()->username))->class('form-horizontal')->open() }}
 
                                 <div class="form-group row">
                                     {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-3 form-control-label')->for('password') }}
@@ -72,7 +72,7 @@
                                                 <div class="form-group">
                                                     {{ html()->button($text = "<i class='fas fa-save'></i>&nbsp;Save", $type = 'submit')->class('btn btn-success') }}
 
-                                                    <a href="{{ route("frontend.$module_name.profile", auth()->user()->username) }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i>&nbsp;Back</a>
+                                                    <a href="{{ route("frontend.$module_name.profile", auth()->guard('web')->user()->username) }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i>&nbsp;Back</a>
                                                 </div>
                                             </div>
                                         </div>

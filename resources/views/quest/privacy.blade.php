@@ -3,7 +3,7 @@
 @section('title') Privacy Policy - {{ config('app.name') }} @endsection
 
 @section('content')
-    <section data-section-id="1" data-share="" data-category="rich-text-white-pattern" data-component-id="e206532b_02_awz" class="py-20 xl:pt-24 xl:pb-28 bg-white" style="background-image: url('flex-ui-assets/elements/pattern-white.svg'); background-position: center;" data-config-id="auto-img-1">
+    <section data-section-id="1" data-share="" data-category="rich-text-white-pattern" data-component-id="e206532b_02_awz" class="py-20 xl:pt-24 xl:pb-28 bg-white" style="background-image: url('https://shuffle.dev/flex-ui-assets/elements/pattern-white.svg'); background-position: center;" data-config-id="auto-img-1">
         <div class="container px-4 mx-auto">
             <div class="flex flex-wrap -mx-4">
                 <div class="page-header page-header-small clear-filter" filter-color="orange">

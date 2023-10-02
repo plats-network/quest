@@ -67,7 +67,7 @@
                 $field_placeholder = $field_lable;
                 $required = "required";
                 ?>
-                {{ html()->hidden($field_name)->value(encode_id(auth()->user()->id))->attributes(["$required"]) }}
+                {{ html()->hidden($field_name)->value(encode_id(auth()->guard('web')->user()->id))->attributes(["$required"]) }}
 
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                 {{ html()->form()->close() }}
@@ -139,7 +139,7 @@
                             $field_placeholder = $field_lable;
                             $required = "required";
                             ?>
-                            {{ html()->hidden($field_name)->value(encode_id(auth()->user()->id))->attributes(["$required"]) }}
+                            {{ html()->hidden($field_name)->value(encode_id(auth()->guard('web')->user()->id))->attributes(["$required"]) }}
 
                             <?php
                             $field_name = 'name';
@@ -148,7 +148,7 @@
                             $required = "required";
                             ?>
                             {{ html()->hidden($field_name)->value("Reply of ".$comment->name)->attributes(["$required"]) }}
-                            {{ html()->hidden($field_name)->value(encode_id(auth()->user()->id))->attributes(["$required"]) }}
+                            {{ html()->hidden($field_name)->value(encode_id(auth()->guard('web')->user()->id))->attributes(["$required"]) }}
 
                             <div class="flex-auto mx-4">
                                 <?php

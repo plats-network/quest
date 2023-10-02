@@ -60,7 +60,7 @@
                 </div>
 
                 @auth
-                @if (auth()->user()->id == $$module_name_singular->id)
+                @if (auth()->guard('web')->user()->id == $$module_name_singular->id)
                 <div class="mt-8">
                     <a href="{{ route("frontend.users.profileEdit", encode_id($$module_name_singular->id)) }}">
                         <div class="w-full text-sm px-6 py-2 transition ease-in duration-200 rounded text-gray-500 hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
@@ -82,7 +82,7 @@
 </div>
 
 
-<!-- 
+<!--
 <section class="section-header bg-primary text-white pb-7 pb-lg-11">
     <div class="container">
         <div class="row justify-content-center">
@@ -90,7 +90,7 @@
                 <h1 class="display-2 mb-4">
                     {{$$module_name_singular->name}}
                     @auth
-                    @if(auth()->user()->id == $$module_name_singular->id)
+                    @if(auth()->guard('web')->user()->id == $$module_name_singular->id)
                     <small>
                         <a href="{{ route('frontend.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-secondary btn-sm">Edit</a>
                     </small>
@@ -161,7 +161,7 @@
 
                                         @if ($field_name == 'date_of_birth' && $userprofile->$field_name != '')
                                         <td>
-                                            @if(auth()->user()->id == $userprofile->user_id)
+                                            @if(auth()->guard('web')->user()->id == $userprofile->user_id)
                                             {{ $userprofile->$field_name->isoFormat('LL') }}
                                             @else
                                             {{ $userprofile->$field_name->format('jS \\of F') }}
