@@ -10,12 +10,12 @@
                 <div class="md:max-w-2xl mx-auto mb-12 text-center">
                     <div class="inline-block py-1 px-3 mb-6 text-xs leading-5 text-green-500 font-medium uppercase bg-green-100 rounded-full shadow-sm" data-config-id="auto-txt-1-2">Technology</div>
                     <div class="flex items-center justify-center">
-                        <p class="inline-block text-green-500 font-medium" data-config-id="auto-txt-2-2">John Doe</p>
+                        <p class="inline-block text-green-500 font-medium" data-config-id="auto-txt-2-2">{{isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : $$module_name_singular->created_by_name}}</p>
                         <span class="mx-1 text-green-500" data-config-id="auto-txt-3-2">&bull;</span>
-                        <p class="inline-block text-green-500 font-medium" data-config-id="auto-txt-4-2">19 Jan 2022</p>
+                        <p class="inline-block text-green-500 font-medium" data-config-id="auto-txt-4-2">{{$$module_name_singular->published_at->isoFormat('llll')}}</p>
                     </div>
-                    <h3 class="mb-4 text-3xl md:text-4xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter" data-config-id="auto-txt-5-2">Prelude: Community Gathering</h3>
-                    <p class="mb-10 text-lg md:text-xl font-medium text-coolGray-500" data-config-id="auto-txt-6-2">Spread the word, invite your peers, and amplify the collective impact of Opside!</p>
+                    <h3 class="mb-4 text-3xl md:text-4xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter" data-config-id="auto-txt-5-2">{{$$module_name_singular->name}}</h3>
+                    <p class="mb-10 text-lg md:text-xl font-medium text-coolGray-500" data-config-id="auto-txt-6-2">{{$$module_name_singular->intro}}</p>
                     <div class="flex items-center justify-center text-left -mx-2">
                         <div class="w-auto px-2">
                             <img src="https://shuffle.dev/flex-ui-assets/images/blog/avatar.png" alt="" data-config-id="auto-img-1-2">
@@ -62,9 +62,9 @@
                                 </ul>
                             </div>
                         </div>
-                        <h2 id="accordion-color-heading-2" class="mb-0 headingAction"  data-isopen="true" data-action="LIKE" data-url="https://twitter.com/intent/follow?screen_name=OmniFDN">
+                        <h2 id="accordion-color-heading-2" class="mb-0 headingAction" data-isopen="true" data-action="LIKE" data-url="https://twitter.com/intent/follow?screen_name=OmniFDN">
                             <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-color-body-2" aria-expanded="false" aria-controls="accordion-color-body-2">
-                                <span class="flex items-center"><svg class="w-5 h-5 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg> What is Flowbite?</span>
+                                <span class="flex items-center"><svg class="w-5 h-5 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>Have the verified role in Omni Network Discord verified Discord Server</span>
 
                                 <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
@@ -89,7 +89,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <h2 id="accordion-color-heading-3" class="mb-0">
+                        <h2 id="accordion-color-heading-3" class="mb-0 headingAction" data-isopen="false" data-action="LIKE" data-url="https://twitter.com/intent/like?tweet_id=1697279832474656971">
                             <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-color-body-3" aria-expanded="false" aria-controls="accordion-color-body-3">
                                 <span class="flex items-center"><svg class="w-5 h-5 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>TWITTER Like @OmniFDN Tweet</span>
 
@@ -101,9 +101,8 @@
                         <div id="accordion-color-body-3" class="hidden" aria-labelledby="accordion-color-heading-3">
                             <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
                                 <p class="mb-2 text-gray-500 dark:text-gray-400">OmniFDN’s Tweet likers</p>
-                                <ul class="pl-5 text-gray-500 list-disc dark:text-gray-400">
-                                    <li><a href="https://flowbite.com/pro/" class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
-                                    <li><a href="https://tailwindui.com/" rel="nofollow" class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
+                                <ul class="pl-0 text-gray-500 list-none dark:text-gray-400">
+                                    <li><a href="{{route('quest.tasks.show', ['id' => 1])}}" rel="nofollow" class="text-blue-600 dark:text-blue-500 hover:underline">Detail >></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -209,11 +208,21 @@
 
             //Class headingAction on click
             $('.headingAction').on('click', function () {
-                //console.log($(this).data('action'));
-                if ($(this).data('action') == 'FOLLOW') {
+                //isopen
+                var isOpen = $(this).data('isopen');
+                if(isOpen){
                     var dataUrl = $(this).data('url');
-                    window.open(dataUrl, "myWindow", "width=500,height=500");
+                    //console.log($(this).data('action'));
+                    if ($(this).data('action') == 'FOLLOW') {
+                        window.open(dataUrl, "myWindow", "width=1000,height=1000");
+                    }
+
+                    //LIKE
+                    if ($(this).data('action') == 'LIKE') {
+                        window.open(dataUrl, "myWindow", "width=1000,height=1000");
+                    }
                 }
+
 
             });
 

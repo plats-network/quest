@@ -26,7 +26,7 @@ class SocialLoginController extends Controller
         if ($redirectTo) {
             return $redirectTo;
         } else {
-            return RouteServiceProvider::HOME;
+            return route('quest.index');
         }
     }
 
@@ -69,7 +69,7 @@ class SocialLoginController extends Controller
             return redirect(route('quest.index'));
         }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect(route('quest.index'));
     }
 
     /**
@@ -109,16 +109,34 @@ class SocialLoginController extends Controller
                 return redirect(route('quest.index'));
             }
 
-            $user = User::create([
-                'first_name' => $first_name,
-                'last_name' => $last_name,
-                'name' => $name,
-                'email' => $email,
-            ]);
+            try {
+                $password = bcrypt($socialUser->getId());
+                $user = User::create([
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'name' => $name,
+                    'email' => $email,
+                    'password' => $password,
+                ]);
+            }catch (\Exception $e){
+                Log::error($e->getMessage());
+                flash('Email address is required!')->error()->important();
+                return redirect(route('quest.index'));
+            }
 
             $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
             $user->avatar = $media->getUrl();
             $user->save();
+            //Create User Profile
+            $user->profile()->create([
+                'user_id' => $user->id,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'name' => $name,
+                'avatar' => $user->avatar,
+            ]);
+            //assignRole
+            $user->assignRole('user');
 
             event(new UserRegistered($user));
 

@@ -20,6 +20,8 @@ class CreateUserProvidersTable extends Migration
             $table->string('provider');
             $table->string('provider_id');
             $table->string('avatar')->nullable();
+            //attributes
+            $table->text('attributes')->nullable();
             $table->timestamps();
         });
     }

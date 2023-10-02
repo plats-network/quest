@@ -43,7 +43,8 @@ class Userprofile extends BaseModel
     ];
 
     protected $fillable = [
-        'user_id', 'name',
+        'user_id',
+        'name',
         'first_name',
         'last_name',
         'username',
@@ -80,4 +81,5 @@ class Userprofile extends BaseModel
     {
         return $this->belongsTo('App\Models\User');
     }
+
 }

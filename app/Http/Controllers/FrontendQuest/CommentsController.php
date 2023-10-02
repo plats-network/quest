@@ -129,12 +129,12 @@ class CommentsController extends Controller
         }
 
         if (isset($$module_name_singular)) {
-            auth()->user()->notify(new NewCommentAdded($$module_name_singular));
+            auth()->guard('quest')->user()->notify(new NewCommentAdded($$module_name_singular));
         }
 
         Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
 
-        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->guard('quest')->user()->name.'(ID:'.auth()->guard('quest')->user()->id.')');
 
         return redirect()->back();
     }

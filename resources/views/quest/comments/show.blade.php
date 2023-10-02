@@ -9,7 +9,7 @@
     <div class="container mx-auto flex px-5 items-center justify-center flex-col">
         <div class="text-center lg:w-2/3 w-full">
             <p class="mb-8 leading-relaxed">
-                <a href="{{route('frontend.comments.index')}}" class="outline outline-1 outline-gray-800 bg-gray-200 hover:bg-gray-100 text-gray-800 text-sm font-semibold mr-2 px-3 py-1 rounded dark:bg-gray-700 dark:text-gray-300">
+                <a href="{{route('quest.comments.index')}}" class="outline outline-1 outline-gray-800 bg-gray-200 hover:bg-gray-100 text-gray-800 text-sm font-semibold mr-2 px-3 py-1 rounded dark:bg-gray-700 dark:text-gray-300">
                     {{ __("Comments") }}
                 </a>
             </p>
@@ -41,7 +41,7 @@
                     <hr class="my-4">
 
                     <h6>
-                        {{ __('Post') }}: <a class="underline hover:text-gray-800" href="{{route('frontend.posts.show', [encode_id($$module_name_singular->post_id), $$module_name_singular->post->slug])}}">{{$$module_name_singular->post->name}}</a>
+                        {{ __('Post') }}: <a class="underline hover:text-gray-800" href="{{route('quest.posts.show', [encode_id($$module_name_singular->post_id), $$module_name_singular->post->slug])}}">{{$$module_name_singular->post->name}}</a>
                     </h6>
                 </div>
             </div>
@@ -77,12 +77,12 @@
                             {{$post->intro}}
                         </p>
                         <p class="card-text">
-                            <a href="{{route('frontend.categories.show', [encode_id($post->category_id), $post->category->slug])}}" class="badge bg-primary">{{$post->category_name}}</a>
+                            <a href="{{route('quest.categories.show', [encode_id($post->category_id), $post->category->slug])}}" class="badge bg-primary">{{$post->category_name}}</a>
                         </p>
 
                         <p class="card-text">
                             @foreach ($post->tags as $tag)
-                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge bg-warning text-dark">{{$tag->name}}</a>
+                            <a href="{{route('quest.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge bg-warning text-dark">{{$tag->name}}</a>
                             @endforeach
                         </p>
 

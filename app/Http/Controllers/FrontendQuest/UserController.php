@@ -99,10 +99,17 @@ class UserController extends Controller
 
         if ($$module_name_singular) {
             $userprofile = Userprofile::where('user_id', $id)->first();
+            //Check $userprofile
+            if (! $userprofile) {
+                $userprofile = new Userprofile();
+                $userprofile->user_id = $id;
+                $userprofile->save();
+            }
         } else {
             Log::error('UserProfile Exception for Username: '.$username);
             abort(404);
         }
+
 
         $body_class = 'profile-page';
 
@@ -133,11 +140,11 @@ class UserController extends Controller
         $page_heading = ucfirst($module_title);
         $title = $page_heading.' '.ucfirst($module_action);
 
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
+        if (! auth()->guard('quest')->user()->can('edit_users')) {
+            $id = auth()->guard('quest')->user()->id;
         }
 
-        if ($id != auth()->user()->id) {
+        if ($id != auth()->guard('quest')->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -168,7 +175,7 @@ class UserController extends Controller
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Profile Update';
-        if ($id != auth()->user()->id) {
+        if ($id != auth()->guard('quest')->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -181,9 +188,9 @@ class UserController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = Str::singular($this->module_name);
 
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
-            $username = auth()->user()->username;
+        if (! auth()->guard('quest')->user()->can('edit_users')) {
+            $id = auth()->guard('quest')->user()->id;
+            $username = auth()->guard('quest')->user()->username;
         }
 
         $$module_name_singular = User::findOrFail($id);
@@ -233,11 +240,11 @@ class UserController extends Controller
 
         $body_class = 'profile-page';
 
-        if ($id != auth()->user()->id) {
+        if ($id != auth()->guard('quest')->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
-        $id = auth()->user()->id;
+        $id = auth()->guard('quest')->user()->id;
 
         $$module_name_singular = User::findOrFail($id);
 
@@ -254,7 +261,7 @@ class UserController extends Controller
      */
     public function changePasswordUpdate(Request $request, $username)
     {
-        if ($username != auth()->user()->username) {
+        if ($username != auth()->guard('quest')->user()->username) {
             return redirect()->route('frontend.users.profile', $username);
         }
 
@@ -265,14 +272,14 @@ class UserController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = Str::singular($this->module_name);
 
-        $$module_name_singular = auth()->user();
+        $$module_name_singular = auth()->guard('quest')->user();
 
         $request_data = $request->only('password');
         $request_data['password'] = Hash::make($request_data['password']);
 
         $$module_name_singular->update($request_data);
 
-        return redirect()->route('frontend.users.profile', auth()->user()->id)->with('flash_success', 'Update successful!');
+        return redirect()->route('frontend.users.profile', auth()->guard('quest')->user()->id)->with('flash_success', 'Update successful!');
     }
 
     /**
@@ -291,7 +298,7 @@ class UserController extends Controller
         $module_name_singular = Str::singular($module_name);
         $module_action = __('Edit');
 
-        if ($id != auth()->user()->id) {
+        if ($id != auth()->guard('quest')->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -319,7 +326,7 @@ class UserController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = Str::singular($this->module_name);
 
-        if ($id != auth()->user()->id) {
+        if ($id != auth()->guard('quest')->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -397,11 +404,11 @@ class UserController extends Controller
     {
         $id = decode_id($id);
 
-        if ($id != auth()->user()->id) {
-            if (auth()->user()->hasAnyRole(['administrator', 'super admin'])) {
-                Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
+        if ($id != auth()->guard('quest')->user()->id) {
+            if (auth()->guard('quest')->user()->hasAnyRole(['administrator', 'super admin'])) {
+                Log::info(auth()->guard('quest')->user()->name.' ('.auth()->guard('quest')->user()->id.') - User Requested for Email Verification.');
             } else {
-                Log::warning(auth()->user()->name.' ('.auth()->user()->id.') - User trying to confirm another users email.');
+                Log::warning(auth()->guard('quest')->user()->name.' ('.auth()->guard('quest')->user()->id.') - User trying to confirm another users email.');
 
                 abort('404');
             }

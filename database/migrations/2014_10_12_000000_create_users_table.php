@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('gender')->nullable();
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('address')->nullable();
             $table->string('number')->nullable();
             $table->string('city')->nullable();
@@ -63,7 +63,7 @@ class CreateUsersTable extends Migration
             $table->integer('currency_id')->unsigned()->nullable();
 
 
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('username')->nullable();
             $table->string('mobile')->nullable();
             $table->date('date_of_birth')->nullable();

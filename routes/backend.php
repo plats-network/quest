@@ -226,5 +226,8 @@ Route::group([ 'as' => 'backend.', 'middleware' => ['web', 'auth', 'can:view_bac
 
 Route::fallback(function () {
     // ...
-    dd('404 backend');
+    //dd('404 backend');
+    //Redirect to home
+    $message = '404 backend';
+    return redirect()->route('backend.home')->with('message', $message);
 });

@@ -51,6 +51,8 @@ Route::group(['as' => 'frontend.'], function () {
     //Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);  // redirect to google login
     //Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);    // callback route after google account chosen
 
+    //Test send email
+    Route::get('send-mail', [FrontendController::class, 'sendMail'])->name('sendMail');
 
 
     Route::group(['middleware' => ['auth']], function () {
