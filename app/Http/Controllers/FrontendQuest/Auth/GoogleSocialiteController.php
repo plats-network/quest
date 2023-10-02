@@ -45,7 +45,7 @@ class GoogleSocialiteController extends Controller
                     'password' => bcrypt('my-google'),  // fill password by whatever pattern you choose
                 ]);
 
-                Auth::login($newUser);
+                Auth::guard('quest')->login($newUser);
 
                 return redirect('/dashboard');
             }

@@ -49,12 +49,24 @@ class SocialLoginController extends Controller
     {
         try {
             $user = Socialite::driver($provider)->user();
+            //Laravel\Socialite\One\User {#2447 ▼ // app\Http\Controllers\FrontendQuest\Auth\SocialLoginController.php:52
+            //  +id: "1588364698239397888"
+            //  +nickname: "PhanDun97822241"
+            //  +name: "Phan Dung"
+            //  +email: "dungpxvaix@gmail.com"
+            //  +avatar: "http://pbs.twimg.com/profile_images/1588364742015393792/Qvm1C8ru_normal.jpg"
+            //  +user: array:42 [▶]
+            //  +attributes: array:6 [▶]
+            //  +token: "1588364698239397888-OxFF5Dam8fsLNyccNL7cdBIUrVjixA"
+            //  +tokenSecret: "CfGVWZiURWnS9PuSFVFEodHKUIpmedQSM0l1TRJbRN4p9"
+            //}
+
 
             $authUser = $this->findOrCreateUser($user, $provider);
 
-            Auth::login($authUser, true);
+            Auth::guard('quest')->login($authUser, true);
         } catch (Exception $e) {
-            return redirect('/');
+            return redirect(route('quest.index'));
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);
@@ -94,7 +106,7 @@ class SocialLoginController extends Controller
 
                 flash('Email address is required!')->error()->important();
 
-                return redirect()->intended(RouteServiceProvider::HOME);
+                return redirect(route('quest.index'));
             }
 
             $user = User::create([
