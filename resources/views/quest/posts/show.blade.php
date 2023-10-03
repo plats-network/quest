@@ -112,7 +112,7 @@
             <div class="container px-4 mx-auto">
                 <div class="md:max-w-3xl mx-auto">
 
-                    <div class="mb-10 pb-10 text-base md:text-lg text-coolGray-500 border-b border-coolGray-100">
+                    <div class="mb-10 pb-0 text-base md:text-lg text-coolGray-500 border-b border-coolGray-100">
                     <div id="accordion-color" data-accordion="collapse" data-active-classes="bg-blue-100 dark:bg-gray-800 text-blue-600 dark:text-white">
                         @foreach($tasks as $task)
                             <h2 id="accordion-color-heading-{{$task->id}}" class="mb-0 headingAction2" data-isopen="true" data-action="FOLLOW{{$task->entry_type}}" data-url="{{$task->value}}">

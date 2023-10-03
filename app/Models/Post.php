@@ -239,6 +239,12 @@ class Post extends BaseModel
         return $this->hasMany('App\Models\Task');
     }
 
+    //List active task
+    public function tasks_active()
+    {
+        return $this->hasMany('App\Models\Task')->where('status', '=', 'Active');
+    }
+
     /**
      * Get all of the post's comments.
      */
