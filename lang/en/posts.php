@@ -2,6 +2,8 @@
 
 return [
 
+    'title' => 'Quests',
+    'title_post' => 'Quest',
     'name' => 'Name',
     'slug' => 'Slug',
     'created_by_alias' => 'Author Name Alias',
@@ -14,6 +16,8 @@ return [
     'tags' => 'Tags',
     'status' => 'Status',
     'published_at' => 'Published At',
+    'start_at' => 'Start At',
+    'end_at' => 'End At',
 
     'meta_title' => 'Meta Title',
     'meta_keywords' => 'Meta Keywords',

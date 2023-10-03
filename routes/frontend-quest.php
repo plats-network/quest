@@ -41,13 +41,16 @@ Route::get('dashboard', function () {
 */
 Route::group(['as' => 'quest.'], function () {
 
-    Route::get('/', [FrontendController::class, 'index'])->name('index');
+    //Route::get('/', [FrontendController::class, 'index'])->name('index');
+    Route::get('/', [PostsController::class, 'index'])->name('index');
 
     Route::get('home', [FrontendController::class, 'index'])->name('home');
     Route::get('privacy', [FrontendController::class, 'privacy'])->name('privacy');
     Route::get('terms', [FrontendController::class, 'terms'])->name('terms');
     //me
     Route::get('me', [FrontendController::class, 'me'])->name('me');
+    //support
+    Route::get('support', [FrontendController::class, 'support'])->name('support');
 
     Route::group(['middleware' => ['auth:quest']], function () {
         /*

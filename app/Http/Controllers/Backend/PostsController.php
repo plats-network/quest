@@ -36,7 +36,7 @@ class PostsController extends Controller
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Title Posts';
+        $this->module_title = 'Quest';
 
         // module name
         $this->module_name = 'posts';

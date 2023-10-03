@@ -4,22 +4,6 @@
 
 @section('content')
 
-<section class="bg-gray-100 text-gray-600 py-20">
-    <div class="container mx-auto flex px-5 items-center justify-center flex-col">
-        <div class="text-center lg:w-2/3 w-full">
-            <h1 class="text-3xl sm:text-4xl mb-4 font-medium text-gray-800">
-                {{ __("Articles") }}
-            </h1>
-            <p class="mb-8 leading-relaxed">
-                We publish articles on a number of topics.
-                <br>
-                We encourage you to read our posts and let us know your feedback. It would be really help us to move forward.
-            </p>
-
-            @include('quest.includes.messages')
-        </div>
-    </div>
-</section>
 
 <section class="bg-white text-gray-600 p-6 sm:p-20">
     <div class="grid grid-cols-4 sm:grid-cols-4 gap-6">
@@ -41,11 +25,22 @@
                             </h2>
                         </a>
                         <div class="flex flex-row content-center my-4">
-                            <img class="w-5 h-5 sm:w-8 sm:h-8 rounded-full" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="">
-
-                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('quest.users.profile', $$module_name_singular->created_by).'">
-                                <h6 class="text-muted text-sm small ml-2 mb-0">'.$$module_name_singular->created_by_name.'</h6>
-                            </a>'!!}
+                            <address class="flex items-center mb-6 not-italic">
+                                <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                                    <img class="w-5 h-5 sm:w-8 sm:h-8 rounded-full" src="https://res.cloudinary.com/dhploi5y1/image/upload/v1696240313/a49dc6a0-8564-48dd-b99d-16b008957acc_oexjni.png" alt="Jese Leos">
+                                    <div>
+                                        <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">Altlayer
+                                            <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full dark:bg-gray-700 dark:text-blue-400">
+                                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
+                                                <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
+                                              </svg>
+                                             <span class="sr-only">Icon description</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </address>
                         </div>
                         <p class="flex-1 h-full mb-3 font-normal text-gray-700 dark:text-gray-400">
                             {{$$module_name_singular->intro}}
@@ -62,14 +57,6 @@
                             @endforeach
                         </p>
 
-                        <div class="text-end">
-                            <a href="{{$details_url}}" class="inline-flex items-center text-sm outline outline-1 outline-gray-800 text-gray-700 hover:text-gray-100 bg-gray-200 hover:bg-gray-700 py-2 px-3 focus:outline-none rounded">
-                                Read more
-                                <svg class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                </svg>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

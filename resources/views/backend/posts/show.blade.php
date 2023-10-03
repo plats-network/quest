@@ -22,10 +22,10 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item"><a href="#">@lang('Home')</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Posts</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{__('posts.title')}}</li>
                 </ol>
             </nav>
-            <h2 class="h4">Post Detail</h2>
+            <h2 class="h4">{{__('posts.title_post')}} Detail</h2>
             <p class="mb-0">Your web analytics dashboard template.</p>
         </div>
         <div class="btn-toolbar mb-2 mb-md-0">
