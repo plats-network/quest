@@ -47,6 +47,7 @@ class CreatePostsTable extends Migration
             $table->string('created_by_alias')->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
+
             //Start, end datetime
             $table->dateTime('start_at')->nullable();
             $table->dateTime('end_at')->nullable();

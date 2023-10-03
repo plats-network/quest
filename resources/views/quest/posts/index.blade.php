@@ -22,7 +22,7 @@
 </section>
 
 <section class="bg-white text-gray-600 p-6 sm:p-20">
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+    <div class="grid grid-cols-4 sm:grid-cols-4 gap-6">
         @foreach ($$module_name as $$module_name_singular)
         @php
         $details_url = route("quest.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
@@ -43,7 +43,7 @@
                         <div class="flex flex-row content-center my-4">
                             <img class="w-5 h-5 sm:w-8 sm:h-8 rounded-full" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="">
 
-                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('frontend.users.profile', $$module_name_singular->created_by).'">
+                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('quest.users.profile', $$module_name_singular->created_by).'">
                                 <h6 class="text-muted text-sm small ml-2 mb-0">'.$$module_name_singular->created_by_name.'</h6>
                             </a>'!!}
                         </div>
@@ -108,7 +108,7 @@
                         <div class="d-flex align-items-center">
                             <img class="avatar avatar-sm rounded-circle" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="">
 
-                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('frontend.users.profile', $$module_name_singular->created_by).'">
+                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('quest.users.profile', $$module_name_singular->created_by).'">
                                 <h6 class="text-muted small ml-2 mb-0">'.$$module_name_singular->created_by_name.'</h6>
                             </a>'!!}
 
@@ -129,15 +129,15 @@
                         <a href="{{$details_url}}" class="h3">{{$$module_name_singular->name}}</a>
                         <div class="d-flex align-items-center my-4">
                             <img class="avatar avatar-sm rounded-circle" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="">
-                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('frontend.users.profile', $$module_name_singular->created_by).'">
+                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('quest.users.profile', $$module_name_singular->created_by).'">
                                 <h6 class="text-muted small ml-2 mb-0">'.$$module_name_singular->created_by_name.'</h6>
                             </a>'!!}
                         </div>
                         <p class="mb-3">{{$$module_name_singular->intro}}</p>
-                        <a href="{{route('frontend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="badge bg-primary">{{$$module_name_singular->category_name}}</a>
+                        <a href="{{route('quest.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="badge bg-primary">{{$$module_name_singular->category_name}}</a>
                         <p>
                             @foreach ($$module_name_singular->tags as $tag)
-                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge bg-warning text-dark">{{$tag->name}}</a>
+                            <a href="{{route('quest.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge bg-warning text-dark">{{$tag->name}}</a>
                             @endforeach
                         </p>
                     </div>

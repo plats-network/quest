@@ -20,8 +20,8 @@
                     {{$userprofile->url_website}}
                 </a>
                 @else
-                <a class="text-blue-800 hover:text-gray-800" href="{{route('frontend.users.profile', encode_id($$module_name_singular->id))}}">
-                    {{route('frontend.users.profile', encode_id($$module_name_singular->id))}}
+                <a class="text-blue-800 hover:text-gray-800" href="{{route('quest.users.profile', encode_id($$module_name_singular->id))}}">
+                    {{route('quest.users.profile', encode_id($$module_name_singular->id))}}
                 </a>
                 @endif
                 <div class="mt-5 pt-5 flex border-t border-gray-200 w-40 mx-auto text-gray-500 items-center justify-between">
@@ -92,7 +92,7 @@
                     @auth
                     @if(auth()->guard('quest')->user()->id == $$module_name_singular->id)
                     <small>
-                        <a href="{{ route('frontend.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="{{ route('quest.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-secondary btn-sm">Edit</a>
                     </small>
                     @endif
                     @endauth
@@ -102,7 +102,7 @@
                 </p>
                 @if ($$module_name_singular->email_verified_at == null)
                 <p class="lead">
-                    <a href="{{route('frontend.users.emailConfirmationResend', $$module_name_singular->id)}}">Confirm Email</a>
+                    <a href="{{route('quest.users.emailConfirmationResend', $$module_name_singular->id)}}">Confirm Email</a>
                 </p>
                 @endif
 

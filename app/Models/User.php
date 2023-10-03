@@ -196,4 +196,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
     {
         return [];
     }
+
+
 }

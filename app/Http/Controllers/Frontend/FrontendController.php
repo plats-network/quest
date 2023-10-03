@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class FrontendController extends Controller
 {
@@ -49,5 +50,24 @@ class FrontendController extends Controller
         $body_class = '';
 
         return view('frontend.wallet', compact('body_class'));
+    }
+
+    //sendMail
+    public function sendMail()
+    {
+        $body_class = '';
+        //
+        //Send email
+        $data = [
+            'name' => 'Nguyen Van A',
+            'email' => ''
+        ];
+        $status =  Mail::send('emails.test', $data, function ($message) {
+            $message->to('dungpxvaix@gmail.com', 'Dungpx')
+                ->subject('Test send email');
+        });
+        //Check send email
+        dd($status);
+        //return view('frontend.sendMail', compact('body_class'));
     }
 }

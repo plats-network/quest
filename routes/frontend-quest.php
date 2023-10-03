@@ -82,6 +82,7 @@ Route::group(['as' => 'quest.'], function () {
     $module_name = 'posts';
     $controller_name = 'PostsController';
     Route::get('posts', [PostsController::class, 'index'])->name('posts.index');
+
     Route::get('posts/{id}/{slug?}', [PostsController::class, 'show'])->name('posts.show');
 
     //Task detail

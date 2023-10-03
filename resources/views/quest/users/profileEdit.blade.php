@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-            {{ html()->modelForm($userprofile, 'PATCH', route('frontend.users.profileUpdate', encode_id($$module_name_singular->id)))->acceptsFiles()->open() }}
+            {{ html()->modelForm($userprofile, 'PATCH', route('quest.users.profileUpdate', encode_id($$module_name_singular->id)))->acceptsFiles()->open() }}
             <div class="shadow sm:rounded-md sm:overflow-hidden">
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                     <div class="grid grid-cols-6 gap-6">
@@ -173,7 +173,7 @@
             </div>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-            <!-- {{ html()->modelForm($userprofile, 'PATCH', route('frontend.users.profileUpdate', $$module_name_singular->id))->acceptsFiles()->open() }} -->
+            <!-- {{ html()->modelForm($userprofile, 'PATCH', route('quest.users.profileUpdate', $$module_name_singular->id))->acceptsFiles()->open() }} -->
             <div class="shadow sm:rounded-md sm:overflow-hidden">
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                     <div class="grid grid-cols-6 gap-6">
@@ -263,7 +263,7 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 text-center">
-                                <a href="{{ route('frontend.users.changePassword', encode_id($$module_name_singular->id)) }}">
+                                <a href="{{ route('quest.users.changePassword', encode_id($$module_name_singular->id)) }}">
                                     <div class="w-full text-sm px-6 py-2 transition ease-in duration-200 rounded text-gray-500 hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
                                         Chnage Password
                                     </div>

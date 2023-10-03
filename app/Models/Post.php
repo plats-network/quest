@@ -39,6 +39,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property string $created_by_alias
  * @property integer $updated_by
  * @property integer $deleted_by
+ * @property integer $start_at
+ * @property integer $end_at
  * @property string $published_at
  * @property string $created_at
  * @property string $updated_at
@@ -53,6 +55,41 @@ class Post extends BaseModel
     use Notifiable;
 
     protected $table = 'posts';
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'slug',
+        'intro',
+        'content',
+        'type',
+        'category_id',
+        'category_name',
+        'is_featured',
+        'featured_image',
+        'meta_title',
+        'meta_keywords',
+        'meta_description',
+        'meta_og_image',
+        'meta_og_url',
+        'hits',
+        'order',
+        'status',
+        'start_at',
+        'end_at',
+        'moderated_by',
+        'moderated_at', 'created_by',
+        'created_by_name',
+        'created_by_alias',
+        'updated_by',
+        'deleted_by',
+        'published_at',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 
     use QueryCacheable;
 
@@ -298,6 +335,21 @@ class Post extends BaseModel
         }
     }
 
+    //Scope Name
+    public function scopeName($query, $name)
+    {
+        return $query->where('name', 'LIKE', "%{$name}%");
+    }
+    //Scope Start
+    public function scopeStart($query, $start_at)
+    {
+        return $query->where('start_at', '>=', $start_at);
+    }
+    //Scope End
+    public function scopeEnd($query, $end_at)
+    {
+        return $query->where('end_at', '<=', $end_at);
+    }
     /**
      * Get the list of Published Articles.
      *
