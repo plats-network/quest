@@ -1,4 +1,4 @@
-<title>Volt Laravel Dashboard - Item Management</title>
+<title>{{ env('APP_NAME', 'Plats') }} Dashboard - Item Management</title>
 <div>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div class="d-block mb-4 mb-md-0">

@@ -1,4 +1,4 @@
-<title>Volt Laravel Dashboard - New User</title>
+<title>{{ env('APP_NAME', 'Plats') }} Dashboard - New User</title>
 <div>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div class="d-block mb-4 mb-md-0">
