@@ -25,6 +25,9 @@
 > php artisan migrate
 > php artisan krlove:generate:models --skip-table=users --skip-table=roles  --output-path=app/Models/XCard --namespace=App\Models\Reports
 
+> php artisan starter:insert-demo-data --fresh
+> php artisan migrate:fresh --seed
+> php artisan migrate:fresh --seed --force
 
 
 ### Test

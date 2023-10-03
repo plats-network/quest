@@ -20,6 +20,8 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('slug')->nullable();
+            //Twitter Username, Url, Hashtag, Discord
+            $table->string('value')->nullable();
             $table->text('description')->nullable();
 
             $table->string('group_name')->nullable();
@@ -30,7 +32,16 @@ return new class extends Migration
             $table->text('meta_keyword')->nullable();
 
             $table->string('order')->nullable();
-            $table->string('status')->default('Active');
+
+            $table->string('status')->nullable()->default('Active');
+
+            $table->smallInteger('entry_type')->nullable()->default('1');
+            //Twitter id
+            $table->string('twitter_id')->nullable();
+            //Twitter username
+            $table->string('twitter_username')->nullable();
+            //Discord id
+            $table->string('discord_id')->nullable();
 
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();

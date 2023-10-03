@@ -7,6 +7,7 @@ use Carbon\Carbon;
 //Cloudinary
 use App\Traits\MediaAlly;
 use Database\Factories\CategoryFactory;
+use Database\Factories\TaskFactory;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,11 +18,14 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
  * @property integer $id
+ * @property integer $post_id
  * @property string $name
  * @property string $slug
+ * @property string $value
  * @property string $description
  * @property string $order
  * @property string $status
+ * @property string $entry_type
  * @property integer $created_by
  * @property integer $updated_by
  * @property integer $deleted_by
@@ -29,15 +33,66 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  * @property string $updated_at
  * @property string $deleted_at
  */
-class Category extends BaseModel
+class Task extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
 
     //Cloudinary
     use MediaAlly;
+    //Constant
+    //Task Type Twitter Like
+    const TYPE_TWITTER_FOLLOW = 1;
+    //Task Type Twitter Retweet
+    const TYPE_TWITTER_RETWEET = 2;
+    //Task Type Twitter Follow
+    const TYPE_TWITTER_LIKE = 3;
+    //Task Type Twitter Hashtag
+    const TYPE_TWITTER_HASHTAG = 4;
+    //Task Type Discord Join
+    const TYPE_DISCORD_JOIN = 5;
 
-    protected $table = 'categories';
+    //Get all task type
+    public static function getTaskType()
+    {
+        return [
+            self::TYPE_TWITTER_FOLLOW => 'Twitter Follow',
+            self::TYPE_TWITTER_RETWEET => 'Twitter Retweet',
+            self::TYPE_TWITTER_LIKE => 'Twitter Like',
+            self::TYPE_TWITTER_HASHTAG => 'Twitter Hashtag',
+            self::TYPE_DISCORD_JOIN => 'Discord Join',
+        ];
+    }
+
+    //Get task action name, example 1 is FOLLOW, 2 is RETWEET
+    public function getTypeValueAttribute()
+    {
+        $taskType = self::getTaskType();
+        switch ($this->type) {
+            case self::TYPE_TWITTER_FOLLOW:
+                return 'FOLLOW';
+                break;
+            case self::TYPE_TWITTER_RETWEET:
+                return 'RETWEET';
+                break;
+            case self::TYPE_TWITTER_LIKE:
+                return 'LIKE';
+                break;
+            case self::TYPE_TWITTER_HASHTAG:
+                return 'HASHTAG';
+                break;
+            case self::TYPE_DISCORD_JOIN:
+                return 'DISCORD_JOIN';
+                break;
+            default:
+                return '';
+        }
+
+        return '';
+    }
+
+
+    protected $table = 'tasks';
 
     public static $rules = [
         'name' => 'required|unique:product_categories',
@@ -124,18 +179,18 @@ class Category extends BaseModel
      */
     protected static function booted(): void
     {
-        static::created(function (Category $agent) {
+        static::created(function (Task $agent) {
             // ...
             $agent::flushQueryCache(['test']);
         });
         //Update
-        static::saved(function (Category $agent) {
+        static::saved(function (Task $agent) {
             // ...
             $agent::flushQueryCache(['test']);
         });
 
         //Delete
-        static::deleted(function (Category $agent) {
+        static::deleted(function (Task $agent) {
             // ...
             $agent::flushQueryCache(['test']);
         });
@@ -144,7 +199,7 @@ class Category extends BaseModel
     //flushQueryCacheItem
     public function flushQueryCacheItem()
     {
-        $cacheKeyAgent = 'category_cache_for';
+        $cacheKeyAgent = 'task_cache_for';
         //Delete cache
         cache()->forget($cacheKeyAgent);
 
@@ -153,7 +208,7 @@ class Category extends BaseModel
 
     protected function getCacheForKey()
     {
-        return 'category_cache_for';
+        return 'task_cache_for';
     }
 
     /**
@@ -164,15 +219,15 @@ class Category extends BaseModel
      */
     protected function cacheTagsValue()
     {
-        return ['categorys'];
+        return ['tasks'];
     }
 
     /**
-     * Caegories has Many posts.
+     * Task belongs to post
      */
-    public function posts()
+    public function post()
     {
-        return $this->hasMany('App\Models\Post');
+        return $this->belongsTo(Post::class);
     }
 
     /**
@@ -197,7 +252,7 @@ class Category extends BaseModel
      */
     protected static function newFactory()
     {
-        return CategoryFactory::new();
+        return TaskFactory::new();
     }
 
     /**
@@ -216,16 +271,6 @@ class Category extends BaseModel
         return '';
     }
 
-    public function getImageUrlAttribute2(): string
-    {
-        /** @var Media $media */
-        $media = $this->getMedia(ProductCategory::PATH)->first();
-        if (! empty($media)) {
-            return $media->getFullUrl();
-        }
-
-        return '';
-    }
     //status_color
     public function getStatusColorAttribute()
     {
@@ -239,6 +284,16 @@ class Category extends BaseModel
         }
 
         return 'danger';
+    }
+    public function getImageUrlAttribute2(): string
+    {
+        /** @var Media $media */
+        $media = $this->getMedia(ProductCategory::PATH)->first();
+        if (! empty($media)) {
+            return $media->getFullUrl();
+        }
+
+        return '';
     }
 
     /**
@@ -304,7 +359,7 @@ class Category extends BaseModel
             DB::commit();
 
             return $productCategory;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             throw new UnprocessableEntityHttpException($e->getMessage());
         }

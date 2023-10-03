@@ -174,7 +174,7 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "backend.$module_name.create",
+            "backend.tags.create",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action')
         );
     }

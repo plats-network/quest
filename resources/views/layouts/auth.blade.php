@@ -1,6 +1,5 @@
 <x-layouts.base>
 
-
     @if(in_array(request()->route()->getName(), ['dashboard', 'profile', 'profile-example', 'users', 'bootstrap-tables', 'transactions',
     'buttons',
     'forms', 'modals', 'notifications', 'typography', 'upgrade-to-pro']))
@@ -18,14 +17,14 @@
         </main>
 
     @elseif(in_array(request()->route()->getName(), ['register', 'register-example', 'login', 'loginAdmin', 'login-example',
-    'forgot-password', 'forgot-password-example', 'reset-password','reset-password-example']))
+    'forgot-password', 'forgot-password-example', 'admin.loginAdmin', 'reset-password','reset-password-example', 'admin.login', 'admin.register', 'admin.forgot-password', 'admin.reset-password']))
 
         {{ $slot }}
         {{-- Footer --}}
         @include('layouts.footer2')
 
 
-    @elseif(in_array(request()->route()->getName(), ['404', '500', 'lock']))
+    @elseif(in_array(request()->route()->getName(), ['admin.404', 'admin.500', 'admin.lock']))
 
         {{ $slot }}
 

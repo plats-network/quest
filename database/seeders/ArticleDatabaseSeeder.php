@@ -38,14 +38,16 @@ class ArticleDatabaseSeeder extends Seeder
          * Posts Seed
          * ------------------
          */
+        DB::table('tasks')->truncate();
         DB::table('posts')->truncate();
         echo "Truncate: posts \n";
 
         // Populate the pivot table
         Post::factory()
                 ->has(Tag::factory()->count(rand(1, 5)))
-                ->count(25)
+                ->count(5)
                 ->create();
+
         echo " Insert: posts \n\n";
 
         // Artisan::call('auth:permission', [

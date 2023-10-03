@@ -34,7 +34,7 @@ $indexSegmentt = 1;
     </div>
     <ul class="nav flex-column pt-3 pt-md-0">
       <li class="nav-item">
-        <a href="/dashboard" class="nav-link d-flex align-items-center">
+        <a href="{{route('backend.home')}}" class="nav-link d-flex align-items-center">
           <span class="sidebar-icon me-3">
             <img src="/assets/img/brand/plats-logo-with-text.png" height="20" width="20" alt="Plats Logo">
           </span>

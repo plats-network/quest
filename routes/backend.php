@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\NotificationsController;
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\PostsController;
 use App\Http\Controllers\Backend\CategoriesController;
+use App\Http\Controllers\Backend\TasksController;
 use App\Http\Controllers\Backend\CommentsController;
 use App\Http\Controllers\Backend\TagsController;
 use App\Http\Controllers\Backend\UserController;
@@ -175,6 +176,25 @@ Route::group([ 'as' => 'backend.', 'middleware' => ['web', 'auth', 'can:view_bac
     Route::patch('categories/trashed/{id}', [CategoriesController::class, 'restore'])->name('categories.restore');
 
     Route::resource('categories', CategoriesController::class);
+
+    /*
+    *
+    *  Tasks Routes
+    *
+    * ---------------------------------------------------------------------
+    */
+    $module_name = 'tasks';
+    $controller_name = 'TasksController';
+
+    Route::get('tasks/index_list', [TasksController::class, 'index_list'])->name('tasks.index_list');
+
+    Route::get('tasks/index_data', [TasksController::class, 'index_data'])->name('tasks.index_data');
+
+    Route::get('tasks/trashed', [TasksController::class, 'trashed'])->name('tasks.trashed');
+
+    Route::patch('tasks/trashed/{id}', [TasksController::class, 'restore'])->name('tasks.restore');
+
+    Route::resource('tasks', TasksController::class);
 
 
     /*

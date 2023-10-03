@@ -17,7 +17,7 @@ if (user_registration()) {
         Route::get('register', [RegisteredUserController::class, 'create'])
             ->name('quest.register');
 
-        Route::post('register', [RegisteredUserController::class, 'store']);
+        Route::post('register', [RegisteredUserController::class, 'store'])->name('quest.register.store');
     });
 }
 
@@ -26,7 +26,7 @@ Route::middleware('guest:quest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('quest.login');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('quest.login.store');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('quest.password.request');
@@ -68,5 +68,5 @@ Route::middleware('auth:quest')->group(function () {
 // Social Login Routes
 Route::group(['namespace' => 'Auth', 'middleware' => 'guest:quest'], function () {
     Route::get('login/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('quest.social.login');
-    Route::get('login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback'])->name('quest.social.login.callback');
+    Route::get('quest/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback'])->name('quest.social.login.callback');
 });

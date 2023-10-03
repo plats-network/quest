@@ -4,7 +4,10 @@
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
+        {{ __($module_title) }}
+    </x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
@@ -19,16 +22,15 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item"><a href="#">@lang('Home')</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                    <li class="breadcrumb-item active" aria-current="page">Tasks</li>
                 </ol>
             </nav>
-            <h2 class="h4">All Category</h2>
-            <p class="mb-0">Your web analytics dashboard template.</p>
+            <h2 class="h4">Task Edit</h2>
         </div>
         <div class="btn-toolbar mb-2 mb-md-0">
-            <a href="{{route('backend.categories.create')}}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
+            <a href="{{route('backend.tasks.create')}}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
                 <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                New Category
+                New Task
             </a>
             <div class="btn-group ms-2 ms-lg-3">
                 <button type="button" class="btn btn-sm btn-outline-gray-600">@lang('Share')</button>
@@ -64,125 +66,5 @@
             </div>
         </div>
     </div>
-
-    <div class="card">
-    <div class="card-body">
-
-        <x-backend.section-header>
-            <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
-
-            <x-slot name="subtitle">
-                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-            </x-slot>
-            <x-slot name="toolbar">
-                @can('add_'.$module_name)
-                <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
-                @endcan
-
-                @can('restore_'.$module_name)
-                <div class="btn-group">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href='{{ route("backend.$module_name.trashed") }}'>
-                                <i class="fas fa-eye-slash"></i> @lang("View trash")
-                            </a>
-                        </li>
-                        <!-- <li>
-                            <hr class="dropdown-divider">
-                        </li> -->
-                    </ul>
-                </div>
-                @endcan
-            </x-slot>
-        </x-backend.section-header>
-
-        <div class="row mt-4">
-            <div class="col">
-                <table id="datatable" class="table table-bordered table-hover table-responsive-sm">
-                    <thead>
-                        <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>
-                                @lang("labels.backend.name")
-                            </th>
-                            <th>
-                                @lang("labels.backend.updated_at")
-                            </th>
-                            <th>
-                                @lang("labels.backend.status")
-                            </th>
-                            <th class="text-end">
-                                @lang("labels.backend.action")
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="card-footer">
-        <div class="row">
-            <div class="col-7">
-                <div class="float-left">
-
-                </div>
-            </div>
-            <div class="col-5">
-                <div class="float-end">
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+    <x-backend.layouts.edit :post_id="$post_id" :all_task_type="$all_task_type" :data="$$module_name_singular" :module_name="$module_name" :module_path="$module_path" :module_title="$module_title" :module_icon="$module_icon" :module_action="$module_action" />
 @endsection
-
-@push ('after-styles')
-<!-- DataTables Core and Extensions -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-
-@endpush
-
-@push ('after-scripts')
-<!-- DataTables Core and Extensions -->
-<script type="module" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
-<script type="module">
-    $('#datatable').DataTable({
-        processing: true,
-        serverSide: true,
-        autoWidth: true,
-        responsive: true,
-        ajax: '{{ route("backend.$module_name.index_data") }}',
-        columns: [{
-                data: 'id',
-                name: 'id'
-            },
-            {
-                data: 'name',
-                name: 'name'
-            },
-            {
-                data: 'updated_at',
-                name: 'updated_at'
-            },
-            {
-                data: 'status',
-                name: 'status'
-            },
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false
-            }
-        ]
-    });
-</script>
-@endpush

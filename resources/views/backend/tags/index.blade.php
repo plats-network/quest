@@ -22,7 +22,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Tags</li>
                 </ol>
             </nav>
-            <h2 class="h4">All Orders</h2>
+            <h2 class="h4">All Tags</h2>
             <p class="mb-0">Your web analytics dashboard template.</p>
         </div>
         <div class="btn-toolbar mb-2 mb-md-0">

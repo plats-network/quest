@@ -61,7 +61,6 @@ class SocialLoginController extends Controller
             //  +tokenSecret: "CfGVWZiURWnS9PuSFVFEodHKUIpmedQSM0l1TRJbRN4p9"
             //}
 
-
             $authUser = $this->findOrCreateUser($user, $provider);
 
             Auth::guard('quest')->login($authUser, true);

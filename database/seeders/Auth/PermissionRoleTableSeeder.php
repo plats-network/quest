@@ -40,21 +40,31 @@ class PermissionRoleTableSeeder extends Seeder
             Permission::firstOrCreate(['name' => $perms]);
         }
 
+        //Post
         Artisan::call('auth:permission', [
             'name' => 'posts',
         ]);
         echo "\n _Posts_ Permissions Created.";
 
+        //Category
         Artisan::call('auth:permission', [
             'name' => 'categories',
         ]);
         echo "\n _Categories_ Permissions Created.";
 
+        //Task
+        Artisan::call('auth:permission', [
+            'name' => 'tasks',
+        ]);
+        echo "\n _Tasks_ Permissions Created.";
+
+        //Tag
         Artisan::call('auth:permission', [
             'name' => 'tags',
         ]);
         echo "\n _Tags_ Permissions Created.";
 
+        //Comment
         Artisan::call('auth:permission', [
             'name' => 'comments',
         ]);

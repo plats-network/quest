@@ -39,19 +39,19 @@ use App\Http\Livewire\Users;
 
 //Route::redirect('/', '/login');
 //
-Route::get('register', Register::class)->name('register');
+Route::get('register', Register::class)->name('admin.register');
 
-Route::get('login', Login::class)->name('login');
+Route::get('login', Login::class)->name('admin.login');
 
-Route::get('login-admin', Login::class)->name('loginAdmin');
+Route::get('login-admin', Login::class)->name('admin.loginAdmin');
 
-Route::get('forgot-password', ForgotPassword::class)->name('forgot-password');
+Route::get('forgot-password', ForgotPassword::class)->name('admin.forgot-password');
 
-Route::get('reset-password/{id}', ResetPassword::class)->name('reset-password')->middleware('signed');
+Route::get('reset-password/{id}', ResetPassword::class)->name('admin.reset-password')->middleware('signed');
 
-Route::get('404', Err404::class)->name('404');
-Route::get('500', Err500::class)->name('500');
-Route::get('upgrade-to-pro', UpgradeToPro::class)->name('upgrade-to-pro');
+Route::get('404', Err404::class)->name('admin.404');
+Route::get('500', Err500::class)->name('admin.500');
+Route::get('upgrade-to-pro', UpgradeToPro::class)->name('admin.upgrade-to-pro');
 
 Route::middleware('auth')->group(function () {
     //Route::get('profile', Profile::class)->name('profile');
@@ -139,6 +139,6 @@ Route::get('laravel-version', function () {
     return "Your Laravel version is ".$laravel::VERSION;
 });
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'can:view_backend']], function () {
+/*Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'can:view_backend']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
-});
+});*/
