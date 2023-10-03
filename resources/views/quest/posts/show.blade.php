@@ -114,21 +114,22 @@
 
                     <div class="mb-10 pb-10 text-base md:text-lg text-coolGray-500 border-b border-coolGray-100">
                     <div id="accordion-color" data-accordion="collapse" data-active-classes="bg-blue-100 dark:bg-gray-800 text-blue-600 dark:text-white">
-                        <h2 id="accordion-color-heading-1" class="mb-0 headingAction" data-isopen="true" data-action="FOLLOW" data-url="https://twitter.com/intent/follow?screen_name=OmniFDN">
-                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-color-body-1" aria-expanded="true" aria-controls="accordion-color-body-1">
+                        @foreach($tasks as $task)
+                            <h2 id="accordion-color-heading-{{$task->id}}" class="mb-0 headingAction" data-isopen="true" data-action="FOLLOW{{$task->entry_type}}" data-url="{{$task->value}}">
+                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 {{$loop->iteration==1? 'rounded-t-xl': ''}} focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-color-body-{{$task->id}}" aria-expanded="{{$loop->iteration ==1?'false':'false'}}" aria-controls="accordion-color-body-{{$task->id}}">
                                 <span class="flex items-center">
                                     <svg class="w-5 h-5 mr-2 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
-                                    Follow @OpsideZK on Twitter</span>
+                                    {{$task->name}}</span>
 
                                 <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
                                 </svg>
                             </button>
-                        </h2>
-                        <div id="accordion-color-body-1" class="hidden" aria-labelledby="accordion-color-heading-1">
+                            </h2>
+                            <div id="accordion-color-body-{{$task->id}}" class="{{$loop->iteration ==1?'hidden' : 'hidden mb-0 headingAction'}} " aria-labelledby="accordion-color-heading-{{$task->id}}">
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                 <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    OmniFDN‘s Twitter followers
+                                    {{$task->name}}
                                     <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
 
                                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -147,53 +148,7 @@
                                 </button>
                             </div>
                         </div>
-                        <h2 id="accordion-color-heading-2" class="mb-0 headingAction" data-isopen="true" data-action="LIKE" data-url="https://twitter.com/intent/follow?screen_name=OmniFDN">
-                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-color-body-2" aria-expanded="false" aria-controls="accordion-color-body-2">
-                                <span class="flex items-center"><svg class="w-5 h-5 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>Have the verified role in Omni Network Discord verified Discord Server</span>
-
-                                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
-                                </svg>
-                            </button>
-                        </h2>
-                        <div id="accordion-color-body-2" class="hidden" aria-labelledby="accordion-color-heading-2">
-                            <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    OmniFDN‘s Twitter followers
-                                    <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
-
-                                        <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                        </svg>
-
-                                        <span class="sr-only">Icon description</span>
-                                    </button>
-                                </p>
-                                <ul class="pl-0 text-gray-500 list-none dark:text-gray-400">
-                                    <li><a href="{{route('quest.tasks.show', ['id' => 1])}}" rel="nofollow" class="text-blue-600 dark:text-blue-500 hover:underline">Detail >></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <h2 id="accordion-color-heading-3" class="mb-0 headingAction" data-isopen="false" data-action="LIKE" data-url="https://twitter.com/intent/like?tweet_id=1697279832474656971">
-                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-color-body-3" aria-expanded="false" aria-controls="accordion-color-body-3">
-                                <span class="flex items-center"><svg class="w-5 h-5 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>TWITTER Like @OmniFDN Tweet</span>
-
-                                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
-                                </svg>
-                            </button>
-                        </h2>
-                        <div id="accordion-color-body-3" class="hidden" aria-labelledby="accordion-color-heading-3">
-                            <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">OmniFDN’s Tweet likers</p>
-                                <button type="button" class="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2">
-                                    <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
-                                        <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clip-rule="evenodd"/>
-                                    </svg>
-                                    Twitter Like
-                                </button>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     </div>
 
@@ -242,26 +197,14 @@
             // create an array of objects with the id,
             // trigger element (eg. button), and the content element
             const accordionItems = [
+                    @foreach($tasks as $task)
                 {
-                    id: 'accordion-color-heading-1',
-                    triggerEl: document.querySelector('#accordion-color-heading-1'),
-                    targetEl: document.querySelector('#accordion-color-body-1'),
-                    actionType: 'FOLLOW',
-                    actionUrl: 'https://twitter.com/intent/follow?screen_name=OmniFDN',
+                    id: 'accordion-color-heading-{{$task->id}}',
+                    triggerEl: document.querySelector('#accordion-color-heading-{{$task->id}}'),
+                    targetEl: document.querySelector('#accordion-color-body-{{$task->id}}'),
                     active: false
                 },
-                {
-                    id: 'accordion-color-heading-2',
-                    triggerEl: document.querySelector('#accordion-color-heading-2'),
-                    targetEl: document.querySelector('#accordion-color-body-2'),
-                    active: false
-                },
-                {
-                    id: 'accordion-color-heading-3',
-                    triggerEl: document.querySelector('#accordion-color-heading-3'),
-                    targetEl: document.querySelector('#accordion-color-body-3'),
-                    active: false
-                }
+                @endforeach
             ];
 
             // options with default values

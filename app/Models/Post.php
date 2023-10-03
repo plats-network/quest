@@ -233,6 +233,11 @@ class Post extends BaseModel
     {
         return $this->morphToMany('App\Models\Tag', 'taggable');
     }
+    //Task has many
+    public function tasks()
+    {
+        return $this->hasMany('App\Models\Task');
+    }
 
     /**
      * Get all of the post's comments.
@@ -267,7 +272,8 @@ class Post extends BaseModel
         $this->attributes['created_by_name'] = trim(label_case($value));
 
         if (empty($value)) {
-            $this->attributes['created_by_name'] = auth()->user()->name;
+            //$this->attributes['created_by_name'] = 'auth()->user()->name';
+            $this->attributes['created_by_name'] = 'Admin';
         }
     }
 
@@ -403,5 +409,25 @@ class Post extends BaseModel
     public function scopePublishedItem($query)
     {
         return $query->where('is_draft', false);
+    }
+    //Get total task
+    public function getTotalTaskAttribute()
+    {
+        return $this->tasks()->count();
+    }
+
+    //status_color
+    public function getStatusColorAttribute()
+    {
+        //Draft
+        if ($this->status == 'Draft') {
+            return 'warning';
+        }
+        //Active
+        if ($this->status == 'Active') {
+            return 'success';
+        }
+
+        return 'danger';
     }
 }

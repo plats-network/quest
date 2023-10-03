@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Models\Category;
+use App\Models\Task;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
@@ -58,6 +59,9 @@ class InsertDemoContents extends Command
                 DB::table('posts')->truncate();
                 $this->info('Truncate Table: posts');
 
+                //Tasks
+                DB::table('tasks')->truncate();
+                $this->info('Truncate Table: tasks');
                 /**
                  * Categories table truncate.
                  */
@@ -101,9 +105,13 @@ class InsertDemoContents extends Command
         $this->info('Inserting Posts');
         Post::factory()->count(25)->create()->each(function ($post) {
             $post->tags()->attach(
-                Tag::inRandomOrder()->limit(rand(5, 10))->pluck('id')->toArray()
+                Tag::inRandomOrder()->limit(rand(2, 4))->pluck('id')->toArray()
             );
         });
+
+        //Task
+        $this->info('Inserting Tasks');
+        Task::factory()->count(5)->create();
 
         /**
          * Comments.

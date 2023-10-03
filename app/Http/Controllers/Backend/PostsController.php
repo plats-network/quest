@@ -115,6 +115,20 @@ class PostsController extends Controller
 
                 return $data->name.' '.$data->status_formatted.' '.$is_featured;
             })
+            //Task
+            ->editColumn('task', function ($data) {
+                $module_name = $this->module_name;
+                $postTaskUrl = route('backend.tasks.index', ['post_id' => $data->id]);
+                $totalTask = $data->tasks()->count();
+                $textLink = '<a href="'.$postTaskUrl.'" class="badge bg-primary">'.$totalTask.'</a>';
+
+                return $textLink;
+            })
+            ->editColumn('category_name', function ($data) {
+                $module_name = $this->module_name;
+
+                return $data->category_name;
+            })
             ->editColumn('updated_at', function ($data) {
                 $module_name = $this->module_name;
 
@@ -126,7 +140,7 @@ class PostsController extends Controller
                     return $data->updated_at->isoFormat('LLLL');
                 }
             })
-            ->rawColumns(['name', 'status', 'action'])
+            ->rawColumns(['name', 'status', 'action', 'task'])
             ->orderColumns(['id'], '-:column $1')
             ->make(true);
     }
@@ -241,7 +255,8 @@ class PostsController extends Controller
 
         Log::info(label_case('Posts'.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return redirect(route('backend.posts.index'));
+        //return redirect(route('backend.posts.index'));
+        return redirect(route('backend.tasks.create', ['post_id' => $$module_name_singular->id]));
     }
 
     /**

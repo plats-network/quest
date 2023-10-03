@@ -84,12 +84,13 @@ class PostsController extends Controller
         $meta_page_type = 'article';
 
         $$module_name_singular = Post::findOrFail($id);
+        $tasks = $$module_name_singular->tasks()->latest()->get();
 
         event(new PostViewed($$module_name_singular));
 
         return view(
             "quest.posts.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
+            compact('module_title', 'tasks','module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
         );
     }
 }

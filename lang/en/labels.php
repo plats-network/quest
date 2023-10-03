@@ -143,6 +143,8 @@ return [
         'block' => 'Block',
         'unblock' => 'Unblock',
         'cancel' => 'Cancel',
+        'type' => 'Type',
+        'status' => 'Status',
     ],
 
     'buttons' => [

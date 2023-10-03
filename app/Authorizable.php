@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
+
 trait Authorizable
 {
     /**

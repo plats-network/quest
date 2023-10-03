@@ -1,10 +1,6 @@
-@extends('layouts.backend')
+@extends ('layouts.backend')
 
-@php
-    //dd( __($module_title))
-
-@endphp
-@section('title') {{ __($module_action) }} {{ __($module_title) }}@endsection
+@section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
@@ -13,7 +9,6 @@
 @endsection
 
 @section('content')
-
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div class="d-block mb-4 mb-md-0">
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
@@ -24,16 +19,16 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item"><a href="#">@lang('Home')</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{__('posts.title')}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">Tasks</li>
                 </ol>
             </nav>
-            <h2 class="h4">All {{__('posts.title_post')}}</h2>
-            <p class="mb-0">Your web analytics dashboard template.</p>
+            <h2 class="h4">Quest: {{$post->name}} - All Task</h2>
+            <p class="mb-0">Total Task: {{$$module_name->count()}}</p>
         </div>
         <div class="btn-toolbar mb-2 mb-md-0">
-            <a href="{{route('backend.posts.create')}}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
+            <a href="{{route('backend.tasks.create', ['post_id' => Request::get('post_id')])}}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
                 <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                New {{__('posts.title_post')}}
+                New Task
             </a>
             <div class="btn-group ms-2 ms-lg-3">
                 <button type="button" class="btn btn-sm btn-outline-gray-600">@lang('Share')</button>
@@ -69,8 +64,10 @@
             </div>
         </div>
     </div>
-<div class="card">
+
+    <div class="card">
     <div class="card-body">
+
         <x-backend.section-header>
             <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
 
@@ -79,27 +76,25 @@
             </x-slot>
             <x-slot name="toolbar">
                 @can('add_'.$module_name)
-                    <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
+                <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
                 @endcan
 
                 @can('restore_'.$module_name)
-                    <div class="btn-group">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-cog"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href='{{ route("backend.$module_name.trashed") }}'>
-                                    <i class="fas fa-eye-slash"></i> @lang('View trash')
-                                </a>
-                            </li>
-                            <!-- <li>
-                                <hr class="dropdown-divider">
-                            </li> -->
-                        </ul>
-                        </div>
-                    </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href='{{ route("backend.$module_name.trashed") }}'>
+                                <i class="fas fa-eye-slash"></i> @lang("View trash")
+                            </a>
+                        </li>
+                        <!-- <li>
+                            <hr class="dropdown-divider">
+                        </li> -->
+                    </ul>
+                </div>
                 @endcan
             </x-slot>
         </x-backend.section-header>
@@ -113,16 +108,19 @@
                                 #
                             </th>
                             <th>
-                                @lang('Name')
+                                @lang("labels.backend.name")
                             </th>
                             <th>
-                                @lang('Category')
+                                @lang("labels.backend.type")
                             </th>
                             <th>
-                                @lang('Task')
+                                @lang("labels.backend.status")
+                            </th>
+                            <th>
+                                @lang("labels.backend.updated_at")
                             </th>
                             <th class="text-end">
-                                @lang('Actions')
+                                @lang("labels.backend.action")
                             </th>
                         </tr>
                     </thead>
@@ -164,7 +162,7 @@
         serverSide: true,
         autoWidth: true,
         responsive: true,
-        ajax: '{{ route("backend.posts.index_data") }}',
+        ajax: '{{ route("backend.tasks.index_data", ['post_id' => $post->id]) }}',
         columns: [{
                 data: 'id',
                 name: 'id'
@@ -174,12 +172,16 @@
                 name: 'name'
             },
             {
-                data: 'category_name',
-                name: 'category_name'
+                data: 'type',
+                name: 'type'
             },
             {
-                data: 'task',
-                name: 'task'
+                data: 'status',
+                name: 'status'
+            },
+            {
+                data: 'updated_at',
+                name: 'updated_at'
             },
             {
                 data: 'action',
