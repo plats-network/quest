@@ -64,7 +64,7 @@
                                             Remember me
                                         </label>
                                     </div>
-                                    <div><a href="{{ route('forgot-password') }}" class="small text-right">Lost
+                                    <div><a href="{{ route('admin.forgot-password') }}" class="small text-right">Lost
                                             password?</a></div>
                                 </div>
                             </div>

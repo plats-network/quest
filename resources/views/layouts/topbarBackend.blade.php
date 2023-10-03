@@ -184,7 +184,7 @@
               </a>
             <div role="separator" class="dropdown-divider my-1"></div>
             <a class="dropdown-item d-flex align-items-center">
-              <livewire:logout /></a>
+              <livewire:admin-logout /></a>
           </div>
         </li>
       </ul>

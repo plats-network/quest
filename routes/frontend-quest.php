@@ -26,7 +26,7 @@ use App\Http\Controllers\Auth\GoogleSocialiteController;
 require __DIR__.'/auth-quest.php';
 
 // Language Switch
-Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
+Route::get('language/{language}', [LanguageController::class, 'switch'])->name('quest.language.switch');
 
 Route::get('dashboard', function () {
     return view('dashboard');

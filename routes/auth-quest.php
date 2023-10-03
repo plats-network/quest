@@ -17,7 +17,7 @@ if (user_registration()) {
         Route::get('register', [RegisteredUserController::class, 'create'])
             ->name('quest.register');
 
-        Route::post('register', [RegisteredUserController::class, 'store']);
+        Route::post('register', [RegisteredUserController::class, 'store'])->name('quest.register.store');
     });
 }
 
