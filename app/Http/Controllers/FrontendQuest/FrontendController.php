@@ -30,11 +30,17 @@ class FrontendController extends Controller
             dd($questUser);
         }
 
-
         // return view('dashboard', compact('body_class'));
         return view('quest.me', compact('body_class'));
     }
 
+    //support
+    public function support()
+    {
+        $body_class = '';
+
+        return view('quest.support', compact('body_class'));
+    }
     /**
      * Privacy Policy Page.
      *

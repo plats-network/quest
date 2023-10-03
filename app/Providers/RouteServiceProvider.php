@@ -45,6 +45,7 @@ class RouteServiceProvider extends ServiceProvider
 
             //For Backend
             Route::middleware('web')
+                ->prefix('admin')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
@@ -53,9 +54,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('frontend')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/frontend.php'));
+
             //For Quest Start
             Route::middleware('web')
-                ->prefix('quest')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/frontend-quest.php'));
         });

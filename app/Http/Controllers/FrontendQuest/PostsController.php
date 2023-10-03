@@ -6,6 +6,7 @@ use App\Events\Backend\Article\PostViewed;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Support\Str;
+use const _PHPStan_5b84f9f0d\__;
 
 class PostsController extends Controller
 {
@@ -22,7 +23,7 @@ class PostsController extends Controller
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Posts';
+        $this->module_title = __('posts.title');
 
         // module name
         $this->module_name = 'posts';
@@ -44,7 +45,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $module_title = "Posts";
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
