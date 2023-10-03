@@ -64,6 +64,33 @@ class Task extends BaseModel
         ];
     }
 
+    //Get task action name, example 1 is FOLLOW, 2 is RETWEET
+    public function getTypeValueAttribute()
+    {
+        $taskType = self::getTaskType();
+        switch ($this->type) {
+            case self::TYPE_TWITTER_FOLLOW:
+                return 'FOLLOW';
+                break;
+            case self::TYPE_TWITTER_RETWEET:
+                return 'RETWEET';
+                break;
+            case self::TYPE_TWITTER_LIKE:
+                return 'LIKE';
+                break;
+            case self::TYPE_TWITTER_HASHTAG:
+                return 'HASHTAG';
+                break;
+            case self::TYPE_DISCORD_JOIN:
+                return 'DISCORD_JOIN';
+                break;
+            default:
+                return '';
+        }
+
+        return '';
+    }
+
 
     protected $table = 'tasks';
 
