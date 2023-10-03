@@ -33,7 +33,7 @@
       <li class="nav-item">
         <a href="/dashboard" class="nav-link d-flex align-items-center">
           <span class="sidebar-icon me-3">
-            <img src="/assets/img/brand/plats-logo.png" height="20" width="20" alt="Plats Logo">
+            <img src="/assets/img/brand/plats-logo-with-text.png" height="20" width="20" alt="Plats Logo">
           </span>
           <span class="mt-1 ms-1 sidebar-text">
             {{ env('APP_NAME', 'Plats') }}
