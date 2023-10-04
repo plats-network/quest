@@ -49,18 +49,39 @@ class Task extends BaseModel
     const TYPE_TWITTER_LIKE = 3;
     //Task Type Twitter Hashtag
     const TYPE_TWITTER_HASHTAG = 4;
+
+    //Task Type Twitter TWEET
+    const TYPE_TWITTER_TWEET = 5;
     //Task Type Discord Join
-    const TYPE_DISCORD_JOIN = 5;
+    const TYPE_DISCORD_JOIN = 6;
+
+    //Status Active
+    const STATUS_ACTIVE = 'Active';
+    //Status Inactive
+    const STATUS_INACTIVE = 'Inactive';
+    //Status Draft
+    const STATUS_DRAFT = 'Draft';
+
+    //get all status
+    public static function getStatus()
+    {
+        return [
+            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_INACTIVE => 'Inactive',
+            self::STATUS_DRAFT => 'Draft',
+        ];
+    }
 
     //Get all task type
     public static function getTaskType()
     {
         return [
             self::TYPE_TWITTER_FOLLOW => 'Twitter Follow',
-            self::TYPE_TWITTER_RETWEET => 'Twitter Retweet',
-            self::TYPE_TWITTER_LIKE => 'Twitter Like',
-            self::TYPE_TWITTER_HASHTAG => 'Twitter Hashtag',
-            self::TYPE_DISCORD_JOIN => 'Discord Join',
+            self::TYPE_TWITTER_TWEET => 'Twitter Tweet',
+            //self::TYPE_TWITTER_RETWEET => 'Twitter Retweet',
+            //self::TYPE_TWITTER_LIKE => 'Twitter Like',
+            //self::TYPE_TWITTER_HASHTAG => 'Twitter Hashtag',
+            //self::TYPE_DISCORD_JOIN => 'Discord Join',
         ];
     }
 

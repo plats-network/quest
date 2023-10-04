@@ -352,16 +352,19 @@ class Post extends BaseModel
     {
         return $query->where('name', 'LIKE', "%{$name}%");
     }
+
     //Scope Start
     public function scopeStart($query, $start_at)
     {
         return $query->where('start_at', '>=', $start_at);
     }
+
     //Scope End
     public function scopeEnd($query, $end_at)
     {
         return $query->where('end_at', '<=', $end_at);
     }
+
     /**
      * Get the list of Published Articles.
      *
@@ -435,5 +438,23 @@ class Post extends BaseModel
         }
 
         return 'danger';
+    }
+
+    //Get Start At - End At Text
+    //Result Example: 2023/09/26 14:30 - 2023/10/30 07:00 GMT+07:00
+    public function getStartAtEndAtTextAttribute()
+    {
+        $start_at = $this->start_at;
+        $end_at = $this->end_at;
+
+        if (empty($start_at) && empty($end_at)) {
+            return null;
+        }
+
+        $start_at = Carbon::parse($start_at)->format('Y/m/d H:i');
+        $end_at = Carbon::parse($end_at)->format('Y/m/d H:i');
+        $timeZone = setting('time_zone') ? setting('time_zone') : 'GMT+07:00';
+
+        return $start_at . ' - ' . $end_at . ' ' . $timeZone;
     }
 }

@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var App\Models\Post $$module_name_singular
+ * @var array $categories
+ */
+?>
+
 @extends('quest.layouts.app')
 
 @section('title') {{$$module_name_singular->name}} @endsection
@@ -102,7 +109,7 @@
                             <a class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" href="#">+99</a>
                         </div>
                         <div class="flex -space-x-4 justify-between">
-                           <p class="inline-block text-green-500 font-medium justify-between ml-5 mt-3"> 2023/09/26 14:30 - 2023/10/30 07:00 GMT+07:00</p>
+                           <p class="inline-block text-green-500 font-medium justify-between ml-5 mt-3"> {{$$module_name_singular->getStartAtEndAtTextAttribute()}}</p>
                         </div>
                     </div>
                     <p class="inline-block text-green-500 font-medium" data-config-id="auto-txt-4-2">Get 1 OAT & 25 Points</p>

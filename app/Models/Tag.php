@@ -34,6 +34,21 @@ class Tag extends BaseModel
 
     protected $table = 'tags';
 
+    //Status Published
+    const STATUS_PUBLISHED = 1;
+    //Status Unpublished
+    const STATUS_UNPUBLISHED = 2;
+    //Status Draft
+    const STATUS_DRAFT = 0;
+    //Get all status
+    public static function getStatus()
+    {
+        return [
+            self::STATUS_PUBLISHED => 'Published',
+            self::STATUS_UNPUBLISHED => 'Unpublished',
+            self::STATUS_DRAFT => 'Draft',
+        ];
+    }
 
 
     /**

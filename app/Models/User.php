@@ -72,6 +72,12 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
     use SoftDeletes;
     use UserPresenter;
 
+    //Type gender Female
+    const GENDER_MALE = 'Male';
+    //Female
+    const GENDER_FEMALE = 'Female';
+    const GENDER_OTHER = 'Other';
+
     protected $guarded = [
         'id',
         'updated_at',
@@ -134,7 +140,14 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
      */
     public function providers()
     {
-        return $this->hasMany('App\Models\UserProvider');
+        return $this->hasMany(UserProvider::class);
+    }
+
+    //Twiter Infor
+    //Get twitter id from user provider
+    public function getTwitterIdAttribute()
+    {
+        return $this->providers()->where('provider', 'twitter')->first()->provider_id ?? null;
     }
 
     /**
@@ -142,7 +155,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
      */
     public function profile()
     {
-        return $this->hasOne('App\Models\Userprofile');
+        return $this->hasOne(Userprofile::class);
     }
 
     /**
@@ -150,7 +163,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
      */
     public function userprofile()
     {
-        return $this->hasOne('App\Models\Userprofile');
+        return $this->hasOne(Userprofile::class);
     }
 
     /**

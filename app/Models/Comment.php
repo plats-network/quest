@@ -50,6 +50,21 @@ class Comment extends BaseModel
         'moderated_at' => 'datetime',
     ];
 
+    //Status Pending
+    const STATUS_PENDING = 0;
+    //Status Published
+    const STATUS_PUBLISHED = 1;
+    //Status Rejected
+    const STATUS_REJECTED = 2;
+    //Get all status
+    public static function getStatus()
+    {
+        return [
+            self::STATUS_PENDING => 'Pending',
+            self::STATUS_PUBLISHED => 'Published',
+            self::STATUS_REJECTED => 'Rejected',
+        ];
+    }
 
 
     /**

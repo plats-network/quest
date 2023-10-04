@@ -421,3 +421,16 @@ if (! function_exists('language_direction')) {
         return 'ltr';
     }
 }
+
+//Get Plat Logo
+if (! function_exists('get_platform_logo')) {
+    function get_platform_logo()
+    {
+        ///assets/img/brand/plats-logo-with-text.png
+        //$platform_logo = asset('assets/img/brand/plats-logo-with-text.png');
+        //img/plat-logo/Logo_Plats-05 (1).png
+        $platform_logo = asset('img/plat-logo/Logo_Plats-05 (1).png');
+
+        return $platform_logo;
+    }
+}

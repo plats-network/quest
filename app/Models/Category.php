@@ -43,6 +43,23 @@ class Category extends BaseModel
         'name' => 'required|unique:product_categories',
         'image' => 'image|mimes:jpg,jpeg,png',
     ];
+    //
+    //Status Active
+    const STATUS_ACTIVE = 'Active';
+    //Status Inactive
+    const STATUS_INACTIVE = 'Inactive';
+    //Status Draft
+    const STATUS_DRAFT = 'Draft';
+
+    //get all status
+    public static function getStatus()
+    {
+        return [
+            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_INACTIVE => 'Inactive',
+            self::STATUS_DRAFT => 'Draft',
+        ];
+    }
 
     use QueryCacheable;
 
