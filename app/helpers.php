@@ -3,6 +3,19 @@
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
+//get_upload_url
+if (! function_exists('get_upload_url')) {
+    function get_upload_url($path = '')
+    {
+        $upload_url = config('app.url').'/storage/uploads/';
+
+        if ($path != '') {
+            $upload_url .= $path;
+        }
+
+        return $upload_url;
+    }
+}
 /*
  * Global helpers file with misc functions.
  */

@@ -67,6 +67,33 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+
+        'cloudinary2' => [
+            'driver' => 'cloudinary',
+            'api_key' => env('CLOUDINARY_API_KEY', '867622251513923'),
+            'api_secret' => env('CLOUDINARY_API_SECRET', '2nPxdpti1kxgIZ4bSc7rPetPems'),
+            'cloud_name' => env('CLOUDINARY_CLOUD_NAME', 'dhploi5y1'),
+            'secure' => env('CLOUDINARY_SECURE', true),
+            'resource_types' => [
+                'image' => [
+                    'png',
+                    'jpeg',
+                    'jpg',
+                ],
+                'video' => [
+                    'mp4',
+                    'avi',
+                    'mp3',
+                    'flac',
+                ],
+                'raw' => [
+                    'pdf',
+                    'xlsx',
+                    'csv',
+                    'txt',
+                ],
+            ],
+        ],
     ],
 
     /*
@@ -82,6 +109,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('images') => storage_path('app/images'),
     ],
 
 ];

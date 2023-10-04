@@ -132,7 +132,11 @@ class CategoriesController extends Controller
 
                 return view('backend.includes.action_column', compact('module_name', 'data'));
             })
-            ->editColumn('name', '<strong>{{$name}}</strong>')
+            //->editColumn('name', '<strong>{{$name}}</strong>')
+            ->editColumn('name', function ($data) {
+                $postDetailUrl = route('backend.categories.edit', $data);
+                return '<a href="'.$postDetailUrl.'" class="">'.$data->name.'</a></h5>';
+            })
             //Status
             ->editColumn('status', function ($data) {
                 $status = $data->status;

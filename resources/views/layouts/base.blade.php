@@ -94,6 +94,11 @@
     {{ $slot }}
 
 </body>
+<script src="{{ asset('assets/yii2-assets/yii.js') }}"></script>
+<script src="{{ asset('assets/yii2-assets/yii.gridView.js') }}"></script>
+<script src="{{ asset('assets/yii2-assets/yii.activeForm.js') }}"></script>
+<script src="{{ asset('assets/yii2-assets/yii.validation.js') }}"></script>
+
 <!-- Scripts -->
 @stack('after-scripts')
 </html>

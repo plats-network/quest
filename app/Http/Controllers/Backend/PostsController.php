@@ -112,15 +112,15 @@ class PostsController extends Controller
             })
             ->editColumn('name', function ($data) {
                 $is_featured = ($data->is_featured) ? '<span class="badge bg-primary">Featured</span>' : '';
-
-                return $data->name.' '.$data->status_formatted.' '.$is_featured;
+                $postDetailUrl = route('backend.posts.edit', $data);
+                return '<a href="'.$postDetailUrl.'" class="">'.$data->name.' '.$data->status_formatted.' '.$is_featured.'</a></h5>';
             })
             //Task
             ->editColumn('task', function ($data) {
                 $module_name = $this->module_name;
                 $postTaskUrl = route('backend.tasks.index', ['post_id' => $data->id]);
                 $totalTask = $data->tasks()->count();
-                $textLink = '<a href="'.$postTaskUrl.'" class="badge bg-primary">'.$totalTask.'</a>';
+                $textLink = '<h5><a href="'.$postTaskUrl.'" class="badge bg-primary">'.$totalTask.'</a></h5>';
 
                 return $textLink;
             })

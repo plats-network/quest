@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Category;
@@ -13,7 +14,7 @@ class TaskFactory extends Factory
      *
      * @var string
      */
-    protected $model = Category::class;
+    protected $model = Task::class;
 
     /**
      * Define the model's default state.

@@ -36,6 +36,9 @@ Route::group([ 'as' => 'backend.', 'middleware' => ['web', 'auth', 'can:view_bac
 
     Route::get('dashboard', [BackendController::class, 'index'])->name('dashboard');
 
+    /*Upload Single*/
+    Route::match(['patch', 'post'], 'upload-single', [UploadController::class, 'uploadSingle'])->name('upload-storage-single')->withoutMiddleware(['csrf']);
+
     /*
      *
      *  Settings Routes

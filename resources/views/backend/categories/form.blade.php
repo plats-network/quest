@@ -143,3 +143,97 @@
         </div>
     </div>
 </div>
+
+@push('after-styles')
+    <!-- File Manager -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.32.0/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="{{asset('plugins/filekit/assets/css/upload-kit.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        .note-editor.note-frame :after {
+            display: none;
+        }
+
+        .note-editor .note-toolbar .note-dropdown-menu,
+        .note-popover .popover-content .note-dropdown-menu {
+            min-width: 180px;
+        }
+    </style>
+@endpush
+
+@push ('after-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dependent-dropdown/1.4.9/js/dependent-dropdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-load-image/5.14.0/load-image.all.min.js"
+            referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.32.0/js/vendor/jquery.ui.widget.js"
+            referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.32.0/js/jquery.iframe-transport.js"
+            referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.32.0/js/jquery.fileupload.js"
+            referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.32.0/js/jquery.fileupload-process.js"
+            referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.32.0/js/jquery.fileupload-image.js"
+            referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.32.0/js/jquery.fileupload-validate.js"
+            referrerpolicy="origin"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    {{--JA VN KO--}}
+    <script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/vn.js"></script>
+    <script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/ja.js"></script>
+    <script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+
+    <script src="{{asset('plugins/filekit/assets/js/upload-kit.js')}}" referrerpolicy="origin"></script>
+
+    <script type="text/javascript">
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        var spinText = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> ';
+        var fileAvatarInit = null;
+        var flag_check = 1;
+
+        jQuery(document).ready(function ($) {
+            @if($data->image_base_path)
+                fileAvatarInit = [{
+                "path": "{{$data->image_base_path}}",
+                "base_url": "{{$data->image_base_url}}",
+                "type": null,
+                "size": null,
+                "name": null,
+                "order": null
+            }];
+            @endif
+
+            //Update init image
+            jQuery('#w0').yiiUploadKit({
+                "url": "{{get_upload_url()}}",
+                "multiple": false,
+                "sortable": false,
+                "maxNumberOfFiles": 1,
+                "maxFileSize": 5000000,
+                "minFileSize": null,
+                "acceptFileTypes": /(\.|\/)(gif|jpe?g|png)$/i,
+                "files": fileAvatarInit,
+                "previewImage": true,
+                "showPreviewFilename": false,
+                "errorHandler": "popover",
+                "pathAttribute": "path",
+                "baseUrlAttribute": "base_url",
+                "pathAttributeName": "path",
+                "baseUrlAttributeName": "base_url",
+                "messages": {
+                    "maxNumberOfFiles": "Số lượng tối đa của tệp vượt quá",
+                    "acceptFileTypes": "Loại tệp không được phép",
+                    "maxFileSize": "Tập tin quá lớn",
+                    "minFileSize": "Tập tin quá nhỏ"
+                },
+                "name": "thumbnail"
+            });
+        });
+
+    </script>
+@endpush
