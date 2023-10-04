@@ -45,11 +45,11 @@
                             </address>
                         </div>
                         <div class="flex justify-end space-x-4 font-mono text-white text-sm font-bold leading-6 bg-stripes-cyan rounded-lg">
-
-                            <span class="inline-block py-px px-2 mb-4 text-xs leading-5 text-white bg-green-500 uppercase rounded-9xl" data-config-id="auto-txt-13-1">Web3</span>
-                            <span class="inline-block py-px px-2 mb-4 text-xs leading-5 text-white bg-green-500 uppercase rounded-9xl" data-config-id="auto-txt-13-1">Infrastructure</span>
-                            <span class="inline-block py-px px-2 mb-4 text-xs leading-5 text-white bg-green-500 uppercase rounded-9xl" data-config-id="auto-txt-13-1">Layer 2</span>
-
+                            @foreach ($$module_name_singular->tags as $tag)
+                                <span class="inline-block py-px px-2 mb-4 text-xs leading-5 text-white bg-green-500 uppercase rounded-9xl" data-config-id="auto-txt-13-1">
+                                {{$tag->name}}
+                                </span>
+                            @endforeach
                         </div>
                     </div>
 
