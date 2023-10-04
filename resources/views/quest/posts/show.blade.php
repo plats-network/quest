@@ -67,7 +67,7 @@
                                 <span class="sr-only">Icon description</span>
                             </button>
                             <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
-                                <svg class=w-4 h-4 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <svg class="w-4 h-4 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path fill="currentColor" d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z"/>
                                 </svg>
 
@@ -137,14 +137,25 @@
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                 <p class="mb-2 text-gray-500 dark:text-gray-400">
                                     {{$task->name}}
-                                    <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                                    <button type="button" data-canopen="true" data-id="{{$task->id}}" class="btnCheckStatus ml-5 text-blue-700 border border-blue-700  hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
 
+                                        {{--Check task is done will show svg done--}}
                                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                                             <path d="M17 9a1 1 0 0 0-1 1 6.994 6.994 0 0 1-11.89 5H7a1 1 0 0 0 0-2H2.236a1 1 0 0 0-.585.07c-.019.007-.037.011-.055.018-.018.007-.028.006-.04.014-.028.015-.044.042-.069.06A.984.984 0 0 0 1 14v5a1 1 0 1 0 2 0v-2.32A8.977 8.977 0 0 0 18 10a1 1 0 0 0-1-1ZM2 10a6.994 6.994 0 0 1 11.89-5H11a1 1 0 0 0 0 2h4.768a.992.992 0 0 0 .581-.07c.019-.007.037-.011.055-.018.018-.007.027-.006.04-.014.028-.015.044-.042.07-.06A.985.985 0 0 0 17 6V1a1 1 0 1 0-2 0v2.32A8.977 8.977 0 0 0 0 10a1 1 0 1 0 2 0Z"/>
                                         </svg>
 
                                         <span class="sr-only">Icon description</span>
                                     </button>
+
+                                    <button type="button" class="hidden text-blue-700 border border-blue-700  hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+
+                                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                        </svg>
+
+                                        <span class="sr-only">Icon description</span>
+                                    </button>
+
                                 </p>
 
                                 <button data-isopen="true" data-action="{{$task->type_value}}" data-url="{{$task->value}}" type="button" class="headingAction text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2">
@@ -245,6 +256,42 @@
             const accordion = new Accordion(accordionItems, options);
 
             //Class headingAction on click
+            $('.btnCheckStatus').on('click', function () {
+                //Open Spinner
+                var selectButton = $(this);
+                //Add class animate-spin fill-blue-600 to button
+                $(this).addClass('animate-spin fill-blue-600');
+                //Call ajax
+                var id = $(this).data('id');
+                var url2 = $(this).data('url');
+                var url = '{{ route('quest.tasks.checkStatus') }}?task_id=' + id;
+                var type = $(this).data('type');
+                //Ajax Post
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        type: type,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (data) {
+                        //console.log(data);
+                        //Remove class animate-spin fill-blue-600 to button
+                        selectButton.removeClass('animate-spin fill-blue-600 text-blue-700');
+                        //Add class text-green-500
+                        selectButton.addClass('text-green-500');
+                        //Change SVG Value
+                        selectButton.html('<svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"> ' +
+                            '<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/> ' +
+                            '</svg>');
+
+                    }
+                });
+
+
+            });
+
             $('.headingAction').on('click', function () {
                 //isopen
                 var isOpen = $(this).data('isopen');

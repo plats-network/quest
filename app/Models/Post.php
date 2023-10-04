@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
 /**
  * @property integer $id
@@ -53,6 +54,8 @@ class Post extends BaseModel
     use SoftDeletes;
     use PostPresenter;
     use Notifiable;
+
+    use Favoriteable;
 
     protected $table = 'posts';
 

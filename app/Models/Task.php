@@ -78,7 +78,7 @@ class Task extends BaseModel
         return [
             self::TYPE_TWITTER_FOLLOW => 'Twitter Follow',
             self::TYPE_TWITTER_TWEET => 'Twitter Tweet',
-            //self::TYPE_TWITTER_RETWEET => 'Twitter Retweet',
+            self::TYPE_TWITTER_RETWEET => 'Twitter Retweet',
             //self::TYPE_TWITTER_LIKE => 'Twitter Like',
             //self::TYPE_TWITTER_HASHTAG => 'Twitter Hashtag',
             //self::TYPE_DISCORD_JOIN => 'Discord Join',

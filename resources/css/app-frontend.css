@@ -4,6 +4,10 @@
 
 @import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 
+.fill-blue-600 {
+    fill: #1c64f2;
+}
+
 @layer base {
     html {
         @apply text-gray-600;
