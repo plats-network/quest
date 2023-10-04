@@ -68,7 +68,9 @@ class Task extends BaseModel
     public function getTypeValueAttribute()
     {
         $taskType = self::getTaskType();
-        switch ($this->type) {
+        $entryType = $this->entry_type;
+
+        switch ($entryType) {
             case self::TYPE_TWITTER_FOLLOW:
                 return 'FOLLOW';
                 break;
@@ -393,5 +395,11 @@ class Task extends BaseModel
             DB::rollBack();
             throw new UnprocessableEntityHttpException($e->getMessage());
         }
+    }
+
+    //Get Twitter Follow Url
+    public function getTwitterFollowUrlAttribute()
+    {
+        return 'https://twitter.com/intent/user?user_id=' . $this->value;
     }
 }

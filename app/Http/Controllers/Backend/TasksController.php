@@ -372,6 +372,6 @@ class TasksController extends Controller
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return redirect()->route("backend.$module_name.show", $$module_name_singular->id);
+        return redirect(route('backend.tasks.index', ['post_id' => $$module_name_singular->post_id] ));
     }
 }
