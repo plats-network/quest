@@ -258,6 +258,7 @@
             //Class headingAction on click
             $('.btnCheckStatus').on('click', function () {
                 //Open Spinner
+                var selectButton = $(this);
                 //Add class animate-spin fill-blue-600 to button
                 $(this).addClass('animate-spin fill-blue-600');
                 //Call ajax
@@ -277,11 +278,11 @@
                     success: function (data) {
                         //console.log(data);
                         //Remove class animate-spin fill-blue-600 to button
-                        $('.btnCheckStatus').removeClass('animate-spin fill-blue-600 text-blue-700');
+                        selectButton.removeClass('animate-spin fill-blue-600 text-blue-700');
                         //Add class text-green-500
-                        $('.btnCheckStatus').addClass('text-green-500');
+                        selectButton.addClass('text-green-500');
                         //Change SVG Value
-                        $('.btnCheckStatus').html('<svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"> ' +
+                        selectButton.html('<svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"> ' +
                             '<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/> ' +
                             '</svg>');
 

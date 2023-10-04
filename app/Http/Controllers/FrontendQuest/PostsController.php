@@ -74,6 +74,8 @@ class PostsController extends Controller
     {
         $id = decode_id($hashid);
 
+        $questUser = auth()->guard('quest')->user();
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -91,9 +93,12 @@ class PostsController extends Controller
 
         event(new PostViewed($$module_name_singular));
 
+        //$user->hasFavorited($post);
+        $hasFavorited = $questUser->hasFavorited($$module_name_singular);
+
         return view(
             "quest.posts.show",
-            compact('module_title', 'tasks','module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
+            compact('module_title', 'hasFavorited','tasks','module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
         );
     }
 
@@ -123,5 +128,18 @@ class PostsController extends Controller
         return response()->json(['success'=>'Data is successfully added']);
     }
 
+    //favoritePost
+    public function favoritePost(Request $request, Post $post)
+    {
+        $questUser = auth()->guard('quest')->user();
+
+        if ($questUser->hasFavorited($post)) {
+            $questUser->unfavorite($post);
+            return response()->json(['success'=>'Post unfavorited']);
+        } else {
+            $questUser->favorite($post);
+            return response()->json(['success'=>'Post favorited']);
+        }
+    }
 
 }

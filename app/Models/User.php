@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Permission\Traits\HasRoles;
+use Overtrue\LaravelFavorite\Traits\Favoriter;
 
 /**
  * @property integer $id
@@ -71,6 +72,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
     use Notifiable;
     use SoftDeletes;
     use UserPresenter;
+
+    use Favoriter;
 
     //Type gender Female
     const GENDER_MALE = 'Male';

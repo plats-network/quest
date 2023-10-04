@@ -93,6 +93,10 @@ Route::group(['as' => 'quest.'], function () {
 
     //checkStatus
     Route::post('tasks/checkStatus', [PostsController::class, 'checkStatus'])->name('tasks.checkStatus');
+
+    //$user->favorite($post);
+    Route::post('posts/{post}/favorite', [PostsController::class, 'favoritePost'])->name('posts.favoritePost');
+
     /*
     *
     *  Categories Routes
