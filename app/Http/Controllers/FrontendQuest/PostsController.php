@@ -5,8 +5,10 @@ namespace App\Http\Controllers\FrontendQuest;
 use App\Events\Backend\Article\PostViewed;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Task;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use const _PHPStan_5b84f9f0d\__;
+use App\Models\Task as QuestTask;
 
 class PostsController extends Controller
 {
@@ -94,4 +96,32 @@ class PostsController extends Controller
             compact('module_title', 'tasks','module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
         );
     }
+
+    //Ajax Task checkStatus
+    //Params: $id
+    public function checkStatus(Request $request)
+    {
+        $task_id = $request->task_id;
+
+        $task = QuestTask::query()
+            ->where('id', $task_id)
+            ->first();
+        //Check model exists
+        if (!$task){
+            return response()->json(['success'=>'Task not found']);
+        }
+        //Check if task is not active
+        if ($task->status != Task::STATUS_ACTIVE){
+            return response()->json(['success'=>'Task is not active']);
+        }
+
+        $task->status = 1;
+        //$task->save();
+        //Delay 2s
+        sleep(1);
+
+        return response()->json(['success'=>'Data is successfully added']);
+    }
+
+
 }

@@ -28,7 +28,6 @@
                 </ol>
             </nav>
             <h2 class="h4">All {{__('posts.title_post')}}</h2>
-            <p class="mb-0">Your web analytics dashboard template.</p>
         </div>
         <div class="btn-toolbar mb-2 mb-md-0">
             <a href="{{route('backend.posts.create')}}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">

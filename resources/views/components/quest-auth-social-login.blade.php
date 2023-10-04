@@ -23,7 +23,7 @@
                 </x-button-a>
             @endif
 
-            @if(env('TWITTER_ACTIVE'))
+            @if(env('TWITTER_ACTIVE', true))
                 <x-button-a href="{{route('quest.social.login', 'twitter')}}" class="bg-blue-600 hover:bg-red-700">
                     <span class="">Twitter</span>
                 </x-button-a>

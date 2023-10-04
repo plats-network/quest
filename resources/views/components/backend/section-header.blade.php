@@ -12,15 +12,7 @@
         </h4>
         @endif
 
-        @if($subtitle)
-        <div class="small text-medium-emphasis">
-            {{ $subtitle }}
-        </div>
-        @else
-        <div class="small text-medium-emphasis">
-            @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-        </div>
-        @endif
+
     </div>
     @if($toolbar)
     <div class="btn-toolbar d-block text-end" role="toolbar" aria-label="Toolbar with buttons">
