@@ -53,9 +53,12 @@
         "@alpinejs/collapse": "^3.12.0",
         "@sentry/browser": "^7.40.0",
         "@tailwindcss/container-queries": "^0.1.0",
+        "@vitejs/plugin-react": "^4.1.0",
         "apexcharts": "^3.29.0",
         "blueimp-file-upload": "^10.32.0",
         "pageres": "^7.1.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "useink": "^1.14.1"
     }
 }

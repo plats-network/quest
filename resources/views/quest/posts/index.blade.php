@@ -1,5 +1,8 @@
 @extends('quest.layouts.app')
 
+@viteReactRefresh
+@vite(['resources/js/connect-wallet.jsx'])
+
 @section('title') {{ __("Posts List") }} @endsection
 
 @section('content')
@@ -11,12 +14,17 @@
         @php
         $details_url = route("quest.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
         @endphp
-
         <div class="">
             <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex flex-col items-stretch">
                     <a href="{{$details_url}}" class="overflow-hidden">
-                        <img src="{{$$module_name_singular->featured_image}}" alt="" class="rounded-t-lg transform hover:scale-110 duration-200">
+                        @php
+                            $img_link = $$module_name_singular->featured_image;
+                            if (!Str::startsWith($img_link, 'http')) {
+                                $img_link = url($img_link);
+                            }
+                        @endphp
+                        <img src="{{$img_link}}" alt="" class="rounded-t-lg transform hover:scale-110 duration-200">
                     </a>
                     <div class="p-3 sm:p-5">
                         <a href="{{$details_url}}">

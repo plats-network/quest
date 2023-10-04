@@ -46,7 +46,7 @@
         <div class="flex flex-col flex-shrink-0">
             <div class="2dark:text-white">
                 <img class="2dark:hidden" style="height: 32px !important" src="/assets/img/brand/plats-logo-with-text.png" alt="icon">
-                <img class="hidden 2dark:block" style="height: 32px !important" src="/assets/img/favicon/plats-logo-with-text.png" alt="icon">
+                <img class="hidden 2dark:block" style="height: 32px !important" src="/assets/img/brand/plats-logo-with-text.png" alt="icon">
             </div>
             <p class="text-sm leading-none text-gray-800 mt-4 2dark:text-white">Copyright © 2023 {{env('app_name')}}</p>
             <p class="text-sm leading-none text-gray-800 mt-4 2dark:text-white">All rights reserved</p>
