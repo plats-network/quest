@@ -91,7 +91,7 @@
                             <div class="d-flex align-items-center">
                                 <p class="mb-0 fw-bold me-2">100%</p>
                                 <div class="progress w-50" style="height: 6px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </td>
@@ -114,7 +114,7 @@
                             <div class="d-flex align-items-center">
                                 <p class="mb-0 fw-bold me-2">100%</p>
                                 <div class="progress w-50" style="height: 6px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </td>
@@ -136,7 +136,7 @@
                             <div class="d-flex align-items-center">
                                 <p class="mb-0 fw-bold me-2">100%</p>
                                 <div class="progress w-50" style="height: 6px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </td>
@@ -159,7 +159,7 @@
                             <div class="d-flex align-items-center">
                                 <p class="mb-0 fw-bold me-2">100%</p>
                                 <div class="progress w-50" style="height: 6px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </td>
@@ -182,7 +182,7 @@
                             <div class="d-flex align-items-center">
                                 <p class="mb-0 fw-bold me-2">100%</p>
                                 <div class="progress w-50" style="height: 6px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </td>
@@ -195,12 +195,12 @@
         <hr>
 
         <div class="row mt-4">
-            <div class="col-12 col-sm-6">
+            <div class="col-12  col-lg-6">
 
                 @include('backend.includes.show')
 
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
 
                 <div class="text-center">
                     <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>
