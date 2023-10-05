@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Task;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -35,7 +35,8 @@ return new class extends Migration
 
             $table->string('status')->nullable()->default('Active');
 
-            $table->smallInteger('entry_type')->nullable()->default('1');
+            $table->smallInteger('entry_type')->nullable()
+                ->default(Task::TYPE_TWITTER_FOLLOW);
             //Twitter id
             $table->string('twitter_id')->nullable();
             //Twitter username
@@ -43,11 +44,42 @@ return new class extends Migration
             //Discord id
             $table->string('discord_id')->nullable();
 
+            //Task transfered type Token Holder, Transaction Activity
+            $table->smallInteger('transfer_type')->nullable()
+                ->default(Task::TRANSFER_TYPE_HOLDERS);
+            //Total Token
+            $table->integer('total_token')->nullable();
+            //Block Chain Network
+            $table->string('block_chain_network')->nullable();  //Phala, Aleph Zero
+
+
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
             $table->softDeletes();
+        });
+        //Create User Task Status
+        Schema::create('user_task_status', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            //User id
+            $table->integer('post_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
+            //Task id
+            $table->integer('task_id')->unsigned()->nullable();
+
+            $table->string('status')->nullable()->default('Open'); //Open, Completed, Failed
+            //Is Confirm From Admin
+            $table->boolean('is_confirm')->nullable()->default(false);
+            //DateTime Open
+            $table->dateTime('date_open')->nullable();
+            //DateTime Completed
+            $table->dateTime('date_completed')->nullable();
+            //Total Point
+            $table->integer('total_point')->nullable();
+            //Date Transfered
+            $table->dateTime('date_transfered')->nullable();
         });
 
         //User task activity
@@ -55,6 +87,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             //User id
+            $table->integer('post_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             //Task id
             $table->integer('task_id')->unsigned()->nullable();

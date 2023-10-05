@@ -11,6 +11,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+//php artisan starter:insert-demo-data --fresh
 class InsertDemoContents extends Command
 {
     /**

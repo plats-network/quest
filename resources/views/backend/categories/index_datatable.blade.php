@@ -45,7 +45,7 @@
                                     <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                    <input type="text" class="form-control" placeholder="Search orders">
+                    <input type="text" class="form-control" placeholder="Search category">
                 </div>
             </div>
             <div class="col-4 col-md-2 col-xl-1 ps-md-0 text-end">
@@ -79,23 +79,25 @@
                 <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
                 @endcan
 
-                @can('restore_'.$module_name)
-                <div class="btn-group">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href='{{ route("backend.$module_name.trashed") }}'>
-                                <i class="fas fa-eye-slash"></i> @lang("View trash")
-                            </a>
-                        </li>
-                        <!-- <li>
-                            <hr class="dropdown-divider">
-                        </li> -->
-                    </ul>
-                </div>
-                @endcan
+                    @can('restore_'.$module_name)
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-cog"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href='{{ route("backend.$module_name.trashed") }}'>
+                                            <i class="fas fa-eye-slash"></i> @lang('View trash')
+                                        </a>
+                                    </li>
+                                    <!-- <li>
+                                        <hr class="dropdown-divider">
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    @endcan
             </x-slot>
         </x-backend.section-header>
 

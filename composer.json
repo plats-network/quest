@@ -84,6 +84,7 @@
         "rennokki/laravel-eloquent-query-cache": "*",
         "ricorocks-digital-agency/soap": "^1.7",
         "rinvex/laravel-support": "*",
+        "saloonphp/saloon": "3.0",
         "scrivo/highlight.php": "v9.18.1.9",
         "silber/bouncer": "1.0.1",
         "simplesoftwareio/simple-qrcode": "^4.2",

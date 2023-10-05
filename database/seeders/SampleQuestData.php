@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Task;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -10,6 +11,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 
+//Call: php artisan db:seed --class=SampleQuestData
 class SampleQuestData extends Seeder
 {
     /**
@@ -26,6 +28,8 @@ class SampleQuestData extends Seeder
 
         echo "Truncate: tags \n";
         DB::table('tags')->truncate();
+        echo "Truncate: tasks \n";
+        DB::table('tasks')->truncate();
 
         /*
          * Tag Seed
@@ -77,7 +81,16 @@ class SampleQuestData extends Seeder
             $post['featured_image'] = 'https://picsum.photos/1200/630';
             $post['published_at'] = '2023-09-23';
 
-            Post::create($post);
+            $postModel = Post::create($post);
+
+            //Create Task Post
+            $tasks = $this->createSampleTasks();
+            foreach ($tasks as $taskItem){
+                $taskItem['post_id'] = $postModel->id;
+                $taskItem['created_by'] = 1;
+                $taskItem['updated_by'] = 1;
+                Task::create($taskItem);
+            }
         }
 
         $this->call([
@@ -144,4 +157,20 @@ class SampleQuestData extends Seeder
 
         ];
     }
+    //Create Sample Task
+    private function createSampleTasks()
+    {
+        return [
+            [
+                'name' => 'Follow @BreederDodo on Twitter',
+                'description' => 'Follow @BreederDodo on Twitter',
+                'value' => 'https://twitter.com/intent/follow?screen_name=BreederDodo',
+                'slug' => uniqid(),
+                'entry_type' => Task::TYPE_TWITTER_FOLLOW,
+                'status' => Task::STATUS_ACTIVE
+            ],
+
+        ];
+    }
+
 }

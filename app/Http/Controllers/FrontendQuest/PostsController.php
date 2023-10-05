@@ -94,7 +94,12 @@ class PostsController extends Controller
         event(new PostViewed($$module_name_singular));
 
         //$user->hasFavorited($post);
-        $hasFavorited = $questUser->hasFavorited($$module_name_singular);
+        $hasFavorited = false;
+        //Check has $questUser
+        if ($questUser){
+            $hasFavorited = $questUser->hasFavorited($$module_name_singular);
+
+        }
 
         return view(
             "quest.posts.show",

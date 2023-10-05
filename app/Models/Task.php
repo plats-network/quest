@@ -26,6 +26,9 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  * @property string $order
  * @property string $status
  * @property string $entry_type
+ * @property string $transfer_type
+ * @property string $total_token
+ * @property string $block_chain_network
  * @property integer $created_by
  * @property integer $updated_by
  * @property integer $deleted_by
@@ -63,6 +66,11 @@ class Task extends BaseModel
     const STATUS_DRAFT = 'Draft';
 
     //get all status
+    //Task transfered type Token Holder, Transaction Activity
+    const TRANSFER_TYPE_HOLDERS = 1;
+    const TRANSFER_TYPE_ACTIVITY = 2;
+
+
     public static function getStatus()
     {
         return [
