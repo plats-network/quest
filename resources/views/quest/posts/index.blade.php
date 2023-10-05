@@ -2,6 +2,8 @@
 
 @viteReactRefresh
 @vite(['resources/js/connect-wallet.jsx'])
+@vite(['resources/js/ModalWallet.jsx'])
+
 
 @section('title') {{ __("Posts List") }} @endsection
 
@@ -24,7 +26,7 @@
                                 $img_link = url($img_link);
                             }
                         @endphp
-                        <img src="{{$img_link}}" alt="" class="rounded-t-lg transform hover:scale-110 duration-200">
+                        <img src="{{$img_link}}" alt="" class="rounded-t-lg  duration-200">
                     </a>
                     <div class="p-3 sm:p-5">
                         <a href="{{$details_url}}">
