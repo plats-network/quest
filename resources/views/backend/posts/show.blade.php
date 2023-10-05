@@ -67,10 +67,10 @@
                 <table class="table table-responsive">
                     <thead>
                     <tr>
-                        <th>Project</th>
+                        <th>User</th>
                         <th>Budget</th>
                         <th>Status</th>
-                        <th>Completion</th>
+                        <th>Task Completion</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -78,7 +78,7 @@
                         <td class="d-flex align-items-center">
                             <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=128&amp;q=60" data-config-id="auto-img-2">
                             <div class="ps-3">
-                                <p class="mb-0 fw-bold">Alex</p>
+                                <p class="mb-0 fw-bold">Jerome Bell</p>
                                 <a class="text-decoration-none" href="#">www.reactjs.org</a>
                             </div>
                         </td>
@@ -101,11 +101,11 @@
                             <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://shuffle.dev/wrexa-assets/images/avatar-women1.png" data-config-id="auto-img-2">
 
                             <div class="ps-3">
-                                <p class="mb-0 fw-bold">Coo</p>
+                                <p class="mb-0 fw-bold">Kristin Watson</p>
                                 <a class="text-decoration-none" href="#">www.reactjs.org</a>
                             </div>
                         </td>
-                        <td class="fw-bold">5000</td>
+                        <td class="fw-bold">6000</td>
                         <td>
                             <span class="badge py-2 px-3 bg-success rounded-pill text-uppercase">Success</span>
                         </td>
@@ -123,11 +123,11 @@
                         <td class="d-flex align-items-center">
                             <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://images.unsplash.com/photo-1456327102063-fb5054efe647?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&q=60" data-config-id="auto-img-2">
                             <div class="ps-3">
-                                <p class="mb-0 fw-bold">Alex</p>
+                                <p class="mb-0 fw-bold">Jenny Wilson</p>
                                 <a class="text-decoration-none" href="#">www.reactjs.org</a>
                             </div>
                         </td>
-                        <td class="fw-bold">5000</td>
+                        <td class="fw-bold">2000</td>
                         <td>
                             <span class="badge py-2 px-3 bg-success rounded-pill text-uppercase">Success</span>
                         </td>
@@ -169,7 +169,7 @@
                             <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://shuffle.dev/dashy-assets/images/avatar34.png" data-config-id="auto-img-2">
 
                             <div class="ps-3">
-                                <p class="mb-0 fw-bold">Coo</p>
+                                <p class="mb-0 fw-bold">Eleanor Pena</p>
                                 <a class="text-decoration-none" href="#">www.reactjs.org</a>
                             </div>
                         </td>
@@ -271,7 +271,7 @@
                         <h2 class="h3 modal-title mb-3 text-white">Lucky Draw for 5 Winners!</h2>
                         <p class="mb-4 text-white">Experience the thrill of our Lucky Spin! Spin the wheel for a chance to win incredible prizes. 5 lucky winners will be chosen. Don't miss out!</p>
                         <div class="progress mb-0">
-                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -300,12 +300,7 @@
         const audio = document.querySelector("audio");
         audio.volume = 0.2;
 
-        audio.play();
-
-        /*Auto redirect to homepage after 3 minute*/
-        setTimeout(function () {
-            window.location.href = "{{route('backend.home')}}";
-        }, 180000);
+        //audio.play();
     </script>
 
     <script type="text/javascript">
@@ -318,15 +313,18 @@
             //listPrizeWin
             var listPrizeWin = $('#listPrizeWin');
             var btnStartLuckyDraw = $('#btnStartLuckyDraw');
-
+            var index = 0;
+            var indexValue = 0;
             listPrizeWin.hide();
             //Btn btnStartLuckyDraw Click Function
             btnStartLuckyDraw.click(function () {
                 $(this).html(spinText + 'Processing...').attr('disabled', true);
+
                 setTimeout(function () {
                     $('#btnStartLuckyDraw').html('Start Prize Draw!').attr('disabled', false);
                     $('#modal-achievement').modal('hide');
                     $('#modal-achievement-result').modal('show');
+                    showSuccessScreen();
                     showSuccessScreen();
                     //listPrizeWin show
                     listPrizeWin.show();
