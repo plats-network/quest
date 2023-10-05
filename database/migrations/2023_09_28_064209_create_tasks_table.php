@@ -59,6 +59,7 @@ return new class extends Migration {
 
             $table->softDeletes();
         });
+
         //Create User Task Status
         Schema::create('user_task_status', function (Blueprint $table) {
             $table->id();
@@ -70,6 +71,9 @@ return new class extends Migration {
             $table->integer('task_id')->unsigned()->nullable();
 
             $table->string('status')->nullable()->default('Open'); //Open, Completed, Failed
+            //Url
+            $table->string('url')->nullable();
+
             //Is Confirm From Admin
             $table->boolean('is_confirm')->nullable()->default(false);
             //DateTime Open

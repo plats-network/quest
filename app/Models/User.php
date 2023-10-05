@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Presenters\UserPresenter;
 use App\Models\Traits\HasHashedMediaTrait;
+use App\Services\Twitter\TwitterApiService;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,7 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Permission\Traits\HasRoles;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
+use Noweh\TwitterApi\Client;
 
 /**
  * @property integer $id
@@ -212,6 +214,58 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
     {
         return [];
     }
+
+    //hasTwitterFollowed
+    public function hasTwitterFollowed($username){
+        //Check if user has followed
+        //Call Twitter API
+
+        $twitterApiService = new TwitterApiService();
+        $twitterUserId = 1588364698239397888;
+        $key = 'NEARProtocol';
+        //$socialRes = $twitterApiService->isFollowing($twitterUserId, $key);
+        //dd($socialRes);
+
+        return false;
+    }
+    public function hasTwitterFollowed2($username){
+        //Check if user has followed
+        //Call Twitter API
+
+        $settings = [
+            'account_id' => 'RXl3WDNPamZYUWVoWnhzUnRDaE06MTpjaQ',
+            'access_token' => '1588364698239397888-Fd6s1NlJE5rOEpQlHqwrhDvPf88goh',
+            'access_token_secret' => '0Of3N0nysSoMrExNRDdbfUv9BNzM4AqVk7YeBWIpTy9Zy',
+
+            'consumer_key' => 'R1jbcWcY40jFdsdJcRv6bFqkJ',
+            'consumer_secret' => 'EsgjmcXnf5qQSdidXX4KTwcXxdUwaa5XbhDbMQmqxsB0Tf9m25',
+
+            'bearer_token' => 'AAAAAAAAAAAAAAAAAAAAAEWxqAEAAAAAVDIALRhYF8bKFU55HooC1LIKJUQ%3DXbrh04yrOGEu8XyNPNcuFtZiEQpxGacoEETQLlAMBfJGnhcSYZ'
+        ];
+
+        //$client = new Client($settings);
+        //$return = $client->userMeLookup()->performRequest();
+        //$return = $client->timeline()->getRecentMentions('1588364698239397888')->performRequest();
+        //dd($return);
+     /*   $response = $client->tweet()->create()
+            ->performRequest([
+                'text' => 'Test Tweet... '
+            ],
+                withHeaders: true
+            )
+        ;
+        dd($response);*/
+        return false;
+    }
+
+    //https://shuffle.dev/wrexa-assets/images/avatar-male2.png
+    //https://shuffle.dev/wrexa-assets/images/avatar-women1.png
+    //https://images.unsplash.com/photo-1456327102063-fb5054efe647?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&q=60
+    /*
+     * Retweet a Tweet
+     * Example:
+     * $return = $client->retweet()->performRequest(['tweet_id' => $tweet_id]);
+     * */
 
 
 }

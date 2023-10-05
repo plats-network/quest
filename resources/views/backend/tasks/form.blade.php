@@ -61,7 +61,7 @@
                     $required = "";
                     ?>
                     {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                    {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                    {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->rows(5) }}
                 </div>
             </div>
         </div>
@@ -94,8 +94,6 @@
             </div>
         </div>
         <hr>
-
-
 
         <div class="row mb-3">
             <div class="col-12 col-sm-6">
@@ -144,7 +142,7 @@
                     $required = "";
                     ?>
                     {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                    {{ html()->number($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                 </div>
             </div>
         </div>

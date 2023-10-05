@@ -460,4 +460,26 @@ class Post extends BaseModel
 
         return $start_at . ' - ' . $end_at . ' ' . $timeZone;
     }
+    //Check is complete quest by start and end
+
+    public function isCompleteQuest()
+    {
+        $start_at = $this->start_at;
+        $end_at = $this->end_at;
+
+        if (empty($start_at) && empty($end_at)) {
+            return false;
+        }
+
+        //IS complete
+        $isComplete = false;
+        $now = Carbon::now();
+        $start_at = Carbon::parse($start_at);
+        $end_at = Carbon::parse($end_at);
+        if ($now->gte($start_at) && $now->lte($end_at)) {
+            $isComplete = true;
+        }
+
+        return $isComplete;
+    }
 }

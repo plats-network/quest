@@ -133,6 +133,7 @@
         "nunomaduro/collision": "^7.0",
         "phpstan/phpstan": "^1.8",
         "phpunit/phpunit": "^10.0",
+        "rayvenues/eloquent-model-generator": "^1.0",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {

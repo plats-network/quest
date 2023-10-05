@@ -43,6 +43,7 @@ class Task extends BaseModel
 
     //Cloudinary
     use MediaAlly;
+
     //Constant
     //Task Type Twitter Like
     const TYPE_TWITTER_FOLLOW = 1;
@@ -71,7 +72,8 @@ class Task extends BaseModel
     const TRANSFER_TYPE_ACTIVITY = 2;
 
     //Get all task type
-    public static function getAllTaskType(){
+    public static function getAllTaskType()
+    {
         return [
             self::TRANSFER_TYPE_HOLDERS => 'Token Holder',
             self::TRANSFER_TYPE_ACTIVITY => 'Transaction Activity',
@@ -185,8 +187,8 @@ class Task extends BaseModel
      * When invalidating automatically on update, you can specify
      * which tags to invalidate.
      *
-     * @param  string|null  $relation
-     * @param  \Illuminate\Database\Eloquent\Collection|null  $pivotedModels
+     * @param string|null $relation
+     * @param \Illuminate\Database\Eloquent\Collection|null $pivotedModels
      */
     public function getCacheTagsToInvalidateOnUpdate($relation = null, $pivotedModels = null): array
     {
@@ -206,7 +208,7 @@ class Task extends BaseModel
     {
         //is local
         if (app()->environment('local')) {
-             return null;
+            return null;
         }
 
         return $this->cacheFor;
@@ -302,7 +304,7 @@ class Task extends BaseModel
     {
         /** @var MediaCloudinary $media */
         $media = $this->fetchFirstMedia();
-        if (! empty($media)) {
+        if (!empty($media)) {
             return $media->getSecurePath();
         }
 
@@ -323,11 +325,12 @@ class Task extends BaseModel
 
         return 'danger';
     }
+
     public function getImageUrlAttribute2(): string
     {
         /** @var Media $media */
         $media = $this->getMedia(ProductCategory::PATH)->first();
-        if (! empty($media)) {
+        if (!empty($media)) {
             return $media->getFullUrl();
         }
 
@@ -438,4 +441,38 @@ class Task extends BaseModel
     {
         return 'https://twitter.com/intent/user?user_id=' . $this->value;
     }
+
+    //Get Twitter Retweet Url
+    public function getTwitterRetweetUrlAttribute()
+    {
+        return 'https://twitter.com/intent/retweet?tweet_id=' . $this->value;
+    }
+
+    //Get Twitter Like Url
+    public function getTwitterLikeUrlAttribute()
+    {
+        return 'https://twitter.com/intent/like?tweet_id=' . $this->value;
+    }
+
+    //Get Twitter Hashtag Url
+    public function getTwitterHashtagUrlAttribute()
+    {
+        return 'https://twitter.com/hashtag/' . $this->value;
+    }
+
+    //Get Twitter Tweet User Name
+    // https://twitter.com/intent/follow?screen_name=BreederDodo => Get BreederDodo
+    public function getTwitterUserNameAttribute()
+    {
+        //Url Example https://twitter.com/intent/follow?screen_name=BreederDodo
+        $url = $this->value;
+        $username = str_replace('https://twitter.com/intent/follow?screen_name=', '', $url);
+
+        return $username;
+    }
+
+    //Twitter Follow: https://twitter.com/intent/follow?screen_name=BlackPanther_Fi
+    //Twitter Like: https://twitter.com/intent/like?tweet_id=1708838132697973156
+    //Twitter Retweet: https://twitter.com/intent/retweet?tweet_id=1708838132697973156
+
 }
