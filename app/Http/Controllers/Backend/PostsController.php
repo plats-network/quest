@@ -80,7 +80,6 @@ class PostsController extends Controller
         $module_action = __('List');
 
         $$module_name = Post::latest()->paginate();
-
         Log::info(label_case('Posts'.' '.'List').' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(

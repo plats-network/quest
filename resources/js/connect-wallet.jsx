@@ -1,3 +1,4 @@
+
 import { createRoot } from "react-dom/client";
 import { useState } from "react";
 import { ModalWallet } from "./ModalWallet";
@@ -5,6 +6,7 @@ import { ModalWallet } from "./ModalWallet";
 function ConnectButton() {
     const [isModal, setIsModal] = useState(false);
     const buttonAlert = () => {
+
         setIsModal(true);
     };
 
@@ -35,7 +37,9 @@ function ConnectButton() {
         </div>
     );
 }
+
 export default ConnectButton;
+
 const loginButton = createRoot(document.getElementById("login_button"));
 if (loginButton !== null) {
     loginButton.render(<ConnectButton />);

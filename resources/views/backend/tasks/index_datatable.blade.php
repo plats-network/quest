@@ -22,7 +22,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Tasks</li>
                 </ol>
             </nav>
-            <h2 class="h4">Quest: {{$post->name}} - All Task</h2>
+            <h2 class="h4">All Task - Quest: {{$post->name}}</h2>
             <p class="mb-0">Total Task: {{$$module_name->count()}}</p>
         </div>
         <div class="btn-toolbar mb-2 mb-md-0">

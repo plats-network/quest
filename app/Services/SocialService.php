@@ -26,6 +26,8 @@ class SocialService extends BaseService
 
     /**
      * User start task at location
+     * Thực hiện các hành động trên Twitter như like, follow, retweet và tìm kiếm theo hashtag.
+     * Sau khi thực hiện xong, cập nhật trạng thái của task thành USER_COMPLETED_TASK
      *
      * @param string $taskId Task ID
      * @param string $socialId Task Social ID
@@ -58,11 +60,9 @@ class SocialService extends BaseService
             case HASHTAG:
                 // params {userTweetId, $key: string | array }
                 $text = $userSocial->name . ' ' . $userSocial->description;
-                $textArrs = explode(' ', $text);
-                $keys = [];
-                foreach($textArrs as $txt) {
-                    if (Str::contains($txt, '#')) { $keys[] = $txt; }
-                }
+                $keys = array_filter(explode(' ', $text), function($txt) {
+                    return Str::contains($txt, '#');
+                });
                 $socialRes = $this->twitterApiService->isHashTag($twitterUserId, $keys);
                 break;
             default:

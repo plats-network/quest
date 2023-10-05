@@ -79,7 +79,13 @@ class SampleQuestData extends Seeder
             $post['created_by'] = 1;
             $post['updated_by'] = 1;
             $post['featured_image'] = 'https://picsum.photos/1200/630';
-            $post['published_at'] = '2023-09-23';
+            $now = date('Y-m-d H:i:s');
+            $post['published_at'] = $now;
+
+            //Start At
+            $post['start_at'] = $now;
+            //End At
+            $post['end_at'] = date('Y-m-d H:i:s', strtotime($now . ' + 1 month'));
 
             $postModel = Post::create($post);
 

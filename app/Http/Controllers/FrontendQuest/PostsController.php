@@ -5,8 +5,11 @@ namespace App\Http\Controllers\FrontendQuest;
 use App\Events\Backend\Article\PostViewed;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Task;
+use App\Models\UserTaskStatus;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use App\Models\Task as QuestTask;
 
@@ -73,7 +76,7 @@ class PostsController extends Controller
     public function show($hashid)
     {
         $id = decode_id($hashid);
-
+        /** @var User $questUser */
         $questUser = auth()->guard('quest')->user();
 
         $module_title = $this->module_title;
@@ -101,6 +104,8 @@ class PostsController extends Controller
 
         }
 
+        //$questUser->hasTwitterFollowed('Scroll_ZKP');
+
         return view(
             "quest.posts.show",
             compact('module_title', 'hasFavorited','tasks','module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
@@ -111,22 +116,83 @@ class PostsController extends Controller
     //Params: $id
     public function checkStatus(Request $request)
     {
+        /** @var User $questUser */
+        $questUser = auth()->guard('quest')->user();
+
+        //Check $questUser is login
+        if (!$questUser){
+            return response()->json([
+                'status' => 0,
+                'success'=>'User is not login'
+            ]);
+        }
+
         $task_id = $request->task_id;
 
         $task = QuestTask::query()
             ->where('id', $task_id)
             ->first();
+
         //Check model exists
         if (!$task){
             return response()->json(['success'=>'Task not found']);
         }
+
         //Check if task is not active
         if ($task->status != Task::STATUS_ACTIVE){
             return response()->json(['success'=>'Task is not active']);
         }
 
-        $task->status = 1;
         //$task->save();
+        //User Task
+        //Get User Task
+        $userTaskStatus = UserTaskStatus::query()
+            ->where('user_id', $questUser->id)
+            ->where('task_id', $task_id)
+            ->first();
+        //Check if user task exists
+        if (!$userTaskStatus){
+            //Create new user task
+            $userTaskStatus = new UserTaskStatus();
+            $userTaskStatus->user_id = auth()->guard('quest')->user()->id;
+            $userTaskStatus->task_id = $task_id;
+            $userTaskStatus->status = UserTaskStatus::STATUS_OPEN;
+
+            $userTaskStatus->setOpen();
+
+            $userTaskStatus->save();
+        }
+
+        switch ($task->entry_type){
+            case Task::TYPE_TWITTER_FOLLOW:
+                //$userTaskStatus->url = 'https://twitter.com/'.$task->twitter_username;
+                //Check if user has followed
+                if ($questUser->hasTwitterFollowed($task->twitter_username)){
+                    //Set completed
+                    $userTaskStatus->setCompleted();
+                    return response()->json(['success'=>'Task is completed']);
+                }
+                break;
+            case Task::TYPE_TWITTER_RETWEET:
+                //Check if user has retweeted
+                if ($questUser->hasTwitterRetweeted($task->twitter_id)){
+                    //Set completed
+                    $userTaskStatus->setCompleted();
+                    return response()->json(['success'=>'Task is completed']);
+                }
+                break;
+            case Task::TYPE_TWITTER_LIKE:
+                //Check if user has liked
+                if ($questUser->hasTwitterLiked($task->twitter_id)){
+                    //Set completed
+                    $userTaskStatus->setCompleted();
+                    return response()->json(['success'=>'Task is completed']);
+                }
+                break;
+        }
+
+
+
         //Delay 2s
         sleep(1);
 
