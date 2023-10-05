@@ -70,6 +70,13 @@ class Task extends BaseModel
     const TRANSFER_TYPE_HOLDERS = 1;
     const TRANSFER_TYPE_ACTIVITY = 2;
 
+    //Get all task type
+    public static function getAllTaskType(){
+        return [
+            self::TRANSFER_TYPE_HOLDERS => 'Token Holder',
+            self::TRANSFER_TYPE_ACTIVITY => 'Transaction Activity',
+        ];
+    }
 
     public static function getStatus()
     {

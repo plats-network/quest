@@ -44,12 +44,12 @@ return new class extends Migration {
             //Discord id
             $table->string('discord_id')->nullable();
 
-            //Task transfered type Token Holder, Transaction Activity
+            //Task transfered type Token Holder - Check Balance, Transaction Activity
             $table->smallInteger('transfer_type')->nullable()
                 ->default(Task::TRANSFER_TYPE_HOLDERS);
             //Total Token
             $table->integer('total_token')->nullable();
-            //Block Chain Network
+            //Blockchain Network
             $table->string('block_chain_network')->nullable();  //Phala, Aleph Zero
 
 
