@@ -1,15 +1,23 @@
 import { createRoot } from "react-dom/client";
 import { useState } from "react";
 import { ModalWallet } from "./ModalWallet";
+import { UseInkProvider, useTx } from "useink";
+import { AlephTestnet, PhalaTestnet } from "useink/chains";
 
 function ConnectButton() {
     const [isModal, setIsModal] = useState(false);
+    const [account, setAccount] = useState();
     const buttonAlert = () => {
         setIsModal(true);
     };
 
     return (
-        <div>
+        <UseInkProvider
+            config={{
+                dappName: "hkt_plats",
+                chains: [AlephTestnet, PhalaTestnet],
+            }}
+        >
             <a
                 href="#"
                 onClick={buttonAlert}
@@ -29,10 +37,14 @@ function ConnectButton() {
                         d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                     />
                 </svg>
-                <span className="mx-1">Connect Wallet</span>
+                <span className="mx-1">
+                    {account ? account : "Connect Wallet"}
+                </span>
             </a>
-            {isModal && <ModalWallet setIsModal={setIsModal} />}
-        </div>
+            {isModal && (
+                <ModalWallet setIsModal={setIsModal} setAccount={setAccount} />
+            )}
+        </UseInkProvider>
     );
 }
 export default ConnectButton;

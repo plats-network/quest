@@ -1,8 +1,24 @@
-import { useWallet, useAllWallets } from "useink";
+import { useEffect } from "react";
+import { useWallet, useAllWallets, useContract } from "useink";
+import metadata from "./contract-metadata.json";
 
-export const ModalWallet = ({ show, onClose, setIsModal }) => {
+// de vao file .env
+const CONTRACT_ADDRESS = "5DxNQBYHvmj7XLS3jEauBBGhcB4rykaWFwt24rASx9Uw5UQE";
+
+export const ModalWallet = ({ setIsModal, setAccount }) => {
     const { account, connect, accounts } = useWallet();
     const wallets = useAllWallets();
+    const contract = useContract(CONTRACT_ADDRESS, metadata);
+
+    useEffect(() => {
+        if (account?.address) {
+            const shortAddress =
+                account?.address.slice(0, 6) +
+                "..." +
+                account?.address.slice(-6);
+            setAccount(shortAddress);
+        }
+    }, [account?.address]);
 
     const handleConnect = (wallet) => {
         connect(wallet.extensionName);
@@ -12,7 +28,7 @@ export const ModalWallet = ({ show, onClose, setIsModal }) => {
         return (
             <div
                 style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
-                class="fixed top-0 left-0 h-screen w-full flex items-center justify-center"
+                className="fixed top-0 left-0 h-screen w-full flex items-center justify-center"
             >
                 <div className="w-[450px] h-[450px] bg-[#121127] rounded-xl">
                     <div className="px-6">
@@ -70,14 +86,6 @@ export const ModalWallet = ({ show, onClose, setIsModal }) => {
                     </div>
                 </div>
             </div>
-        );
-
-        return (
-            <>
-                <p>You are connected as {account?.name || account.address}</p>
-
-                <button onClick={disconnect}>Disconnect Wallet</button>
-            </>
         );
     }
 };
