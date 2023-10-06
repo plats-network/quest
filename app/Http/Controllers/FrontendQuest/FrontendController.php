@@ -4,6 +4,8 @@ namespace App\Http\Controllers\FrontendQuest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\User;
 
 class FrontendController extends Controller
 {
@@ -12,7 +14,7 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $body_class = '';
         $userQuest = Auth::guard('quest')->user();
@@ -22,7 +24,7 @@ class FrontendController extends Controller
     }
 
     //me
-    public function me()
+    public function me(Request $request)
     {
         $body_class = '';
         $questUser = Auth::guard('quest')->user();
@@ -35,7 +37,7 @@ class FrontendController extends Controller
     }
 
     //support
-    public function support()
+    public function support(Request $request)
     {
         $body_class = '';
 
@@ -46,7 +48,7 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function privacy()
+    public function privacy(Request $request)
     {
         $body_class = '';
 
@@ -58,7 +60,7 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function terms()
+    public function terms(Request $request)
     {
         $body_class = '';
 
@@ -66,10 +68,58 @@ class FrontendController extends Controller
     }
 
     //wallet
-    public function wallet()
+    public function wallet(Request $request)
     {
         $body_class = '';
 
         return view('frontend.wallet', compact('body_class'));
+    }
+
+    /*
+     * connectWallet
+     * Sau khi connect xong thì frontend gửi lên backend 2 thông tin:
+     * wallet_address và wallet_name (account name: optional)
+Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
+    Nếu có rồi thì thôi. Cuối cùng xử lý để sao cho user đó đã ở trạng thái đã login.
+     * */
+    public function connectWallet(Request $request)
+    {
+        $body_class = '';
+        //wallet_address
+        $wallet_address = $request->wallet_address;
+        //wallet_name
+        $wallet_name = $request->wallet_name;
+        //Check user by wallet_address and wallet_name in db
+        //If not exist then create new user
+        //If exist then login
+        //If login success then redirect to home page
+        //If login fail then redirect to login page
+        $user = User::where('wallet_address', $wallet_address)
+            ->where('wallet_name', $wallet_name)->first();
+        if ($user){
+            //login
+            Auth::guard('quest')->login($user);
+            return redirect()->route('quest.home');
+        }
+        //create new user
+        $user = new User();
+        $user->wallet_address = $wallet_address;
+        $user->wallet_name = $wallet_name;
+        $user->save();
+        //login
+        Auth::guard('quest')->login($user);
+
+        //Json output
+        $output = [
+            'status' => 'success',
+            'message' => 'Connect wallet success',
+            'data' => [
+                'user' => $user
+            ]
+        ];
+
+        return response()->json($output);
+
+        //return view('frontend.connect-wallet', compact('body_class'));
     }
 }

@@ -6,7 +6,7 @@ use App\Events\Backend\Article\PostViewed;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Support\Str;
-
+use Illuminate\Http\Request;
 class TasksController extends Controller
 {
     public $module_title;
@@ -42,7 +42,7 @@ class TasksController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $module_title = "Posts";
         $module_name = $this->module_name;
@@ -67,7 +67,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($hashid)
+    public function show(Request $request, $hashid)
     {
         $id = decode_id($hashid);
 

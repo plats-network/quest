@@ -155,6 +155,20 @@
     </div>
 </div>
 
+<div class="row mb-3">
+    <div class="col-12 col-sm-6">
+        <div class="form-group">
+            <?php
+            $field_name = 'total_token';
+            $field_lable = 'Total Token';
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+            {{ html()->number($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
 
 
 <!-- Select2 Library -->

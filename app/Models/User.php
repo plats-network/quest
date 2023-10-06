@@ -54,6 +54,8 @@ use Noweh\TwitterApi\Client;
  * @property integer $updated_by
  * @property integer $deleted_by
  * @property integer $creator_id
+ * @property integer $wallet_address
+ * @property integer $wallet_name
  * @property string $guard_name
  * @property string $remember_token
  * @property string $created_at
@@ -110,6 +112,12 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         'name',
         'email',
         'password',
+        'wallet_address',
+        'wallet_name',
+        'stripe_id',
+        'pm_type',
+        'pm_last_four',
+        'trial_ends_at',
         'social_id',
         'social_type'
     ];

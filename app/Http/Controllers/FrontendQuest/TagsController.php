@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
-
+use Illuminate\Http\Request;
 class TagsController extends Controller
 {
     public $module_title;
@@ -42,7 +42,7 @@ class TagsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -67,7 +67,7 @@ class TagsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $id = decode_id($id);
 

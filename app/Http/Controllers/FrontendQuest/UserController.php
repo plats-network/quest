@@ -54,7 +54,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($username)
+    public function show(Request $request, $username)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -83,7 +83,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function profile($id)
+    public function profile(Request $request, $id)
     {
         $id = decode_id($id);
 
@@ -124,7 +124,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function profileEdit($id)
+    public function profileEdit(Request $request, $id)
     {
         $id = decode_id($id);
 
@@ -226,7 +226,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function changePassword($id)
+    public function changePassword(Request $request, $id)
     {
         $id = decode_id($id);
 
@@ -288,7 +288,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;

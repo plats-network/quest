@@ -52,6 +52,9 @@ class CreatePostsTable extends Migration
             $table->dateTime('start_at')->nullable();
             $table->dateTime('end_at')->nullable();
 
+            //Total Token
+            $table->integer('total_token')->nullable();
+
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
