@@ -52,16 +52,9 @@ Route::group(['as' => 'quest.'], function () {
     //support
     Route::get('support', [FrontendController::class, 'support'])->name('support');
 
-    //API Router
-    //API Connect wallet
-    /*
-     * Sau khi connect xong thì frontend gửi lên backend 2 thông tin:
-     * wallet_address và wallet_name (account name: optional)
-Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
-    Nếu có rồi thì thôi. Cuối cùng xử lý để sao cho user đó đã ở trạng thái đã login.
-     * */
-    Route::post('connect-wallet', [FrontendController::class, 'connectWallet'])->name('connect-wallet');
 
+    //Wallet Login
+    Route::get('wallet-login', [FrontendController::class, 'walletLogin'])->name('wallet-login');
 
     Route::group(['middleware' => ['auth:quest']], function () {
         /*
