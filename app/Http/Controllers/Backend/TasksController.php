@@ -342,11 +342,6 @@ class TasksController extends Controller
 
         $module_action = 'Update';
 
-        $validatedData = $request->validate([
-            'name' => 'required|max:191|unique:'.$module_model.',name,'.$id,
-            'slug' => 'nullable|max:191|unique:'.$module_model.',slug,'.$id,
-        ]);
-
         $$module_name_singular = $module_model::findOrFail($id);
 
         $$module_name_singular->update($request->except('image', 'image_remove'));

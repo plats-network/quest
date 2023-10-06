@@ -7,6 +7,9 @@
 
 @extends('quest.layouts.app')
 
+@viteReactRefresh
+@vite(['resources/js/connect-wallet.jsx'])
+
 @section('title') {{$$module_name_singular->name}} @endsection
 
 @section('content')

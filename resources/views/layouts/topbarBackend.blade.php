@@ -24,6 +24,10 @@
               aria-describedby="topbar-addon">
           </div>
         </form>
+          <a href="https://themesberg.com/product/laravel/volt-admin-dashboard-template" target="_blank">
+              <button class="btn mx-1 me-2 btn-secondary" type="button">
+                  <i class="fas fa-plus mx-1"></i>Connect Wallet</button>
+          </a>
       </div>
       <!-- Navbar links -->
       <ul class="navbar-nav align-items-center">

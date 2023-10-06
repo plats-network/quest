@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f35859d3b3fb06cd3e85e2284edbdef7",
+    "content-hash": "cdc2c9f45309a91be694a0cc3ad412b6",
     "packages": [
         {
             "name": "alexusmai/laravel-file-manager",
@@ -21462,6 +21462,63 @@
                 }
             ],
             "time": "2023-09-19T05:42:37+00:00"
+        },
+        {
+            "name": "rayvenues/eloquent-model-generator",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rayVenues/eloquent-model-generator.git",
+                "reference": "1c6069372f39efbbb27dc8067d7c13c6bd5ec696"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rayVenues/eloquent-model-generator/zipball/1c6069372f39efbbb27dc8067d7c13c6bd5ec696",
+                "reference": "1c6069372f39efbbb27dc8067d7c13c6bd5ec696",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^3.3",
+                "illuminate/config": "^10.0",
+                "illuminate/console": "^10.0",
+                "illuminate/database": "^10.0",
+                "illuminate/support": "^10.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.6",
+                "pestphp/pest": "^2.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ray\\EloquentModelGenerator\\Provider\\GeneratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ray\\EloquentModelGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Eloquent Model Generator",
+            "keywords": [
+                "eloquent",
+                "generator",
+                "laravel",
+                "model",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/rayVenues/eloquent-model-generator/issues",
+                "source": "https://github.com/rayVenues/eloquent-model-generator/tree/v1.0.2"
+            },
+            "time": "2023-06-09T17:17:00+00:00"
         },
         {
             "name": "sebastian/cli-parser",
