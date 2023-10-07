@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon/favicon.ico">
-    <link rel="icon" type="image/png" href="/assets/img/favicon/favicon.ico">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>@yield('title') | {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,8 +13,8 @@
     @include('quest.includes.meta')
 
     <!-- Shortcut Icon -->
-    <link rel="shortcut icon" href="/assets/img/favicon/favicon.ico">
-    <link rel="icon" type="image/ico" href="/assets/img/favicon/favicon.ico" />
+    <link rel="shortcut icon" href="{{get_platform_logo()}}">
+    <link rel="icon" type="image/ico" href="{{get_platform_logo()}}" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
