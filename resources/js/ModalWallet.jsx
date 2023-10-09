@@ -4,7 +4,7 @@ import metadata from "./contract-metadata.json";
 import axios from "axios";
 
 // de vao file .env
-const CONTRACT_ADDRESS = "5DxNQBYHvmj7XLS3jEauBBGhcB4rykaWFwt24rASx9Uw5UQE";
+const CONTRACT_ADDRESS = "5CDveQs6omBkWyVXYiZZeCFkpUHWVoSWxhgEREfikvRV7Dxm";
 
 export const ModalWallet = ({ setIsModal, setAccount }) => {
     const { account, connect, accounts } = useWallet();

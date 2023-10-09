@@ -17,6 +17,8 @@ export default defineConfig({
                 'resources/css/app-frontend.css',
                 'resources/js/app-frontend.js',
                 'resources/js/connect-wallet.jsx',
+                'resources/js/deposit.jsx',
+                'resources/js/deposit-wallet.jsx',
                 'resources/js/ModalWallet.jsx'
             ],
             // refresh: true,

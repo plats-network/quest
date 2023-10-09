@@ -49,6 +49,7 @@ function ConnectButton() {
 export default ConnectButton;
 
 const newQuestButton = createRoot(document.getElementById("new_quest_button"));
+
 if (newQuestButton !== null) {
     newQuestButton.render(<ConnectButton />);
 }
