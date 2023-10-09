@@ -119,6 +119,30 @@ class UserTableSeeder extends Seeder
             ],
         ];
 
+        $arrQuestUser = [
+            [
+                'id' => 100006,
+                'first_name' => 'Phan Dung',
+                'email' => 'quest6@gmail.com',
+            ],
+            [
+                'id' => 100007,
+                'first_name' => 'Xuan Nam',
+                'email' => 'quest7@gmail.com'
+            ],
+            [
+                'id' => 100008,
+                'first_name' => 'Thanh Trung',
+                'email' => 'quest8@gmail.com',
+            ],
+            [
+                'id' => 100009,
+                'first_name' => 'Van Tuan',
+                'email' => 'quest9@gmail.com'
+            ],
+
+        ];
+
         foreach ($users as $user_data) {
             $user = User::create($user_data);
 

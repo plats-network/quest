@@ -91,8 +91,11 @@ class PostsController extends Controller
         $meta_page_type = 'article';
 
         $$module_name_singular = Post::findOrFail($id);
+
+        //Check post is open
         //List active tasks
-        $tasks = $$module_name_singular->tasks_active()->latest()->get();
+        $tasks = $$module_name_singular->tasks_active()
+            ->latest()->get();
 
         event(new PostViewed($$module_name_singular));
 

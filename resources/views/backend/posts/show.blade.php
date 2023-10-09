@@ -17,11 +17,11 @@
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
                 <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
                     <li class="breadcrumb-item">
-                        <a href="#">
+                        <a href="{{route('backend.home')}}">
                             <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                         </a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#">@lang('Home')</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('backend.home')}}">@lang('Home')</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{__('posts.title')}}</li>
                 </ol>
             </nav>
@@ -192,17 +192,18 @@
                 </table>
             </div>
         </div>
-        <hr>
+
 
         <div class="row mt-4">
-            <div class="col-12  col-lg-6">
+            <div class="col-12  col-lg-12">
 
                 @include('backend.includes.show')
 
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
 
-                <div class="text-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+                <div class="text-center mt-3">
                     <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>
                 </div>
                 <hr>
@@ -238,6 +239,43 @@
                 @include('backend.posts.includes.activitylog')
                 <hr>
 
+            </div>
+        </div>
+
+        {{--Danh sách User Play Qut--}}
+        <div class="container2" id="listUserPlay">
+            <div class="bg-white px-4 py-3 rounded shadow-sm">
+                <h5 class="text-center">List User Play</h5>
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Task Completion</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($userPlayTasks as $itemPlay)
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=128&amp;q=60" data-config-id="auto-img-2">
+                            <div class="ps-3">
+                                <p class="mb-0 fw-bold">{{$itemPlay->getUserName()}}</p>
+                                <a class="text-decoration-none" href="#">
+
+                                </a>
+                            </div>
+                        </td>
+                        <td class="fw-bold">{{$itemPlay->getTotalPostUserTask($$module_name_singular->id)}}</td>
+                        <td>
+                            <span class="badge py-2 px-3 bg-success rounded-pill text-uppercase">Success</span>
+                        </td>
+
+                    </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 
 class FrontendController extends Controller
 {
@@ -163,6 +164,46 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
             'message' => $msg,
             'data' => [
                 'user' => $user
+            ]
+        ];
+
+        return response()->json($output);
+    }
+
+    //getCampainInfor to show reward type. block chain network, total token, total person
+    public function getCampainInfor(Request $request)
+    {
+        $body_class = '';
+        $post_id = $request->post_id;
+        //Get model post
+        /* @var Post $post*/
+        $post = Post::find($post_id);
+        //Check $post exist
+        if (!$post){
+            //Json response
+            $output = [
+                'status' => 'fail',
+                'message' => 'Post not exist',
+                'data' => [
+                    'campain_infor' => null
+                ]
+            ];
+
+            return response()->json($output);
+        }
+        //Get campain infor
+        $campainInfor = [
+            'reward_type' => $post->reward_type,
+            'block_chain_network' => $post->block_chain_network,
+            'total_token' => $post->total_token,
+            'total_person' => $post->total_person,
+        ];
+        //Json response
+        $output = [
+            'status' => 'success',
+            'message' => 'Get campain infor success',
+            'data' => [
+                'campain_infor' => $campainInfor
             ]
         ];
 

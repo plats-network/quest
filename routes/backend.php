@@ -26,8 +26,7 @@ Route::get('say', function () {
 *
 * --------------------------------------------------------------------
 */
-Route::group([ 'as' => 'backend.', 'middleware' => ['web', 'auth', 'can:view_backend']], function () {
-
+Route::group([ 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']], function () {
     /**
      * Backend Dashboard
      * Namespaces indicate folder structure.

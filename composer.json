@@ -86,7 +86,7 @@
         "rinvex/laravel-support": "*",
         "saloonphp/saloon": "3.0",
         "scrivo/highlight.php": "v9.18.1.9",
-        "silber/bouncer": "1.0.1",
+
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/browsershot": "^3.57",
         "spatie/eloquent-sortable": "^4.0.1",

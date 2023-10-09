@@ -275,5 +275,22 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
      * $return = $client->retweet()->performRequest(['tweet_id' => $tweet_id]);
      * */
 
+    public function getUserName(){
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    //Get total post user task
+    public function getTotalPostUserTask($post_id){
+        $total = 0;
+        $userTask = UserTaskStatus::where('user_id', $this->id)
+            ->where('post_id', $post_id)
+            ->get();
+        foreach($userTask as $task){
+            //$total += $task->total_point;
+            $total += 1;
+        }
+        return $total;
+    }
+
 
 }

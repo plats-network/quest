@@ -53,7 +53,10 @@ class CreatePostsTable extends Migration
             $table->dateTime('end_at')->nullable();
 
             //Total Token
+            $table->integer('reward_type')->nullable();
+            $table->integer('block_chain_network')->nullable();
             $table->integer('total_token')->nullable();
+            $table->integer('total_person')->nullable();
 
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
