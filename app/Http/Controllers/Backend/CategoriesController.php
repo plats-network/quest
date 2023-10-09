@@ -92,7 +92,7 @@ class CategoriesController extends Controller
         $term = trim($request->q);
 
         if (empty($term)) {
-            return response()->json([]);
+            //return response()->json([]);
         }
 
         $query_data = Category::where('name', 'LIKE', "%$term%")->orWhere('slug', 'LIKE', "%$term%")->limit(7)->get();
