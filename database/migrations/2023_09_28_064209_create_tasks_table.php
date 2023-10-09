@@ -51,6 +51,8 @@ return new class extends Migration {
             $table->integer('total_token')->nullable();
             //Blockchain Network
             $table->string('block_chain_network')->nullable();  //Phala, Aleph Zero
+            //Is Deposit Value to Admin wallet
+            $table->string('deposit_status')->nullable()->default(false);
 
 
             $table->integer('created_by')->unsigned()->nullable();
