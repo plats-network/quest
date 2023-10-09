@@ -61,6 +61,9 @@ Route::name('api.')->group(function () {
     //Update user reward status
     Route::post('update-user-reward-status', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'updateUserRewardStatus'])->name('update-user-reward-status');
 
+    //Update quest deposit status
+    Route::post('update-quest-deposit-status', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'updateQuestDepositStatus'])->name('update-quest-deposit-status');
+
     Route::get('/users', function () {
         // Route assigned name "admin.users"...
     })->name('users');

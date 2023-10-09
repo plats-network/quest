@@ -32,6 +32,7 @@ class SampleQuestData extends Seeder
         echo "Truncate: tasks \n";
         DB::table('tasks')->truncate();
         DB::table('user_task_status')->truncate();
+        DB::table('user_rewards')->truncate();
 
         /*
          * Tag Seed

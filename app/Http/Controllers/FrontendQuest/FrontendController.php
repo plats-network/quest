@@ -153,6 +153,20 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
         $user = User::where('wallet_address', $wallet_address)
             ->where('wallet_name', $wallet_name)
             ->first();
+        //Check !user
+        if ($user == false){
+            //Json response
+            $output = [
+                'status' => 'fail',
+                'message' => 'Login fail',
+                'data' => [
+                    'user' => null
+                ]
+            ];
+
+            return response()->json($output);
+        }
+
         $msg = 'Login fail';
         $status = 'fail';
         if ($user) {
@@ -160,6 +174,8 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
             Auth::guard('quest')->login($user);
             $msg = 'Login success';
             $status = 'success';
+
+            return  redirect()->route('quest.home');
         }
         //Json response
         $output = [
@@ -170,7 +186,7 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
             ]
         ];
 
-        return response()->json($output);
+        return redirect()->route('quest.home');
     }
 
     //getCampainInfor to show reward type. block chain network, total token, total person
@@ -265,5 +281,43 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
         return response()->json($output);
 
     }
+
+    //updateQuestDepositStatus
+    public function updateQuestDepositStatus(Request $request)
+    {
+        $id = $request->id;
+        $status = $request->status;
+        //Get reward
+        /*@var UserReward $userReward*/
+        $quest = Post::find($id);
+        if (!$quest) {
+            //Json response
+            $output = [
+                'status' => 'fail',
+                'message' => 'Quest not exist',
+                'data' => [
+                    'user_reward' => null
+                ]
+            ];
+
+            return response()->json($output);
+        }
+        //Update status
+        $quest->deposit_status = $status;
+
+        $quest->save();
+        //Json response
+        $output = [
+            'status' => 'success',
+            'message' => 'Update quest deposit status success',
+            'data' => [
+                'user_reward' => $quest
+            ]
+        ];
+
+        return response()->json($output);
+
+    }
+
 
 }
