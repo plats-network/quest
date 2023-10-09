@@ -28,7 +28,7 @@
         $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
         @endphp
 
-        <div class="">
+        <div class="w-full lg:w-1/3 lg:pt-6 px-4">
             <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex flex-col items-stretch">
                     <a href="{{$details_url}}" class="overflow-hidden">

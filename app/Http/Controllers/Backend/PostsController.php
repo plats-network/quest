@@ -295,13 +295,16 @@ class PostsController extends Controller
             ->where('post_id', '=', $id)
             ->get()
             ->pluck('user_id')
-            ->unique('user_id')
+            //->unique('user_id')
             ->toArray();
+        //Unique value in array
+        $listUserID = array_unique($listUserID);
 
         //Get list user in $listUserID
         $userPlayTasks = User::query()
             ->whereIn('id', $listUserID)
             ->get();
+
         //UserReward
         $userRewards = UserReward::query()
             ->where('post_id', '=', $id)

@@ -19,7 +19,8 @@ export default defineConfig({
                 'resources/js/connect-wallet.jsx',
                 'resources/js/deposit.jsx',
                 'resources/js/deposit-wallet.jsx',
-                'resources/js/ModalWallet.jsx'
+                'resources/js/ModalWallet.jsx',
+                'resources/js/connect-wallet-admin.jsx',
             ],
             // refresh: true,
             refresh: [
