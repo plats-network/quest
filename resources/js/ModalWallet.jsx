@@ -19,15 +19,20 @@ export const ModalWallet = ({ setIsModal, setAccount }) => {
                 account?.address.slice(-6);
             setAccount(shortAddress);
         }
-
-        axios
-            .post("http://127.0.0.1:8000/api/connect-wallet")
-            .then((res) => {
-                console.log({ res });
-            })
-            .catch((err) => {
-                log(err);
-            });
+        if (account?.address) {
+            const body = {
+                wallet_address: account?.address,
+                wallet_name: account?.name,
+            };
+            axios
+                .post("http://127.0.0.1:8000/api/connect-wallet", body)
+                .then((res) => {
+                    console.log({ res });
+                })
+                .catch((err) => {
+                    log(err);
+                });
+        }
     }, [account?.address]);
 
     const handleConnect = (wallet) => {
