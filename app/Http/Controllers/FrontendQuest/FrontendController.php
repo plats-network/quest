@@ -143,6 +143,19 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
     {
         $body_class = '';
         $wallet_address = $request->wallet_address;
+        //Check $wallet_address
+        if (!$wallet_address) {
+            //Json response
+            $output = [
+                'status' => 'fail',
+                'message' => 'Wallet address is required',
+                'data' => [
+                    'user' => null
+                ]
+            ];
+
+            return response()->json($output);
+        }
         //wallet_name
         $wallet_name = $request->wallet_name;
         //Check user by wallet_address and wallet_name in db
@@ -151,7 +164,7 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
         //If login success then redirect to home page
         //If login fail then redirect to login page
         $user = User::where('wallet_address', $wallet_address)
-            ->where('wallet_name', $wallet_name)
+            //->where('wallet_name', $wallet_name)
             ->first();
         //Check !user
         if ($user == false){
