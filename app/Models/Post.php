@@ -44,6 +44,7 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
  * @property integer $end_at
  * @property integer $total_token
  * @property integer $total_person
+ * @property integer $deposit_status
  * @property integer $reward_type
  * @property integer $block_chain_network
  * @property string $published_at
@@ -92,6 +93,7 @@ class Post extends BaseModel
         'total_person',
         'moderated_by',
         'moderated_at',
+        'deposit_status',
         'created_by',
         'created_by_name',
         'created_by_alias',

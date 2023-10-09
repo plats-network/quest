@@ -234,7 +234,34 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         //$socialRes = $twitterApiService->isFollowing($twitterUserId, $key);
         //dd($socialRes);
 
-        return false;
+        return true;
+    }
+    //hasTwitterRetweeted
+    public function hasTwitterRetweeted($username){
+        //Check if user has followed
+        //Call Twitter API
+
+        $twitterApiService = new TwitterApiService();
+        $twitterUserId = 1588364698239397888;
+        $key = 'NEARProtocol';
+        //$socialRes = $twitterApiService->isRetweeted($twitterUserId, $key);
+        //dd($socialRes);
+
+        return true;
+    }
+
+    //hasTwitterLiked
+    public function hasTwitterLiked($username){
+        //Check if user has followed
+        //Call Twitter API
+
+        $twitterApiService = new TwitterApiService();
+        $twitterUserId = 1588364698239397888;
+        $key = 'NEARProtocol';
+        //$socialRes = $twitterApiService->isLiked($twitterUserId, $key);
+        //dd($socialRes);
+
+        return true;
     }
     public function hasTwitterFollowed2($username){
         //Check if user has followed
