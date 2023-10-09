@@ -265,6 +265,12 @@ class Post extends BaseModel
         return $this->morphMany('App\Models\Comment', 'commentable')->where('status', '=', 1);
     }
 
+    //userRewards
+    public function userRewards()
+    {
+        return $this->hasMany('App\Models\UserReward');
+    }
+
     /**
      * All the Published and Unpublished Comments.
      */

@@ -58,6 +58,9 @@ Route::name('api.')->group(function () {
     //Get campain infor to show reward type. block chain network, total token, total person
     Route::get('get-campain-infor', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'getCampainInfor'])->name('get-campain-infor');
 
+    //Update user reward status
+    Route::post('update-user-reward-status', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'updateUserRewardStatus'])->name('update-user-reward-status');
+
     Route::get('/users', function () {
         // Route assigned name "admin.users"...
     })->name('users');

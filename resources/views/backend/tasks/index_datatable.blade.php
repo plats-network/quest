@@ -23,7 +23,7 @@
                 </ol>
             </nav>
             <h2 class="h4">All Task - Quest: {{$post->name}}</h2>
-            <p class="mb-0">Total Task: {{$$module_name->count()}}</p>
+            <p class="mb-0">Total Task: <b>{{$$module_name->count()}}</b></p>
         </div>
         <div class="btn-toolbar mb-2 mb-md-0">
             <a href="{{route('backend.tasks.create', ['post_id' => Request::get('post_id')])}}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">

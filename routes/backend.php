@@ -158,6 +158,8 @@ Route::group([ 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']]
     Route::patch('posts/trashed/{id}', [PostsController::class, 'restore'])->name('posts.restore');
 
     Route::resource('posts', PostsController::class);
+    //ajaxStartLuckyDraw
+    Route::post('posts/ajaxStartLuckyDraw', [PostsController::class, 'ajaxStartLuckyDraw'])->name('posts.ajaxStartLuckyDraw');
 
 
     /*

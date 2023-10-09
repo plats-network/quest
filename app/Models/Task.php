@@ -59,6 +59,10 @@ class Task extends BaseModel
     //Task Type Discord Join
     const TYPE_DISCORD_JOIN = 6;
 
+    //Telegram Join
+    const TYPE_TELEGRAM_JOIN = 7;
+
+
     //Status Active
     const STATUS_ACTIVE = 'Active';
     //Status Inactive

@@ -10,6 +10,7 @@ use App\Http\Requests\Backend\PostsRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\UserReward;
 use App\Models\UserTaskStatus;
 use Carbon\Carbon;
 use Flash;
@@ -278,6 +279,7 @@ class PostsController extends Controller
         $module_name_singular = Str::singular($module_name);
 
         $module_action = __('Show');
+        $isShowReward = false;
 
         $$module_name_singular = Post::findOrFail($id);
 
@@ -300,12 +302,20 @@ class PostsController extends Controller
         $userPlayTasks = User::query()
             ->whereIn('id', $listUserID)
             ->get();
+        //UserReward
+        $userRewards = UserReward::query()
+            ->where('post_id', '=', $id)
+            ->get();
+
+        if ($userRewards){
+            $isShowReward = true;
+        }
 
         Log::info(label_case('Posts'.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
             'backend.posts.show',
-            compact('module_title',  'userPlayTasks', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities')
+            compact('module_title', 'userRewards', 'isShowReward',  'userPlayTasks', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities')
         );
     }
 
@@ -458,4 +468,36 @@ class PostsController extends Controller
 
         return redirect(route('backend.posts.index'));
     }
+
+    //ajaxStartLuckyDraw - Start Lucky Draw
+
+    public function ajaxStartLuckyDraw(Request $request)
+    {
+        $post_id = $request->get('post_id');
+
+        //Model Post
+        $post = Post::query()
+            ->where('id', '=', $post_id)
+            ->first();
+        //Check post
+        if (!$post) {
+            return response()->json([
+                'success' => false,
+                'status' => 1,
+            ]);
+        }
+        //$total_point = $post->total_point;
+        $total_token = $post->total_token;
+
+        //Create Reward For Random 5 user has play task
+        UserReward::createReward($post_id, $total_token);
+        //Delay 2s
+        sleep(2);
+
+        return response()->json([
+            'success' => true,
+            'status' => 1,
+        ]);
+    }
+
 }
