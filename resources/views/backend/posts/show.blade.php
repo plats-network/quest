@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var App\Models\Post $contact
+ * @var App\Models\UserReward $itemReward
+ * @var array $categories
+ */
+?>
+
 @extends ('layouts.backend')
 
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
@@ -17,11 +25,11 @@
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
                 <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
                     <li class="breadcrumb-item">
-                        <a href="#">
+                        <a href="{{route('backend.home')}}">
                             <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                         </a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#">@lang('Home')</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('backend.home')}}">@lang('Home')</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{__('posts.title')}}</li>
                 </ol>
             </nav>
@@ -74,15 +82,16 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($userRewards as $itemReward)
                     <tr>
                         <td class="d-flex align-items-center">
                             <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=128&amp;q=60" data-config-id="auto-img-2">
                             <div class="ps-3">
-                                <p class="mb-0 fw-bold">Jerome Bell</p>
-                                <a class="text-decoration-none" href="#">www.reactjs.org</a>
+                                <p class="mb-0 fw-bold">{{$itemReward->getFullNameAttribute()}}</p>
+                                <a class="text-decoration-none" href="#"></a>
                             </div>
                         </td>
-                        <td class="fw-bold">5000</td>
+                        <td class="fw-bold">{{$itemReward->total_token}}</td>
                         <td>
                             <span class="badge py-2 px-3 bg-success rounded-pill text-uppercase">Success</span>
                         </td>
@@ -96,113 +105,23 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="d-flex align-items-center">
-                            <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://shuffle.dev/wrexa-assets/images/avatar-women1.png" data-config-id="auto-img-2">
-
-                            <div class="ps-3">
-                                <p class="mb-0 fw-bold">Kristin Watson</p>
-                                <a class="text-decoration-none" href="#">www.reactjs.org</a>
-                            </div>
-                        </td>
-                        <td class="fw-bold">6000</td>
-                        <td>
-                            <span class="badge py-2 px-3 bg-success rounded-pill text-uppercase">Success</span>
-                        </td>
-
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <p class="mb-0 fw-bold me-2">100%</p>
-                                <div class="progress w-50" style="height: 6px;">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="d-flex align-items-center">
-                            <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://images.unsplash.com/photo-1456327102063-fb5054efe647?ixlib=rb-1.2.1&auto=format&fit=crop&w=128&q=60" data-config-id="auto-img-2">
-                            <div class="ps-3">
-                                <p class="mb-0 fw-bold">Jenny Wilson</p>
-                                <a class="text-decoration-none" href="#">www.reactjs.org</a>
-                            </div>
-                        </td>
-                        <td class="fw-bold">2000</td>
-                        <td>
-                            <span class="badge py-2 px-3 bg-success rounded-pill text-uppercase">Success</span>
-                        </td>
-
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <p class="mb-0 fw-bold me-2">100%</p>
-                                <div class="progress w-50" style="height: 6px;">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="d-flex align-items-center">
-                            <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://shuffle.dev/uinel-assets/elements/dashboard-tables/av-2.png" data-config-id="auto-img-2">
-
-                            <div class="ps-3">
-                                <p class="mb-0 fw-bold">Coo</p>
-                                <a class="text-decoration-none" href="#">www.reactjs.org</a>
-                            </div>
-                        </td>
-                        <td class="fw-bold">5000</td>
-                        <td>
-                            <span class="badge py-2 px-3 bg-success rounded-pill text-uppercase">Success</span>
-                        </td>
-
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <p class="mb-0 fw-bold me-2">100%</p>
-                                <div class="progress w-50" style="height: 6px;">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="d-flex align-items-center">
-                            <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://shuffle.dev/dashy-assets/images/avatar34.png" data-config-id="auto-img-2">
-
-                            <div class="ps-3">
-                                <p class="mb-0 fw-bold">Eleanor Pena</p>
-                                <a class="text-decoration-none" href="#">www.reactjs.org</a>
-                            </div>
-                        </td>
-                        <td class="fw-bold">5000</td>
-                        <td>
-                            <span class="badge py-2 px-3 bg-success rounded-pill text-uppercase">Success</span>
-                        </td>
-
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <p class="mb-0 fw-bold me-2">100%</p>
-                                <div class="progress w-50" style="height: 6px;">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
+                    @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
-        <hr>
+
 
         <div class="row mt-4">
-            <div class="col-12  col-lg-6">
+            <div class="col-12  col-lg-12">
 
                 @include('backend.includes.show')
 
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
 
-                <div class="text-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+                <div class="text-center mt-3">
                     <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>
                 </div>
                 <hr>
@@ -238,6 +157,43 @@
                 @include('backend.posts.includes.activitylog')
                 <hr>
 
+            </div>
+        </div>
+
+        {{--Danh sách User Play Qut--}}
+        <div class="container2" id="listUserPlay">
+            <div class="bg-white px-4 py-3 rounded shadow-sm">
+                <h5 class="text-center">List User Play</h5>
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Task Completion</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($userPlayTasks as $itemPlay)
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img class="img-fluid rounded-circle border border-white" style="height: 35px; width: 35px; object-fit: cover; object-position: top;" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=128&amp;q=60" data-config-id="auto-img-2">
+                            <div class="ps-3">
+                                <p class="mb-0 fw-bold">{{$itemPlay->getUserName()}}</p>
+                                <a class="text-decoration-none" href="#">
+
+                                </a>
+                            </div>
+                        </td>
+                        <td class="fw-bold">{{$itemPlay->getTotalPostUserTask($$module_name_singular->id)}}</td>
+                        <td>
+                            <span class="badge py-2 px-3 bg-success rounded-pill text-uppercase">Success</span>
+                        </td>
+
+                    </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -315,20 +271,50 @@
             var btnStartLuckyDraw = $('#btnStartLuckyDraw');
             var index = 0;
             var indexValue = 0;
-            listPrizeWin.hide();
+            var post_id = {{$$module_name_singular->id}};
+            //listPrizeWin.hide();
             //Btn btnStartLuckyDraw Click Function
             btnStartLuckyDraw.click(function () {
                 $(this).html(spinText + 'Processing...').attr('disabled', true);
+                $('#btnStartLuckyDraw').html('Start Prize Draw!').attr('disabled', false);
+                //Call ajax send post id to server
+                $.ajax({
+                    url: '{{route('backend.posts.ajaxStartLuckyDraw')}}',
+                    type: 'POST',
+                    data: {
+                        _token: _token,
+                        post_id: post_id
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.status == 1) {
 
-                setTimeout(function () {
-                    $('#btnStartLuckyDraw').html('Start Prize Draw!').attr('disabled', false);
-                    $('#modal-achievement').modal('hide');
-                    $('#modal-achievement-result').modal('show');
-                    showSuccessScreen();
-                    showSuccessScreen();
-                    //listPrizeWin show
-                    listPrizeWin.show();
-                }, 2000);
+                            $('#modal-achievement').modal('hide');
+                            $('#modal-achievement-result').modal('show');
+                            showSuccessScreen();
+                            showSuccessScreen();
+                            //listPrizeWin show
+                            //Page reload
+                            location.reload();
+
+                        } else {
+                            //Set btnStartLuckyDraw
+                            btnStartLuckyDraw.html('Start Prize Draw!').attr('disabled', false);
+                            //Show modal-achievement-result
+                            $('#modal-achievement-result').modal('show');
+                            //Show listPrizeWin
+                            listPrizeWin.show();
+                            //Show success screen
+                            showSuccessScreen();
+                            showSuccessScreen();
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+
+
             });
 
             function showSuccessScreen(){

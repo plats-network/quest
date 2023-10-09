@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Task;
+use App\Models\UserTaskStatus;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -30,6 +31,7 @@ class SampleQuestData extends Seeder
         DB::table('tags')->truncate();
         echo "Truncate: tasks \n";
         DB::table('tasks')->truncate();
+        DB::table('user_task_status')->truncate();
 
         /*
          * Tag Seed
@@ -81,6 +83,10 @@ class SampleQuestData extends Seeder
             $post['featured_image'] = 'https://picsum.photos/1200/630';
             $now = date('Y-m-d H:i:s');
             $post['published_at'] = $now;
+            $post['reward_type'] = 1;
+            $post['block_chain_network'] = 1;
+            $post['total_token'] = 10000;
+            $post['total_person'] = 5;
 
             //Start At
             $post['start_at'] = $now;
@@ -175,6 +181,24 @@ class SampleQuestData extends Seeder
                 'entry_type' => Task::TYPE_TWITTER_FOLLOW,
                 'status' => Task::STATUS_ACTIVE
             ],
+
+            [
+                'name' => 'Like @DerpDEXcom Tweet',
+                'description' => 'DerpDEXcom’s Tweet likers',
+                'value' => 'https://twitter.com/intent/like?tweet_id=1708779829368357330',
+                'slug' => uniqid(),
+                'entry_type' => Task::TYPE_TWITTER_LIKE,
+                'status' => Task::STATUS_ACTIVE
+            ],
+            [
+                'name' => 'Retweet the Tweet',
+                'description' => 'DerpDEXcom’s Tweet retweeters',
+                'value' => 'https://twitter.com/intent/retweet?tweet_id=1708779829368357330',
+                'slug' => uniqid(),
+                'entry_type' => Task::TYPE_TWITTER_RETWEET,
+                'status' => Task::STATUS_ACTIVE
+            ],
+            //Telegram https://t.me/derpdex
 
         ];
     }

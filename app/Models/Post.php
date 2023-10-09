@@ -43,6 +43,9 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
  * @property integer $start_at
  * @property integer $end_at
  * @property integer $total_token
+ * @property integer $total_person
+ * @property integer $reward_type
+ * @property integer $block_chain_network
  * @property string $published_at
  * @property string $created_at
  * @property string $updated_at
@@ -83,7 +86,10 @@ class Post extends BaseModel
         'status',
         'start_at',
         'end_at',
+        'reward_type',
+        'block_chain_network',
         'total_token',
+        'total_person',
         'moderated_by',
         'moderated_at',
         'created_by',
@@ -257,6 +263,12 @@ class Post extends BaseModel
     public function comments()
     {
         return $this->morphMany('App\Models\Comment', 'commentable')->where('status', '=', 1);
+    }
+
+    //userRewards
+    public function userRewards()
+    {
+        return $this->hasMany('App\Models\UserReward');
     }
 
     /**

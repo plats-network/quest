@@ -74,5 +74,27 @@ class UserTaskStatus extends Model
         return $this->belongsTo('App\Models\Task');
     }
 
+    //User
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+    //Get User Name
+    public function getUserName(){
+        return $this->user->name;
+    }
+
+    //Get total post user task
+    public function getTotalPostUserTask(){
+        $total = 0;
+        $userTask = UserTaskStatus::where('user_id', $this->user_id)
+            ->where('post_id', $this->post_id)
+            ->get();
+        foreach($userTask as $task){
+            //$total += $task->total_point;
+            $total += 1;
+        }
+        return $total;
+    }
+
 
 }

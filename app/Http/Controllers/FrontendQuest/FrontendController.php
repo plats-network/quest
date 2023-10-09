@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\FrontendQuest;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserReward;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 
 class FrontendController extends Controller
 {
@@ -28,7 +30,7 @@ class FrontendController extends Controller
     {
         $body_class = '';
         $questUser = Auth::guard('quest')->user();
-        if ($questUser){
+        if ($questUser) {
             dd($questUser);
         }
 
@@ -43,6 +45,7 @@ class FrontendController extends Controller
 
         return view('quest.support', compact('body_class'));
     }
+
     /**
      * Privacy Policy Page.
      *
@@ -97,11 +100,11 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
         $user = User::where('wallet_address', $wallet_address)
             ->where('wallet_name', $wallet_name)
             ->first();
-        if ($user){
+        if ($user) {
             //login
             //Auth::guard('quest')->login($user);
             //return redirect()->route('quest.home');
-        }else{
+        } else {
             //create new user
             $user = new User();
             $user->wallet_address = $wallet_address;
@@ -112,7 +115,7 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
             $user->first_name = $wallet_name;
             $user->last_name = $wallet_name;
             $user->name = $wallet_name;
-            $user->email = $wallet_address . $wallet_name. '@gmail.com';
+            $user->email = $wallet_address . $wallet_name . '@gmail.com';
             $user->password = $password;
 
             $user->save();
@@ -134,6 +137,7 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
 
         //return view('frontend.connect-wallet', compact('body_class'));
     }
+
     //walletLogin
     public function walletLogin(Request $request)
     {
@@ -168,4 +172,98 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
 
         return response()->json($output);
     }
+
+    //getCampainInfor to show reward type. block chain network, total token, total person
+    public function getCampainInfor(Request $request)
+    {
+        $body_class = '';
+        $post_id = $request->post_id;
+        //Get model post
+        /* @var Post $post */
+        $post = Post::find($post_id);
+        //Check $post exist
+        if (!$post) {
+            //Json response
+            $output = [
+                'status' => 'fail',
+                'message' => 'Post not exist',
+                'data' => [
+                    'campain_infor' => null
+                ]
+            ];
+
+            return response()->json($output);
+        }
+        //Get campain infor
+        $campainInfor = [
+            'reward_type' => $post->reward_type,
+            'block_chain_network' => $post->block_chain_network,
+            'total_token' => $post->total_token,
+            'total_person' => $post->total_person,
+        ];
+        //List User Reward
+        $listUserReward = [];
+        foreach ($post->userRewards as $userReward) {
+            $listUserReward[] = [
+                'id' => $userReward->id,
+                'user_id' => $userReward->user_id,
+                'user_name' => $userReward->user->name,
+                'user_wallet_address' => $userReward->user->wallet_address,
+                'user_wallet_name' => $userReward->user->wallet_name,
+                'reward_type' => $userReward->reward_type,
+                'block_chain_network' => $userReward->block_chain_network,
+                'total_token' => $userReward->total_token,
+                'created_at' => $userReward->created_at->format('Y-m-d H:i:s'),
+            ];
+        }
+        //Json response
+        $output = [
+            'status' => 'success',
+            'message' => 'Get campain infor success',
+            'data' => [
+                'campain_infor' => $campainInfor,
+                'list_user_reward' => $listUserReward
+            ]
+        ];
+
+        return response()->json($output);
+    }
+
+    //updateUserRewardStatus api
+    public function updateUserRewardStatus(Request $request)
+    {
+        $id = $request->id;
+        $status = $request->status;
+        //Get reward
+        /*@var UserReward $userReward*/
+        $userReward = UserReward::find($id);
+        if (!$userReward) {
+            //Json response
+            $output = [
+                'status' => 'fail',
+                'message' => 'Reward not exist',
+                'data' => [
+                    'user_reward' => null
+                ]
+            ];
+
+            return response()->json($output);
+        }
+        //Update status
+        $userReward->status = $status;
+
+        $userReward->save();
+        //Json response
+        $output = [
+            'status' => 'success',
+            'message' => 'Update user reward status success',
+            'data' => [
+                'user_reward' => $userReward
+            ]
+        ];
+
+        return response()->json($output);
+
+    }
+
 }

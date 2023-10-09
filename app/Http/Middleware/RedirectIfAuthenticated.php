@@ -23,6 +23,10 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                //Check guard name is quest
+                if($guard == 'quest'){
+                    return redirect()->route('quest.posts.index');
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }

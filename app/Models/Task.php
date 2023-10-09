@@ -59,6 +59,10 @@ class Task extends BaseModel
     //Task Type Discord Join
     const TYPE_DISCORD_JOIN = 6;
 
+    //Telegram Join
+    const TYPE_TELEGRAM_JOIN = 7;
+
+
     //Status Active
     const STATUS_ACTIVE = 'Active';
     //Status Inactive
@@ -68,8 +72,8 @@ class Task extends BaseModel
 
     //get all status
     //Task transfered type Token Holder, Transaction Activity
-    const TRANSFER_TYPE_HOLDERS = 1;
-    const TRANSFER_TYPE_ACTIVITY = 2;
+    const TRANSFER_TYPE_HOLDERS = 10;
+    const TRANSFER_TYPE_ACTIVITY = 11;
 
     //Get all task type
     public static function getAllTaskType()
@@ -96,6 +100,9 @@ class Task extends BaseModel
             self::TYPE_TWITTER_FOLLOW => 'Twitter Follow',
             self::TYPE_TWITTER_TWEET => 'Twitter Tweet',
             self::TYPE_TWITTER_RETWEET => 'Twitter Retweet',
+
+            self::TRANSFER_TYPE_HOLDERS => 'Token Holder',
+            self::TRANSFER_TYPE_ACTIVITY => 'Transaction Activity',
             //self::TYPE_TWITTER_LIKE => 'Twitter Like',
             //self::TYPE_TWITTER_HASHTAG => 'Twitter Hashtag',
             //self::TYPE_DISCORD_JOIN => 'Discord Join',

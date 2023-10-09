@@ -120,6 +120,27 @@ return new class extends Migration {
 
             $table->softDeletes();
         });
+
+        //User Reward
+        Schema::create('user_rewards', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            //User id
+            $table->integer('post_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
+            //Task type: Like share, comment, follow etc
+            $table->string('type')->nullable();
+            //Transfer status
+            $table->string('status')->nullable()->default('Pending'); //Pending, Completed, Failed
+            //Date Transfered
+            $table->dateTime('date_transfered')->nullable();
+            //Date Created
+            $table->dateTime('date_created')->nullable();
+            //Total Point
+            $table->integer('total_point')->nullable();
+            //Total Token
+            $table->integer('total_token')->nullable();
+        });
     }
 
     /**
