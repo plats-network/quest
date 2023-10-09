@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useWallet, useAllWallets, useContract } from "useink";
 import metadata from "./contract-metadata.json";
+import axios from "axios";
 
 // de vao file .env
 const CONTRACT_ADDRESS = "5DxNQBYHvmj7XLS3jEauBBGhcB4rykaWFwt24rASx9Uw5UQE";
@@ -18,6 +19,15 @@ export const ModalWallet = ({ setIsModal, setAccount }) => {
                 account?.address.slice(-6);
             setAccount(shortAddress);
         }
+
+        axios
+            .post("http://127.0.0.1:8000/api/connect-wallet")
+            .then((res) => {
+                console.log({ res });
+            })
+            .catch((err) => {
+                log(err);
+            });
     }, [account?.address]);
 
     const handleConnect = (wallet) => {
@@ -27,49 +37,118 @@ export const ModalWallet = ({ setIsModal, setAccount }) => {
     if (!account) {
         return (
             <div
-                style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
-                className="fixed top-0 left-0 h-screen w-full flex items-center justify-center"
+                style={{
+                    backgroundColor: "rgba(0,0,0,0.6)",
+                    position: "fixed",
+                    inset: 0,
+                    height: "3000px",
+                    zIndex: 100,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
             >
-                <div className="w-[450px] h-[450px] bg-[#121127] rounded-xl">
-                    <div className="px-6">
-                        <h1 className="text-white text-[20px] font-semibold text-center mt-4">
+                <div
+                    style={{
+                        width: "450px",
+                        height: "460px",
+                        background: "#121127",
+                        borderRadius: "20px",
+                        position: "absolute",
+                        top: "200px",
+                        padding: "8px 16px",
+                    }}
+                >
+                    <div style={{ padding: "0 6px" }}>
+                        <h1
+                            style={{
+                                color: "white",
+                                fontSize: "20px",
+                                fontWeight: 600,
+                                textAlign: "center",
+                                marginTop: "16px",
+                            }}
+                        >
                             Connect Wallet
                         </h1>
-                        <h2 className="text-white text-[16px] font-medium text-center">
+                        <h2
+                            style={{
+                                color: "white",
+                                fontSize: "16px",
+                                fontWeight: 500,
+                                textAlign: "center",
+                                padding: "8px 0",
+                            }}
+                        >
                             Please install one of these supported wallets.
                         </h2>
                         {wallets.map((w) => (
                             <div
                                 key={w.title}
-                                className="rounded-full bg-[#201F37] mt-4 p-2 px-4"
+                                // className="rounded-full bg-[#201F37] mt-4 p-2 px-4"
+                                style={{
+                                    borderRadius: 9999,
+                                    backgroundColor: "#201F37",
+                                    marginTop: "16px",
+                                    padding: "8px 16px",
+                                }}
                             >
                                 {w.installed ? (
                                     <button
-                                        className="flex items-center"
+                                        style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            backgroundColor: "transparent",
+                                            outline: "none",
+                                            border: "none",
+                                        }}
                                         onClick={() => {
                                             connect(w.extensionName);
                                         }}
                                     >
                                         <img
-                                            className="w-[40px] h-[40px]"
+                                            style={{
+                                                width: "40px",
+                                                height: "40px",
+                                            }}
                                             src={w.logo.src}
                                             alt={w.logo.alt}
                                         />
-                                        <p className="text-white ml-4 mb-0 font-medium">
+                                        <p
+                                            style={{
+                                                color: "white",
+                                                marginLeft: "16px",
+                                                marginBottom: "0px",
+                                                fontWeight: 500,
+                                            }}
+                                        >
                                             Connnect to {w.title}
                                         </p>
                                     </button>
                                 ) : (
                                     <a
                                         href={w.installUrl}
-                                        className="flex items-center opacity-50"
+                                        style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            opacity: 0.5,
+                                        }}
                                     >
                                         <img
-                                            className="w-[40px] h-[40px]"
+                                            style={{
+                                                width: "40px",
+                                                height: "40px",
+                                            }}
                                             src={w.logo.src}
                                             alt={w.logo.alt}
                                         />
-                                        <p className="text-white ml-4 mb-0">
+                                        <p
+                                            style={{
+                                                color: "white",
+                                                marginLeft: "16px",
+                                                marginBlock: "0px",
+                                            }}
+                                        >
                                             Install {w.title}
                                         </p>
                                     </a>
@@ -79,7 +158,18 @@ export const ModalWallet = ({ setIsModal, setAccount }) => {
 
                         <button
                             onClick={() => setIsModal(false)}
-                            className="rounded-full bg-[#201F37] mt-4 p-2 px-8 text-white relative left-[50%] -translate-x-[50%]"
+                            style={{
+                                rounded: 9999,
+                                backgroundColor: "#201F37",
+                                marginTop: "16px",
+                                padding: "8px 32px",
+                                position: "relative",
+                                left: "40%",
+                                outline: "none",
+                                border: "none",
+                                borderRadius: 9999,
+                                color: "white",
+                            }}
                         >
                             Close
                         </button>

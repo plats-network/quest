@@ -1,4 +1,3 @@
-
 import { createRoot } from "react-dom/client";
 import { useState } from "react";
 import { ModalWallet } from "./ModalWallet";
@@ -9,7 +8,6 @@ function ConnectButton() {
     const [isModal, setIsModal] = useState(false);
     const [account, setAccount] = useState();
     const buttonAlert = () => {
-
         setIsModal(true);
     };
 
