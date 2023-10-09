@@ -42,6 +42,7 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
  * @property integer $deleted_by
  * @property integer $start_at
  * @property integer $end_at
+ * @property integer $total_token
  * @property string $published_at
  * @property string $created_at
  * @property string $updated_at
@@ -82,8 +83,10 @@ class Post extends BaseModel
         'status',
         'start_at',
         'end_at',
+        'total_token',
         'moderated_by',
-        'moderated_at', 'created_by',
+        'moderated_at',
+        'created_by',
         'created_by_name',
         'created_by_alias',
         'updated_by',

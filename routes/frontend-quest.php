@@ -52,6 +52,10 @@ Route::group(['as' => 'quest.'], function () {
     //support
     Route::get('support', [FrontendController::class, 'support'])->name('support');
 
+
+    //Wallet Login
+    Route::get('wallet-login', [FrontendController::class, 'walletLogin'])->name('wallet-login');
+
     Route::group(['middleware' => ['auth:quest']], function () {
         /*
         *

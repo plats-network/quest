@@ -48,7 +48,7 @@ class PostsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -73,7 +73,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($hashid)
+    public function show(Request $request, $hashid)
     {
         $id = decode_id($hashid);
         /** @var User $questUser */
@@ -129,6 +129,7 @@ class PostsController extends Controller
 
         $task_id = $request->task_id;
 
+        /** @var QuestTask $task */
         $task = QuestTask::query()
             ->where('id', $task_id)
             ->first();
@@ -156,6 +157,7 @@ class PostsController extends Controller
             $userTaskStatus = new UserTaskStatus();
             $userTaskStatus->user_id = auth()->guard('quest')->user()->id;
             $userTaskStatus->task_id = $task_id;
+            $userTaskStatus->post_id = $task->post_id;
             $userTaskStatus->status = UserTaskStatus::STATUS_OPEN;
 
             $userTaskStatus->setOpen();

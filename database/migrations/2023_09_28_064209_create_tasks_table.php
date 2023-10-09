@@ -128,5 +128,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::dropIfExists('tasks');
+        Schema::dropIfExists('user_task_status');
+        Schema::dropIfExists('user_task_activity');
     }
 };

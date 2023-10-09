@@ -63,7 +63,7 @@
 </div>
 
 <div class="row mb-3">
-    <div class="col-4">
+    <div class="col-6">
         <div class="form-group">
             <?php
             $field_name = 'category_id';
@@ -76,11 +76,7 @@
             {{ html()->select($field_name, isset($$module_name_singular)?optional($$module_name_singular->$field_relation)->pluck('name', 'id'):'')->placeholder($field_placeholder)->class('form-control select2-category form-control select2')->attributes(["$required"]) }}
         </div>
     </div>
-
-
-</div>
-<div class="row mb-3">
-    <div class="col">
+    <div class="col-6">
         <div class="form-group">
             <?php
             $field_name = 'tags_list[]';
@@ -96,7 +92,9 @@
                 )->class('form-control select2-tags')->attributes(["$required"]) }}
         </div>
     </div>
+
 </div>
+
 <div class="row mb-3 mt-5">
     <div class="col-6">
         <div class="form-group">
@@ -155,6 +153,20 @@
     </div>
 </div>
 
+<div class="row mb-3">
+    <div class="col-12 col-sm-6">
+        <div class="form-group">
+            <?php
+            $field_name = 'total_token';
+            $field_lable = 'Total Token';
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+            {{ html()->number($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
 
 
 <!-- Select2 Library -->
@@ -241,7 +253,7 @@
             $('.select2-category').select2({
                 theme: "bootstrap4",
                 placeholder: '@lang("Select an option")',
-                minimumInputLength: 2,
+                minimumInputLength: 0,
                 allowClear: true,
                 ajax: {
                     url: '{{route("backend.categories.index_list")}}',
@@ -256,14 +268,14 @@
                             results: data
                         };
                     },
-                    cache: true
+                    cache: false
                 }
             });
 
             $('.select2-tags').select2({
-                // theme: "bootstrap4",
+                theme: "bootstrap4",
                 placeholder: '@lang("Select an option")',
-                minimumInputLength: 2,
+                minimumInputLength: 0,
                 allowClear: true,
                 ajax: {
                     url: '{{route("backend.tags.index_list")}}',
@@ -278,7 +290,7 @@
                             results: data
                         };
                     },
-                    cache: true
+                    cache: false
                 }
             });
         });

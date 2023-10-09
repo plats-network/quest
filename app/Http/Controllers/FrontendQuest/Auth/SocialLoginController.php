@@ -110,6 +110,7 @@ class SocialLoginController extends Controller
 
             try {
                 $password = bcrypt($socialUser->getId());
+                /** @var User $user */
                 $user = User::create([
                     'first_name' => $first_name,
                     'last_name' => $last_name,

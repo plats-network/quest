@@ -73,8 +73,12 @@ class CreateUsersTable extends Migration
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
             $table->integer('creator_id')->unsigned()->nullable();
+
             //guard_name
             $table->string('guard_name')->nullable();
+
+            $table->string('wallet_address')->nullable();
+            $table->string('wallet_name')->nullable();
 
 
             $table->rememberToken()->unique();

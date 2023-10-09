@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
