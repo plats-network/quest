@@ -64,7 +64,7 @@
 
                 <div class="row">
                     <div class="col-6">
-                        <!-- <span id="deposit_button"></span> -->
+                        <span id="deposit_button"></span>
                         <!-- <div class="form-group">
                             {{ html()->button($text = "<i class='fas fa-plus-circle'></i> " . ucfirst($module_action) . "", $type = 'submit')->class('btn btn-success') }}
                         </div> -->
@@ -80,7 +80,7 @@
 
                 {{ html()->form()->close() }}
 
-                <span id="deposit_button"></span>
+                <!-- <span id="deposit_button"></span> -->
             </div>
 
         </div>

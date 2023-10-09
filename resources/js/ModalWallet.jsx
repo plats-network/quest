@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useWallet, useAllWallets, useContract } from "useink";
 import metadata from "./contract-metadata.json";
 import axios from "axios";
+import { callApiConnect } from "./callApi";
 
 // de vao file .env
 const CONTRACT_ADDRESS = "5CDveQs6omBkWyVXYiZZeCFkpUHWVoSWxhgEREfikvRV7Dxm";
@@ -24,14 +25,10 @@ export const ModalWallet = ({ setIsModal, setAccount }) => {
                 wallet_address: account?.address,
                 wallet_name: account?.name,
             };
-            axios
-                .post("http://127.0.0.1:8000/api/connect-wallet", body)
-                .then((res) => {
-                    console.log({ res });
-                })
-                .catch((err) => {
-                    log(err);
-                });
+
+            (async () => {
+                await callApiConnect(body);
+            })();
         }
     }, [account?.address]);
 
