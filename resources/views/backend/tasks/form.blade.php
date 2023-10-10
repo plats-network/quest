@@ -97,7 +97,7 @@
         <hr>
 
         <div class="row mb-3" id="taskBlockChain" style="display:  block">
-            <div class="col-12 col-sm-6">
+            <div class="col-6 col-sm-6">
                 <div class="form-group">
                     <?php
                     $field_name = 'block_chain_network';
@@ -114,7 +114,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6">
+            <div class="col-6 col-sm-6 mt-3">
                 <div class="form-group">
                     <?php
                     $field_name = 'total_token';
