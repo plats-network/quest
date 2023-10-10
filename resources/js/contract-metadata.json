@@ -1,6 +1,6 @@
 {
     "source": {
-      "hash": "0xca7c0ca87c16a640634b9e101b0ccf8701b58c93e85bf03d7ed2c51cf9e3996f",
+      "hash": "0xa25788a571ada34e949574f4bd1a7e00b8e9f9dbce53f180722508e1396ad027",
       "language": "ink! 4.3.0",
       "compiler": "rustc 1.72.1",
       "build_info": {
@@ -168,17 +168,7 @@
       },
       "messages": [
         {
-          "args": [
-            {
-              "label": "amount",
-              "type": {
-                "displayName": [
-                  "Balance"
-                ],
-                "type": 3
-              }
-            }
-          ],
+          "args": [],
           "default": false,
           "docs": [],
           "label": "deposit",

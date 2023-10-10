@@ -191,7 +191,7 @@
 
 
         <div class="col-12 col-sm-6 mt-3">
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <?php
                 $field_name = 'total_token';
                 $field_lable = 'Total Token';
@@ -200,7 +200,7 @@
                 ?>
                 {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                 {{ html()->number($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-            </div>
+            </div> -->
         </div>
         <div class="col-12 col-sm-6 mt-3">
             <div class="form-group">
