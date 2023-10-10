@@ -166,6 +166,7 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
         $user = User::where('wallet_address', $wallet_address)
             //->where('wallet_name', $wallet_name)
             ->first();
+
         //Check !user
         if ($user == false){
             //Json response
