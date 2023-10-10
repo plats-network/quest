@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Helpers\TimeHelper;
 use Carbon\Carbon;
+
 //Cloudinary
 use App\Traits\MediaAlly;
 use Database\Factories\CategoryFactory;
@@ -131,6 +132,15 @@ class Task extends BaseModel
                 break;
             case self::TYPE_DISCORD_JOIN:
                 return 'DISCORD_JOIN';
+                break;
+            case self::TYPE_TELEGRAM_JOIN:
+                return 'TELEGRAM_JOIN';
+                break;
+            case self::TRANSFER_TYPE_HOLDERS:
+                return 'TOKEN_HOLDERS';
+                break;
+            case self::TRANSFER_TYPE_ACTIVITY:
+                return 'TRANSFER_ACTIVITY';
                 break;
             default:
                 return '';

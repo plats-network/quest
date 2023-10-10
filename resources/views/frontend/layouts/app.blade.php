@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon/favicon.ico">
-    <link rel="icon" type="image/png" href="/assets/img/favicon/favicon.ico">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>@yield('title') | {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,9 +12,13 @@
 
     @include('frontend.includes.meta')
 
-    <!-- Shortcut Icon -->
-    <link rel="shortcut icon" href="/assets/img/favicon/favicon.ico">
-    <link rel="icon" type="image/ico" href="/assets/img/favicon/favicon.ico" />
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicon_io/favicon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

@@ -6,10 +6,14 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/assets/img/favicon/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/assets/img/favicon/favicon-16x16.png" sizes="16x16" type="image/png">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicon_io/favicon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
 
     <link rel="mask-icon" href="/assets/img/favicon/safari-pinned-tab.svg" color="#563d7c">
     <link rel="icon" href="/assets/img/favicon/favicon.ico">

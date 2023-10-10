@@ -301,9 +301,13 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
     {
         $id = $request->id;
         $status = $request->status;
+        //Total token
+        $total_token = $request->total_token;
         //Get reward
-        /*@var UserReward $userReward*/
+
+        /*@var Post $quest*/
         $quest = Post::find($id);
+
         if (!$quest) {
             //Json response
             $output = [
@@ -318,6 +322,7 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
         }
         //Update status
         $quest->deposit_status = $status;
+        $quest->total_token = $total_token;
 
         $quest->save();
         //Json response
@@ -333,5 +338,49 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
 
     }
 
+    public function updatePostTotalToken(Request $request)
+    {
+        $id = $request->id;
+        //Total token
+        $total_token = $request->total_token;
+        //Network
+        $network = $request->block_chain_network;
+        //Get reward
+
+        /* @var Post $quest */
+        $quest = Post::query()
+            ->where('id', $id)
+            ->first();
+
+        if (!$quest) {
+            //Json response
+            $output = [
+                'status' => 'fail',
+                'message' => 'Quest not exist',
+                'data' => [
+                    'user_reward' => null
+                ]
+            ];
+
+            return response()->json($output);
+        }
+        //Update status
+        $quest->block_chain_network = $network;
+        $quest->total_token = $total_token;
+
+        $quest->save();
+        //Json response
+        $output = [
+            'status' => 'success',
+            'message' => 'Update quest  success',
+            'data' => [
+                'block_chain_network' => $network,
+                'total_token' => $total_token,
+            ]
+        ];
+
+        return response()->json($output);
+
+    }
 
 }

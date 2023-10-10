@@ -58,7 +58,7 @@
                     $field_name = 'description';
                     $field_lable = label_case($field_name);
                     $field_placeholder = $field_lable;
-                    $required = "";
+                    $required = "required";
                     ?>
                     {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                     {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->rows(5) }}
@@ -70,9 +70,9 @@
                 <div class="form-group">
                     <?php
                     $field_name = 'entry_type';
-                    $field_lable = label_case('Entry Type');
+                    $field_lable = label_case('Task Type');
                     $field_placeholder = "-- Select an option --";
-                    $required = "";
+                    $required = "required";
                     $select_options = $all_task_type;
                     ?>
                     {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
@@ -86,18 +86,17 @@
                     $field_name = 'value';
                     $field_lable = 'Action Url';
                     $field_placeholder = $field_lable;
-                    $required = "";
+                    $required = "required";
                     ?>
                     {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                     {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                 </div>
             </div>
         </div>
+
         <hr>
 
-        <div class="row mb-3">
-
-
+        <div class="row mb-3" id="taskBlockChain" style="display:  block">
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     <?php
@@ -152,3 +151,26 @@
         </div>
     </div>
 </div>
+
+
+@push ('after-scripts')
+
+
+    <script type="module">
+        $(document).ready(function() {
+            //taskBlockChain
+            var taskBlockChain = $('#taskBlockChain');
+            //taskBlockChain.hide();
+            var arrTypeToken = [10,11];
+            //Select entry_type on change
+            $('#entry_type').on('change', function() {
+                var entry_type = $(this).val();
+                if (arrTypeToken.includes(parseInt(entry_type))) {
+                    $('#taskBlockChain').show();
+                } else {
+                    $('#taskBlockChain').hide();
+                }
+            });
+        });
+    </script>
+@endpush

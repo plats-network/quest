@@ -12,9 +12,13 @@
 
     @include('quest.includes.meta')
 
-    <!-- Shortcut Icon -->
-    <link rel="shortcut icon" href="{{get_platform_logo()}}">
-    <link rel="icon" type="image/ico" href="{{get_platform_logo()}}" />
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicon_io/favicon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

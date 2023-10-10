@@ -40,6 +40,7 @@ Route::name('api.')->group(function () {
             'api' => $arrApi
         ];
     });
+
     //Ping
     Route::get('ping', function () {
         return ['pong' => true];
@@ -67,6 +68,10 @@ Route::name('api.')->group(function () {
     Route::get('/users', function () {
         // Route assigned name "admin.users"...
     })->name('users');
+
+    //Update Post total token and block chain network
+    Route::post('update-post-total-token', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'updatePostTotalToken'])->name('update-post-total-token');
+
 });
 
 

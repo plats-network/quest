@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\UserReward;
 use App\Models\UserTaskStatus;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -59,7 +60,11 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = Post::latest()->with(['category', 'tags', 'comments'])->paginate();
+        $$module_name = Post::query()
+            ->published()
+            ->with(['category', 'tags', 'comments'])
+            ->orderBy('id', 'desc')
+            ->paginate();
 
         return view(
             "quest.posts.index",
@@ -99,14 +104,32 @@ class PostsController extends Controller
 
         event(new PostViewed($$module_name_singular));
 
+        //Kiểm tra còn được play task ko
+        $isShowReward = false;
+        //UserReward
+        $userRewards = UserReward::query()
+            ->where('post_id', '=', $id)
+            ->get();
+
+        if ($userRewards){
+            $isShowReward = true;
+        }
+        //Get list Task User đã Play
+
+
         //$user->hasFavorited($post);
         $hasFavorited = false;
+        $listTaskUserHasPlay = null;
         //Check has $questUser
         if ($questUser){
             $hasFavorited = $questUser->hasFavorited($$module_name_singular);
-
+            $listTaskUserHasPlay = UserTaskStatus::query()
+                ->where('user_id', '=', $questUser->id)
+                ->where('post_id', '=', $id)
+                ->get();
         }
 
+        //Check user has followed
         //$questUser->hasTwitterFollowed('Scroll_ZKP');
 
         return view(
