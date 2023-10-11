@@ -297,6 +297,7 @@ class PostsController extends Controller
             ->pluck('user_id')
             //->unique('user_id')
             ->toArray();
+
         //Unique value in array
         $listUserID = array_unique($listUserID);
 

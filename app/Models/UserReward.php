@@ -70,13 +70,16 @@ class UserReward extends Model
             ->where('post_id', '=', $post_id)
             ->get()
             ->pluck('user_id')
-            ->unique('user_id')
+            //->unique('user_id')
             ->toArray();
+        //Unitque value $listUserID
+        $listUserID = array_unique($listUserID);
 
         //Get list user in $listUserID
         $userPlayTasks = User::query()
             ->whereIn('id', $listUserID)
-            ->inRandomOrder()->limit(5)
+            //->inRandomOrder()
+            ->limit(5)
             ->get();
 
         foreach ($userPlayTasks as $user) {

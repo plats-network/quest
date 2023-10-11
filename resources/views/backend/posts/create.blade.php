@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item"><a href="#">@lang('Home')</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Transactions</li>
+                    <li class="breadcrumb-item active" aria-current="page">Quests</li>
                 </ol>
             </nav>
             <h2 class="h4">Create New {{__('posts.title_post')}}</h2>
