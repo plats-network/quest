@@ -4,8 +4,6 @@ import metadata from "./contract-metadata.json";
 
 const CONTRACT_ADDRESS_ALPHE =
     "5HGocx7mPhQ34Si6pTCA1b2VQ3KuNkkf7XArcCCRkYKqVjw3";
-const CONTRACT_ADDRESS_PHALA =
-    "5HGocx7mPhQ34Si6pTCA1b2VQ3KuNkkf7XArcCCRkYKqVjw3";
 
 function Deposit() {
     const alpheContract = useContract(
@@ -13,37 +11,18 @@ function Deposit() {
         metadata,
         "aleph-testnet",
     );
-
-    // const phalaContract = useContract(
-    //     CONTRACT_ADDRESS_PHALA,
-    //     metadata,
-    //     "phala-testnet",
-    // );
     const alpheDeposit = useTx(alpheContract, "deposit");
-    // const phalaDeposit = useTx(phalaContract, "deposit");
     // const reward = useTx(contract, "reward");
     const [amount, setAmount] = useState();
 
     const handleDeposit = () => {
-        const name = document.getElementById("name").value;
-        const intro = document.getElementById("intro").value;
-        const reward_type = document.getElementById("reward_type").value;
-        const total_person = document.getElementById("total_person").value;
-        const end_at = document.getElementById("end_at").value;
-        const start_at = document.getElementById("start_at").value;
-        const published_at = document.getElementById("published_at").value;
-        const status = document.getElementById("status").value;
-        const category_id = document.getElementById("category_id").value;
-        const tag_list = document.getElementById("tags_list[]").value;
-        const image = document.getElementById("featured_image").value;
-        const content = document.getElementById("content").value;
-
         const NETWORK = {
             2: alpheDeposit,
         };
         const args = [];
         const network = document.getElementById("block_chain_network").value;
         NETWORK[network].signAndSend(args, { value: amount });
+        setAmount("");
     };
 
     const handleReward = async () => {
@@ -54,7 +33,6 @@ function Deposit() {
             ],
         ];
         const res = await reward.signAndSend(args);
-        console.log({ res });
     };
     return (
         <div
