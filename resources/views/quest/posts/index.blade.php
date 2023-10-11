@@ -7,6 +7,19 @@
 
 @section('title') {{ __("Posts List") }} @endsection
 
+@push('after-styles')
+    <style>
+
+
+        .fitting-image {
+            object-fit: contain;
+        }
+        .imgExampleColumnList {
+            max-height: 218px;
+            min-height: auto;
+        }
+    </style>
+@endpush
 @section('content')
 
 
@@ -26,7 +39,7 @@
                                 $img_link = url($img_link);
                             }
                         @endphp
-                        <img src="{{$img_link}}" alt="" class="rounded-t-lg  duration-200">
+                        <img src="{{$img_link}}" alt="" class="fitting-image imgExampleColumnList  rounded-t-lg  duration-200">
                     </a>
                     <div class="p-3 sm:p-5">
                         <a href="{{$details_url}}">

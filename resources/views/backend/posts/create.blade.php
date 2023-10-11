@@ -64,7 +64,8 @@
 
                 <div class="row">
                     <div class="col-6">
-                        <span id="deposit_button2"></span>
+                        <span id="deposit_button2" data-network="alpha" data-token="1000"></span>
+
                          <div class="form-group">
                             <button class="btn btn-success" type="submit"><i class='fas fa-plus-circle'></i> Create</button>
                         </div>
