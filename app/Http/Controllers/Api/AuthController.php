@@ -89,6 +89,15 @@ class AuthController extends Controller
                     ],
                 ],
             ]);
+        }else{
+            return response()->json([
+                'meta' => [
+                    'code' => 401,
+                    'status' => 'error',
+                    'message' => 'Invalid credentials.',
+                ],
+                'data' => [],
+            ]);
         }
     }
 
@@ -106,6 +115,15 @@ class AuthController extends Controller
                     'code' => 200,
                     'status' => 'success',
                     'message' => 'Successfully logged out',
+                ],
+                'data' => [],
+            ]);
+        }else{
+            return response()->json([
+                'meta' => [
+                    'code' => 401,
+                    'status' => 'error',
+                    'message' => 'Invalid credentials.',
                 ],
                 'data' => [],
             ]);

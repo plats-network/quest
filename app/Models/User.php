@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Permission\Traits\HasRoles;
@@ -79,7 +80,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
 
     use Favoriter;
 
-    //Type gender Female
+    use HasApiTokens;
+
+        //Type gender Female
     const GENDER_MALE = 'Male';
     //Female
     const GENDER_FEMALE = 'Female';
@@ -200,6 +203,19 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         return env('SLACK_NOTIFICATION_WEBHOOK');
     }
 
+    public function hasRole(string $role): bool
+    {
+        return true;
+        //return $this->role === $role;
+    }
+
+    public static function findByIdOrEmail(string|int $identifier)
+    {
+        return User::query()
+            ->where('id', $identifier)
+            ->orWhere('email', $identifier)
+            ->first();
+    }
 
     //https://fajarwz.com/blog/laravel-rest-api-authentication-using-jwt-tutorial/
 

@@ -38,6 +38,7 @@ class SocialService extends BaseService
      */
     public function performTwitter($user, $twitterUserId, $type = LIKE, $taskId, $userSocial)
     {
+
         $socialRes = [false, 'Not ' . ActionHelper::getTypeStr($type)[1] . ' Yet?'];
         $key = ($userSocial && $userSocial->url) ? last(explode('/', $userSocial->url)) : null;
 
