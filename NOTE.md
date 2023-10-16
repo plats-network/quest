@@ -1,11 +1,14 @@
 ### Laravel
+
 ### Meta Mask
+
 - Password: sdfe$SsefA
 - Password FireFox: sdfe$SsefA
   cake gasp demise lab mammal chaos figure puppy theme point coast agent
-- 
+-
 - Subwalet: sdfe3453$SsefA
 - illness fancy goddess october vendor approve toddler canvas trim canvas length gloom
+
 #### Verion
 
 > php artisan serve
@@ -22,21 +25,23 @@
 
 > php artisan make:migration create_flights_table
 
-> php artisan migrate --path=database/migrations/shop  
-> 
+> php artisan migrate --path=database/migrations/shop
+>
 > php artisan migrate
-> php artisan krlove:generate:models --skip-table=users --skip-table=roles  --output-path=app/Models/XCard --namespace=App\Models\Reports
-> php artisan ray:generate:models --skip-table=users --skip-table=roles  --output-path=app/Models/XCard --namespace=App\Models\Reports
+> php artisan krlove:generate:models --skip-table=users --skip-table=roles --output-path=app/Models/XCard
+> --namespace=App\Models\Reports
+> php artisan ray:generate:models --skip-table=users --skip-table=roles --output-path=app/Models/XCard
+> --namespace=App\Models\Reports
 > php artisan ray:generate:model UserReward --table-name=user_rewards
-> 
+>
 > php artisan starter:insert-demo-data --fresh
 > php artisan migrate:fresh --seed
 > php artisan migrate:fresh --seed --force
 
-
 ### Test
+
 > php artisan test
-> 
+>
 > php artisan migrate --force
 > php artisan migrate:refresh
 > php artisan db:seed
@@ -61,14 +66,14 @@
 > php artisan migrate:generate -p
 
 > composer install --ignore-platform-reqs
-> composer update  --ignore-platform-reqs 
-> composer require laravel/prompts  --ignore-platform-reqs 
-> 
+> composer update --ignore-platform-reqs
+> composer require laravel/prompts --ignore-platform-reqs
+>
 > composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
-> php artisan migrate:fresh 
+> php artisan migrate:fresh
 
-### Location 
+### Location
 
 > php artisan location:import-location
 
@@ -100,7 +105,8 @@
 > firebase deploy --only functions
 > firebase deploy --only functions,hosting
 > firebase deploy --only hosting,storage
-> 
+>
+
 ### Checkboxlist
 
 - Save Implode
@@ -124,10 +130,10 @@
 ### Git Fetch Upstream
 
 > rm -rf .git*
-> 
+>
 > git remote add upstream  https://github.com/dungphanxuan/devlaptrinhphp.git
 
-> git fetch upstream  
+> git fetch upstream
 
 > git merge --allow-unrelated-histories upstream/master
 
@@ -148,8 +154,8 @@
 
 ## OR ##
 
-> composer update 
- 
+> composer update
+
 > composer install --prefer-dist --no-dev -o
 
 ### Check language
@@ -163,17 +169,22 @@
 > href="src="{{asset('themes/uifive/css
 
 ### JWT AUTH
+
 - https://laravel-jwt-auth.readthedocs.io/en/latest/laravel-installation/
+
 > php artisan jwt:secret
 > php artisan jwt:generate-certs
-> 
+>
+
 ## tlint
+
 > tlint
 > tlint lint index.php
 > tlint lint app
 > tlint format app/Http/Controllers/ContactController.php
 
 ## Laravel Scout 31.03.2023
+
 > php artisan scout:optimize
 > php artisan scout:sync
 > php artisan scout:sync "App\Models\Data\Book"
@@ -207,15 +218,16 @@ php artisan git-commit-checker:pre-commit-hook
 
 > npm install
 >
-> composer install  --ignore-platform-reqs
+> composer install --ignore-platform-reqs
 >
-> composer update   --ignore-platform-reqs
+> composer update --ignore-platform-reqs
+
 ## Planet Scale
 
 > iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
 
-
 ## Planet scale
+
 > pscale login
 > pscale database create
 > pscale database list
@@ -223,8 +235,8 @@ php artisan git-commit-checker:pre-commit-hook
 > pscale database dump
 > pscale database restore-dump <database> <branch> --dir <path/to/dump/directory>
 
-
 ## Package
+
 - https://github.com/laracraft-tech/laravel-date-scopes
 
 ### Docker
@@ -235,8 +247,19 @@ php artisan git-commit-checker:pre-commit-hook
 - docker-compose up -d
 - docker-compose down
 - docker-compose ps
-- 
+-
 - docker-compose exec app ls -l
 - docker-compose exec app rm -rf vendor composer.lock
 - docker-compose exec app composer install
 - docker-compose exec app php artisan key:generate
+
+### Delopy Server
+
+> cd /var/www/html/plats/quest
+> su deploy
+> git fetch --all
+> git pull origin master
+> composer install --ignore-platform-reqs
+> php artisan migrate
+> php artisan optimize:clear
+> npm install

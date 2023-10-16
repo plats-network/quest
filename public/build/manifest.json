@@ -1,0 +1,129 @@
+{
+  "_ModalWallet-7b30bda6.js": {
+    "file": "assets/ModalWallet-7b30bda6.js",
+    "imports": [
+      "resources/js/deposit.jsx",
+      "_contract-metadata-fa83a96e.js",
+      "_axios-82afda87.js"
+    ]
+  },
+  "_axios-82afda87.js": {
+    "file": "assets/axios-82afda87.js"
+  },
+  "_contract-metadata-fa83a96e.js": {
+    "file": "assets/contract-metadata-fa83a96e.js",
+    "imports": [
+      "resources/js/deposit.jsx"
+    ]
+  },
+  "_module.esm-8b1418e8.js": {
+    "file": "assets/module.esm-8b1418e8.js",
+    "imports": [
+      "_axios-82afda87.js"
+    ]
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-003f1154.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-faae6fc0.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-7d81a1a7.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-9169d8be.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-cea79b34.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-886c8611.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf": {
+    "file": "assets/fa-v4compatibility-455e8e72.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility-335fd7d9.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
+  },
+  "resources/css/app-frontend.css": {
+    "file": "assets/app-frontend-e98f0751.css",
+    "isEntry": true,
+    "src": "resources/css/app-frontend.css"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-0319eb1d.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/ModalWallet.jsx": {
+    "file": "assets/ModalWallet-033d6abb.js",
+    "imports": [
+      "resources/js/deposit.jsx"
+    ],
+    "isEntry": true,
+    "src": "resources/js/ModalWallet.jsx"
+  },
+  "resources/js/app-frontend.js": {
+    "file": "assets/app-frontend-8b2266ac.js",
+    "imports": [
+      "_module.esm-8b1418e8.js",
+      "_axios-82afda87.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/app-frontend.js"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-72a29957.js",
+    "imports": [
+      "_module.esm-8b1418e8.js",
+      "_axios-82afda87.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/connect-wallet-admin.jsx": {
+    "file": "assets/connect-wallet-admin-94b2dc02.js",
+    "imports": [
+      "resources/js/deposit.jsx",
+      "_contract-metadata-fa83a96e.js",
+      "_ModalWallet-7b30bda6.js",
+      "_axios-82afda87.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/connect-wallet-admin.jsx"
+  },
+  "resources/js/connect-wallet.jsx": {
+    "file": "assets/connect-wallet-44a8993c.js",
+    "imports": [
+      "resources/js/deposit.jsx",
+      "_contract-metadata-fa83a96e.js",
+      "_ModalWallet-7b30bda6.js",
+      "_axios-82afda87.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/connect-wallet.jsx"
+  },
+  "resources/js/deposit-wallet.jsx": {
+    "file": "assets/deposit-wallet-c6ba7fc1.js",
+    "imports": [
+      "resources/js/deposit.jsx",
+      "_contract-metadata-fa83a96e.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/deposit-wallet.jsx"
+  },
+  "resources/js/deposit.jsx": {
+    "file": "assets/deposit-ce893b1a.js",
+    "isEntry": true,
+    "src": "resources/js/deposit.jsx"
+  }
+}
