@@ -29,6 +29,7 @@
         "erusev/parsedown": "^1.7",
         "eve/dto": "^2.1",
         "filestack/filestack-php": "^1.1",
+        "fruitcake/laravel-cors": "dev-develop",
         "google/apiclient": "^2.12",
         "grosv/laravel-passwordless-login": "^1.9",
         "guzzlehttp/guzzle": "^7.4@dev",
@@ -86,7 +87,7 @@
         "rinvex/laravel-support": "*",
         "saloonphp/saloon": "3.0",
         "scrivo/highlight.php": "v9.18.1.9",
-
+        "sentry/sentry-laravel": "^3.8",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/browsershot": "^3.57",
         "spatie/eloquent-sortable": "^4.0.1",
