@@ -17,5 +17,9 @@ class VerifyCsrfToken extends Middleware
         'sub.domain.zone' => [
             'prefix/*'
         ],
+        //Localhost 5173
+        'http://localhost:5173/api/*',
+        'http://localhost:5173/*',
+        'localhost:5173/*',
     ];
 }
