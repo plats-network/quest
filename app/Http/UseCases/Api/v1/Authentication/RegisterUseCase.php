@@ -16,10 +16,12 @@ final class RegisterUseCase
     public function handle(array $data): JsonResponse
     {
         $user = User::factory()->create($data);
-        $user->sendEmailVerificationNotification();
+
+        //$user->sendEmailVerificationNotification();
 
         return $this->successResponse([
             'message' => 'User registered successfully.',
+            //Token Login
             'token' => $user->createToken(Str::random(15))->plainTextToken,
         ]);
     }

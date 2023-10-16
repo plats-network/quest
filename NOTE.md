@@ -255,7 +255,7 @@ php artisan git-commit-checker:pre-commit-hook
 
 ### Delopy Server
 
-> cd /var/www/html/plats/quest
+> cd /var/www/plats/quest
 > su deploy
 > git fetch --all
 > git pull origin master

@@ -18,7 +18,7 @@ final class NotifyUseCase
             ->where($data)
             ->first();
 
-        $user->sendEmailVerificationNotification();
+        //$user->sendEmailVerificationNotification();
 
         return $this->successResponse('Email verification notification sent successfully.');
     }

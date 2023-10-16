@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 //Authentication routes
 Route::post('login', LoginController::class);
+
 Route::post('register', RegisterController::class);
 
 Route::post('wallet-login', WalletLoginController::class);
@@ -28,10 +29,37 @@ Route::post('wallet-register', WalletRegisterController::class);
 
 Route::get('/', function () {
     $arrApi = [
-        'connect-wallet' => route('api.connect-wallet'),
+        'connect-wallet' => [
+            'method' => 'POST',
+            'url' => '/api/v1/wallet-login',
+            'params' => [
+                'wallet_address' => 'string',
+                'wallet_name' => 'string',
+            ],
+            'response' => [
+                'message' => 'string',
+                'token' => 'string',
+                'user' => 'object',
+            ],
+        ],
+        'register' => [
+            'method' => 'POST',
+            'url' => '/api/v1/register',
+            'params' => [
+                'name' => 'string',
+                'email' => 'string',
+                'password' => 'string',
+                'password_confirmation' => 'string',
+            ],
+            'response' => [
+                'message' => 'string',
+                'token' => 'string',
+            ],
+        ],
     ];
     return [
         'message' => 'Hello World. API Working fine!',
+        'date_update' => '2023-10-16',
         'api' => $arrApi
     ];
 });
