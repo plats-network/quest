@@ -19,12 +19,15 @@ final class StoreUseCase
     {
         $password = Str::password(8);
 
-        $data['password'] = bcrypt($password);
-        $data['email_verified_at'] = now();
+        //$data['password'] = bcrypt($password);
+        //$data['email_verified_at'] = now();
 
         $campain = Campain::factory()->create($data);
-        Notification::send($campain, new AccountCreated($password));
+        //Store Task
+        //$campain->tasks()->createMany($data['tasks']);
 
-        return $this->successResponse('Campain created successfully.');
+        //Notification::send($campain, new AccountCreated($password));
+
+        return $this->successResponse('Campain created successfully.', $campain);
     }
 }

@@ -18,8 +18,8 @@ final class DeleteUseCase
     {
         $tag->delete();
 
-        Notification::route('mail', $tag->getAttribute('email'))
-            ->notify(new AccountDeleted());
+       /* Notification::route('mail', $tag->getAttribute('email'))
+            ->notify(new AccountDeleted());*/
 
         return $this->successResponse('Tag deleted successfully.');
     }

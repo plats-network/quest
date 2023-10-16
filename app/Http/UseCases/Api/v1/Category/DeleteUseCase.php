@@ -18,8 +18,8 @@ final class DeleteUseCase
     {
         $category->delete();
 
-        Notification::route('mail', $category->getAttribute('email'))
-            ->notify(new AccountDeleted());
+        /*Notification::route('mail', $category->getAttribute('email'))
+            ->notify(new AccountDeleted());*/
 
         return $this->successResponse('Category deleted successfully.');
     }

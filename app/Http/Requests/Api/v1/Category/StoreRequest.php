@@ -24,10 +24,26 @@ class StoreRequest extends FormRequest
 
     public function rules(): array
     {
+        //  "name" => "Mintlist"
+        //  "slug" => "mintlist"
+        //  "group_name" => null
+        //  "description" => "Description of Mintlist"
+        //  "meta_title" => null
+        //  "meta_keyword" => null
+        //  "meta_description" => null
+        //  "status" => "Active"
+
         return [
-            'email' => ['required', 'email', 'unique:users'],
+            //'email' => ['required', 'email', 'unique:users'],
             'name' => 'required',
-            'role' => ['required', Rule::in(UserRole::getValues())],
+            //'slug' => 'nullable',
+            'group_name' => 'nullable',
+            'description' => 'nullable',
+            'meta_title' => 'nullable',
+            'meta_keyword' => 'nullable',
+            'meta_description' => 'nullable',
+            'status' => 'nullable',
+            //'role' => ['required', Rule::in(UserRole::getValues())],
         ];
     }
 

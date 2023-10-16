@@ -16,6 +16,6 @@ final class UpdateUseCase
     {
         $category->update($data);
 
-        return $this->successResponse('Category updated successfully.');
+        return $this->successResponse('Category updated successfully.', $category);
     }
 }

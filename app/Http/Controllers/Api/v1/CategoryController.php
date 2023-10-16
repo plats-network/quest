@@ -15,12 +15,12 @@ use App\Http\UseCases\Api\v1\Category\GetItemUseCase;
 use App\Http\UseCases\Api\v1\Category\StoreUseCase;
 use App\Http\UseCases\Api\v1\Category\UpdateAvatarUseCase;
 use App\Http\UseCases\Api\v1\Category\UpdateUseCase;
-use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
- * @group User management
+ * @group Category management
  *
  * @authenticated
  */
@@ -29,16 +29,16 @@ class CategoryController extends Controller
     /**
      * @apiResourceCollection App\Http\Resources\Api\v1\CategoryCollection
      *
-     * @apiResourceModel App\Models\User paginate=10
+     * @apiResourceModel App\Models\Category paginate=10
      */
-    public function index(Request $request, GetCollectionUseCase $useCase): UserCollection
+    public function index(Request $request, GetCollectionUseCase $useCase): CategoryCollection
     {
         return $useCase->handle($request->query() ?? []);
     }
 
-    public function show(User $user, GetItemUseCase $useCase): JsonResponse
+    public function show(Category $category, GetItemUseCase $useCase): JsonResponse
     {
-        return $useCase->handle($user);
+        return $useCase->handle($category);
     }
 
     public function store(StoreRequest $request, StoreUseCase $useCase): JsonResponse
@@ -46,18 +46,18 @@ class CategoryController extends Controller
         return $useCase->handle($request->validated());
     }
 
-    public function update(UpdateRequest $request, UpdateUseCase $useCase, User $user): JsonResponse
+    public function update(UpdateRequest $request, UpdateUseCase $useCase, Category $category): JsonResponse
     {
-        return $useCase->handle($user, $request->validated());
+        return $useCase->handle($category, $request->validated());
     }
 
-    public function updateAvatar(UpdateAvatarRequest $request, UpdateAvatarUseCase $useCase, User $user): JsonResponse
+    public function updateAvatar(UpdateAvatarRequest $request, UpdateAvatarUseCase $useCase, Category $category): JsonResponse
     {
-        return $useCase->handle($user, $request->file('avatar'));
+        return $useCase->handle($category, $request->file('avatar'));
     }
 
-    public function destroy(DeleteRequest $request, DeleteUseCase $useCase, User $user): JsonResponse
+    public function destroy(DeleteRequest $request, DeleteUseCase $useCase, Category $category): JsonResponse
     {
-        return $useCase->handle($user);
+        return $useCase->handle($category);
     }
 }

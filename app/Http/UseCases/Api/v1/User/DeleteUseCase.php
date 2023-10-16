@@ -16,11 +16,11 @@ final class DeleteUseCase
 
     public function handle(User $user): JsonResponse
     {
-        $user->delete();
+        //$user->delete();
 
-        Notification::route('mail', $user->getAttribute('email'))
-            ->notify(new AccountDeleted());
+       /* Notification::route('mail', $user->getAttribute('email'))
+            ->notify(new AccountDeleted());*/
 
-        return $this->successResponse('User deleted successfully.');
+        return $this->successResponse('User deleted successfully.', $user);
     }
 }

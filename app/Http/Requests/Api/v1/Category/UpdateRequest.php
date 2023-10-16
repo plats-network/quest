@@ -16,15 +16,21 @@ class UpdateRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return $this->route('user')->id === $this->user('sanctum')->id;
+        return  true;
+        //return $this->route('user')->id === $this->user('sanctum')->id;
     }
 
     public function rules(): array
     {
         return [
-            'email' => ['sometimes', 'required', 'email', 'unique:users,email,'.$this->route('user')->id],
-            'name' => ['sometimes', 'required'],
-            'password' => ['sometimes', 'required', Password::min(8)->letters()->numbers()->mixedCase()->symbols()],
+            'name' => 'required',
+            //'slug' => 'nullable',
+            'group_name' => 'nullable',
+            'description' => 'nullable',
+            'meta_title' => 'nullable',
+            'meta_keyword' => 'nullable',
+            'meta_description' => 'nullable',
+            'status' => 'nullable',
         ];
     }
 

@@ -338,6 +338,8 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->input());
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;

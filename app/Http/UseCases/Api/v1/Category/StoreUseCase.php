@@ -19,12 +19,12 @@ final class StoreUseCase
     {
         $password = Str::password(8);
 
-        $data['password'] = bcrypt($password);
-        $data['email_verified_at'] = now();
+        //$data['password'] = bcrypt($password);
+        //$data['email_verified_at'] = now();
 
         $category = Category::factory()->create($data);
-        Notification::send($category, new AccountCreated($password));
+        //Notification::send($category, new AccountCreated($password));
 
-        return $this->successResponse('Category created successfully.');
+        return $this->successResponse('Category created successfully.', $category);
     }
 }

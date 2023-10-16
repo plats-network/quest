@@ -6,9 +6,12 @@ use Illuminate\Http\JsonResponse;
 
 trait MakeApiResponse
 {
-    public function successResponse(string|array $message): JsonResponse
+    public function successResponse(string|array $message, $data=[]): JsonResponse
     {
-        $data = ['status' => 'success'];
+        $data = [
+            'status' => 'success',
+            'data' => $data,
+        ];
 
         if (is_string($message)) {
             return response()->json(

@@ -23,8 +23,9 @@ final class StoreUseCase
         $data['email_verified_at'] = now();
 
         $user = User::factory()->create($data);
-        Notification::send($user, new AccountCreated($password));
 
-        return $this->successResponse('User created successfully.');
+        //Notification::send($user, new AccountCreated($password));
+
+        return $this->successResponse('User created successfully.', $user);
     }
 }

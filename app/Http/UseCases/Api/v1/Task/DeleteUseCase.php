@@ -18,8 +18,8 @@ final class DeleteUseCase
     {
         $task->delete();
 
-        Notification::route('mail', $task->getAttribute('email'))
-            ->notify(new AccountDeleted());
+        /*Notification::route('mail', $task->getAttribute('email'))
+            ->notify(new AccountDeleted());*/
 
         return $this->successResponse('Task deleted successfully.');
     }

@@ -16,6 +16,6 @@ final class UpdateUseCase
     {
         $campain->update($data);
 
-        return $this->successResponse('Campain updated successfully.');
+        return $this->successResponse('Campain updated successfully.', $campain);
     }
 }

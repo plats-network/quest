@@ -24,10 +24,25 @@ class StoreRequest extends FormRequest
 
     public function rules(): array
     {
+        // "post_id" : "17",
+        //  "name" : "Token Holder",
+        //  "description" : "DerpDEXcom’s Tweet retweeters",
+        //  "entry_type" : "10",
+        //  "value" : "https://twitter.com/intent/retweet?tweet_id=1708779829368357330",
+        //  "status" : "Active",
+        //  "block_chain_network" : "1",
+        //  "total_token" : "6"
         return [
-            'email' => ['required', 'email', 'unique:users'],
+            //'email' => ['required', 'email', 'unique:users'],
+            'post_id' => 'required',
             'name' => 'required',
-            'role' => ['required', Rule::in(UserRole::getValues())],
+            'description' => 'required',
+            'entry_type' => 'required',
+            'value' => 'required',
+            'status' => 'required',
+            'block_chain_network' => 'required',
+            'total_token' => 'required',
+            //'role' => ['required', Rule::in(UserRole::getValues())],
         ];
     }
 

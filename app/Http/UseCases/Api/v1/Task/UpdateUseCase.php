@@ -16,6 +16,6 @@ final class UpdateUseCase
     {
         $task->update($data);
 
-        return $this->successResponse('Task updated successfully.');
+        return $this->successResponse('Task updated successfully.', $task);
     }
 }

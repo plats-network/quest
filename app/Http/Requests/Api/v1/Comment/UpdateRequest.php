@@ -22,9 +22,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['sometimes', 'required', 'email', 'unique:users,email,'.$this->route('user')->id],
             'name' => ['sometimes', 'required'],
-            'password' => ['sometimes', 'required', Password::min(8)->letters()->numbers()->mixedCase()->symbols()],
         ];
     }
 

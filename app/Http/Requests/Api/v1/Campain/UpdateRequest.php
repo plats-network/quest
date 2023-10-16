@@ -23,9 +23,22 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['sometimes', 'required', 'email', 'unique:users,email,'.$this->route('user')->id],
-            'name' => ['sometimes', 'required'],
-            'password' => ['sometimes', 'required', Password::min(8)->letters()->numbers()->mixedCase()->symbols()],
+            'name' => 'required',
+            'intro' => 'nullable',
+            'content' => 'nullable',
+            'files' => 'nullable',
+            'featured_image' => 'nullable',
+            'category_id' => 'nullable',
+            'tags_list' => 'nullable',
+            'reward_type' => 'nullable',
+            'block_chain_network' => 'nullable',
+            'total_token' => 'nullable',
+            'total_person' => 'nullable',
+            'status' => 'nullable',
+            'published_at' => 'nullable',
+            'start_at' => 'nullable',
+            'end_at' => 'nullable',
+            'tasks' => 'nullable|array',
         ];
     }
 

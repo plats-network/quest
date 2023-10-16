@@ -235,4 +235,17 @@ class Tag extends BaseModel
     {
         return TagFactory::new();
     }
+    /**
+     * Remove all "extra" blank space from the given string.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public static function squish($value)
+    {
+        //$paragraph = "hello this is a test \n  \t just a test   and stuff ";
+        //"hello this is a test just a test and stuff"
+        return preg_replace('~(\s|\x{3164}|\x{1160})+~u', ' ', preg_replace('~^[\s\x{FEFF}]+|[\s\x{FEFF}]+$~u', '', $value));
+    }
+
 }

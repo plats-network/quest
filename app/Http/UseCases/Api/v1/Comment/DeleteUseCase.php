@@ -18,8 +18,8 @@ final class DeleteUseCase
     {
         $comment->delete();
 
-        Notification::route('mail', $comment->getAttribute('email'))
-            ->notify(new AccountDeleted());
+        /*Notification::route('mail', $comment->getAttribute('email'))
+            ->notify(new AccountDeleted());*/
 
         return $this->successResponse('Comment deleted successfully.');
     }

@@ -15,12 +15,12 @@ use App\Http\UseCases\Api\v1\Campain\GetItemUseCase;
 use App\Http\UseCases\Api\v1\Campain\StoreUseCase;
 use App\Http\UseCases\Api\v1\Campain\UpdateAvatarUseCase;
 use App\Http\UseCases\Api\v1\Campain\UpdateUseCase;
-use App\Models\User;
+use App\Models\Post as Campain;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
- * @group User management
+ * @group Campain management
  *
  * @authenticated
  */
@@ -29,16 +29,16 @@ class CampainController extends Controller
     /**
      * @apiResourceCollection App\Http\Resources\Api\v1\CampainCollection
      *
-     * @apiResourceModel App\Models\User paginate=10
+     * @apiResourceModel App\Models\Campain paginate=10
      */
-    public function index(Request $request, GetCollectionUseCase $useCase): UserCollection
+    public function index(Request $request, GetCollectionUseCase $useCase): CampainCollection
     {
         return $useCase->handle($request->query() ?? []);
     }
 
-    public function show(User $user, GetItemUseCase $useCase): JsonResponse
+    public function show(Campain $campain, GetItemUseCase $useCase): JsonResponse
     {
-        return $useCase->handle($user);
+        return $useCase->handle($campain);
     }
 
     public function store(StoreRequest $request, StoreUseCase $useCase): JsonResponse
@@ -46,18 +46,18 @@ class CampainController extends Controller
         return $useCase->handle($request->validated());
     }
 
-    public function update(UpdateRequest $request, UpdateUseCase $useCase, User $user): JsonResponse
+    public function update(UpdateRequest $request, UpdateUseCase $useCase, Campain $campain): JsonResponse
     {
-        return $useCase->handle($user, $request->validated());
+        return $useCase->handle($campain, $request->validated());
     }
 
-    public function updateAvatar(UpdateAvatarRequest $request, UpdateAvatarUseCase $useCase, User $user): JsonResponse
+    public function updateAvatar(UpdateAvatarRequest $request, UpdateAvatarUseCase $useCase, Campain $campain): JsonResponse
     {
-        return $useCase->handle($user, $request->file('avatar'));
+        return $useCase->handle($campain, $request->file('avatar'));
     }
 
-    public function destroy(DeleteRequest $request, DeleteUseCase $useCase, User $user): JsonResponse
+    public function destroy(DeleteRequest $request, DeleteUseCase $useCase, Campain $campain): JsonResponse
     {
-        return $useCase->handle($user);
+        return $useCase->handle($campain);
     }
 }

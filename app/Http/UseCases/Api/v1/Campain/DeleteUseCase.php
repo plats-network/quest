@@ -17,9 +17,10 @@ final class DeleteUseCase
     public function handle(Campain $campain): JsonResponse
     {
         $campain->delete();
+        //Todo delete tasks
 
-        Notification::route('mail', $campain->getAttribute('email'))
-            ->notify(new AccountDeleted());
+        /*Notification::route('mail', $campain->getAttribute('email'))
+            ->notify(new AccountDeleted());*/
 
         return $this->successResponse('Campain deleted successfully.');
     }
