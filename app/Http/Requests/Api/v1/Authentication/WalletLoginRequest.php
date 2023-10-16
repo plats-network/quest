@@ -8,9 +8,8 @@ use App\Http\Shared\MakeApiResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rules\Password;
 
-class RegisterRequest extends FormRequest
+class WalletLoginRequest extends FormRequest
 {
     use MakeApiResponse;
 
@@ -22,18 +21,9 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', Password::min(8)],
-            //'password' => ['required', Password::min(8)->letters()->numbers()->mixedCase()->symbols()],
-            'name' => 'required',
+            'wallet_address' => 'required',
+            'wallet_name' => 'required',
         ];
-    }
-
-    protected function passedValidation(): void
-    {
-        $this->replace([
-            'password' => bcrypt($this->get('password')),
-        ]);
     }
 
     protected function failedValidation(Validator $validator)

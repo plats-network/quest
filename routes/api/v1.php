@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Api\v1\Authentication\LoginController;
+use App\Http\Controllers\Api\v1\Authentication\WalletRegisterController;
+use App\Http\Controllers\Api\v1\Authentication\WalletLoginController;
 use App\Http\Controllers\Api\v1\Authentication\LogoutController;
 use App\Http\Controllers\Api\v1\Authentication\RegisterController;
 use App\Http\Controllers\Api\v1\Authentication\ResetPasswordController;
@@ -18,6 +20,21 @@ use Illuminate\Support\Facades\Route;
 //Authentication routes
 Route::post('login', LoginController::class);
 Route::post('register', RegisterController::class);
+
+Route::post('wallet-login', WalletLoginController::class);
+
+Route::post('wallet-register', WalletRegisterController::class);
+
+
+Route::get('/', function () {
+    $arrApi = [
+        'connect-wallet' => route('api.connect-wallet'),
+    ];
+    return [
+        'message' => 'Hello World. API Working fine!',
+        'api' => $arrApi
+    ];
+});
 
 Route::prefix('email')
     ->group(function () {

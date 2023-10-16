@@ -263,3 +263,7 @@ php artisan git-commit-checker:pre-commit-hook
 > php artisan migrate
 > php artisan optimize:clear
 > npm install
+> sudo chown dungpx: .env
+> php artisan migrate --seed
+> php artisan db:seed --class=SampleQuestData
+> chmod -R 777 storage
