@@ -92,7 +92,8 @@ Route::middleware('auth:sanctum')
         Route::apiResource('tags', TagController::class);
 
         //campain
-        Route::apiResource('campains', CampainController::class);
+        Route::apiResource('campains', CampainController::class)->except('index');
+
 
         //Task
         Route::apiResource('tasks', TaskController::class);
@@ -103,3 +104,7 @@ Route::middleware('auth:sanctum')
         //like
         //Route::apiResource('likes', LikeController::class);
     });
+
+//Not Need Authentication
+//campains Index set withouth auth
+Route::get('campains', [CampainController::class, 'index']);

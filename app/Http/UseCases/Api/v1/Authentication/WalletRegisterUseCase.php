@@ -33,9 +33,9 @@ final class WalletRegisterUseCase
             //Auth::guard('quest')->login($user);
             //return redirect()->route('quest.home');
             //Send failed response if request invalid
-            return $this->errorResponse([
+           /* return $this->errorResponse([
                 'message' => 'User already exist.',
-            ], 422);
+            ], 422);*/
         } else {
             //create new user
             $user = new User();

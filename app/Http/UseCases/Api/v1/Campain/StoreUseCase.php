@@ -18,6 +18,10 @@ final class StoreUseCase
     public function handle(array $data): JsonResponse
     {
         $password = Str::password(8);
+        //Unset data files
+        unset($data['files']);
+        //tags_list
+        unset($data['tags_list']);
 
         //$data['password'] = bcrypt($password);
         //$data['email_verified_at'] = now();

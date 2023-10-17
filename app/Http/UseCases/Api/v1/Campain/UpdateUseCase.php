@@ -14,6 +14,8 @@ final class UpdateUseCase
 
     public function handle(Campain $campain, array $data): JsonResponse
     {
+        unset($data['files']);
+        unset($data['tags_list']);
         $campain->update($data);
 
         return $this->successResponse('Campain updated successfully.', $campain);
