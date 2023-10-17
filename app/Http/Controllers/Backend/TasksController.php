@@ -151,10 +151,10 @@ class TasksController extends Controller
             })
             ->editColumn('type', function ($data) {
                 $allType = Task::getTaskType();
-                $type = $data->entry_type?? 1;
+                $type = $data->entry_type?? 'TOKEN_HOLDERS';
                 //Check type in array
                 if (!array_key_exists($type, $allType)) {
-                    $type = 1;
+                    $type = 'TOKEN_HOLDERS';
                 }
                 if($type == Task::TRANSFER_TYPE_HOLDERS || $type == Task::TRANSFER_TYPE_ACTIVITY){
                     return '<button class="btn text-bg-success btn-sm">

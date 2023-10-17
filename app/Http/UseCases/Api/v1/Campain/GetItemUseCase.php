@@ -11,6 +11,10 @@ final class GetItemUseCase
 {
     public function handle(Campain $campain): JsonResponse
     {
-        return response()->json($campain);
+        $dataCampain = $campain->toArray();
+        //Data list tasks
+        $dataCampain['tasks'] = $campain->tasks()->get()->toArray();
+
+        return response()->json($dataCampain);
     }
 }

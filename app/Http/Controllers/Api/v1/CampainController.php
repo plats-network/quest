@@ -38,6 +38,7 @@ class CampainController extends Controller
 
     public function show(Campain $campain, GetItemUseCase $useCase): JsonResponse
     {
+        //Show detail campain
         return $useCase->handle($campain);
     }
 
