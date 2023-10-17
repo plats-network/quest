@@ -14,6 +14,14 @@ final class GetItemUseCase
         $dataCampain = $campain->toArray();
         //Data list tasks
         $dataCampain['tasks'] = $campain->tasks()->get()->toArray();
+        //Check Member Is Play task
+        $isWin = false;
+        $isReceiveReward = false;
+
+        //Check Member Win task
+        //Check Member IS Receive Reward
+        $dataCampain['is_win'] = $isWin;
+        $dataCampain['is_receive_reward'] = $isReceiveReward;
 
         return response()->json($dataCampain);
     }

@@ -371,6 +371,7 @@ class Post extends BaseModel
         }
     }
 
+    //Attribute User IS WIn Campain
     //Scope Name
     public function scopeName($query, $name)
     {
