@@ -29,7 +29,7 @@ class CreateCommentsTable extends Migration
             $table->string('user_name')->nullable();
 
             $table->string('order')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->string('status')->default(0);
 
             $table->integer('moderated_by')->unsigned()->nullable();
             $table->datetime('moderated_at')->nullable();

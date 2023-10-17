@@ -22,7 +22,7 @@ class CreateTagsTable extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
 
-            $table->tinyInteger('status')->default(1);
+            $table->string('status')->default(1);
 
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();

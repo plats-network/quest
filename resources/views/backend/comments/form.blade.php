@@ -111,9 +111,9 @@ if (isset($$module_name_singular)){
             $field_placeholder = "-- Select an option --";
             $required = "required";
             $select_options = [
-                '0'=>'Pending',
-                '1'=>'Published',
-                '2'=>'Rejected',
+                'PENDING'=>'Pending',
+                'PUBLISH'=>'Published',
+                'REJECT'=>'Rejected',
             ];
             ?>
             {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}

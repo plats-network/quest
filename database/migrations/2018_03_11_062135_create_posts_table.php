@@ -37,7 +37,7 @@ class CreatePostsTable extends Migration
 
             $table->integer('hits')->default(0)->unsigned();
             $table->integer('order')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->string ('status')->default(1);
 
             $table->integer('moderated_by')->unsigned()->nullable();
             $table->datetime('moderated_at')->nullable();
@@ -53,8 +53,8 @@ class CreatePostsTable extends Migration
             $table->dateTime('end_at')->nullable();
 
             //Total Token
-            $table->integer('reward_type')->nullable();
-            $table->integer('block_chain_network')->nullable();
+            $table->string('reward_type')->nullable();
+            $table->string('block_chain_network')->nullable();
             $table->integer('total_token')->nullable();
             $table->integer('total_person')->nullable();
 

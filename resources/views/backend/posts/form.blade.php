@@ -108,8 +108,8 @@
                         $field_placeholder = "-- Select an option --";
                         $required = "required";
                         $select_options = [
-                            1 => 'Token',
-                            2 => 'NTF',
+                            'TOKEN' => 'Token',
+                            'NTF' => 'NTF',
                         ];
                         ?>
                         {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
@@ -125,8 +125,8 @@
                         $field_placeholder = "-- Select an option --";
                         $required = "";
                         $select_options = [
-                            1 => 'Phala',
-                            2 => 'Aleph Zero',
+                            'PHALA' => 'Phala',
+                            'ALEPH_ZERO' => 'Aleph Zero',
                         ];
                         ?>
                         {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
@@ -173,9 +173,9 @@
                     $field_placeholder = __("Select an option");
                     $required = "required";
                     $select_options = [
-                        '1' => 'Published',
-                        '0' => 'Unpublished',
-                        '2' => 'Draft'
+                        'PUBLISH' => 'Published',
+                        'UNPUBLISH' => 'Unpublished',
+                        'DRAFT' => 'Draft'
                     ];
                     ?>
                     {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}

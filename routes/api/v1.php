@@ -92,8 +92,8 @@ Route::middleware('auth:sanctum')
         Route::apiResource('tags', TagController::class);
 
         //campain
-        Route::apiResource('campains', CampainController::class)->except('index');
-
+        Route::apiResource('campains', CampainController::class)
+            ->except('index', 'show');
 
         //Task
         Route::apiResource('tasks', TaskController::class);
@@ -108,3 +108,9 @@ Route::middleware('auth:sanctum')
 //Not Need Authentication
 //campains Index set withouth auth
 Route::get('campains', [CampainController::class, 'index']);
+//Show
+Route::get('campains/{campain}', [CampainController::class, 'show']);
+
+
+//API Token Holder
+Route::get('token-holders', [\App\Http\Controllers\Api\v1\Wallet\TokenHolderController::class, 'index']);

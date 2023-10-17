@@ -125,9 +125,9 @@
             $field_placeholder = "-- Select an option --";
             $required = "required";
             $select_options = [
-                '1'=>'Published',
-                '0'=>'Unpublished',
-                '2'=>'Draft'
+                'PUBLISH'=>'Published',
+                'UNPUBLISH'=>'Unpublished',
+                'DRARF'=>'Draft'
             ];
             ?>
             {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}

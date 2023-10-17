@@ -35,7 +35,7 @@ return new class extends Migration {
 
             $table->string('status')->nullable()->default('Active');
 
-            $table->smallInteger('entry_type')->nullable()
+            $table->string('entry_type')->nullable()
                 ->default(Task::TYPE_TWITTER_FOLLOW);
             //Twitter id
             $table->string('twitter_id')->nullable();
@@ -45,10 +45,10 @@ return new class extends Migration {
             $table->string('discord_id')->nullable();
 
             //Task transfered type Token Holder - Check Balance, Transaction Activity
-            $table->smallInteger('transfer_type')->nullable()
+            $table->string('transfer_type')->nullable()
                 ->default(Task::TRANSFER_TYPE_HOLDERS);
             //Total Token
-            $table->integer('total_token')->nullable();
+            $table->string('total_token')->nullable();
             //Blockchain Network
             $table->string('block_chain_network')->nullable();  //Phala, Aleph Zero
             //Is Deposit Value to Admin wallet

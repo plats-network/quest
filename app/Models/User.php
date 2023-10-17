@@ -88,6 +88,10 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
     const GENDER_FEMALE = 'Female';
     const GENDER_OTHER = 'Other';
 
+    const ROLE_ADMIN = 'admin';
+    const ROLE_USER = 'user';
+    const ROLE_SALE = 'sale';
+
     protected $guarded = [
         'id',
         'updated_at',

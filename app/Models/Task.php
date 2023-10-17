@@ -48,21 +48,21 @@ class Task extends BaseModel
 
     //Constant
     //Task Type Twitter Like
-    const TYPE_TWITTER_FOLLOW = 1;
+    const TYPE_TWITTER_FOLLOW = 'TWITTER_FOLLOW';
     //Task Type Twitter Retweet
-    const TYPE_TWITTER_RETWEET = 2;
+    const TYPE_TWITTER_RETWEET = 'TWITTER_RETWEET';
     //Task Type Twitter Follow
-    const TYPE_TWITTER_LIKE = 3;
+    const TYPE_TWITTER_LIKE = 'TWITTER_LIKE';
     //Task Type Twitter Hashtag
-    const TYPE_TWITTER_HASHTAG = 4;
+    const TYPE_TWITTER_HASHTAG = 'TWITTER_HASHTAG';
 
     //Task Type Twitter TWEET
-    const TYPE_TWITTER_TWEET = 5;
+    const TYPE_TWITTER_TWEET = 'TWITTER_TWEET';
     //Task Type Discord Join
-    const TYPE_DISCORD_JOIN = 6;
+    const TYPE_DISCORD_JOIN = 'DISCORD_JOIN';
 
     //Telegram Join
-    const TYPE_TELEGRAM_JOIN = 7;
+    const TYPE_TELEGRAM_JOIN = 'TELEGRAM_JOIN';
 
 
     //Status Active
@@ -74,8 +74,8 @@ class Task extends BaseModel
 
     //get all status
     //Task transfered type Token Holder, Transaction Activity
-    const TRANSFER_TYPE_HOLDERS = 10;
-    const TRANSFER_TYPE_ACTIVITY = 11;
+    const TRANSFER_TYPE_HOLDERS = 'TOKEN_HOLDERS';
+    const TRANSFER_TYPE_ACTIVITY = 'TRANSFER_ACTIVITY';
 
     //Get all task type
     public static function getAllTaskType()

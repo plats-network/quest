@@ -128,8 +128,8 @@
                     $field_placeholder = "-- Select an option --";
                     $required = "";
                     $select_options = [
-                        1 => 'Phala',
-                        2 => 'Aleph Zero',
+                        'PHALA' => 'Phala',
+                        'PHALA_ZERO' => 'Aleph Zero',
                     ];
                     ?>
                     {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
