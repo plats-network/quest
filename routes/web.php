@@ -57,6 +57,9 @@ Route::get('upgrade-to-pro', UpgradeToPro::class)->name('admin.upgrade-to-pro');
 Route::get('update-db', function () {
     //Drop table tasks from database
     \Illuminate\Support\Facades\Schema::dropIfExists('tasks');
+    \Illuminate\Support\Facades\Schema::dropIfExists('user_task_status');
+    \Illuminate\Support\Facades\Schema::dropIfExists('user_rewards');
+    \Illuminate\Support\Facades\Schema::dropIfExists('user_task_activity');
 
 
     return 'Update db success!';
