@@ -53,6 +53,15 @@ Route::get('404', Err404::class)->name('admin.404');
 Route::get('500', Err500::class)->name('admin.500');
 Route::get('upgrade-to-pro', UpgradeToPro::class)->name('admin.upgrade-to-pro');
 
+//Update db
+Route::get('update-db', function () {
+    //Drop table tasks from database
+    \Illuminate\Support\Facades\Schema::dropIfExists('tasks');
+
+
+    return 'Update db success!';
+});
+
 Route::middleware('auth')->group(function () {
     //Route::get('profile', Profile::class)->name('profile');
     Route::get('profile-example', ProfileExample::class)->name('profile-example');
