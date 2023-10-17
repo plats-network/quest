@@ -283,7 +283,7 @@ class Comment extends BaseModel
      */
     public function scopePublished($query)
     {
-        return $query->where('status', '=', '1')
+        return $query->where('status', '=', 'Active')
             ->whereDate('published_at', '<=', Carbon::today()
                 ->toDateString());
     }
@@ -296,7 +296,7 @@ class Comment extends BaseModel
      */
     public function scopeRecentlyPublished($query)
     {
-        return $query->where('status', '=', '1')
+        return $query->where('status', '=', 'Active')
             ->whereDate('published_at', '<=', Carbon::today()->toDateString())
             ->orderBy('published_at', 'desc');
     }

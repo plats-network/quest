@@ -123,7 +123,7 @@
                     {{ html()->label(__('labels.backend.users.fields.status'))->class('col-6 col-sm-2 form-control-label')->for('status') }}
 
                     <div class="col-6 col-sm-10">
-                        {{ html()->checkbox('status', true, '1') }} @lang('Active')
+                        {{ html()->checkbox('status', true, 'Active') }} @lang('Active')
                     </div>
                 </div>
 

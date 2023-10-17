@@ -28,7 +28,7 @@ return new class extends Migration
             $table->text('meta_keyword')->nullable();
 
             $table->string('order')->nullable();
-            $table->smallInteger('status')->nullable()->default(1);
+            $table->string('status')->nullable()->default(1);
 
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();

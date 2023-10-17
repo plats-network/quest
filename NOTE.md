@@ -267,3 +267,4 @@ php artisan git-commit-checker:pre-commit-hook
 > php artisan migrate --seed
 > php artisan db:seed --class=SampleQuestData
 > chmod -R 777 storage
+> php artisan migrate:reset && php artisan migrate --seed

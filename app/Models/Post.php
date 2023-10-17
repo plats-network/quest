@@ -63,6 +63,10 @@ class Post extends BaseModel
     use Favoriteable;
 
     protected $table = 'posts';
+    //STATUS_ACTIVE
+    const STATUS_ACTIVE = 'Active';
+    const STATUS_DRAFT = 'Draft';
+    const STATUS_PUBLISHED = 'Published';
 
     /**
      * @var array
@@ -393,19 +397,19 @@ class Post extends BaseModel
      */
     public function scopePublished($query)
     {
-        return $query->where('status', '=', '1')
+        return $query->where('status', '=', self::STATUS_ACTIVE)
             ->where('published_at', '<=', Carbon::now());
     }
 
     public function scopePublishedAndScheduled($query)
     {
-        return $query->where('status', '=', '1');
+        return $query->where('status', '=', self::STATUS_ACTIVE);
     }
 
     public function scopeFeatured($query)
     {
         return $query->where('is_featured', '=', 'Yes')
-            ->where('status', '=', '1')
+            ->where('status', '=', 'Active')
             ->where('published_at', '<=', Carbon::now());
     }
 
@@ -417,7 +421,7 @@ class Post extends BaseModel
      */
     public function scopeRecentlyPublished($query)
     {
-        return $query->where('status', '=', '1')
+        return $query->where('status', '=', 'Active')
             ->whereDate('published_at', '<=', Carbon::today()->toDateString())
             ->orderBy('published_at', 'desc');
     }

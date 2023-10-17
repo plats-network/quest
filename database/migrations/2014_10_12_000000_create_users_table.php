@@ -68,7 +68,9 @@ class CreateUsersTable extends Migration
             $table->string('mobile')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('avatar')->nullable()->default('img/default-avatar.jpg');
-            $table->tinyInteger('status')->default(1)->unsigned();
+
+            $table->string('status')->default('ACTIVE');
+
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();

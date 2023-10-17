@@ -84,8 +84,8 @@ class SampleQuestData extends Seeder
             $post['featured_image'] = 'https://picsum.photos/1200/630';
             $now = date('Y-m-d H:i:s');
             $post['published_at'] = $now;
-            $post['reward_type'] = 1;
-            $post['block_chain_network'] = 1;
+            $post['reward_type'] = 'NTF';
+            $post['block_chain_network'] = 'PHALA';
             $post['total_token'] = 10000;
             $post['total_person'] = 5;
 
@@ -117,23 +117,23 @@ class SampleQuestData extends Seeder
 
     private function createSamplePosts() {
         return [
-            ['name' => 'The Blueberry Nebula',  'intro' => 'Introduction of The Blueberry Nebula', 'content' => 'Content of The Blueberry Nebula', 'hits' => '0',  'status' => '1'],
-            ['name' => 'Particle Network and Scroll Sepolia Campaign',  'intro' => 'Introduction of Particle Network and Scroll Sepolia Campaign', 'content' => 'Content of Particle Network and Scroll Sepolia Campaign', 'hits' => '0',  'status' => '1'],
-            ['name' => 'DerpDEX is now on opBNB! 🚀',  'intro' => 'Introduction of DerpDEX is now on opBNB! 🚀', 'content' => 'Content of DerpDEX is now on opBNB! 🚀', 'hits' => '0',  'status' => '1'],
-            ['name' => 'Black Panther Mainnet Launch',  'intro' => 'Introduction of Black Panther Mainnet Launch', 'content' => 'Content of Black Panther Mainnet Launch', 'hits' => '0',  'status' => '1'],
-            ['name' => 'AltLayer Altitude Phase IV: Autonomous Worlds',  'intro' => 'Introduction of AltLayer Altitude Phase IV: Autonomous Worlds', 'content' => 'Content of AltLayer Altitude Phase IV: Autonomous Worlds', 'hits' => '0',  'status' => '1'],
-            ['name' => 'Pulsar in the Distance',  'intro' => 'Introduction of Pulsar in the Distance', 'content' => 'Content of Pulsar in the Distance', 'hits' => '0',  'status' => '1'],
-            ['name' => 'SecondLive x Scroll Sepolia – Onboard a Gift Unlocking Journey',  'intro' => 'Introduction of SecondLive x Scroll Sepolia – Onboard a Gift Unlocking Journey', 'content' => 'Content of SecondLive x Scroll Sepolia – Onboard a Gift Unlocking Journey', 'hits' => '0',  'status' => '1'],
-            ['name' => 'Catalyst Research Supporter',  'intro' => 'Introduction of Catalyst Research Supporter', 'content' => 'Content of Catalyst Research Supporter', 'hits' => '0',  'status' => '1'],
-            ['name' => 'Airdrop for Galxe Campaign Supporters ',  'intro' => 'Introduction of Airdrop for Galxe Campaign Supporters ', 'content' => 'Content of Airdrop for Galxe Campaign Supporters ', 'hits' => '0',  'status' => '1'],
-            ['name' => 'Scroll Sepolia Testnet Galxe Campaign',  'intro' => 'Introduction of Scroll Sepolia Testnet Galxe Campaign', 'content' => 'Content of Scroll Sepolia Testnet Galxe Campaign', 'hits' => '0',  'status' => '1'],
-            ['name' => 'Lynx Testnet - Base &amp; Mantle',  'intro' => 'Introduction of Lynx Testnet - Base &amp; Mantle', 'content' => 'Content of Lynx Testnet - Base &amp; Mantle', 'hits' => '0',  'status' => '1'],
-            ['name' => 'Particle Network and COMBO Network Campaign',  'intro' => 'Introduction of Particle Network and COMBO Network Campaign', 'content' => 'Content of Particle Network and COMBO Network Campaign', 'hits' => '0',  'status' => '1'],
-            ['name' => 'RedStone ✖️ Scroll Sepolia Testnet Campaign ',  'intro' => 'Introduction of RedStone ✖️ Scroll Sepolia Testnet Campaign ', 'content' => 'Content of RedStone ✖️ Scroll Sepolia Testnet Campaign ', 'hits' => '0',  'status' => '1'],
-            ['name' => '1 Million $PPT Airdrop! Mint opBNB Pop Pilot Pass',  'intro' => 'Introduction of 1 Million $PPT Airdrop! Mint opBNB Pop Pilot Pass', 'content' => 'Content of 1 Million $PPT Airdrop! Mint opBNB Pop Pilot Pass', 'hits' => '0',  'status' => '1'],
-            ['name' => 'Catalyst Missions Launch Supporter',  'intro' => 'Introduction of Catalyst Missions Launch Supporter', 'content' => 'Content of Catalyst Missions Launch Supporter', 'hits' => '0',  'status' => '1'],
-            ['name' => 'Join zkLink Insights and win 10 loyalty points!',  'intro' => 'Introduction of Join zkLink Insights and win 10 loyalty points!', 'content' => 'Content of Join zkLink Insights and win 10 loyalty points!', 'hits' => '0',  'status' => '1'],
-            ['name' => '🎁Earn Your Metaverse Passport: SecondLive on Scroll Sepolia',  'intro' => 'Introduction of 🎁Earn Your Metaverse Passport: SecondLive on Scroll Sepolia', 'content' => 'Content of 🎁Earn Your Metaverse Passport: SecondLive on Scroll Sepolia', 'hits' => '0',  'status' => '1']
+            ['name' => 'The Blueberry Nebula',  'intro' => 'Introduction of The Blueberry Nebula', 'content' => 'Content of The Blueberry Nebula', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'Particle Network and Scroll Sepolia Campaign',  'intro' => 'Introduction of Particle Network and Scroll Sepolia Campaign', 'content' => 'Content of Particle Network and Scroll Sepolia Campaign', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'DerpDEX is now on opBNB! 🚀',  'intro' => 'Introduction of DerpDEX is now on opBNB! 🚀', 'content' => 'Content of DerpDEX is now on opBNB! 🚀', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'Black Panther Mainnet Launch',  'intro' => 'Introduction of Black Panther Mainnet Launch', 'content' => 'Content of Black Panther Mainnet Launch', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'AltLayer Altitude Phase IV: Autonomous Worlds',  'intro' => 'Introduction of AltLayer Altitude Phase IV: Autonomous Worlds', 'content' => 'Content of AltLayer Altitude Phase IV: Autonomous Worlds', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'Pulsar in the Distance',  'intro' => 'Introduction of Pulsar in the Distance', 'content' => 'Content of Pulsar in the Distance', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'SecondLive x Scroll Sepolia – Onboard a Gift Unlocking Journey',  'intro' => 'Introduction of SecondLive x Scroll Sepolia – Onboard a Gift Unlocking Journey', 'content' => 'Content of SecondLive x Scroll Sepolia – Onboard a Gift Unlocking Journey', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'Catalyst Research Supporter',  'intro' => 'Introduction of Catalyst Research Supporter', 'content' => 'Content of Catalyst Research Supporter', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'Airdrop for Galxe Campaign Supporters ',  'intro' => 'Introduction of Airdrop for Galxe Campaign Supporters ', 'content' => 'Content of Airdrop for Galxe Campaign Supporters ', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'Scroll Sepolia Testnet Galxe Campaign',  'intro' => 'Introduction of Scroll Sepolia Testnet Galxe Campaign', 'content' => 'Content of Scroll Sepolia Testnet Galxe Campaign', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'Lynx Testnet - Base &amp; Mantle',  'intro' => 'Introduction of Lynx Testnet - Base &amp; Mantle', 'content' => 'Content of Lynx Testnet - Base &amp; Mantle', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'Particle Network and COMBO Network Campaign',  'intro' => 'Introduction of Particle Network and COMBO Network Campaign', 'content' => 'Content of Particle Network and COMBO Network Campaign', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'RedStone ✖️ Scroll Sepolia Testnet Campaign ',  'intro' => 'Introduction of RedStone ✖️ Scroll Sepolia Testnet Campaign ', 'content' => 'Content of RedStone ✖️ Scroll Sepolia Testnet Campaign ', 'hits' => '0',  'status' => 'Active'],
+            ['name' => '1 Million $PPT Airdrop! Mint opBNB Pop Pilot Pass',  'intro' => 'Introduction of 1 Million $PPT Airdrop! Mint opBNB Pop Pilot Pass', 'content' => 'Content of 1 Million $PPT Airdrop! Mint opBNB Pop Pilot Pass', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'Catalyst Missions Launch Supporter',  'intro' => 'Introduction of Catalyst Missions Launch Supporter', 'content' => 'Content of Catalyst Missions Launch Supporter', 'hits' => '0',  'status' => 'Active'],
+            ['name' => 'Join zkLink Insights and win 10 loyalty points!',  'intro' => 'Introduction of Join zkLink Insights and win 10 loyalty points!', 'content' => 'Content of Join zkLink Insights and win 10 loyalty points!', 'hits' => '0',  'status' => 'Active'],
+            ['name' => '🎁Earn Your Metaverse Passport: SecondLive on Scroll Sepolia',  'intro' => 'Introduction of 🎁Earn Your Metaverse Passport: SecondLive on Scroll Sepolia', 'content' => 'Content of 🎁Earn Your Metaverse Passport: SecondLive on Scroll Sepolia', 'hits' => '0',  'status' => 'Active']
         ];
     }
 
@@ -151,22 +151,22 @@ class SampleQuestData extends Seeder
 
     private function createSampleTags() {
         return [
-            ['name' => '50Point',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '100Point',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '150Point',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '200Point',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '250Point',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '300Point',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '350Point',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '400Point',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '50USDT',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '100USDT',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '150USDT',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '200USDT',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '250USDT',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '300USDT',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '350USDT',  'slug' => uniqid(), 'status' => '1'],
-            ['name' => '400USDT',  'slug' => uniqid(), 'status' => '1'],
+            ['name' => '50Point',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '100Point',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '150Point',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '200Point',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '250Point',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '300Point',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '350Point',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '400Point',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '50USDT',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '100USDT',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '150USDT',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '200USDT',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '250USDT',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '300USDT',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '350USDT',  'slug' => uniqid(), 'status' => 'Active'],
+            ['name' => '400USDT',  'slug' => uniqid(), 'status' => 'Active'],
 
         ];
     }
