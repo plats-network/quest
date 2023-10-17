@@ -20,13 +20,14 @@ return [
         'sanctum/csrf-cookie',
         //admin
         'admin/*',
+        'plats-quest.vaix.group/*',
     ],
 
     'allowed_methods' => ['*'],
 
     'allowed_origins' => ['*'],
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => ['*'],
 
     'allowed_headers' => ['*'],
 
