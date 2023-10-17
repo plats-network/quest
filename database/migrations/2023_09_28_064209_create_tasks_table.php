@@ -152,6 +152,7 @@ return new class extends Migration {
     {
         Schema::dropIfExists('tasks');
         Schema::dropIfExists('user_task_status');
+        Schema::dropIfExists('user_rewards');
         Schema::dropIfExists('user_task_activity');
     }
 };
