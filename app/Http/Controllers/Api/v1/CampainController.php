@@ -44,6 +44,7 @@ class CampainController extends Controller
 
     public function store(StoreRequest $request, StoreUseCase $useCase): JsonResponse
     {
+
         return $useCase->handle($request->validated());
     }
 

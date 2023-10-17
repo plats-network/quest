@@ -22,15 +22,22 @@ final class StoreUseCase
         unset($data['files']);
         //tags_list
         unset($data['tags_list']);
+        $dataTask = $data['tasks'];
+
+        unset($data['tasks']);
 
         //$data['password'] = bcrypt($password);
         //$data['email_verified_at'] = now();
 
         $campain = Campain::factory()->create($data);
         //Store Task
-        //$campain->tasks()->createMany($data['tasks']);
+        $campain->tasks()->createMany($dataTask);
 
         //Notification::send($campain, new AccountCreated($password));
+        $dataReturn = $campain->toArray();
+        //Data list tasks
+        $dataReturn['tasks'] = $campain->tasks()->get()->toArray();
+
 
         return $this->successResponse('Campain created successfully.', $campain);
     }
