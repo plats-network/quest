@@ -32,7 +32,8 @@ final class GetItemUseCase
 
         //Get list user in $listUserID
         $userPlayTasks = User::query()
-            ->whereIn('id', $listUserID)
+            //->whereIn('id', $listUserID)
+            ->limit(10)
             ->get();
         //Data User Play
         $dataCampain['users_play'] = $userPlayTasks->toArray();
@@ -40,12 +41,14 @@ final class GetItemUseCase
         //UserReward
         $userRewards = UserReward::query()
             ->where('post_id', '=', $campain->id)
+            //->limit(10)
             ->get();
         //Get ids user win
         $listUserWinID = $userRewards->pluck('user_id')->toArray();
         //Get list user win
         $userWinTasks = User::query()
-            ->whereIn('id', $listUserWinID)
+            //->whereIn('id', $listUserWinID)
+            ->limit($campain->total_person ?? 5)
             ->get();
         //Data User Win
         $dataCampain['users_reward'] = $userWinTasks->toArray();
