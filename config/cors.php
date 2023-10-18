@@ -20,6 +20,7 @@ return [
         'sanctum/csrf-cookie',
         //admin
         'admin/*',
+        'posts/*',
         'plats-quest.vaix.group/*',
     ],
 
