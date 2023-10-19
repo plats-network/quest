@@ -142,7 +142,8 @@ use App\Models\Task;
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                 <p class="mb-2 text-gray-500 dark:text-gray-400">
                                     {{$task->name}}
-                                    <button type="button" data-canopen="true" data-id="{{$task->id}}" class="btnCheckStatus ml-5 text-blue-700 border border-blue-700  hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+
+                                    <button type="button" data-canopen="true" data-id="{{$task->id}}" class=" @if(in_array($task->id, $arrTaskUserHasPlay)) hidden @else show  @endif btnCheckStatus ml-5 text-blue-700 border border-blue-700  hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
 
                                         {{--Check task is done will show svg done--}}
                                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -152,7 +153,7 @@ use App\Models\Task;
                                         <span class="sr-only">Icon description</span>
                                     </button>
 
-                                    <button type="button" class="hidden text-blue-700 border border-blue-700  hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                                    <button type="button" class="@if(in_array($task->id, $arrTaskUserHasPlay)) show @else hidden @endif btnCheckStatusSuccess text-green-700 border border-blue-700  hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
 
                                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
@@ -163,7 +164,7 @@ use App\Models\Task;
 
                                 </p>
 
-                                <button data-isopen="true" data-action="{{$task->type_value}}" data-url="{{$task->value}}" type="button" class="headingAction text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2">
+                                <button data-tooltip-target="tooltip-dark{{$task->id}}" data-isopen="true" data-action="{{$task->type_value}}" data-url="{{$task->value}}" type="button" class="headingAction text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2">
                                     <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
                                         <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clip-rule="evenodd"/>
                                     </svg>
@@ -173,6 +174,11 @@ use App\Models\Task;
                                          Twitter  {{Str::studly(Str::lower($task->type_value))}}
                                     @endif
                                 </button>
+
+                                <div id="tooltip-dark{{$task->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                    Tooltip content
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
                             </div>
                         </div>
                         @endforeach
@@ -207,6 +213,10 @@ use App\Models\Task;
             </div>
         </section>
     </div>
+
+
+
+
 
 
 @endsection
@@ -265,6 +275,12 @@ use App\Models\Task;
             const accordion = new Accordion(accordionItems, options);
 
             //Class headingAction on click
+            $('.btnCheckStatusSuccess').on('click', function () {
+                //Alert Success
+                alert('Task Completed');
+
+            } );
+
             $('.btnCheckStatus').on('click', function () {
                 //Open Spinner
                 var selectButton = $(this);
@@ -294,7 +310,7 @@ use App\Models\Task;
                         selectButton.html('<svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"> ' +
                             '<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/> ' +
                             '</svg>');
-
+                        alert('Task Completed');
                     }
                 });
 
@@ -325,6 +341,7 @@ use App\Models\Task;
             });
 
             //https://github.com/twitterdev/Twitter-API-v2-sample-code/blob/main/Follows-Lookup/following_lookup.js
+
 
         });
     </script>

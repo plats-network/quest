@@ -37,11 +37,8 @@
                         $img_link = url($img_link);
                     }
                 @endphp
-                <img class="w-full" src="{{$img_link}}" alt="" data-config-id="auto-img-2-2">
+                <img class="w-full fitting-image imgExampleColumnList " src="{{$img_link}}" alt="" data-config-id="auto-img-2-2">
             </a>
-
-
-
 
             <a class="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline" href="#" data-config-id="auto-txt-11-2">{{$$module_name_singular->name}}</a>
             <div class="flex flex-row content-center my-4">

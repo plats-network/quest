@@ -120,6 +120,7 @@ class PostsController extends Controller
         //$user->hasFavorited($post);
         $hasFavorited = false;
         $listTaskUserHasPlay = null;
+        $arrTaskUserHasPlay = [];
         //Check has $questUser
         if ($questUser){
             $hasFavorited = $questUser->hasFavorited($$module_name_singular);
@@ -127,14 +128,19 @@ class PostsController extends Controller
                 ->where('user_id', '=', $questUser->id)
                 ->where('post_id', '=', $id)
                 ->get();
+            //Get id of task user has play
+            foreach ($listTaskUserHasPlay as $taskUserHasPlay){
+                $arrTaskUserHasPlay[] = $taskUserHasPlay->task_id;
+            }
         }
+
 
         //Check user has followed
         //$questUser->hasTwitterFollowed('Scroll_ZKP');
 
         return view(
             "quest.posts.show",
-            compact('module_title', 'hasFavorited','tasks','module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
+            compact('module_title',  'arrTaskUserHasPlay', 'hasFavorited','tasks','module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
         );
     }
 
