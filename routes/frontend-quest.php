@@ -39,7 +39,7 @@ Route::get('dashboard', function () {
 *
 * --------------------------------------------------------------------
 */
-Route::group(['as' => 'quest.'], function () {
+Route::group(['middleware' => ['cors'], 'as' => 'quest.', ], function () {
 
     //Route::get('/', [FrontendController::class, 'index'])->name('index');
     Route::get('/', [PostsController::class, 'index'])->name('index');
@@ -56,7 +56,7 @@ Route::group(['as' => 'quest.'], function () {
     //Wallet Login
     Route::any('wallet-login', [FrontendController::class, 'walletLogin'])->name('wallet-login');
 
-    Route::group(['middleware' => ['auth:quest']], function () {
+    Route::group(['middleware' => ['auth:quest', 'cors']], function () {
         /*
         *
         *  Users Routes
