@@ -9,6 +9,7 @@ use App\Models\Post as Campain;
 use App\Notifications\AccountCreated;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 final class StoreUseCase
@@ -18,6 +19,10 @@ final class StoreUseCase
     public function handle(array $data): JsonResponse
     {
         $password = Str::password(8);
+        //Upload thumbnail image
+        if (isset($data['thumbnail'])) {
+            $data['thumbnail'] = $this->saveImgBase64($data['thumbnail'], 'thumbnail');
+        }
         //Unset data files
         unset($data['files']);
         //tags_list
@@ -40,5 +45,25 @@ final class StoreUseCase
 
 
         return $this->successResponse('Campain created successfully.', $campain);
+    }
+
+    protected function saveImgBase64($param, $folder)
+    {
+        list($extension, $content) = explode(';', $param);
+        $tmpExtension = explode('/', $extension);
+        preg_match('/.([0-9]+) /', microtime(), $m);
+        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $tmpExtension[1]);
+        $content = explode(',', $content)[1];
+        $storage = Storage::disk('cloudinary2');
+
+        $checkDirectory = $storage->exists($folder);
+
+        if (!$checkDirectory) {
+            $storage->makeDirectory($folder);
+        }
+
+        $storage->put($folder . '/' . $fileName, base64_decode($content), 'public');
+
+        return $fileName;
     }
 }

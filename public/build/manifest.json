@@ -55,12 +55,12 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-e98f0751.css",
+    "file": "assets/app-frontend-6a8d8427.css",
     "isEntry": true,
     "src": "resources/css/app-frontend.css"
   },
   "resources/css/app.css": {
-    "file": "assets/app-0319eb1d.css",
+    "file": "assets/app-91fd932b.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },

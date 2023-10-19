@@ -24,69 +24,54 @@
 
 
 <section class="bg-white text-gray-600 p-6 sm:p-20">
-    <div class="grid grid-cols-4 sm:grid-cols-4 gap-6">
+    <div class="flex flex-wrap -mx-4 mb-12 md:mb-20">
         @foreach ($$module_name as $$module_name_singular)
-        @php
-        $details_url = route("quest.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
-        @endphp
-        <div class="">
-            <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex flex-col items-stretch">
-                    <a href="{{$details_url}}" class="overflow-hidden">
-                        @php
-                            $img_link = $$module_name_singular->featured_image;
-                            if (!Str::startsWith($img_link, 'http')) {
-                                $img_link = url($img_link);
-                            }
-                        @endphp
-                        <img src="{{$img_link}}" alt="" class="fitting-image imgExampleColumnList  rounded-t-lg  duration-200">
-                    </a>
-                    <div class="p-3 sm:p-5">
-                        <a href="{{$details_url}}">
-                            <h2 class="mb-2 text-md sm:text-2xl tracking-tight text-gray-900 dark:text-white">
-                                {{$$module_name_singular->name}}
-                            </h2>
-                        </a>
-                        <div class="flex flex-row content-center my-4">
-                            <address class="flex items-center mb-6 not-italic">
-                                <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                                    <img class="w-5 h-5 sm:w-8 sm:h-8 rounded-full" src="https://res.cloudinary.com/dhploi5y1/image/upload/v1696240313/a49dc6a0-8564-48dd-b99d-16b008957acc_oexjni.png" alt="Jese Leos">
-                                    <div>
-                                        <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">Altlayer
-                                            <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full dark:bg-gray-700 dark:text-blue-400">
+            @php
+                $details_url = route("quest.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
+            @endphp
+        <div class="w-full sm:w-full md:w-1/2 lg:w-1/4 px-4 mb-8">
+            <a class="block mb-6 overflow-hidden rounded-md" href="{{$details_url}}">
+                @php
+                    $img_link = $$module_name_singular->featured_image;
+                    if (!Str::startsWith($img_link, 'http')) {
+                        $img_link = url($img_link);
+                    }
+                @endphp
+                <img class="w-full" src="{{$img_link}}" alt="" data-config-id="auto-img-2-2">
+            </a>
+
+
+
+
+            <a class="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline" href="#" data-config-id="auto-txt-11-2">{{$$module_name_singular->name}}</a>
+            <div class="flex flex-row content-center my-4">
+                <address class="flex items-center mb-6 not-italic">
+                    <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                        <img class="w-5 h-5 sm:w-8 sm:h-8 rounded-full" src="https://res.cloudinary.com/dhploi5y1/image/upload/v1696240313/a49dc6a0-8564-48dd-b99d-16b008957acc_oexjni.png" alt="Jese Leos">
+                        <div>
+                            <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">Altlayer
+                                <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full dark:bg-gray-700 dark:text-blue-400">
                                               <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
                                                 <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
                                               </svg>
                                              <span class="sr-only">Icon description</span>
                                             </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </address>
-                        </div>
-                        <p class="flex-1 h-full mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            {{$$module_name_singular->intro}}
-                        </p>
-                        <p>
-                            <a href="{{route('quest.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{$$module_name_singular->category_name}}</a>
-                        </p>
-                        <p>
-                            @foreach ($$module_name_singular->tags as $tag)
-                            <a href="{{route('quest.tags.show', [encode_id($tag->id), $tag->slug])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">
-                                {{$tag->name}}
                             </a>
-                            <!-- text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 -->
-                            @endforeach
-                        </p>
-
+                        </div>
                     </div>
-                </div>
+                </address>
             </div>
+
+            <p class="mb-2 text-coolGray-500 font-medium" data-config-id="auto-txt-10-2">{{$$module_name_singular->intro}}</p>
+            <p>
+                <a href="{{route('quest.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{$$module_name_singular->category_name}}</a>
+            </p>
         </div>
 
         @endforeach
     </div>
+
     <div class="d-flex justify-content-center w-100 mt-3">
         {{$$module_name->links()}}
     </div>
