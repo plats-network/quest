@@ -55,6 +55,9 @@ final class StoreUseCase
         Log::info($content);
         //Remover text data:image/webp;base64, from content
         $content = str_replace('data:image/webp;base64,', '', $content);
+        $content = str_replace('data:image/png;base64,', '', $content);
+        $content = str_replace('data:image/jpeg;base64,', '', $content);
+        $content = str_replace('data:image/gif;base64,', '', $content);
         $extension = '.jpg';
 
         preg_match('/.([0-9]+) /', microtime(), $m);
