@@ -44,6 +44,7 @@ class StoreRequest extends FormRequest
             'intro' => 'nullable',
             'content' => 'nullable',
             'files' => 'nullable',
+            'thumbnail' => 'nullable',
             'featured_image' => 'nullable',
             'category_id' => 'nullable',
             'tags_list' => 'nullable',

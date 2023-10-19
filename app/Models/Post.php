@@ -9,6 +9,7 @@ use Database\Factories\PostFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -354,6 +355,30 @@ class Post extends BaseModel
                 $this->attributes['meta_og_image'] = setting('meta_image');
             }
         }
+    }
+
+    //Get featured_image attribute
+    public function getFeaturedImageAttribute($value)
+    {
+        if (empty($value)) {
+            return 'https://picsum.photos/1200/630?random=17';
+        }
+        if (!Str::startsWith($value, 'http')) {
+            $value = url($value);
+        }
+        //Check contain cloudinary
+        $cloudinaryName = config('filesystems.disks.cloudinary2.cloud_name', 'dhploi5y1');
+        if (Str::of($value)->contains('cloudinary')) {
+            //Resize Image By Cloudinary
+
+            //https://res.cloudinary.com/demo/image/fetch/c_fill,g_face,h_300,w_300/r_max/f_auto/https://upload.wikimedia.org/wikipedia/commons/1/13/Benedict_Cumberbatch_2011.png
+            $fullPath = 'https://res.cloudinary.com/'.$cloudinaryName.'/image/fetch/q_auto,c_fill,h_630,w_1200/v1675746037/'.$value;
+
+            return $fullPath;
+        }
+
+
+        return $value;
     }
 
     /**

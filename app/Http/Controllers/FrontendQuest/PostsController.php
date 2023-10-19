@@ -64,7 +64,7 @@ class PostsController extends Controller
             ->published()
             ->with(['category', 'tags', 'comments'])
             ->orderBy('id', 'desc')
-            ->paginate();
+            ->paginate(8);
 
         return view(
             "quest.posts.index",

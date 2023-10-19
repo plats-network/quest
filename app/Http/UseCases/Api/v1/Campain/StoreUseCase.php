@@ -21,9 +21,10 @@ final class StoreUseCase
         $password = Str::password(8);
         //Upload thumbnail image
         if (isset($data['thumbnail'])) {
-            $data['thumbnail'] = $this->saveImgBase64($data['thumbnail'], 'thumbnail');
+            $data['featured_image'] = $this->saveImgBase64($data['thumbnail'], 'thumbnail');
         }
         //Unset data files
+        unset($data['thumbnail']);
         unset($data['files']);
         //tags_list
         unset($data['tags_list']);
@@ -47,13 +48,14 @@ final class StoreUseCase
         return $this->successResponse('Campain created successfully.', $campain);
     }
 
-    protected function saveImgBase64($param, $folder)
+    protected function saveImgBase64($content, $folder)
     {
-        list($extension, $content) = explode(';', $param);
-        $tmpExtension = explode('/', $extension);
+        $extension = '.jpg';
+
         preg_match('/.([0-9]+) /', microtime(), $m);
-        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $tmpExtension[1]);
-        $content = explode(',', $content)[1];
+
+        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $extension);
+
         $storage = Storage::disk('cloudinary2');
 
         $checkDirectory = $storage->exists($folder);
@@ -62,8 +64,11 @@ final class StoreUseCase
             $storage->makeDirectory($folder);
         }
 
-        $storage->put($folder . '/' . $fileName, base64_decode($content), 'public');
+        $fileNameSave =$folder . '/' . $fileName;
+        $storage->put($fileNameSave, base64_decode($content), 'public');
+        $fullURL = Storage::disk('cloudinary2')->url($fileNameSave);
 
-        return $fileName;
+
+        return $fullURL;
     }
 }
