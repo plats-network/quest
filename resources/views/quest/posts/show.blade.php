@@ -295,6 +295,7 @@ use App\Models\Task;
                 $.ajax({
                     url: url,
                     type: 'POST',
+                    crossDomain: true,
                     data: {
                         id: id,
                         type: type,
