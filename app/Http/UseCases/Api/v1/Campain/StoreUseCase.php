@@ -8,6 +8,7 @@ use App\Http\Shared\MakeApiResponse;
 use App\Models\Post as Campain;
 use App\Notifications\AccountCreated;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -50,6 +51,8 @@ final class StoreUseCase
 
     protected function saveImgBase64($content, $folder)
     {
+        //Log content
+        Log::info($content);
         $extension = '.jpg';
 
         preg_match('/.([0-9]+) /', microtime(), $m);
@@ -67,6 +70,8 @@ final class StoreUseCase
         $fileNameSave =$folder . '/' . $fileName;
         $storage->put($fileNameSave, base64_decode($content), 'public');
         $fullURL = Storage::disk('cloudinary2')->url($fileNameSave);
+        //Log Full Url
+        Log::info($fullURL);
 
 
         return $fullURL;
