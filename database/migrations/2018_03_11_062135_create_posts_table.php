@@ -49,8 +49,8 @@ class CreatePostsTable extends Migration
             $table->integer('deleted_by')->unsigned()->nullable();
 
             //Start, end datetime
-            $table->dateTime('start_at')->nullable();
-            $table->dateTime('end_at')->nullable();
+            $table->string('start_at')->nullable();
+            $table->string('end_at')->nullable();
 
             //Total Token
             $table->string('reward_type')->nullable();
@@ -58,7 +58,8 @@ class CreatePostsTable extends Migration
             $table->integer('total_token')->nullable();
             $table->integer('total_person')->nullable();
 
-            $table->timestamp('published_at')->nullable();
+            $table->string('published_at')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

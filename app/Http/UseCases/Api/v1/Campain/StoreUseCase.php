@@ -53,6 +53,8 @@ final class StoreUseCase
     {
         //Log content
         Log::info($content);
+        //Remover text data:image/webp;base64, from content
+        $content = str_replace('data:image/webp;base64,', '', $content);
         $extension = '.jpg';
 
         preg_match('/.([0-9]+) /', microtime(), $m);
