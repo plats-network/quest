@@ -19,6 +19,7 @@ return [
         'api/*',
         'sanctum/csrf-cookie',
         //admin
+        'tasks/*',
         'admin/*',
         'posts/*',
         'plats-quest.vaix.group/*',
