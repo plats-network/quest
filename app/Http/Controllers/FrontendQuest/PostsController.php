@@ -223,6 +223,48 @@ class PostsController extends Controller
                     return response()->json(['success'=>'Task is completed']);
                 }
                 break;
+
+            case Task::TRANSFER_TYPE_HOLDERS:
+                $wallet_address = $questUser->wallet_address;
+                $networkName = $task->block_chain_network;
+                $totalToken = $task->total_token;
+
+                if ($questUser->hasTokenHolder($networkName, $totalToken )){
+                    //Set completed
+                    $userTaskStatus->setCompleted();
+                    return response()->json([
+                        'status' => 1,
+                        'success'=>'Task is completed'
+                    ]);
+                }else{
+                    //Check if user has token holder
+                    $userTaskStatus->setOpen();
+                    return response()->json([
+                        'status' => 0,
+                        'success'=>'Task is not completed'
+                    ]);
+                }
+                break;
+            case Task::TRANSFER_TYPE_ACTIVITY:
+                $wallet_address = $questUser->wallet_address;
+                $networkName = $task->block_chain_network;
+                $totalToken = $task->total_token;
+                if ($questUser->hasTransactionActivity($networkName, $totalToken )){
+                    //Set completed
+                    $userTaskStatus->setCompleted();
+                    return response()->json([
+                        'status' => 1,
+                        'success'=>'Task is completed'
+                    ]);
+                }else{
+                    //Check if user has token holder
+                    $userTaskStatus->setOpen();
+                    return response()->json([
+                        'status' => 0,
+                        'success'=>'Task is not completed'
+                    ]);
+                }
+                break;
         }
 
 

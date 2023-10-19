@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Http;
 use App\Models\Presenters\UserPresenter;
 use App\Models\Traits\HasHashedMediaTrait;
 use App\Services\Twitter\TwitterApiService;
@@ -283,6 +284,71 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
 
         return true;
     }
+
+    //hasTokenHolder
+    public function hasTokenHolder($networkName, $totalToken){
+        //Call api Check accoutn
+        //http://194.233.72.10:8000/check-account?accountId=YQnbw3h6couUX48Ghs3qyzhdbyxA3Gu9KQCoi8z2CPBf9N3&chainId=phala
+        //Param accountId chainId
+        //Return true or false
+        $wallet_address = $this->wallet_address;
+        //$networkName to lower
+        $networkName = strtolower($networkName);
+        //Call
+        $url = 'http://194.233.72.10:8000/check-account?accountId='. $wallet_address. '&chainId='. $networkName;
+        $response = Http::get($url);
+        //{
+        //    "success": true,
+        //    "data": {
+        //        "balance": "0.00000"
+        //    }
+        //}
+        $res = $response->json();
+        //Check wallet balance > totalToken
+        if ($res['success'] == true){
+            $balance = $res['data']['balance'];
+            if ($balance >= $totalToken){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function hasTransactionActivity($networkName, $totalToken){
+        //Call api Check accoutn
+        //http://194.233.72.10:8000/info-transfer?accountId=F3opxRbMKKF5x3YyiodUPKUsZJq8j8enDPvqH2MQqw1C7i7&chainId=phala
+        //Param accountId chainId
+        //Return true or false
+        //$wallet_address = $this->wallet_address;
+        $wallet_address = 'F3opxRbMKKF5x3YyiodUPKUsZJq8j8enDPvqH2MQqw1C7i7';
+        //$networkName to lower
+        $networkName = strtolower($networkName);
+        //Call
+        $url = 'http://194.233.72.10:8000/info-transfer?accountId='. $wallet_address. '&chainId='. $networkName;
+        $response = Http::get($url);
+        //{
+        //    "success": true,
+        //    "data": {
+        //        "amount": "0.36975",
+        //        "timestamp": "2023-10-09T13:20:49.096Z"
+        //    }
+        //}
+        $res = $response->json();
+        //Check wallet balance > totalToken
+        if ($res['success'] == true){
+            $balance = $res['data']['amount'];
+            if ($balance >= $totalToken){
+                return true;
+            }
+        }
+        //Fail
+        //"success" => false
+        //  "message" => "No transfer records found for the given account ID."
+
+        return false;
+    }
+
     public function hasTwitterFollowed2($username){
         //Check if user has followed
         //Call Twitter API

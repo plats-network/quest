@@ -153,7 +153,7 @@ use App\Models\Task;
                                         <span class="sr-only">Icon description</span>
                                     </button>
 
-                                    <button type="button" class="@if(in_array($task->id, $arrTaskUserHasPlay)) show @else hidden @endif btnCheckStatusSuccess text-green-700 border border-blue-700  hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                                    <button type="button" data-id="{{$task->id}}"  class="@if(in_array($task->id, $arrTaskUserHasPlay)) show @else hidden @endif btnCheckStatus text-green-700 border border-blue-700  hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
 
                                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
@@ -301,16 +301,25 @@ use App\Models\Task;
                         _token: '{{ csrf_token() }}'
                     },
                     success: function (data) {
-                        //console.log(data);
-                        //Remove class animate-spin fill-blue-600 to button
-                        selectButton.removeClass('animate-spin fill-blue-600 text-blue-700');
-                        //Add class text-green-500
-                        selectButton.addClass('text-green-500');
-                        //Change SVG Value
-                        selectButton.html('<svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"> ' +
-                            '<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/> ' +
-                            '</svg>');
-                        alert('Task Completed');
+                        console.log(data['status'])
+                        //Check data status is false
+                        if(data['status'] == 0){
+                            //console.log(data);
+                            //Remove class animate-spin fill-blue-600 to button
+                            selectButton.removeClass('animate-spin fill-blue-600 text-blue-700');
+                            alert(data['success']);
+                        }else{
+                            //console.log(data);
+                            //Remove class animate-spin fill-blue-600 to button
+                            selectButton.removeClass('animate-spin fill-blue-600 text-blue-700');
+                            //Add class text-green-500
+                            selectButton.addClass('text-green-500');
+                            //Change SVG Value
+                            selectButton.html('<svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"> ' +
+                                '<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/> ' +
+                                '</svg>');
+                            alert(data['success']);
+                        }
                     }
                 });
 

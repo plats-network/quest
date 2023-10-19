@@ -17,6 +17,11 @@ use App\Http\Controllers\Api\v1\CommentController;
 use App\Http\Controllers\Api\v1\TaskController;
 use Illuminate\Support\Facades\Route;
 
+//Ping
+Route::get('ping', function () {
+    return ['pong' => true];
+});
+
 //Authentication routes
 Route::post('login', LoginController::class);
 
@@ -25,6 +30,24 @@ Route::post('register', RegisterController::class);
 Route::post('wallet-login', WalletLoginController::class);
 
 Route::post('wallet-register', WalletRegisterController::class);
+
+Route::post('connect-wallet', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'connectWallet'])->name('connect-wallet');
+
+//Get campain infor to show reward type. block chain network, total token, total person
+Route::get('get-campain-infor', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'getCampainInfor'])->name('get-campain-infor');
+
+//Update user reward status
+Route::post('update-user-reward-status', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'updateUserRewardStatus'])->name('update-user-reward-status');
+
+//Update quest deposit status
+Route::post('update-quest-deposit-status', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'updateQuestDepositStatus'])->name('update-quest-deposit-status');
+
+Route::get('users', function () {
+    // Route assigned name "admin.users"...
+})->name('users');
+
+//Update Post total token and block chain network
+Route::post('update-post-total-token', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'updatePostTotalToken'])->name('update-post-total-token');
 
 
 Route::get('/', function () {
