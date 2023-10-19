@@ -296,6 +296,12 @@ use App\Models\Task;
                     url: url,
                     type: 'POST',
                     crossDomain: true,
+                    CORS: true ,
+                    contentType:'application/json',
+                    secure: true,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                    },
                     data: {
                         id: id,
                         type: type,
