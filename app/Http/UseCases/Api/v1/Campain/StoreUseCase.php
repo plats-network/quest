@@ -19,6 +19,10 @@ final class StoreUseCase
 
     public function handle(array $data): JsonResponse
     {
+
+        //Log data
+        Log::info('Submit data', $data);
+
         $password = Str::password(8);
         //Upload thumbnail image
         if (isset($data['thumbnail'])) {

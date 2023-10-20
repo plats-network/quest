@@ -54,6 +54,8 @@ Route::get('500', Err500::class)->name('admin.500');
 Route::get('upgrade-to-pro', UpgradeToPro::class)->name('admin.upgrade-to-pro');
 
 //Update db
+Route::get('update-db', [\App\Http\Controllers\UpdateDbController::class, 'updateDb'])->name('update-db');
+
 /*Route::get('update-db', function () {
     //Drop table tasks from database
     \Illuminate\Support\Facades\Schema::dropIfExists('tasks');

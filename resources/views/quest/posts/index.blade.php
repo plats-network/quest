@@ -15,7 +15,7 @@
             object-fit: contain;
         }
         .imgExampleColumnList {
-            max-height: 218px;
+            max-height: 160px;
             min-height: auto;
         }
     </style>

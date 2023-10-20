@@ -124,10 +124,21 @@
                         $field_lable = 'Blockchain Network';
                         $field_placeholder = "-- Select an option --";
                         $required = "";
-                        $select_options = [
-                            'PHALA' => 'Phala',
-                            'ALEPH_ZERO' => 'Aleph Zero',
-                        ];
+                        $select_options =  \App\Models\Post::getAllCategoryToken();
+                        ?>
+                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 mt-3">
+                    <div class="form-group">
+                        <?php
+                        $field_name = 'category_token';
+                        $field_lable = 'Category Token';
+                        $field_placeholder = "-- Select an option --";
+                        $required = "";
+                        $select_options = \App\Models\Post::getAllCategoryToken();
                         ?>
                         {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                         {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}

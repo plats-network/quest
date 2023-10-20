@@ -48,6 +48,7 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
  * @property integer $deposit_status
  * @property integer $reward_type
  * @property integer $block_chain_network
+ * @property integer $category_token
  * @property string $published_at
  * @property string $created_at
  * @property string $updated_at
@@ -68,6 +69,17 @@ class Post extends BaseModel
     const STATUS_ACTIVE = 'Active';
     const STATUS_DRAFT = 'Draft';
     const STATUS_PUBLISHED = 'Published';
+
+    //category_token
+    //Azero
+    const CATEGORY_TOKEN_AZERO = 'AZERO';
+    const CATEGORY_TOKEN_PHA = 'PHA';
+
+    //Reward type
+    //Token
+    const REWARD_TYPE_TOKEN ='TOKEN';
+    //NTF
+    const REWARD_TYPE_NTF ='NTF';
 
     /**
      * @var array
@@ -94,6 +106,7 @@ class Post extends BaseModel
         'end_at',
         'reward_type',
         'block_chain_network',
+        'category_token',
         'total_token',
         'total_person',
         'moderated_by',
@@ -151,6 +164,22 @@ class Post extends BaseModel
     {
         return [
             'custom_company_tag',
+        ];
+    }
+
+    //aLL category token
+    public static function getAllCategoryToken(){
+        return [
+            self::CATEGORY_TOKEN_AZERO => 'Azero',
+            self::CATEGORY_TOKEN_PHA => 'PHA',
+        ];
+    }
+
+    //aLL REWARD TYPE
+    public static function getAllRewardType(){
+        return [
+            self::REWARD_TYPE_TOKEN => 'Token',
+            self::REWARD_TYPE_NTF => 'NTF',
         ];
     }
 
@@ -372,9 +401,9 @@ class Post extends BaseModel
             //Resize Image By Cloudinary
 
             //https://res.cloudinary.com/demo/image/fetch/c_fill,g_face,h_300,w_300/r_max/f_auto/https://upload.wikimedia.org/wikipedia/commons/1/13/Benedict_Cumberbatch_2011.png
-            $fullPath = 'https://res.cloudinary.com/'.$cloudinaryName.'/image/fetch/q_auto,c_fill,h_630,w_1200/v1675746037/'.$value;
+            //$fullPath = 'https://res.cloudinary.com/'.$cloudinaryName.'/image/fetch/q_auto,c_fill,h_630,w_1200/v1675746037/'.$value;
 
-            return $fullPath;
+            //return $fullPath;
         }
 
 

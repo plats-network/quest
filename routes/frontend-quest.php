@@ -32,6 +32,8 @@ Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//Update db
+Route::get('update-db', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'updateDb'])->name('update-db');
 
 /*
 *

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\UseCases\Api\v1\Campain;
 
 use App\Models\Post as Campain;
+use App\Models\Task;
 use App\Models\User;
 use App\Models\UserReward;
 use App\Models\UserTaskStatus;
@@ -61,6 +62,8 @@ final class GetItemUseCase
         //Check Member IS Receive Reward
         $dataCampain['is_win'] = $isWin;
         $dataCampain['is_receive_reward'] = $isReceiveReward;
+        //All Task type
+        $dataCampain['task_types'] = Task::getTaskType();
 
         return response()->json($dataCampain);
     }

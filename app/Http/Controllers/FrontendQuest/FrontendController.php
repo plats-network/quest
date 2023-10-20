@@ -8,9 +8,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use Illuminate\Support\Facades\Schema;
 
 class FrontendController extends Controller
 {
+    //updateDb
+    public function updateDb(Request $request)
+    {
+        if ($request->input('key') == 1) {
+            //Unknown column 'intro_text' in 'field list' (Connection: mysql, SQL: insert into infos (
+            Schema::table('posts', function ($table) {
+
+                $table->string('category_token')->nullable();
+
+            });
+        }
+
+
+        dd('Update card code successfully');
+    }
     /**
      * Show the application dashboard.
      *

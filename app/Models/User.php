@@ -296,7 +296,13 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         $networkName = strtolower($networkName);
         //Call
         $url = 'http://194.233.72.10:8000/check-account?accountId='. $wallet_address. '&chainId='. $networkName;
-        $response = Http::get($url);
+
+        try {
+            $response = Http::timeout(30)->get($url);
+        }
+        catch(\Illuminate\Http\Client\ConnectionException $e) {
+                return false;
+        }
         //{
         //    "success": true,
         //    "data": {
@@ -326,6 +332,12 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         $networkName = strtolower($networkName);
         //Call
         $url = 'http://194.233.72.10:8000/info-transfer?accountId='. $wallet_address. '&chainId='. $networkName;
+        try {
+            $response = Http::timeout(30)->get($url);
+        }
+        catch(\Illuminate\Http\Client\ConnectionException $e) {
+            return false;
+        }
         $response = Http::get($url);
         //{
         //    "success": true,

@@ -55,6 +55,7 @@ class CreatePostsTable extends Migration
             //Total Token
             $table->string('reward_type')->nullable();
             $table->string('block_chain_network')->nullable();
+            $table->string('category_token')->nullable();
             $table->integer('total_token')->nullable();
             $table->integer('total_person')->nullable();
 
