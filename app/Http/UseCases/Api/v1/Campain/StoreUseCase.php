@@ -19,6 +19,8 @@ final class StoreUseCase
 
     public function handle(array $data): JsonResponse
     {
+        //Log data
+        Log::info('Submit data', $data);
 
         $dataTask = $data['tasks'];
 
@@ -67,8 +69,6 @@ final class StoreUseCase
         //tags_list
         unset($data['tags_list']);
 
-        //Log data
-        Log::info('Submit data', $data);
 
         //$data['password'] = bcrypt($password);
         //$data['email_verified_at'] = now();
