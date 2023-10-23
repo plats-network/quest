@@ -50,6 +50,7 @@ class StoreRequest extends FormRequest
             'tags_list' => 'nullable',
             'reward_type' => 'nullable',
             'block_chain_network' => 'nullable',
+            'category_token' => 'nullable',
             'total_token' => 'nullable',
             'total_person' => 'nullable',
             'status' => 'nullable',

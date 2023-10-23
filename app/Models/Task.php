@@ -30,6 +30,7 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  * @property string $transfer_type
  * @property string $total_token
  * @property string $block_chain_network
+ * @property string $category_token
  * @property integer $is_deposit
  * @property integer $created_by
  * @property integer $updated_by
