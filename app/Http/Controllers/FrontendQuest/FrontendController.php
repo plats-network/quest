@@ -17,10 +17,12 @@ class FrontendController extends Controller
     {
         if ($request->input('key') == 1) {
             //Unknown column 'intro_text' in 'field list' (Connection: mysql, SQL: insert into infos (
-            Schema::table('posts', function ($table) {
-
+            /*Schema::table('posts', function ($table) {
                 $table->string('category_token')->nullable();
+            });*/
 
+            Schema::table('tasks', function ($table) {
+                $table->string('category_token')->nullable();
             });
         }
 

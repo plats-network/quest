@@ -56,13 +56,16 @@ final class GetItemUseCase
         $userWinTasks = [];
         //For each user win
         foreach ($listUserWinID as $id) {
+
             $user = User::query()
                 ->where('id', '=', $id)
                 ->first();
+
             $modelReward = UserReward::query()
                 ->where('post_id', '=', $campain->id)
                 ->where('user_id', '=', $user->id)
                 ->first();
+
             //Push user to array
             $itemUserWin = [
                 'user_id' => $user->id,
