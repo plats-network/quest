@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\UseCases\Api\v1\Campain;
 
+use App\Http\Resources\Api\v1\TaskCollection;
 use App\Models\Post;
 use App\Models\Post as Campain;
 use App\Models\Task;
@@ -50,6 +51,7 @@ final class GetItemUseCase
 
         //Get ids user win
         $listUserWinID = $userRewards->pluck('user_id')->toArray();
+
         //Get list user win
         $userWinTasks = [];
         //For each user win

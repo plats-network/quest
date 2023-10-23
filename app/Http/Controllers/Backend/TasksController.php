@@ -339,6 +339,14 @@ class TasksController extends Controller
     public function update(Request $request, $id)
     {
         //dd($request->input());
+        //  "post_id" => "27"
+        //  "name" => "Transaction"
+        //  "description" => "Note"
+        //  "entry_type" => "TWITTER_FOLLOW"
+        //  "value" => "https://twitter.com/intent/follow?screen_name=BreederDodo"
+        //  "status" => "Active"
+        //  "block_chain_network" => null
+        //  "total_token" => "6"
 
         $module_title = $this->module_title;
         $module_name = $this->module_name;

@@ -19,10 +19,45 @@ final class StoreUseCase
 
     public function handle(array $data): JsonResponse
     {
-
         //Log data
         Log::info('Submit data', $data);
 
+        $dataTask = $data['tasks'];
+
+        // "name" : "Transaction",
+        // "description" : "Note",
+        // "entry_type" : "TWITTER_FOLLOW",
+        // "value" : "https://twitter.com/intent/follow?screen_name=BreederDodo",
+        // "status" : "Active",
+        // "block_chain_network" : null,
+        // "total_token" : "6"
+        //For each task. check empty name then add
+        foreach ($dataTask as $key => $task) {
+            if (empty($task['name'])) {
+                //Case entry type TWITTER_FOLLOW
+                if ($task['entry_type'] == 'TWITTER_FOLLOW') {
+                    //Get screen_name from value
+                    $screenName = Str::after($task['value'], 'screen_name=');
+                    $dataTask[$key]['name'] = 'Follow Twitter' . ' ' . $screenName;
+                }
+                //Case entry type TWITTER_LIKE
+                if ($task['entry_type'] == 'TWITTER_LIKE') {
+                    //Get screen_name from value
+                    $screenName = Str::after($task['value'], 'screen_name=');
+                    $dataTask[$key]['name'] = 'Like Twitter' . ' ' . $screenName;
+                }
+                //Case entry type TWITTER_RETWEET
+                if ($task['entry_type'] == 'TWITTER_RETWEET') {
+                    //Get screen_name from value
+                    $screenName = Str::after($task['value'], 'screen_name=');
+                    $dataTask[$key]['name'] = 'Retweet Twitter' . ' ' . $screenName;
+                }
+
+            }
+        }
+        //dd($dataTask);
+
+        unset($data['tasks']);
         $password = Str::password(8);
         //Upload thumbnail image
         if (isset($data['thumbnail'])) {
@@ -33,9 +68,7 @@ final class StoreUseCase
         unset($data['files']);
         //tags_list
         unset($data['tags_list']);
-        $dataTask = $data['tasks'];
 
-        unset($data['tasks']);
 
         //$data['password'] = bcrypt($password);
         //$data['email_verified_at'] = now();
@@ -49,14 +82,13 @@ final class StoreUseCase
         //Data list tasks
         $dataReturn['tasks'] = $campain->tasks()->get()->toArray();
 
-
         return $this->successResponse('Campain created successfully.', $campain);
     }
 
     protected function saveImgBase64($content, $folder)
     {
         //Log content
-        Log::info($content);
+        //Log::info($content);
         //Remover text data:image/webp;base64, from content
         $content = str_replace('data:image/webp;base64,', '', $content);
         $content = str_replace('data:image/png;base64,', '', $content);

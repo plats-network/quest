@@ -18,7 +18,7 @@ return new class extends Migration {
             //Post id
             $table->integer('post_id')->unsigned()->nullable();
 
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('slug')->nullable();
             //Twitter Username, Url, Hashtag, Discord
             $table->string('value')->nullable();
@@ -37,6 +37,7 @@ return new class extends Migration {
 
             $table->string('entry_type')->nullable()
                 ->default(Task::TYPE_TWITTER_FOLLOW);
+
             //Twitter id
             $table->string('twitter_id')->nullable();
             //Twitter username

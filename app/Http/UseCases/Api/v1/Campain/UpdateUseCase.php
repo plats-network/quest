@@ -7,6 +7,7 @@ namespace App\Http\UseCases\Api\v1\Campain;
 use App\Http\Shared\MakeApiResponse;
 use App\Models\Post as Campain;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 final class UpdateUseCase
@@ -15,10 +16,14 @@ final class UpdateUseCase
 
     public function handle(Campain $campain, array $data): JsonResponse
     {
+        //Log data
+        Log::info('Submit data', $data);
+
         //Upload thumbnail image
         if (isset($data['thumbnail'])) {
             $data['featured_image'] = $this->saveImgBase64($data['thumbnail'], 'thumbnail');
         }
+
         //Unset data files
         unset($data['thumbnail']);
         unset($data['files']);
