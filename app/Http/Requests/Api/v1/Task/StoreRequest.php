@@ -37,6 +37,7 @@ class StoreRequest extends FormRequest
             'post_id' => 'required',
             'name' => 'required',
             'description' => 'required',
+            'category_token' => 'nullable',
             'entry_type' => 'required',
             'value' => 'required',
             'status' => 'required',

@@ -28,7 +28,8 @@ class UpdateRequest extends FormRequest
             'description' => 'required',
             'entry_type' => 'required',
             'value' => 'required',
-            'status' => 'required',
+            'category_token' => 'nullable',
+            'status' => 'nullable',
             'block_chain_network' => 'required',
             'total_token' => 'required',
         ];
