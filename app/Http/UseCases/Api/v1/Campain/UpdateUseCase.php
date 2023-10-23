@@ -9,6 +9,7 @@ use App\Models\Post as Campain;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 final class UpdateUseCase
 {
@@ -30,7 +31,29 @@ final class UpdateUseCase
         //tags_list
         unset($data['tags_list']);
         $dataTask = $data['tasks'];
+        foreach ($dataTask as $key => $task) {
+            if (empty($task['name'])) {
+                //Case entry type TWITTER_FOLLOW
+                if ($task['entry_type'] == 'TWITTER_FOLLOW') {
+                    //Get screen_name from value
+                    $screenName = Str::after($task['value'], 'screen_name=');
+                    $dataTask[$key]['name'] = 'Follow Twitter' . ' ' . $screenName;
+                }
+                //Case entry type TWITTER_LIKE
+                if ($task['entry_type'] == 'TWITTER_LIKE') {
+                    //Get screen_name from value
+                    $screenName = Str::after($task['value'], 'screen_name=');
+                    $dataTask[$key]['name'] = 'Like Twitter' . ' ' . $screenName;
+                }
+                //Case entry type TWITTER_RETWEET
+                if ($task['entry_type'] == 'TWITTER_RETWEET') {
+                    //Get screen_name from value
+                    $screenName = Str::after($task['value'], 'screen_name=');
+                    $dataTask[$key]['name'] = 'Retweet Twitter' . ' ' . $screenName;
+                }
 
+            }
+        }
         unset($data['tasks']);
 
         //$data['password'] = bcrypt($password);
