@@ -17,8 +17,6 @@ final class UpdateUseCase
 
     public function handle(Campain $campain, array $data): JsonResponse
     {
-        //Log data
-        Log::info('Submit data', $data);
 
         //Upload thumbnail image
         if (isset($data['thumbnail'])) {
@@ -59,6 +57,10 @@ final class UpdateUseCase
 
         //$data['password'] = bcrypt($password);
         //$data['email_verified_at'] = now();
+
+        //Log data
+        Log::info('Submit data', $data);
+
 
         $campain->update($data);
         //Clear old task
