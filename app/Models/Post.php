@@ -170,7 +170,7 @@ class Post extends BaseModel
     //aLL category token
     public static function getAllCategoryToken(){
         return [
-            self::CATEGORY_TOKEN_AZERO => 'Azero',
+            self::CATEGORY_TOKEN_AZERO => 'AZERO',
             self::CATEGORY_TOKEN_PHA => 'PHA',
         ];
     }
@@ -178,7 +178,7 @@ class Post extends BaseModel
     //aLL REWARD TYPE
     public static function getAllRewardType(){
         return [
-            self::REWARD_TYPE_TOKEN => 'Token',
+            self::REWARD_TYPE_TOKEN => 'TOKEN',
             self::REWARD_TYPE_NTF => 'NTF',
         ];
     }

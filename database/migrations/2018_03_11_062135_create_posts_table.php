@@ -58,6 +58,8 @@ class CreatePostsTable extends Migration
             $table->string('category_token')->nullable();
             $table->integer('total_token')->nullable();
             $table->integer('total_person')->nullable();
+            //Status lucky draw
+            $table->string('status_lucky_draw')->nullable();
 
             $table->string('published_at')->nullable();
 

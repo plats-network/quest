@@ -256,6 +256,7 @@ php artisan git-commit-checker:pre-commit-hook
 ### Delopy Server
 
 > cd /var/www/plats/quest
+> cd /var/www/quest
 > sudo passwd deploy
 > su deploy
 > git checkout  composer.lock

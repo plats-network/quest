@@ -118,6 +118,9 @@ Route::middleware('auth:sanctum')
         Route::apiResource('campains', CampainController::class)
             ->except('index', 'show');
 
+        //ajaxStartLuckyDraw
+        Route::post('campains/lucky-draw', [CampainController::class, 'luckyDraw'])->name('posts.ajaxStartLuckyDraw');
+
         //Task
         Route::apiResource('tasks', TaskController::class);
 

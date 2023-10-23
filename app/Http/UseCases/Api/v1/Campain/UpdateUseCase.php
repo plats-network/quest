@@ -15,8 +15,6 @@ final class UpdateUseCase
 
     public function handle(Campain $campain, array $data): JsonResponse
     {
-
-
         //Upload thumbnail image
         if (isset($data['thumbnail'])) {
             $data['featured_image'] = $this->saveImgBase64($data['thumbnail'], 'thumbnail');

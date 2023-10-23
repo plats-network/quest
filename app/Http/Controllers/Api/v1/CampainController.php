@@ -15,7 +15,9 @@ use App\Http\UseCases\Api\v1\Campain\GetItemUseCase;
 use App\Http\UseCases\Api\v1\Campain\StoreUseCase;
 use App\Http\UseCases\Api\v1\Campain\UpdateAvatarUseCase;
 use App\Http\UseCases\Api\v1\Campain\UpdateUseCase;
+use App\Models\Post;
 use App\Models\Post as Campain;
+use App\Models\UserReward;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -48,6 +50,10 @@ class CampainController extends Controller
         return $useCase->handle($request->validated());
     }
 
+    //Method update
+    //Url /api/v1/campains/{campain}
+    //Update campain
+
     public function update(UpdateRequest $request, UpdateUseCase $useCase, Campain $campain): JsonResponse
     {
         return $useCase->handle($campain, $request->validated());
@@ -61,5 +67,42 @@ class CampainController extends Controller
     public function destroy(DeleteRequest $request, DeleteUseCase $useCase, Campain $campain): JsonResponse
     {
         return $useCase->handle($campain);
+    }
+    //luckyDraw
+    public function luckyDraw(Request $request, Campain $campain): JsonResponse
+    {
+        $post_id = $request->input('post_id');
+        //Validate post_id
+        //Validate field friend_theme_id  required
+        $request->validate([
+            'post_id' => 'required',
+
+        ]);
+
+        //Model Post
+        $post = Post::query()
+            ->where('id', '=', $post_id)
+            ->first();
+        //Check post
+        if (!$post) {
+            return response()->json([
+                'success' => false,
+                'status' => 1,
+                'message' => 'Post not found'
+            ]);
+        }
+        //$total_point = $post->total_point;
+        $total_token = $post->total_token;
+
+        //Create Reward For Random 5 user has play task
+        UserReward::createReward($post_id, $total_token);
+        //Delay 2s
+
+
+        return response()->json([
+            'success' => true,
+            'status' => 1,
+            'message' => 'Lucky draw success'
+        ]);
     }
 }

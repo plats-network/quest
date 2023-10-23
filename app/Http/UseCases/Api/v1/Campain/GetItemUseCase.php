@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\UseCases\Api\v1\Campain;
 
+use App\Models\Post;
 use App\Models\Post as Campain;
 use App\Models\Task;
 use App\Models\User;
@@ -36,23 +37,45 @@ final class GetItemUseCase
             ->whereIn('id', $listUserID)
             ->limit(10)
             ->get();
+
         //Data User Play
         $dataCampain['users_play'] = $userPlayTasks->toArray();
         //List User Win
+
         //UserReward
         $userRewards = UserReward::query()
             ->where('post_id', '=', $campain->id)
             ->limit(10)
             ->get();
+
         //Get ids user win
         $listUserWinID = $userRewards->pluck('user_id')->toArray();
         //Get list user win
-        $userWinTasks = User::query()
-            ->whereIn('id', $listUserWinID)
-            ->limit($campain->total_person ?? 5)
-            ->get();
+        $userWinTasks = [];
+        //For each user win
+        foreach ($listUserWinID as $id) {
+            $user = User::query()
+                ->where('id', '=', $id)
+                ->first();
+            $modelReward = UserReward::query()
+                ->where('post_id', '=', $campain->id)
+                ->where('user_id', '=', $user->id)
+                ->first();
+            //Push user to array
+            $itemUserWin = [
+                'user_id' => $user->id,
+                'user_name' => $user->first_name . ' ' . $user->last_name,
+                'total_point' => $modelReward->total_point,
+                'total_token' => $modelReward->total_token,
+                'date_created' => $modelReward->date_created,
+                'date_transfered' => $modelReward->date_transfered,
+            ];
+
+            $userWinTasks[] = $itemUserWin;
+        }
+
         //Data User Win
-        $dataCampain['users_reward'] = $userWinTasks->toArray();
+        $dataCampain['users_reward'] = $userWinTasks;
 
         //Check Member Is Play task
         $isWin = false;
@@ -64,6 +87,8 @@ final class GetItemUseCase
         $dataCampain['is_receive_reward'] = $isReceiveReward;
         //All Task type
         $dataCampain['task_types'] = Task::getTaskType();
+        //All Category Token
+        $dataCampain['category_tokens'] = Post::getAllCategoryToken();
 
         return response()->json($dataCampain);
     }
