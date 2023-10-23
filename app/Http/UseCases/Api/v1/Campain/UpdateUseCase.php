@@ -32,6 +32,7 @@ final class UpdateUseCase
         unset($data['tags_list']);
         $dataTask = $data['tasks'];
         foreach ($dataTask as $key => $task) {
+            //Todo move to validate
             if (empty($task['name'])) {
                 //Case entry type TWITTER_FOLLOW
                 if ($task['entry_type'] == 'TWITTER_FOLLOW') {
@@ -75,6 +76,11 @@ final class UpdateUseCase
 
     protected function saveImgBase64($content, $folder)
     {
+        $content = str_replace('data:image/webp;base64,', '', $content);
+        $content = str_replace('data:image/png;base64,', '', $content);
+        $content = str_replace('data:image/jpeg;base64,', '', $content);
+        $content = str_replace('data:image/gif;base64,', '', $content);
+
         $extension = '.jpg';
 
         preg_match('/.([0-9]+) /', microtime(), $m);
