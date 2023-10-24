@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 //get_upload_url
@@ -16,6 +17,7 @@ if (! function_exists('get_upload_url')) {
         return $upload_url;
     }
 }
+
 /*
  * Global helpers file with misc functions.
  */
@@ -433,4 +435,38 @@ if (! function_exists('get_platform_logo')) {
 
         return $platform_logo;
     }
+}
+
+function saveImgBase64($content, $folder)
+{
+    //Log content
+    //Log::info($content);
+    //Remover text data:image/webp;base64, from content
+    $content = str_replace('data:image/webp;base64,', '', $content);
+    $content = str_replace('data:image/png;base64,', '', $content);
+    $content = str_replace('data:image/jpeg;base64,', '', $content);
+    $content = str_replace('data:image/gif;base64,', '', $content);
+    $extension = '.jpg';
+
+    preg_match('/.([0-9]+) /', microtime(), $m);
+
+    $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $extension);
+
+    //$storage = Storage::disk('cloudinary2');
+    $storage = Storage::disk('public');
+
+    $checkDirectory = $storage->exists($folder);
+
+    if (!$checkDirectory) {
+        $storage->makeDirectory($folder);
+    }
+
+    $fileNameSave =$folder . '/' . $fileName;
+    $storage->put($fileNameSave, base64_decode($content), 'public');
+    $fullURL = $storage->url($fileNameSave);
+    //Log Full Url
+    Log::info($fullURL);
+
+
+    return $fullURL;
 }

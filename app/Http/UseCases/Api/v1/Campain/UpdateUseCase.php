@@ -22,7 +22,7 @@ final class UpdateUseCase
 
         //Upload thumbnail image
         if (isset($data['thumbnail'])) {
-            $data['featured_image'] = $this->saveImgBase64($data['thumbnail'], 'thumbnail');
+            $data['featured_image'] = saveImgBase64($data['thumbnail'], 'thumbnail');
         }
 
         //Unset data files
@@ -72,33 +72,5 @@ final class UpdateUseCase
         $dataReturn['tasks'] = $campain->tasks()->get()->toArray();
 
         return $this->successResponse('Campain updated successfully.', $campain);
-    }
-
-    protected function saveImgBase64($content, $folder)
-    {
-        $content = str_replace('data:image/webp;base64,', '', $content);
-        $content = str_replace('data:image/png;base64,', '', $content);
-        $content = str_replace('data:image/jpeg;base64,', '', $content);
-        $content = str_replace('data:image/gif;base64,', '', $content);
-
-        $extension = '.jpg';
-
-        preg_match('/.([0-9]+) /', microtime(), $m);
-
-        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $extension);
-
-        $storage = Storage::disk('cloudinary2');
-
-        $checkDirectory = $storage->exists($folder);
-
-        if (!$checkDirectory) {
-            $storage->makeDirectory($folder);
-        }
-
-        $fileNameSave =$folder . '/' . $fileName;
-        $storage->put($fileNameSave, base64_decode($content), 'public');
-        $fullURL = Storage::disk('cloudinary2')->url($fileNameSave);
-
-        return $fullURL;
     }
 }
