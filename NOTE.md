@@ -263,8 +263,10 @@ php artisan git-commit-checker:pre-commit-hook
 > su deploy
 > php artisan storage:link
 > git checkout composer.lock
+> 
 > git fetch --all
 > git pull origin master
+> 
 > composer install --ignore-platform-reqs
 > php artisan migrate
 >

@@ -25,9 +25,12 @@ final class GetCollectionUseCase
 
         //Filter by user created_by
         $user = auth('sanctum')->user();
-        if ($user->role === 'user') {
-            $campains->where('created_by', $user->id);
+        if ($user){
+            if ($user->role === 'user') {
+                //$campains->where('created_by', $user->id);
+            }
         }
+
         if (! empty($query['created_by'])) {
             $campains->where('created_by', $query['created_by']);
         }
