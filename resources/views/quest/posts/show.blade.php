@@ -318,6 +318,8 @@ use App\Models\Task;
                     url: url,
                     type: 'POST',
                     contentType:'application/json',
+                    headers: {  'Access-Control-Allow-Origin': '{{route('quest.index')}}' },
+
                     data: {
                         id: id,
                         type: type,

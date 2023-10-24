@@ -179,11 +179,11 @@ class UserController extends Controller
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
-        request()->validate($request, [
+       /* request()->validate($request, [
             'first_name' => 'required|string|max:191',
             'last_name' => 'required|string|max:191',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        ]);*/
 
         $module_name = $this->module_name;
         $module_name_singular = Str::singular($this->module_name);
@@ -217,7 +217,7 @@ class UserController extends Controller
 
         event(new UserProfileUpdated($user_profile));
 
-        return redirect()->route('frontend.users.profile', encode_id($$module_name_singular->id))->with('flash_success', 'Update successful!');
+        return redirect()->route('quest.posts.index', encode_id($$module_name_singular->id))->with('flash_success', 'Update successful!');
     }
 
     /**
