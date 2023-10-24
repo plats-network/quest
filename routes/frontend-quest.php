@@ -41,7 +41,7 @@ Route::get('update-db', [\App\Http\Controllers\FrontendQuest\FrontendController:
 *
 * --------------------------------------------------------------------
 */
-Route::group(['middleware' => ['cors'], 'as' => 'quest.', ], function () {
+Route::group(['middleware' => ['cors', 'web'], 'as' => 'quest.', ], function () {
 
     //Route::get('/', [FrontendController::class, 'index'])->name('index');
     Route::get('/', [PostsController::class, 'index'])->name('index');

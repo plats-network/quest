@@ -275,6 +275,8 @@ class PostsController extends Controller
         return response()->json(['success'=>'Data is successfully added']);
     }
 
+    //Fake Status
+
     //favoritePost
     public function favoritePost(Request $request, Post $post)
     {
