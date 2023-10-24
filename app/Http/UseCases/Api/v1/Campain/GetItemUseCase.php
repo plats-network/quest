@@ -83,7 +83,57 @@ final class GetItemUseCase
                 'date_transfered' => $modelReward->date_transfered,
             ];
 
+
             $userWinTasks[] = $itemUserWin;
+        }
+
+        //Check empty User Win then fake data
+        if (empty($userWinTasks)) {
+            //{
+            //            "user_id": 8,
+            //            "wallet_address": "5Fbgdek6QeFodSo1LpNitvLKGjufXKWWRQ9Uw4TdKVeox8T2",
+            //            "reward_type": "NTF",
+            //            "block_chain_network": "PHALA",
+            //            "category_token": null,
+            //            "comapain_total_token": 10000,
+            //            "user_name": "Account 1 Account 1",
+            //            "total_point": null,
+            //            "total_token": 10000,
+            //            "date_created": "2023-10-24 03:11:45",
+            //            "date_transfered": null
+            //        }
+            $userWinTasks = [
+                [
+                    'user_id' => 3,
+                    //Wallet Address
+                    'wallet_address' => '5G4URyHwDkRy29QvtofisCZhjqdjyUYMpvAUzzpBnhMNnY4z',
+                    "reward_type"=>  $campain->reward_type,
+                    "block_chain_network"=>  $campain->block_chain_network,
+                    "category_token"=>  $campain->category_token,
+                    "comapain_total_token"=>  $campain->total_token,
+
+                    'user_name' =>'Dung',
+                    'total_point' => 0,
+                    'total_token' => 0,
+                    'date_created' => null,
+                    'date_transfered' => null,
+                ],
+                [
+                    'user_id' => 5,
+                    //Wallet Address
+                    'wallet_address' => '5Cu5qz2GSd1kaQFGiuqhKvTR2K7tJsrmffpfb6DFiwWoBcqt',
+                    "reward_type"=>  $campain->reward_type,
+                    "block_chain_network"=>  $campain->block_chain_network,
+                    "category_token"=>  $campain->category_token,
+                    "comapain_total_token"=>  $campain->total_token,
+
+                    'user_name' => 'Chinh',
+                    'total_point' => 100,
+                    'total_token' => 100,
+                    'date_created' => null,
+                    'date_transfered' => null,
+                ]
+            ];
         }
 
         //Data User Win
