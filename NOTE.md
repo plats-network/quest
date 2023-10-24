@@ -261,6 +261,7 @@ php artisan git-commit-checker:pre-commit-hook
 > cd /var/www/quest
 > sudo passwd deploy
 > su deploy
+> php artisan storage:link
 > git checkout composer.lock
 > git fetch --all
 > git pull origin master

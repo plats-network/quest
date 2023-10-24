@@ -60,6 +60,7 @@ class CreatePostsTable extends Migration
             $table->integer('total_person')->nullable();
             //Status lucky draw
             $table->string('status_lucky_draw')->nullable();
+            $table->boolean('is_prize')->nullable()->default(false);
 
             $table->string('published_at')->nullable();
 

@@ -49,6 +49,7 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
  * @property integer $reward_type
  * @property integer $block_chain_network
  * @property integer $category_token
+ * @property integer $is_prize
  * @property string $published_at
  * @property string $created_at
  * @property string $updated_at
@@ -112,6 +113,7 @@ class Post extends BaseModel
         'moderated_by',
         'moderated_at',
         'deposit_status',
+        'is_prize',
         'created_by',
         'created_by_name',
         'created_by_alias',

@@ -91,6 +91,17 @@ class CampainController extends Controller
                 'message' => 'Post not found'
             ]);
         }
+        //is_prize
+        if ($post->is_prize == true) {
+            return response()->json([
+                'success' => false,
+                'status' => 1,
+                'message' => 'Post is prize'
+            ]);
+        }
+        //Update is_prize
+        $post->is_prize = true;
+        $post->save();
         //$total_point = $post->total_point;
         $total_token = $post->total_token;
 
