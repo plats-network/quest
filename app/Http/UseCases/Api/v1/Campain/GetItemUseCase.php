@@ -87,7 +87,7 @@ final class GetItemUseCase
             $userWinTasks[] = $itemUserWin;
         }
 
-        //Check empty User Win then fake data
+        //Check empty User Win then fake data -24.10.2023
         if (empty($userWinTasks)) {
             //{
             //            "user_id": 8,
