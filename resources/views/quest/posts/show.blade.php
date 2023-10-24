@@ -317,11 +317,7 @@ use App\Models\Task;
                 $.ajax({
                     url: url,
                     type: 'POST',
-                    crossDomain: true,
-                    CORS: true ,
                     contentType:'application/json',
-                    secure: true,
-
                     data: {
                         id: id,
                         type: type,
