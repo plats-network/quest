@@ -69,6 +69,13 @@ final class GetItemUseCase
             //Push user to array
             $itemUserWin = [
                 'user_id' => $user->id,
+                //Wallet Address
+                'wallet_address' => $user->wallet_address,
+                "reward_type"=>  $campain->reward_type,
+                "block_chain_network"=>  $campain->block_chain_network,
+                "category_token"=>  $campain->category_token,
+                "comapain_total_token"=>  $campain->total_token,
+
                 'user_name' => $user->first_name . ' ' . $user->last_name,
                 'total_point' => $modelReward->total_point,
                 'total_token' => $modelReward->total_token,

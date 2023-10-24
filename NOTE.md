@@ -1,5 +1,7 @@
 ### Laravel
+
 DungA123@
+
 ### Meta Mask
 
 - Password: sdfe$SsefA
@@ -259,19 +261,19 @@ php artisan git-commit-checker:pre-commit-hook
 > cd /var/www/quest
 > sudo passwd deploy
 > su deploy
-> git checkout  composer.lock
+> git checkout composer.lock
 > git fetch --all
 > git pull origin master
 > composer install --ignore-platform-reqs
 > php artisan migrate
-> 
+>
 > php artisan optimize:clear
 > php artisan optimize:clear
 > php artisan route:clear
 > php artisan config:clear
 > php artisan view:clear
 > php artisan cache:clear
-> 
+>
 > npm install
 > sudo chown dungpx: .env
 > php artisan migrate --seed
