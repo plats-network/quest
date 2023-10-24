@@ -27,7 +27,7 @@ final class GetCollectionUseCase
         $user = auth('sanctum')->user();
         if ($user){
             if ($user->role === 'user') {
-                //$campains->where('created_by', $user->id);
+                $campains->where('created_by', $user->id);
             }
         }
 

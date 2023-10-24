@@ -30,7 +30,7 @@ Route::name('api.')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
     });
 
-//Home router
+    //Home router
     Route::get('/', function () {
         $arrApi = [
             'connect-wallet' => route('api.connect-wallet'),

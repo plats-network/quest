@@ -1,1 +1,1 @@
-<img src="{{asset('img/logo-with-text.jpg')}}" style="height: 50px;">
+<img src="{{get_platform_logo()}}" style="height: 50px;">
