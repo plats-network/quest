@@ -148,6 +148,10 @@ class PostsController extends Controller
     //Params: $id
     public function checkStatus(Request $request)
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: *');
+        header('Access-Control-Allow-Headers: *');
+
         /** @var User $questUser */
         $questUser = auth()->guard('quest')->user();
 
