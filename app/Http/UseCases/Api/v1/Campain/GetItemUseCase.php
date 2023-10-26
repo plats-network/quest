@@ -148,7 +148,7 @@ final class GetItemUseCase
         $dataCampain['is_win'] = $isWin;
         $dataCampain['is_receive_reward'] = $isReceiveReward;
         //All Task type
-        //$dataCampain['task_types'] = Task::getTaskType();
+        $dataCampain['task_types'] = Task::getTaskType();
         //All Category Token
         //$dataCampain['category_tokens'] = Post::getAllCategoryToken();
 

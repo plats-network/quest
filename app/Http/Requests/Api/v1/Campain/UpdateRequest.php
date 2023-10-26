@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\Api\v1\Campain;
 
 use App\Http\Shared\MakeApiResponse;
+use App\Models\Task;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -58,5 +59,29 @@ class UpdateRequest extends FormRequest
         throw new HttpResponseException(
             $this->errorResponse($validator->errors()->toArray(), 422)
         );
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+
+            /*$date = $validator->safe()->date;
+
+            if(strtotime($date) < strtotime('now')) {
+                $validator->errors()->add('date', 'Date should be in the future.');
+            }*/
+            //Validate Task Item
+            $taskTypes = Task::getTaskType();
+            $tasks = $validator->safe()->tasks;
+            //Foreach tasks then check entry type task
+            foreach ($tasks as $task) {
+                //Check entry type task
+                //Check entry_type in key value of $taskTypes
+                if (!array_key_exists($task['entry_type'], $taskTypes)){
+                    $validator->errors()->add('entry_type', 'Entry type ' . $task['entry_type'] .' is invalid.');
+                }
+            }
+
+        });
     }
 }
