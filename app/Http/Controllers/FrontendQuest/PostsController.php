@@ -232,20 +232,24 @@ class PostsController extends Controller
                 $wallet_address = $questUser->wallet_address;
                 $networkName = $task->block_chain_network;
                 $totalToken = $task->total_token;
-
-                if ($questUser->hasTokenHolder($networkName, $totalToken )){
+                $dataCheck = $questUser->hasTokenHolder($networkName, $totalToken );
+                if ($dataCheck['status'] == true){
                     //Set completed
                     $userTaskStatus->setCompleted();
                     return response()->json([
                         'status' => 1,
-                        'success'=>'Task is completed'
+                        'success'=>'Task is completed',
+                        'check' => $dataCheck,
+                        'task' => $task->toArray()
                     ]);
                 }else{
                     //Check if user has token holder
                     $userTaskStatus->setOpen();
                     return response()->json([
                         'status' => 0,
-                        'success'=>'Task is not completed'
+                        'success'=>'Task is not completed',
+                        'check' => $dataCheck,
+                        'task' => $task->toArray()
                     ]);
                 }
                 break;
@@ -253,19 +257,24 @@ class PostsController extends Controller
                 $wallet_address = $questUser->wallet_address;
                 $networkName = $task->block_chain_network;
                 $totalToken = $task->total_token;
-                if ($questUser->hasTransactionActivity($networkName, $totalToken )){
+                $dataCheck = $questUser->hasTransactionActivity($networkName, $totalToken );
+                if ($dataCheck['status'] == true){
                     //Set completed
                     $userTaskStatus->setCompleted();
                     return response()->json([
                         'status' => 1,
-                        'success'=>'Task is completed'
+                        'success'=>'Task is completed',
+                        'check' => $dataCheck,
+                        'task' => $task->toArray()
                     ]);
                 }else{
                     //Check if user has token holder
                     $userTaskStatus->setOpen();
                     return response()->json([
                         'status' => 0,
-                        'success'=>'Task is not completed'
+                        'success'=>'Task is not completed',
+                        'check' => $dataCheck,
+                        'task' => $task->toArray()
                     ]);
                 }
                 break;

@@ -71,7 +71,7 @@ use Noweh\TwitterApi\Client;
  * @property OldPin[] $oldPins
  * @property RequirePin[] $requirePins
  */
-class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubject
+class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubject
 {
     use HasFactory;
     use HasHashedMediaTrait;
@@ -84,7 +84,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
 
     use HasApiTokens;
 
-        //Type gender Female
+    //Type gender Female
     const GENDER_MALE = 'Male';
     //Female
     const GENDER_FEMALE = 'Female';
@@ -201,7 +201,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
     /**
      * Route notifications for the Slack channel.
      *
-     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param \Illuminate\Notifications\Notification $notification
      * @return string
      */
     public function routeNotificationForSlack($notification)
@@ -246,7 +246,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
     }
 
     //hasTwitterFollowed
-    public function hasTwitterFollowed($username){
+    public function hasTwitterFollowed($username)
+    {
         //Check if user has followed
         //Call Twitter API
 
@@ -258,8 +259,10 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
 
         return true;
     }
+
     //hasTwitterRetweeted
-    public function hasTwitterRetweeted($username){
+    public function hasTwitterRetweeted($username)
+    {
         //Check if user has followed
         //Call Twitter API
 
@@ -273,7 +276,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
     }
 
     //hasTwitterLiked
-    public function hasTwitterLiked($username){
+    public function hasTwitterLiked($username)
+    {
         //Check if user has followed
         //Call Twitter API
 
@@ -287,7 +291,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
     }
 
     //hasTokenHolder
-    public function hasTokenHolder($networkName, $totalToken){
+    public function hasTokenHolder($networkName, $totalToken)
+    {
         //Call api Check accoutn
         //http://209.97.161.136:8000/check-account?accountId=YQnbw3h6couUX48Ghs3qyzhdbyxA3Gu9KQCoi8z2CPBf9N3&chainId=phala
         //Param accountId chainId
@@ -296,14 +301,18 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         //$networkName to lower
         $networkName = strtolower($networkName);
         //Call
-        $url = 'http://209.97.161.136:8000/check-account?accountId='. $wallet_address. '&chainId='. $networkName;
+        $url = 'http://209.97.161.136:8000/check-account?accountId=' . $wallet_address . '&chainId=' . $networkName;
 
+        $dataReturn = [
+            'status' => false,
+            'message' => 'Check account fail'
+        ];
         try {
             $response = Http::timeout(30)->get($url);
-        }
-        catch(\Illuminate\Http\Client\ConnectionException $e) {
-                Log::info('Conect to server fail');
-                return false;
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            Log::info('Conect to server fail');
+            $dataReturn['message'] = 'Conect to server fail';
+            $dataReturn['status'] = false;
         }
         //{
         //    "success": true,
@@ -317,19 +326,22 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         //    }
         //}
         $res = $response->json();
+        $dataReturn['data'] = $res;
         Log::info('Check account', $res);
         //Check wallet balance > totalToken
-        if ($res['success'] == true){
+        if ($res['success'] == true) {
             $balance = $res['data']['balance'];
-            if ($balance >= $totalToken){
-                return true;
+            if ($balance >= $totalToken) {
+                $dataReturn['message'] = 'Has token holder';
+                $dataReturn['status'] = true;
             }
         }
 
-        return false;
+        return $dataReturn;
     }
 
-    public function hasTransactionActivity($networkName, $totalToken){
+    public function hasTransactionActivity($networkName, $totalToken)
+    {
         //Call api Check accoutn
         //http://209.97.161.136:8000/info-transfer?accountId=F3opxRbMKKF5x3YyiodUPKUsZJq8j8enDPvqH2MQqw1C7i7&chainId=phala
         //Param accountId chainId
@@ -339,11 +351,10 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         //$networkName to lower
         $networkName = strtolower($networkName);
         //Call
-        $url = 'http://209.97.161.136:8000/info-transfer?accountId='. $wallet_address. '&chainId='. $networkName;
+        $url = 'http://209.97.161.136:8000/info-transfer?accountId=' . $wallet_address . '&chainId=' . $networkName;
         try {
             $response = Http::timeout(30)->get($url);
-        }
-        catch(\Illuminate\Http\Client\ConnectionException $e) {
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
             return false;
         }
 
@@ -359,9 +370,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         Log::info('Check trasfer', $res);
 
         //Check wallet balance > totalToken
-        if ($res['success'] == true){
+        if ($res['success'] == true) {
             $balance = $res['data']['amount'];
-            if ($balance >= $totalToken){
+            if ($balance >= $totalToken) {
                 return true;
             }
         }
@@ -372,7 +383,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         return false;
     }
 
-    public function hasTwitterFollowed2($username){
+    public function hasTwitterFollowed2($username)
+    {
         //Check if user has followed
         //Call Twitter API
 
@@ -391,14 +403,14 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         //$return = $client->userMeLookup()->performRequest();
         //$return = $client->timeline()->getRecentMentions('1588364698239397888')->performRequest();
         //dd($return);
-     /*   $response = $client->tweet()->create()
-            ->performRequest([
-                'text' => 'Test Tweet... '
-            ],
-                withHeaders: true
-            )
-        ;
-        dd($response);*/
+        /*   $response = $client->tweet()->create()
+               ->performRequest([
+                   'text' => 'Test Tweet... '
+               ],
+                   withHeaders: true
+               )
+           ;
+           dd($response);*/
         return false;
     }
 
@@ -411,17 +423,19 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
      * $return = $client->retweet()->performRequest(['tweet_id' => $tweet_id]);
      * */
 
-    public function getUserName(){
+    public function getUserName()
+    {
         return $this->first_name . ' ' . $this->last_name;
     }
 
     //Get total post user task
-    public function getTotalPostUserTask($post_id){
+    public function getTotalPostUserTask($post_id)
+    {
         $total = 0;
         $userTask = UserTaskStatus::where('user_id', $this->id)
             ->where('post_id', $post_id)
             ->get();
-        foreach($userTask as $task){
+        foreach ($userTask as $task) {
             //$total += $task->total_point;
             $total += 1;
         }
