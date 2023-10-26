@@ -65,9 +65,9 @@ class Task extends BaseModel
     //Telegram Join
     const TYPE_TELEGRAM_JOIN = 'TELEGRAM_JOIN';
     //Network Type Phala
-    const NETWORK_TYPE_PHALA = 'Phala';
+    const NETWORK_TYPE_PHALA = 'phala';
     //Network Type PHALA_ZERO
-    const NETWORK_TYPE_PHALA_ZERO = 'PhalaZero';
+    const NETWORK_TYPE_PHALA_ZERO = 'aleph';
 
 
     //Get all network name

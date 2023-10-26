@@ -72,6 +72,7 @@ class UpdateRequest extends FormRequest
             }*/
             //Validate Task Item
             $taskTypes = Task::getTaskType();
+            $taskNetworks = Task::getAllNetworkName();
             $tasks = $validator->safe()->tasks;
             //Foreach tasks then check entry type task
             foreach ($tasks as $task) {
@@ -81,7 +82,13 @@ class UpdateRequest extends FormRequest
                     $validator->errors()->add('entry_type', 'Entry type ' . $task['entry_type'] .' is invalid.');
                 }
             }
-
+            //Check key block_chain_network in $taskNetworks
+            if (!array_key_exists($task['block_chain_network'], $taskNetworks)){
+                $msgError = 'Block chain network ' . $task['block_chain_network'] .' is invalid.';
+                //Add Extra list key value
+                $arrKeyValid = array_keys($taskNetworks);
+                $validator->errors()->add('block_chain_network', $msgError);
+            }
         });
     }
 }
