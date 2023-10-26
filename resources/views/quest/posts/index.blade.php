@@ -40,13 +40,13 @@
                 <img class="w-full fitting-image imgExampleColumnList " src="{{$img_link}}" alt="" data-config-id="auto-img-2-2">
             </a>
 
-            <a class="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline" href="#" data-config-id="auto-txt-11-2">{{$$module_name_singular->name}}</a>
+            <a class="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline" href="{{$details_url}}" data-config-id="auto-txt-11-2">{{$$module_name_singular->name}}</a>
             <div class="flex flex-row content-center my-4">
                 <address class="flex items-center mb-6 not-italic">
                     <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                         <img class="w-5 h-5 sm:w-8 sm:h-8 rounded-full" src="https://res.cloudinary.com/dhploi5y1/image/upload/v1696240313/a49dc6a0-8564-48dd-b99d-16b008957acc_oexjni.png" alt="Jese Leos">
                         <div>
-                            <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">Altlayer
+                            <a href="{{$details_url}}" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">Altlayer
                                 <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full dark:bg-gray-700 dark:text-blue-400">
                                               <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
