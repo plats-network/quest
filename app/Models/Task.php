@@ -64,8 +64,20 @@ class Task extends BaseModel
 
     //Telegram Join
     const TYPE_TELEGRAM_JOIN = 'TELEGRAM_JOIN';
+    //Network Type Phala
+    const NETWORK_TYPE_PHALA = 'Phala';
+    //Network Type PHALA_ZERO
+    const NETWORK_TYPE_PHALA_ZERO = 'PhalaZero';
 
 
+    //Get all network name
+    public static function getAllNetworkName()
+    {
+        return [
+            self::NETWORK_TYPE_PHALA => 'Phala',
+            self::NETWORK_TYPE_PHALA_ZERO => 'Phala Zero',
+        ];
+    }
     //Status Active
     const STATUS_ACTIVE = 'Active';
     //Status Inactive

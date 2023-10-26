@@ -320,6 +320,9 @@ class TasksController extends Controller
         $module_action = __('Edit');
 
         $$module_name_singular = Task::findOrFail($id);
+
+        dd($$module_name_singular);
+
         $all_task_type = Task::getTaskType();
         $post_id = $$module_name_singular->post_id;
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
