@@ -381,14 +381,15 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         if ($res['success'] == true) {
             $balance = $res['data']['amount'];
             if ($balance >= $totalToken) {
-                return true;
+                $dataReturn['message'] = 'Has token holder';
+                $dataReturn['status'] = true;
             }
         }
         //Fail
         //"success" => false
         //  "message" => "No transfer records found for the given account ID."
 
-        return false;
+        return $dataReturn;
     }
 
     public function hasTwitterFollowed2($username)
