@@ -317,6 +317,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         //    }
         //}
         $res = $response->json();
+        Log::info('Check account', $res);
         //Check wallet balance > totalToken
         if ($res['success'] == true){
             $balance = $res['data']['balance'];
@@ -354,6 +355,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         //    }
         //}
         $res = $response->json();
+
+        Log::info('Check trasfer', $res);
+
         //Check wallet balance > totalToken
         if ($res['success'] == true){
             $balance = $res['data']['amount'];
