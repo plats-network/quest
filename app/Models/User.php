@@ -335,6 +335,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
             if ($balance >= $totalToken) {
                 $dataReturn['message'] = 'Has token holder';
                 $dataReturn['status'] = true;
+            }else{
+                $dataReturn['message'] = 'Has not token holder';
+                $dataReturn['status'] = false;
             }
         }
 
@@ -383,6 +386,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
             if ($balance >= $totalToken) {
                 $dataReturn['message'] = 'Has token holder';
                 $dataReturn['status'] = true;
+            }else{
+                $dataReturn['message'] = 'Has not token holder';
+                $dataReturn['status'] = false;
             }
         }
         //Fail
