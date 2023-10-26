@@ -367,6 +367,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
             Log::info('Conect to server fail');
             $dataReturn['message'] = 'Conect to server fail URL' . $url ;
             $dataReturn['status'] = false;
+
             return $dataReturn;
         }
 
@@ -378,7 +379,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //    }
         //}
         $res = $response->json();
+        dd($res);
         $dataReturn['data'] = $res;
+
         Log::info('Check trasfer', $res);
 
         //Check wallet balance > totalToken
