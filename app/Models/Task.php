@@ -106,8 +106,8 @@ class Task extends BaseModel
 
             self::TRANSFER_TYPE_HOLDERS => 'Token Holder',
             self::TRANSFER_TYPE_ACTIVITY => 'Transaction Activity',
-            //self::TYPE_TWITTER_LIKE => 'Twitter Like',
-            //self::TYPE_TWITTER_HASHTAG => 'Twitter Hashtag',
+            self::TYPE_TWITTER_LIKE => 'Twitter Like',
+            self::TYPE_TWITTER_HASHTAG => 'Twitter Hashtag',
             //self::TYPE_DISCORD_JOIN => 'Discord Join',
         ];
     }
