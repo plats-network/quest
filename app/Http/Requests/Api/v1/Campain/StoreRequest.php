@@ -88,7 +88,10 @@ class StoreRequest extends FormRequest
                 //Check entry type task
                 //Check entry_type in key value of $taskTypes
                 if (!array_key_exists($task['entry_type'], $taskTypes)){
-                    $validator->errors()->add('entry_type', 'Entry type ' . $task['entry_type'] .' is invalid.');
+                    $msgError = 'Entry type ' . $task['entry_type'] .' is invalid.';
+                    //Add Extra list key value
+                    $arrKeyValid = array_keys($taskTypes);
+                    $validator->errors()->add('entry_type', $msgError);
                 }
             }
 

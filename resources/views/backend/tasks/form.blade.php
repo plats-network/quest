@@ -162,11 +162,11 @@
             //taskBlockChain
             var taskBlockChain = $('#taskBlockChain');
             //taskBlockChain.hide();
-            var arrTypeToken = [10,11];
+            var arrTypeToken = ["TOKEN_HOLDERS", "TRANSFER_ACTIVITY"];
             //Select entry_type on change
             $('#entry_type').on('change', function() {
                 var entry_type = $(this).val();
-                if (arrTypeToken.includes(parseInt(entry_type))) {
+                if (entry_type == 'TOKEN_HOLDERS' || entry_type == 'TRANSFER_ACTIVITY') {
                     $('#taskBlockChain').show();
                 } else {
                     $('#taskBlockChain').hide();

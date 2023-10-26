@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Spatie\MediaLibrary\HasMedia;
@@ -288,25 +289,31 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
     //hasTokenHolder
     public function hasTokenHolder($networkName, $totalToken){
         //Call api Check accoutn
-        //http://194.233.72.10:8000/check-account?accountId=YQnbw3h6couUX48Ghs3qyzhdbyxA3Gu9KQCoi8z2CPBf9N3&chainId=phala
+        //http://209.97.161.136:8000/check-account?accountId=YQnbw3h6couUX48Ghs3qyzhdbyxA3Gu9KQCoi8z2CPBf9N3&chainId=phala
         //Param accountId chainId
         //Return true or false
         $wallet_address = $this->wallet_address;
         //$networkName to lower
         $networkName = strtolower($networkName);
         //Call
-        $url = 'http://194.233.72.10:8000/check-account?accountId='. $wallet_address. '&chainId='. $networkName;
+        $url = 'http://209.97.161.136:8000/check-account?accountId='. $wallet_address. '&chainId='. $networkName;
 
         try {
             $response = Http::timeout(30)->get($url);
         }
         catch(\Illuminate\Http\Client\ConnectionException $e) {
+                Log::info('Conect to server fail');
                 return false;
         }
         //{
         //    "success": true,
         //    "data": {
         //        "balance": "0.00000"
+        //    }
+        //}
+        //{
+        //    "message": {
+        //        "balance": 0
         //    }
         //}
         $res = $response->json();
@@ -323,7 +330,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
 
     public function hasTransactionActivity($networkName, $totalToken){
         //Call api Check accoutn
-        //http://194.233.72.10:8000/info-transfer?accountId=F3opxRbMKKF5x3YyiodUPKUsZJq8j8enDPvqH2MQqw1C7i7&chainId=phala
+        //http://209.97.161.136:8000/info-transfer?accountId=F3opxRbMKKF5x3YyiodUPKUsZJq8j8enDPvqH2MQqw1C7i7&chainId=phala
         //Param accountId chainId
         //Return true or false
         //$wallet_address = $this->wallet_address;
@@ -331,14 +338,14 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail,JWTSubje
         //$networkName to lower
         $networkName = strtolower($networkName);
         //Call
-        $url = 'http://194.233.72.10:8000/info-transfer?accountId='. $wallet_address. '&chainId='. $networkName;
+        $url = 'http://209.97.161.136:8000/info-transfer?accountId='. $wallet_address. '&chainId='. $networkName;
         try {
             $response = Http::timeout(30)->get($url);
         }
         catch(\Illuminate\Http\Client\ConnectionException $e) {
             return false;
         }
-        $response = Http::get($url);
+
         //{
         //    "success": true,
         //    "data": {
