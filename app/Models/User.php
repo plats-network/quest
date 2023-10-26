@@ -353,6 +353,10 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         $networkName = strtolower($networkName);
         //Call
         $url = 'http://209.97.161.136:8000/info-transfer?accountId=' . $wallet_address . '&chainId=' . $networkName;
+        $dataReturn = [
+            'status' => false,
+            'message' => 'Check account fail'
+        ];
         try {
             $response = Http::timeout(30)->get($url);
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
