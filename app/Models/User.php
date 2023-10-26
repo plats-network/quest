@@ -303,6 +303,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //Call
         $url = 'http://209.97.161.136:8000/check-account?accountId=' . $wallet_address . '&chainId=' . $networkName;
 
+        Log::info('Url Token Holder Check ' . $url);
         $dataReturn = [
             'status' => false,
             'message' => 'Check account fail'
