@@ -311,8 +311,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
             $response = Http::timeout(30)->get($url);
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
             Log::info('Conect to server fail');
-            $dataReturn['message'] = 'Conect to server fail';
+            $dataReturn['message'] = 'Conect to server fail URL: ' . $url ;;
             $dataReturn['status'] = false;
+            return $dataReturn;
         }
         //{
         //    "success": true,
@@ -355,7 +356,10 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         try {
             $response = Http::timeout(30)->get($url);
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
-            return false;
+            Log::info('Conect to server fail');
+            $dataReturn['message'] = 'Conect to server fail URL' . $url ;
+            $dataReturn['status'] = false;
+            return $dataReturn;
         }
 
         //{
