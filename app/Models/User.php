@@ -377,7 +377,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //    }
         //}
         $res = $response->json();
-
+        $dataReturn['data'] = $res;
         Log::info('Check trasfer', $res);
 
         //Check wallet balance > totalToken
