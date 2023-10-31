@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->string('slug')->nullable();
             //Twitter Username, Url, Hashtag, Discord
             $table->string('value')->nullable();
+            $table->string('hash_tag')->nullable();
             $table->text('description')->nullable();
 
             $table->string('group_name')->nullable();

@@ -580,9 +580,21 @@ class Task extends BaseModel
         //Check is https://twitter.com/taylorotwell/status/1718996388107669914
         //Case https://x.com/Aleph__Zero/status/1706317615654641668
         //Get id,. example 1718996388107669914
-        $regex  = '#https?://twitter\.com/(?:\#!/)?(\w+)/status(es)?/(\d+)#is';
-        if (preg_match($regex, $url, $match)) {
-            $valueID = $match[3];
+        //check contain twitter.com
+        if (strpos($url, 'twitter.com') !== false) {
+            $regex  = '#https?://twitter\.com/(?:\#!/)?(\w+)/status(es)?/(\d+)#is';
+            if (preg_match($regex, $url, $match)) {
+                $valueID = $match[3];
+            }
+        }
+
+        //Case url https://x.com/Aleph__Zero/status/1706317615654641668?s=20
+        //Get id
+        if (strpos($url, 'x.com') !== false) {
+            $regex  = '#https?://x\.com/(?:\#!/)?(\w+)/status(es)?/(\d+)#is';
+            if (preg_match($regex, $url, $match)) {
+                $valueID = $match[3];
+            }
         }
 
         return $valueID;
