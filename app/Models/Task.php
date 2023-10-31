@@ -521,15 +521,14 @@ class Task extends BaseModel
         if (strpos($url, 'tweet_id') !== false) {
             $tweetId = str_replace('https://twitter.com/intent/like?tweet_id=', '', $url);
         } else {
-            $tweetId = $url;
+            //Case url is https://twitter.com/Aleph__Zero/status/1706317615654641668?s=20
+            //Case https://x.com/Aleph__Zero/status/1706317615654641668
+
+            //Get id
+            $tweetId = $this->getTweetIdFromUrl($url);
         }
 
-        //Case url is https://twitter.com/Aleph__Zero/status/1706317615654641668?s=20
-        if (strpos($url, 'status') !== false) {
-            $tweetId = str_replace('https://twitter.com/Aleph__Zero/status/', '', $url);
-            $tweetId = explode('?', $tweetId);
-            $tweetId = $tweetId[0];
-        }
+
 
         return $tweetId;
     }
@@ -543,14 +542,13 @@ class Task extends BaseModel
         if (strpos($url, 'tweet_id') !== false) {
             $tweetId = str_replace('https://twitter.com/intent/retweet?tweet_id=', '', $url);
         } else {
-            $tweetId = $url;
+            //Case url is https://twitter.com/Aleph__Zero/status/1706317615654641668?s=20
+            //Case https://x.com/Aleph__Zero/status/1706317615654641668
+
+            //Get id
+            $tweetId = $this->getTweetIdFromUrl($url);
         }
-        //Check is https://twitter.com/taylorotwell/status/1718996388107669914
-        if (strpos($url, 'status') !== false) {
-            $tweetId = str_replace('https://twitter.com/taylorotwell/status/', '', $url);
-            $tweetId = explode('?', $tweetId);
-            $tweetId = $tweetId[0];
-        }
+
 
 
         return $tweetId;
@@ -573,5 +571,20 @@ class Task extends BaseModel
 
 
         return $screenName;
+    }
+
+    //Private function get tweet id from url
+    private function getTweetIdFromUrl($url)
+    {
+        $valueID ='';
+        //Check is https://twitter.com/taylorotwell/status/1718996388107669914
+        //Case https://x.com/Aleph__Zero/status/1706317615654641668
+        //Get id,. example 1718996388107669914
+        $regex  = '#https?://twitter\.com/(?:\#!/)?(\w+)/status(es)?/(\d+)#is';
+        if (preg_match($regex, $url, $match)) {
+            $valueID = $match[3];
+        }
+
+        return $valueID;
     }
 }
