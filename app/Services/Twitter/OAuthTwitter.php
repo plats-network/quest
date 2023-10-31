@@ -57,6 +57,7 @@ class OAuthTwitter implements TwitterInterface
 
         if ($this->twitter->getLastHttpCode() !== 200) {
             Log::error('Error deleteTweet: ' . $this->twitter->getLastHttpCode() . ' ' .  $response->title);
+            Log::channel('slack')->info('Error deleteTweet: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response?->errors[0]?->message ?? $response->title);
@@ -76,6 +77,7 @@ class OAuthTwitter implements TwitterInterface
 
         if ($this->twitter->getLastHttpCode() !== 200) {
             Log::error('Error getUser: ' . $this->twitter->getLastHttpCode() . ' ' .  $response->title);
+            Log::channel('slack')->info('Error getUser: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response?->errors[0]?->message ?? $response->title);
@@ -97,6 +99,7 @@ class OAuthTwitter implements TwitterInterface
 
         if ($this->twitter->getLastHttpCode() !== 200) {
             Log::error('Error following: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
+            Log::channel('slack')->info('Error following: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response?->errors[0]?->message ?? $response->title);
@@ -120,6 +123,7 @@ class OAuthTwitter implements TwitterInterface
 
         if ($this->twitter->getLastHttpCode() !== 200) {
             Log::error('Error isFollowing: ' . $this->twitter->getLastHttpCode() . ' ' .  $response->title);
+            Log::channel('slack')->info('Error isFollowing: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response?->errors[0]?->message ?? $response->title);
@@ -157,6 +161,7 @@ class OAuthTwitter implements TwitterInterface
 
         if ($this->twitter->getLastHttpCode() !== 200) {
             Log::error('Error getAccessToken: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
+            Log::channel('slack')->info('Error getAccessToken: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response?->errors[0]?->message ?? $response->title);
@@ -177,6 +182,7 @@ class OAuthTwitter implements TwitterInterface
 
         if ($this->twitter->getLastHttpCode() !== 200) {
             Log::error('Error getSingleTweet: ' . $this->twitter->getLastHttpCode() . ' ' .  $response->title);
+            Log::channel('slack')->info('Error getSingleTweet: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response?->errors[0]?->message ?? $response->title);
@@ -201,6 +207,7 @@ class OAuthTwitter implements TwitterInterface
         if ($this->twitter->getLastHttpCode() !== 200) {
 
             Log::error('Error getLikedTweets: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
+            Log::channel('slack')->info('Error getLikedTweets: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response?->errors[0]?->message ?? $response->title);
@@ -227,6 +234,7 @@ class OAuthTwitter implements TwitterInterface
 
         if ($this->twitter->getLastHttpCode() !== 200) {
             Log::error('Error isLikedTwitter: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
+            Log::channel('slack')->info('Error getUserByUsername: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response?->errors[0]?->message ?? $response->title);
@@ -247,6 +255,7 @@ class OAuthTwitter implements TwitterInterface
 
         if ($this->twitter->getLastHttpCode() !== 200) {
             Log::error('Error getUserByUsername: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
+            Log::channel('slack')->info('Error getUserByUsername: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response?->errors[0]?->message ?? $response->title);
@@ -280,6 +289,7 @@ class OAuthTwitter implements TwitterInterface
 
         if ($this->twitter->getLastHttpCode() !== 200) {
             Log::error('Error getRetweetedBy: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
+            Log::channel('slack')->info('Error getRetweetedBy: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response?->errors[0]?->message ?? $response->title);
@@ -319,6 +329,7 @@ class OAuthTwitter implements TwitterInterface
 
         if ($this->twitter->getLastHttpCode() !== 200) {
             Log::error('Error getQuoteTweets: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
+            Log::channel('slack')->info('Error getQuoteTweets: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
 
             if ($response->status == 401 || $response->status == 429){
                 throw TwitterException::general($this->twitter->getLastHttpCode(), $response->title);
