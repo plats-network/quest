@@ -240,6 +240,7 @@ class PostsController extends Controller
             case Task::TYPE_TWITTER_LIKE:
                 //Check if user has liked
                 $idLike = $task->getTwitterLikeIdAttribute();
+                dd($idLike);
 
                 if ($idLike && $questUser->hasTwitterLiked($idLike)){
                     //Set completed
