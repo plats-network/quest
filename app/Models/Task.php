@@ -545,6 +545,12 @@ class Task extends BaseModel
         } else {
             $tweetId = $url;
         }
+        //Check is https://twitter.com/taylorotwell/status/1718996388107669914
+        if (strpos($url, 'status') !== false) {
+            $tweetId = str_replace('https://twitter.com/taylorotwell/status/', '', $url);
+            $tweetId = explode('?', $tweetId);
+            $tweetId = $tweetId[0];
+        }
 
 
         return $tweetId;
