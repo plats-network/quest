@@ -256,6 +256,8 @@ php artisan git-commit-checker:pre-commit-hook
 - docker-compose exec app php artisan key:generate
 
 ### Delopy Server
+Admin https://plats-quest-admin.vaix.group/
+Frontend https://plats-quest.vaix.group/
 
 > cd /var/www/plats/quest
 > 

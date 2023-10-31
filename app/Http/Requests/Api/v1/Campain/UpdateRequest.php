@@ -78,12 +78,12 @@ class UpdateRequest extends FormRequest
             foreach ($tasks as $task) {
                 //Check entry type task
                 //Check entry_type in key value of $taskTypes
-                if (!array_key_exists($task['entry_type'], $taskTypes)){
+                if ($task['entry_type'] && !array_key_exists($task['entry_type'], $taskTypes)){
                     $validator->errors()->add('entry_type', 'Entry type ' . $task['entry_type'] .' is invalid.');
                 }
             }
             //Check key block_chain_network in $taskNetworks
-            if (!array_key_exists($task['block_chain_network'], $taskNetworks)){
+            if ( isset($task['block_chain_network']) && !array_key_exists($task['block_chain_network'], $taskNetworks)){
                 $msgError = 'Block chain network ' . $task['block_chain_network'] .' is invalid.';
                 //Add Extra list key value
                 $arrKeyValid = array_keys($taskNetworks);
