@@ -225,8 +225,10 @@ class PostsController extends Controller
                 }
                 break;
             case Task::TYPE_TWITTER_RETWEET:
+                //Sample Url Action https://twitter.com/intent/retweet?tweet_id=1712857718367695177
+                $idTweet = $task->getTwitterRetweetIdAttribute();
                 //Check if user has retweeted
-                if ($questUser->hasTwitterRetweeted($task->twitter_id)){
+                if ($questUser->hasTwitterRetweeted($idTweet)){
                     //Set completed
                     $userTaskStatus->setCompleted();
                     return response()->json(['success'=>'Task is completed']);

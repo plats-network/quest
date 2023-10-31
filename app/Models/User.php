@@ -43,6 +43,7 @@ use App\Facades\Twitter;
  * @property string $google_id
  * @property string $github_id
  * @property string $twitter_id
+ * @property string $twitter_username
  * @property string $contact_name
  * @property string $company_name
  * @property string $website
@@ -131,6 +132,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         'social_id',
         'social_type',
         'twitter_id',
+        'twitter_username',
     ];
 
     protected static function boot()
@@ -268,18 +270,20 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
     }
 
     //hasTwitterRetweeted
-    public function hasTwitterRetweeted($username)
+    public function hasTwitterRetweeted($twitter_targetID)
     {
-        //Check if user has followed
-        //Call Twitter API
+        //Check if user has Retweeted
 
-        $twitterApiService = new TwitterApiService();
-        $twitterUserId = 1588364698239397888;
-        $key = 'NEARProtocol';
-        //$socialRes = $twitterApiService->isRetweeted($twitterUserId, $key);
-        //dd($socialRes);
+        $twitterUserID = $this->twitter_id;
 
-        return true;
+        $isDone = false;
+        $responseIDS = Twitter::getRetweetedBy($twitter_targetID);
+        //Check if user has liked that $twitter_targetID in array $responseIDSLike
+        if (in_array($twitterUserID, $responseIDS)) {
+            $isDone = true;
+        }
+
+        return $isDone;
     }
 
     //hasTwitterLiked

@@ -199,6 +199,14 @@ class SampleQuestData extends Seeder
                 'entry_type' => Task::TYPE_TWITTER_RETWEET,
                 'status' => Task::STATUS_ACTIVE
             ],
+            [
+                'name' => 'Tweet Quoters & Mention 3 friends ',
+                'description' => 'omni_hub’s Tweet quoters who also hashtagged #OmniHub, #Airdrop and mentioned at least 3 friends.',
+                'value' => 'https://twitter.com/intent/tweet?text=%23OmniHub %23Airdrop https://twitter.com/omni_hub/status/1717151082013393010',
+                'slug' => uniqid(),
+                'entry_type' => Task::TYPE_TWITTER_QUOTE,
+                'status' => Task::STATUS_ACTIVE
+            ],
             //Telegram https://t.me/derpdex
 
         ];

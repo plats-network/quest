@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->string('google_id')->nullable();
             $table->string('github_id')->nullable();
             $table->string('twitter_id')->nullable();
+            $table->string('twitter_username')->nullable();
            /* $table->string('linkedin_id')->nullable();
             $table->string('instagram_id')->nullable();
             $table->string('youtube_id')->nullable();

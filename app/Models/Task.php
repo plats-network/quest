@@ -56,6 +56,8 @@ class Task extends BaseModel
     const TYPE_TWITTER_LIKE = 'TWITTER_LIKE';
     //Task Type Twitter Hashtag
     const TYPE_TWITTER_HASHTAG = 'TWITTER_HASHTAG';
+    //TWITTER QUOTE
+    const TYPE_TWITTER_QUOTE = 'TWITTER_QUOTE';
 
     //Task Type Twitter TWEET
     const TYPE_TWITTER_TWEET = 'TWITTER_TWEET';
@@ -118,6 +120,7 @@ class Task extends BaseModel
             self::TYPE_TWITTER_FOLLOW => 'Twitter Follow',
             self::TYPE_TWITTER_TWEET => 'Twitter Tweet',
             self::TYPE_TWITTER_RETWEET => 'Twitter Retweet',
+            self::TYPE_TWITTER_QUOTE => 'Twitter Quote',
 
             self::TRANSFER_TYPE_HOLDERS => 'Token Holder',
             self::TRANSFER_TYPE_ACTIVITY => 'Transaction Activity',
@@ -515,6 +518,16 @@ class Task extends BaseModel
         //Url Example https://twitter.com/intent/like?tweet_id=1708838132697973156
         $url = $this->value;
         $tweetId = str_replace('https://twitter.com/intent/like?tweet_id=', '', $url);
+
+        return $tweetId;
+    }
+
+    //Get twitter retweet id from value url
+    public function getTwitterRetweetIdAttribute()
+    {
+        //Url Example https://twitter.com/intent/retweet?tweet_id=1708779829368357330
+        $url = $this->value;
+        $tweetId = str_replace('https://twitter.com/intent/retweet?tweet_id=', '', $url);
 
         return $tweetId;
     }

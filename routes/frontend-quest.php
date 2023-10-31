@@ -47,8 +47,11 @@ Route::get('/test', function () {
     //Check user follow
     //$response = Twitter::isFollowing($twitterUserID, '1393256216818823169');
     //Get likeds tweet
-
-    $response = Twitter::getLikedTweets($twitterUserID);
+    //$response = Twitter::getLikedTweets($twitterUserID);
+    $twitterID = '1393256216818823169';
+    //$response = Twitter::getQuoteTweets($twitterID);
+    //https://twitter.com/intent/retweet?tweet_id=1717163107800567924
+    $response = Twitter::getRetweetedBy('1712857718367695177');
     dd($response);
 
     dd('Done');
