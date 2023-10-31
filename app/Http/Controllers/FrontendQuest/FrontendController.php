@@ -22,7 +22,8 @@ class FrontendController extends Controller
             });*/
 
             Schema::table('tasks', function ($table) {
-                $table->string('category_token')->nullable();
+                //$table->string('category_token')->nullable();
+                $table->string('hash_tag')->nullable();
             });
         }
 
