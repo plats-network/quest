@@ -131,6 +131,7 @@ class TwitterApiService extends BaseTwitter {
         ]);
 
         if ($statusCode != 200) {
+            dd($data);
             return [false, optional($data->errors[0])->message];
         }
 

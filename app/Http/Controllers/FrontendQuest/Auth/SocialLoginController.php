@@ -61,9 +61,20 @@ class SocialLoginController extends Controller
             //  +tokenSecret: "CfGVWZiURWnS9PuSFVFEodHKUIpmedQSM0l1TRJbRN4p9"
             //}
 
-            $authUser = $this->findOrCreateUser($user, $provider);
+            /** @var User $questUser */
+            $questUser = auth()->guard('quest')->user();
+            if ($questUser){
+                //Set twitter id
+                $questUser->twitter_id = $user->getId();
+                //Save
+                $questUser->save();
+                //Redirect post list
+                return redirect(route('quest.index'));
+            }
 
-            Auth::guard('quest')->login($authUser, true);
+            //$authUser = $this->findOrCreateUser($user, $provider);
+
+            //Auth::guard('quest')->login($authUser, true);
         } catch (Exception $e) {
             return redirect(route('quest.index'));
         }

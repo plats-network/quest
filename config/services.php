@@ -49,9 +49,19 @@ return [
     ],
 
     /*Twitter*/
+
     'twitter' => [
+        'consumer_key' => env('TWITTER_CONSUMER_KEY'),
+        'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
+        'access_token' => env('TWITTER_ACCESS_TOKEN'),
+        'access_token_secret' => env('TWITTER_ACCESS_TOKEN_SECRET'),
+
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
         'redirect' => env('TWITTER_REDIRECT')
+    ],
+
+    'youtube' => [
+        'key' => env('YOUTUBE_API_KEY'),
     ],
 ];

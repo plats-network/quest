@@ -506,4 +506,13 @@ class Task extends BaseModel
     //Twitter Like: https://twitter.com/intent/like?tweet_id=1708838132697973156
     //Twitter Retweet: https://twitter.com/intent/retweet?tweet_id=1708838132697973156
 
+    //Get Twitter like id from value url
+    public function getTwitterLikeIdAttribute()
+    {
+        //Url Example https://twitter.com/intent/like?tweet_id=1708838132697973156
+        $url = $this->value;
+        $tweetId = str_replace('https://twitter.com/intent/like?tweet_id=', '', $url);
+
+        return $tweetId;
+    }
 }

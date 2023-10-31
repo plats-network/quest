@@ -66,7 +66,7 @@ Route::middleware('auth:quest')->group(function () {
 
 
 // Social Login Routes
-Route::group(['namespace' => 'Auth', 'middleware' => 'guest:quest'], function () {
+Route::group(['namespace' => 'Auth', 'middleware' => 'auth:quest'], function () {
     Route::get('login/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('quest.social.login');
-    Route::get('quest/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback'])->name('quest.social.login.callback');
+    Route::get('login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback'])->name('quest.social.login.callback');
 });

@@ -9,13 +9,24 @@ class TwitterFake implements TwitterInterface
 {
     protected array $tweets = [];
 
-    public function tweet(string $status): ?array
+    public function tweet(string $text): ?array
     {
-        $this->tweets[] = $status;
+        $this->tweets[] = $text;
 
         return [
-            'status' => $status,
+            'status' => $text,
         ];
+    }
+
+    //Follow
+    public function following($userTweetId, $keyFollow)
+    {
+        return true;
+    }
+    //Like
+    public function like($userTweetId, $keyLike)
+    {
+        return true;
     }
 
     public function assertTweetSent(string $status): self

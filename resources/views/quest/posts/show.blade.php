@@ -344,6 +344,18 @@ use App\Models\Task;
                                 '</svg>');
                             alert(data['success']);
                         }
+                    },
+                    fail: function (data) {
+                        console.log(data);
+                        //Remove class animate-spin fill-blue-600 to button
+                        alert('Error');
+                    },
+                    error: function (data) {
+                        console.log(data);
+
+                        //Remove class animate-spin fill-blue-600 to button
+                        selectButton.removeClass('animate-spin fill-blue-600 text-blue-700');
+                        alert('Error check status');
                     }
                 });
 

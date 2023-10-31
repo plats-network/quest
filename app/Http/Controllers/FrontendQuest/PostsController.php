@@ -83,6 +83,16 @@ class PostsController extends Controller
         $id = decode_id($hashid);
         /** @var User $questUser */
         $questUser = auth()->guard('quest')->user();
+        //Check user has login twitter
+        if ($questUser){
+            $userTwitterID = $questUser->twitter_id;
+            //dd($userTwitterID);
+            if (!$userTwitterID){
+                return redirect()->route('quest.social.login', ['provider' => 'twitter'])
+                    ->with('error', 'Please login twitter to play task');
+            }
+        }
+
 
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -115,9 +125,9 @@ class PostsController extends Controller
             $isShowReward = true;
         }
         //Get list Task User đã Play
-
-
+        //Check user has favorited the post
         //$user->hasFavorited($post);
+
         $hasFavorited = false;
         $listTaskUserHasPlay = null;
         $arrTaskUserHasPlay = [];
@@ -136,7 +146,10 @@ class PostsController extends Controller
 
 
         //Check user has followed
-        //$questUser->hasTwitterFollowed('Scroll_ZKP');
+        //$Value = $questUser->hasTwitterFollowed('Scroll_ZKP');
+        //$Value = $questUser->hasTwitterFollowed2('Scroll_ZKP');
+        //dd($Value);
+        //$questUser->hasTwitterFollowed2('Scroll_ZKP');
 
         return view(
             "quest.posts.show",
@@ -221,10 +234,18 @@ class PostsController extends Controller
                 break;
             case Task::TYPE_TWITTER_LIKE:
                 //Check if user has liked
-                if ($questUser->hasTwitterLiked($task->twitter_id)){
+                $idLike = $task->getTwitterLikeIdAttribute();
+
+                if ($idLike && $questUser->hasTwitterLiked($idLike)){
                     //Set completed
                     $userTaskStatus->setCompleted();
+
                     return response()->json(['success'=>'Task is completed']);
+                }else{
+                    return response()->json([
+                        'status' => 0,
+                        'success'=>'Task is not completed'
+                    ]);
                 }
                 break;
 
@@ -281,11 +302,13 @@ class PostsController extends Controller
         }
 
 
-
         //Delay 2s
-        sleep(1);
+        //sleep(1);
 
-        return response()->json(['success'=>'Data is successfully added']);
+        return response()->json([
+            'status' => 0,
+            'success'=>'Task is not completed'
+        ]);
     }
 
     //Fake Status

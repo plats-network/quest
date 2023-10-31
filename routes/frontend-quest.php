@@ -10,6 +10,7 @@ use App\Http\Controllers\FrontendQuest\TagsController;
 use App\Http\Controllers\FrontendQuest\UserController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Auth\GoogleSocialiteController;
+use App\Facades\Twitter;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,25 @@ Route::get('dashboard', function () {
 
 //Update db
 Route::get('update-db', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'updateDb'])->name('update-db');
+
+//Test twitter
+Route::get('/test', function () {
+
+    /*Twitter::tweet(sprintf(
+        "Good news"
+    ));*/
+    $twitterUserID = '1588364698239397888';
+    //$response = Twitter::getUserByUsername('larastreamers');
+    //Check user follow
+    //$response = Twitter::isFollowing($twitterUserID, '1393256216818823169');
+    //Get likeds tweet
+
+    $response = Twitter::getLikedTweets($twitterUserID);
+    dd($response);
+
+    dd('Done');
+});
+
 
 /*
 *

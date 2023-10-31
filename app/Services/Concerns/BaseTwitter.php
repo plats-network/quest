@@ -20,6 +20,7 @@ abstract class BaseTwitter
             case "GET":
             case "get":
                 $res = Http::withToken($this->getToken())
+
                     ->get(config('app.twitter_api_url') . $uri);
                 break;
             case "POST":
@@ -39,6 +40,7 @@ abstract class BaseTwitter
      */
     private function getToken()
     {
-        return config('app.twitter_token');
+        return 'AAAAAAAAAAAAAAAAAAAAAAmeqgEAAAAAARxBQrhykLEcCtws80nPxKGrw94%3Dt4eYuAyaDYPAu849PVGFic1BSLwnVMqPM5A58XQ0xQJlW3K2Hq';
+        //return config('app.twitter_token');
     }
 }

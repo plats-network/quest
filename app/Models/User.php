@@ -19,6 +19,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\Permission\Traits\HasRoles;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Noweh\TwitterApi\Client;
+use App\Facades\Twitter;
 
 /**
  * @property integer $id
@@ -128,7 +129,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         'pm_last_four',
         'trial_ends_at',
         'social_id',
-        'social_type'
+        'social_type',
+        'twitter_id',
     ];
 
     protected static function boot()
@@ -167,8 +169,12 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
 
     //Twiter Infor
     //Get twitter id from user provider
-    public function getTwitterIdAttribute()
+    public function getTwitterIdNewAttribute()
     {
+        if ($this->twitter_id){
+            return $this->twitter_id;
+        }
+
         return $this->providers()->where('provider', 'twitter')->first()->provider_id ?? null;
     }
 
@@ -254,8 +260,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         $twitterApiService = new TwitterApiService();
         $twitterUserId = 1588364698239397888;
         $key = 'NEARProtocol';
-        //$socialRes = $twitterApiService->isFollowing($twitterUserId, $key);
-        //dd($socialRes);
+        $socialRes = $twitterApiService->isFollowing($twitterUserId, $key);
+
+        dd($socialRes);
 
         return true;
     }
@@ -276,18 +283,28 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
     }
 
     //hasTwitterLiked
-    public function hasTwitterLiked($username)
+    public function hasTwitterLiked($twitter_targetID)
     {
         //Check if user has followed
         //Call Twitter API
+        $isLike = false;
 
         $twitterApiService = new TwitterApiService();
-        $twitterUserId = 1588364698239397888;
+        //$twitterUserID = 1588364698239397888;
+
+        $twitterUserID = $this->twitter_id;
         $key = 'NEARProtocol';
-        //$socialRes = $twitterApiService->isLiked($twitterUserId, $key);
+
+        //$socialRes = $twitterApiService->isLiked($twitterUserID, $key);
         //dd($socialRes);
 
-        return true;
+        $responseIDSLike = Twitter::getLikedTweets($twitterUserID);
+        //Check if user has liked that $twitter_targetID in array $responseIDSLike
+        if (in_array($twitter_targetID, $responseIDSLike)) {
+            $isLike = true;
+        }
+
+        return $isLike;
     }
 
     //hasTokenHolder
@@ -358,7 +375,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //Call
         $url = 'http://209.97.161.136:8000/info-transfer?accountId=' . $wallet_address . '&chainId=' . $networkName;
         Log::info('Url Token Holder Check ' . $url);
-        
+
         $dataReturn = [
             'status' => false,
             'message' => 'Check account fail'
@@ -410,20 +427,30 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //Call Twitter API
 
         $settings = [
-            'account_id' => 'RXl3WDNPamZYUWVoWnhzUnRDaE06MTpjaQ',
-            'access_token' => '1588364698239397888-Fd6s1NlJE5rOEpQlHqwrhDvPf88goh',
-            'access_token_secret' => '0Of3N0nysSoMrExNRDdbfUv9BNzM4AqVk7YeBWIpTy9Zy',
+            'account_id' => 'czBDWnh3TzAwenBDUFE0NXhIcUY6MTpjaQ',
 
-            'consumer_key' => 'R1jbcWcY40jFdsdJcRv6bFqkJ',
-            'consumer_secret' => 'EsgjmcXnf5qQSdidXX4KTwcXxdUwaa5XbhDbMQmqxsB0Tf9m25',
+            'access_token' => '4367425814-CNFG76nKC8d015vLKahxC4KT70Q4hIsGUnFRhj1',
+            'access_token_secret' => 'pdYQB5xSPkkSE6LLtRDPmeUZZHHUHOLeY3YY1R2ynzeS8',
 
-            'bearer_token' => 'AAAAAAAAAAAAAAAAAAAAAEWxqAEAAAAAVDIALRhYF8bKFU55HooC1LIKJUQ%3DXbrh04yrOGEu8XyNPNcuFtZiEQpxGacoEETQLlAMBfJGnhcSYZ'
+           // 'access_token' => 'n4mU9cOsweKWnth4kyJeS1XkI',
+            //'access_token_secret' => 'HDhe6ZZPvK96SwBGwAj4YrYPWmSnUluv6oMjevMECbahNLgAOA',
+
+            'consumer_key' => 'f6YoruRt1MotL8sfr7T465Yna',
+            'consumer_secret' => 'vR9y289BIp7RkP3DRsd5d2xcJho1sUEPaHVsukv63hKTaqe5Vm',
+
+            'bearer_token' => 'AAAAAAAAAAAAAAAAAAAAAF7iqgEAAAAAc8htvpiOeEzvejxjq2lHezKk2pw%3DIrpZB5LFxdbceFa2NJ3ITkxXJrC3h1lllpzFz22VSWLTUmZlOD',
+
         ];
 
-        //$client = new Client($settings);
+        $client = new Client($settings);
         //$return = $client->userMeLookup()->performRequest();
+        $return = $client->userFollows()->getFollowers()->performRequest();
         //$return = $client->timeline()->getRecentMentions('1588364698239397888')->performRequest();
-        //dd($return);
+        //Retrieve the users which you are following
+        //Example:
+        //
+        //$return = $client->userFollows()->getFollowing()->performRequest();
+        dd($return);
         /*   $response = $client->tweet()->create()
                ->performRequest([
                    'text' => 'Test Tweet... '
