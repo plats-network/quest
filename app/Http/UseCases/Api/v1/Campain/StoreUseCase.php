@@ -53,6 +53,15 @@ final class StoreUseCase
                     $dataTask[$key]['name'] = 'Retweet Twitter' . ' ' . $screenName;
                 }
 
+                //TOKEN_HOLDERS set name is Token Holders
+                if ($task['entry_type'] == 'TOKEN_HOLDERS') {
+                    $dataTask[$key]['name'] = 'Token Holders';
+                }
+
+                //TRANSFER_ACTIVITY set name is Transfer Activity
+                if ($task['entry_type'] == 'TRANSFER_ACTIVITY') {
+                    $dataTask[$key]['name'] = 'Transfer Activity';
+                }
             }
         }
         //dd($dataTask);

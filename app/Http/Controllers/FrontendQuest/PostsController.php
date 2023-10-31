@@ -218,7 +218,9 @@ class PostsController extends Controller
             case Task::TYPE_TWITTER_FOLLOW:
                 //$userTaskStatus->url = 'https://twitter.com/'.$task->twitter_username;
                 //Check if user has followed
-                if ($questUser->hasTwitterFollowed($task->twitter_username)){
+                $idTweet = $task->getTwitterFollowIdAttribute();
+
+                if ($questUser->hasTwitterFollowed($idTweet)){
                     //Set completed
                     $userTaskStatus->setCompleted();
                     return response()->json(['success'=>'Task is completed']);
@@ -227,6 +229,7 @@ class PostsController extends Controller
             case Task::TYPE_TWITTER_RETWEET:
                 //Sample Url Action https://twitter.com/intent/retweet?tweet_id=1712857718367695177
                 $idTweet = $task->getTwitterRetweetIdAttribute();
+
                 //Check if user has retweeted
                 if ($questUser->hasTwitterRetweeted($idTweet)){
                     //Set completed

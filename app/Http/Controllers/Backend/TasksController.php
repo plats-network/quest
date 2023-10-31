@@ -321,7 +321,7 @@ class TasksController extends Controller
 
         $$module_name_singular = Task::findOrFail($id);
 
-        dd($$module_name_singular);
+        //dd($$module_name_singular);
 
         $all_task_type = Task::getTaskType();
         $post_id = $$module_name_singular->post_id;

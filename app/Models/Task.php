@@ -517,7 +517,19 @@ class Task extends BaseModel
     {
         //Url Example https://twitter.com/intent/like?tweet_id=1708838132697973156
         $url = $this->value;
-        $tweetId = str_replace('https://twitter.com/intent/like?tweet_id=', '', $url);
+        //Check url have string tweet_id
+        if (strpos($url, 'tweet_id') !== false) {
+            $tweetId = str_replace('https://twitter.com/intent/like?tweet_id=', '', $url);
+        } else {
+            $tweetId = $url;
+        }
+
+        //Case url is https://twitter.com/Aleph__Zero/status/1706317615654641668?s=20
+        if (strpos($url, 'status') !== false) {
+            $tweetId = str_replace('https://twitter.com/Aleph__Zero/status/', '', $url);
+            $tweetId = explode('?', $tweetId);
+            $tweetId = $tweetId[0];
+        }
 
         return $tweetId;
     }
@@ -527,8 +539,33 @@ class Task extends BaseModel
     {
         //Url Example https://twitter.com/intent/retweet?tweet_id=1708779829368357330
         $url = $this->value;
-        $tweetId = str_replace('https://twitter.com/intent/retweet?tweet_id=', '', $url);
+        //check have string tweet_id
+        if (strpos($url, 'tweet_id') !== false) {
+            $tweetId = str_replace('https://twitter.com/intent/retweet?tweet_id=', '', $url);
+        } else {
+            $tweetId = $url;
+        }
+
 
         return $tweetId;
+    }
+    //getTwitterFollowIdAttribute
+    public function getTwitterFollowIdAttribute()
+    {
+        //Url Example https://twitter.com/intent/follow?screen_name=BlackPanther_Fi
+        $url = $this->value;
+        //check have string screen_name
+        if (strpos($url, 'screen_name') !== false) {
+            $screenName = str_replace('https://twitter.com/intent/follow?screen_name=', '', $url);
+        } else {
+            $screenName = $url;
+        }
+        //Check is string https://twitter.com/Aleph__Zero
+        if (strpos($url, 'https://twitter.com/') !== false) {
+            $screenName = str_replace('https://twitter.com/', '', $url);
+        }
+
+
+        return $screenName;
     }
 }
