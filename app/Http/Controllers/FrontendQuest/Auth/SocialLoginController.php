@@ -66,6 +66,9 @@ class SocialLoginController extends Controller
             if ($questUser){
                 //Set twitter id
                 $questUser->twitter_id = $user->getId();
+                //Set Name
+                $questUser->name = $user->getName();
+                $questUser->first_name = $user->getName();
                 //Save
                 $questUser->save();
                 //Redirect post list

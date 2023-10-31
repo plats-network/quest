@@ -68,6 +68,8 @@ class Task extends BaseModel
     const NETWORK_TYPE_PHALA = 'phala';
     //Network Type PHALA_ZERO
     const NETWORK_TYPE_PHALA_ZERO = 'aleph';
+    //Astar
+    const NETWORK_TYPE_ASTAR = 'astar';
 
 
     //Get all network name
@@ -76,6 +78,7 @@ class Task extends BaseModel
         return [
             self::NETWORK_TYPE_PHALA => 'Phala',
             self::NETWORK_TYPE_PHALA_ZERO => 'Phala Zero',
+            self::NETWORK_TYPE_ASTAR => 'Astar',
         ];
     }
     //Status Active

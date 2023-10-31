@@ -76,6 +76,8 @@ class Post extends BaseModel
     const CATEGORY_TOKEN_AZERO = 'AZERO';
     const CATEGORY_TOKEN_PHA = 'PHA';
 
+    const CATEGORY_TOKEN_ASTR = 'ASTR';
+
     //Reward type
     //Token
     const REWARD_TYPE_TOKEN ='TOKEN';
@@ -174,6 +176,7 @@ class Post extends BaseModel
         return [
             self::CATEGORY_TOKEN_AZERO => 'AZERO',
             self::CATEGORY_TOKEN_PHA => 'PHA',
+            self::CATEGORY_TOKEN_ASTR => 'ASTR',
         ];
     }
 
