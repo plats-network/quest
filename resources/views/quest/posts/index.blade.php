@@ -27,7 +27,7 @@
     <div class="flex flex-wrap -mx-4 mb-12 md:mb-20">
         @foreach ($$module_name as $$module_name_singular)
             @php
-                $details_url = route("quest.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
+                $details_url = route("quest.$module_name.show",[($$module_name_singular->id), $$module_name_singular->slug]);
             @endphp
         <div class="w-full sm:w-full md:w-1/2 lg:w-1/4 px-4 mb-8">
             <a class="block mb-6 overflow-hidden rounded-md" href="{{$details_url}}">

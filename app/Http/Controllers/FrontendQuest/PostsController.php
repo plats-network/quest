@@ -80,7 +80,7 @@ class PostsController extends Controller
      */
     public function show(Request $request, $hashid)
     {
-        $id = decode_id($hashid);
+        $id = ($hashid);
         /** @var User $questUser */
         $questUser = auth()->guard('quest')->user();
         //Check user has login twitter
