@@ -29,6 +29,8 @@ final class GetCollectionUseCase
             if ($user->role === 'user') {
                 $campains->where('created_by', $user->id);
             }
+        }else{
+            $campains->where('created_by', 0);
         }
 
         if (! empty($query['created_by'])) {
