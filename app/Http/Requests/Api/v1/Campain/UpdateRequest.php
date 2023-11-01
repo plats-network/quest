@@ -81,7 +81,27 @@ class UpdateRequest extends FormRequest
                 if ($task['entry_type'] && !array_key_exists($task['entry_type'], $taskTypes)){
                     $validator->errors()->add('entry_type', 'Entry type ' . $task['entry_type'] .' is invalid.');
                 }
+
+                //Check task value url is valid twitter url
+                $isTwitterTask = Task::TYPE_TWITTER_FOLLOW  ||
+                    Task::TYPE_TWITTER_LIKE ||
+                    Task::TYPE_TWITTER_RETWEET ||
+                    Task::TYPE_TWITTER_HASHTAG;
+
+                if ($isTwitterTask) {
+                    //Check valid twitter url
+                    //https://twitter.com/intent/like?tweet_id=1708779829368357330
+                    //https://twitter.com/intent/follow?screen_name=BreederDodo
+                    //https://twitter.com/intent/retweet?tweet_id=1708779829368357330
+                    //Check contain text twitter.com or x.com
+                    if (strpos($task['value'], 'twitter.com') === false && strpos($task['value'], 'x.com') === false){
+                        $validator->errors()->add('value', 'Twitter url ' . $task['value'] .' is invalid.');
+                    }
+                }
+
             }
+
+
             //Check key block_chain_network in $taskNetworks
             if ( isset($task['block_chain_network']) && !array_key_exists($task['block_chain_network'], $taskNetworks)){
                 $msgError = 'Block chain network ' . $task['block_chain_network'] .' is invalid.';
@@ -91,4 +111,6 @@ class UpdateRequest extends FormRequest
             }
         });
     }
+    //Function check valid twitter url
+
 }

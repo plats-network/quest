@@ -367,17 +367,27 @@ use App\Models\Task;
                 var isOpen = $(this).data('isopen');
                 if(isOpen){
                     var dataUrl = $(this).data('url');
+                    var dataAction = $(this).data('action');
                     //console.log($(this).data('action'));
-                    if ($(this).data('action') == 'FOLLOW') {
+                    if ( dataAction == 'FOLLOW') {
                         window.open(dataUrl, "myWindow", "width=1000,height=1000");
                     }
 
                     //LIKE
-                    if ($(this).data('action') == 'LIKE') {
+                    if (dataAction == 'LIKE') {
                         window.open(dataUrl, "myWindow", "width=1000,height=1000");
                     }
                     //RETWEET
-                    if ($(this).data('action') == 'RETWEET') {
+                    if (dataAction == 'RETWEET') {
+                        window.open(dataUrl, "myWindow", "width=1000,height=1000");
+                    }
+                    //TOKEN_HOLDERS
+                    if (dataAction == 'TOKEN_HOLDERS') {
+                        window.open(dataUrl, "myWindow", "width=1000,height=1000");
+                    }
+
+                    //TRANSFER_ACTIVITY
+                    if (dataAction == 'TRANSFER_ACTIVITY`') {
                         window.open(dataUrl, "myWindow", "width=1000,height=1000");
                     }
                 }

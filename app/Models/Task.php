@@ -134,6 +134,7 @@ class Task extends BaseModel
     public function getTypeValueAttribute()
     {
         $taskType = self::getTaskType();
+
         $entryType = $this->entry_type;
 
         switch ($entryType) {
@@ -141,6 +142,9 @@ class Task extends BaseModel
                 return 'FOLLOW';
                 break;
             case self::TYPE_TWITTER_RETWEET:
+                return 'RETWEET';
+                break;
+            case self::TYPE_TWITTER_QUOTE:
                 return 'RETWEET';
                 break;
             case self::TYPE_TWITTER_LIKE:
@@ -165,7 +169,7 @@ class Task extends BaseModel
                 return '';
         }
 
-        return '';
+        return self::TYPE_TWITTER_RETWEET;
     }
 
 
