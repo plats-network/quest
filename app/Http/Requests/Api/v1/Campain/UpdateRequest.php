@@ -85,8 +85,7 @@ class UpdateRequest extends FormRequest
                 //Check task value url is valid twitter url
                 $isTwitterTask = Task::TYPE_TWITTER_FOLLOW  ||
                     Task::TYPE_TWITTER_LIKE ||
-                    Task::TYPE_TWITTER_RETWEET ||
-                    Task::TYPE_TWITTER_HASHTAG;
+                    Task::TYPE_TWITTER_RETWEET;
 
                 if ($isTwitterTask && isset($task['value'])) {
                     //Check valid twitter url
