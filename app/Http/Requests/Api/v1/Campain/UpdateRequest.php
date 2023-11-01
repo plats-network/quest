@@ -88,7 +88,7 @@ class UpdateRequest extends FormRequest
                     Task::TYPE_TWITTER_RETWEET ||
                     Task::TYPE_TWITTER_HASHTAG;
 
-                if ($isTwitterTask) {
+                if ($isTwitterTask && isset($task['value'])) {
                     //Check valid twitter url
                     //https://twitter.com/intent/like?tweet_id=1708779829368357330
                     //https://twitter.com/intent/follow?screen_name=BreederDodo
