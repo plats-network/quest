@@ -350,6 +350,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //}
         $res = $response->json();
         $dataReturn['data'] = $res;
+        $dataReturn['url_call'] = $url;
         Log::info('Check account', $res);
         //Check wallet balance > totalToken
         if ($res['success'] == true) {
@@ -404,6 +405,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         $res = $response->json();
 
         $dataReturn['data'] = $res;
+        $dataReturn['url_call'] = $url;
 
         Log::info('Check trasfer', $res);
 
