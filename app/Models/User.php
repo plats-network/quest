@@ -373,8 +373,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //http://209.97.161.136:8000/info-transfer?accountId=F3opxRbMKKF5x3YyiodUPKUsZJq8j8enDPvqH2MQqw1C7i7&chainId=phala
         //Param accountId chainId
         //Return true or false
-        //$wallet_address = $this->wallet_address;
-        $wallet_address = 'F3opxRbMKKF5x3YyiodUPKUsZJq8j8enDPvqH2MQqw1C7i7';
+        $wallet_address = $this->wallet_address;
+        //$wallet_address = 'F3opxRbMKKF5x3YyiodUPKUsZJq8j8enDPvqH2MQqw1C7i7';
         //$networkName to lower
         $networkName = strtolower($networkName);
         //Call
