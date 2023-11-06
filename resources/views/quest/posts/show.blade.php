@@ -153,7 +153,7 @@ use App\Models\Task;
                             <div id="accordion-color-body-{{$task->id}}" class="{{$loop->iteration ==1?'hidden' : 'hidden mb-0'}} " aria-labelledby="accordion-color-heading-{{$task->id}}">
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                 <p class="mb-2 text-gray-500 dark:text-gray-400">
-                                    {{$task->name}}
+                                    {{$task->getNameTextAttribute()}}
 
                                     <button type="button" data-canopen="true" data-id="{{$task->id}}" class=" @if(in_array($task->id, $arrTaskUserHasPlay)) hidden @else show  @endif btnCheckStatus ml-5 text-blue-700 border border-blue-700  hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
 
