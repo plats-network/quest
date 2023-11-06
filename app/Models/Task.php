@@ -353,6 +353,21 @@ class Task extends BaseModel
         return '';
     }
 
+    //Get Name Attribute
+    public function getNameAttribute($value)
+    {
+        $name = $this->name;
+        //Check type is TRANSFER_TYPE_ACTIVITY and name contain Token Holder then rename to Transaction Activity
+        if ($this->entry_type == self::TRANSFER_TYPE_ACTIVITY){
+            //check name contain text Token Holder
+            if (strpos($name, 'Token Holder') !== false) {
+                $name = str_replace('Token Holder', 'Transaction Activity', $name);
+            }
+
+        }
+
+        return ucfirst($value);
+    }
     //status_color
     public function getStatusColorAttribute()
     {
