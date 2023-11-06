@@ -354,7 +354,7 @@ class Task extends BaseModel
     }
 
     //Get Name Attribute
-    public function getNameAttribute($value)
+    public function getNameTextAttribute()
     {
         $name = $this->name;
         //Check type is TRANSFER_TYPE_ACTIVITY and name contain Token Holder then rename to Transaction Activity
@@ -366,7 +366,7 @@ class Task extends BaseModel
 
         }
 
-        return ucfirst($value);
+        return ucfirst($name);
     }
     //status_color
     public function getStatusColorAttribute()
