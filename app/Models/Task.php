@@ -27,6 +27,7 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  * @property string $order
  * @property string $status
  * @property string $entry_type
+ * @property string $type_value
  * @property string $transfer_type
  * @property string $total_token
  * @property string $block_chain_network
@@ -160,10 +161,10 @@ class Task extends BaseModel
                 return 'TELEGRAM_JOIN';
                 break;
             case self::TRANSFER_TYPE_HOLDERS:
-                return 'TOKEN_HOLDERS';
+                return 'TOKEN_HOLDER';
                 break;
             case self::TRANSFER_TYPE_ACTIVITY:
-                return 'TRANSFER_ACTIVITY';
+                return 'TRANSACTION_ACTIVITY'; //TO UPPER CASE is TRANSACTION_ACTIVITY
                 break;
             default:
                 return '';
