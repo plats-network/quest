@@ -74,6 +74,8 @@ class Task extends BaseModel
     //Astar
     const NETWORK_TYPE_ASTAR = 'astar';
 
+    //polkadot
+    const NETWORK_TYPE_POLKADOT = 'polkadot';
 
     //Get all network name
     public static function getAllNetworkName()
@@ -82,6 +84,7 @@ class Task extends BaseModel
             self::NETWORK_TYPE_PHALA => 'Phala',
             self::NETWORK_TYPE_PHALA_ZERO => 'Phala Zero',
             self::NETWORK_TYPE_ASTAR => 'Astar',
+            self::NETWORK_TYPE_POLKADOT => 'Polkadot',
         ];
     }
     //Status Active
@@ -94,6 +97,7 @@ class Task extends BaseModel
     //get all status
     //Task transfered type Token Holder, Transaction Activity
     const TRANSFER_TYPE_HOLDERS = 'TOKEN_HOLDERS';
+
     const TRANSFER_TYPE_ACTIVITY = 'TRANSFER_ACTIVITY';
 
     //Get all task type
