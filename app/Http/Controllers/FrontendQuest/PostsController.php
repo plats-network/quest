@@ -64,7 +64,7 @@ class PostsController extends Controller
             ->published()
             ->with(['category', 'tags', 'comments'])
             ->orderBy('id', 'desc')
-            ->paginate(8);
+            ->fastPaginate(8);
 
         return view(
             "quest.posts.index",
@@ -88,8 +88,17 @@ class PostsController extends Controller
             $userTwitterID = $questUser->twitter_id;
             //dd($userTwitterID);
             if (!$userTwitterID){
-                return redirect()->route('quest.social.login', ['provider' => 'twitter'])
-                    ->with('error', 'Please login twitter to play task');
+                //Check is local then fake data
+                if (config('app.env') == 'local'){
+                    $questUser->twitter_id = '1588364698239397888';
+                    $questUser->twitter_username = 'Scroll_ZKP';
+
+                    $questUser->save();
+                }else{
+                    return redirect()->route('quest.social.login', ['provider' => 'twitter'])
+                        ->with('error', 'Please login twitter to play task');
+                }
+
             }
         }
 

@@ -25,7 +25,7 @@ final class GetCollectionUseCase
 
         if (! empty($query['limit'])) {
             return new CategoryCollection(
-                $categorys->paginate($query['limit'], ['*'], 'page', $query['page'])
+                $categorys->fastPaginate($query['limit'], ['*'], 'page', $query['page'])
             );
         }
 

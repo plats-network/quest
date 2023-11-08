@@ -53,7 +53,7 @@ class TagsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = Tag::latest()->with('posts')->paginate();
+        $$module_name = Tag::latest()->with('posts')->fastPaginate();
 
         return view(
             "frontend.tags.index",
@@ -81,7 +81,7 @@ class TagsController extends Controller
         $module_action = __('Show');
 
         $$module_name_singular = Tag::findOrFail($id);
-        $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->paginate();
+        $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->fastPaginate();
 
         return view(
             "frontend.tags.show",

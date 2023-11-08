@@ -25,7 +25,7 @@ final class GetCollectionUseCase
 
         if (! empty($query['limit'])) {
             return new UserCollection(
-                $users->paginate($query['limit'], ['*'], 'page', $query['page'])
+                $users->fastPaginate($query['limit'], ['*'], 'page', $query['page'])
             );
         }
 

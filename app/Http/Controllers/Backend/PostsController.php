@@ -82,7 +82,7 @@ class PostsController extends Controller
 
         $module_action = __('List');
 
-        $$module_name = Post::latest()->paginate();
+        $$module_name = Post::latest()->fastPaginate();
         Log::info(label_case('Posts'.' '.'List').' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
@@ -287,9 +287,9 @@ class PostsController extends Controller
             ->where('log_name', '=', $module_name)
             ->where('subject_id', '=', $id)
             ->latest()
-            ->paginate();
+            ->fastPaginate();
         //List user Post
-        $listTasks = $$module_name_singular->tasks()->paginate();
+        $listTasks = $$module_name_singular->tasks()->fastPaginate();
         //List user play
         $listUserID = UserTaskStatus::query()
             ->where('post_id', '=', $id)
@@ -436,7 +436,7 @@ class PostsController extends Controller
 
         $module_action = 'Trash List';
 
-        $$module_name = Post::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
+        $$module_name = Post::onlyTrashed()->orderBy('deleted_at', 'desc')->fastPaginate();
 
         Log::info(label_case('Posts'.' '.$module_action).' | User:'.auth()->user()->name);
 

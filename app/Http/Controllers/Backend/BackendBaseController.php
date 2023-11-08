@@ -331,7 +331,7 @@ class BackendBaseController extends Controller
 
         $module_action = 'Trash List';
 
-        $$module_name = Tag::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
+        $$module_name = Tag::onlyTrashed()->orderBy('deleted_at', 'desc')->fastPaginate();
 
         logUserAccess($module_title.' '.$module_action);
 

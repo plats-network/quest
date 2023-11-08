@@ -137,7 +137,7 @@ abstract class SearchBaseServiceAbstract
             return $this->builder->simplePaginate($limitData)->appends(request()->all());
         }
 
-        return $this->builder->paginate($limitData)->appends(request()->all());
+        return $this->builder->fastPaginate($limitData)->appends(request()->all());
     }
 
     /**

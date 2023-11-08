@@ -84,6 +84,8 @@ class StoreRequest extends FormRequest
             $taskTypes = Task::getTaskType();
             //All task network name
             $taskNetworks = Task::getAllNetworkName();
+            $taskTokenType = Task::getAllNetworkName();
+
             $tasks = $validator->safe()->tasks;
             //Foreach tasks then check entry type task
             foreach ($tasks as $task) {
@@ -94,6 +96,7 @@ class StoreRequest extends FormRequest
                     $msgError = 'Entry type ' . $task['entry_type'] .' is invalid. Need In' . $arrStringKeyValid;
                     //Add Extra list key value
                     $arrKeyValid = array_keys($taskTypes);
+
                     $validator->errors()->add('entry_type', $msgError);
                 }
 
@@ -121,6 +124,15 @@ class StoreRequest extends FormRequest
                     $arrKeyValid = array_keys($taskNetworks);
                     $validator->errors()->add('block_chain_network', $msgError);
                 }
+
+                //category_token
+                /*if (isset($task['category_token']) && !array_key_exists($task['category_token'], $taskNetworks)){
+                    $arrStringKeyValid = implode(', ', array_keys($taskNetworks));
+                    $msgError = 'Category token ' . $task['category_token'] .' is invalid. Need In' . $arrStringKeyValid;
+                    //Add Extra list key value
+                    $arrKeyValid = array_keys($taskNetworks);
+                    $validator->errors()->add('category_token', $msgError);
+                }*/
             }
 
         });

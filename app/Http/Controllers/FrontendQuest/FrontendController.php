@@ -117,8 +117,9 @@ Backend xử lý nếu chưa có trong DB thì đăng ký user mới.
         //If login success then redirect to home page
         //If login fail then redirect to login page
         $user = User::where('wallet_address', $wallet_address)
-            ->where('wallet_name', $wallet_name)
+            //->where('wallet_name', $wallet_name)
             ->first();
+
         if ($user) {
             //login
             //Auth::guard('quest')->login($user);

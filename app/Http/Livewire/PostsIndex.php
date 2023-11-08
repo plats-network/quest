@@ -21,7 +21,7 @@ class PostsIndex extends Component
         $users = Post::where('name', 'like', $searchTerm)
             ->orWhere('email', 'like', $searchTerm)
             ->orderBy('id', 'desc')
-            ->with(['permissions', 'roles', 'providers'])->paginate();
+            ->with(['permissions', 'roles', 'providers'])->fastPaginate();
 
         return view('livewire.posts-index', compact('users'));
     }

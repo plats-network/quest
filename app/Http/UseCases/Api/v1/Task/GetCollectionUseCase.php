@@ -28,7 +28,7 @@ final class GetCollectionUseCase
 
         if (! empty($query['limit'])) {
             return new TaskCollection(
-                $tasks->paginate($query['limit'], ['*'], 'page', $query['page'])
+                $tasks->fastPaginate($query['limit'], ['*'], 'page', $query['page'])
             );
         }
 

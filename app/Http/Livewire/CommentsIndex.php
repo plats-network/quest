@@ -20,7 +20,7 @@ class CommentsIndex extends Component
         $users = Component::where('name', 'like', $searchTerm)
             ->orWhere('email', 'like', $searchTerm)
             ->orderBy('id', 'desc')
-            ->with(['permissions', 'roles', 'providers'])->paginate();
+            ->with(['permissions', 'roles', 'providers'])->fastPaginate();
 
         return view('livewire.comments-index', compact('users'));
     }

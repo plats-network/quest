@@ -63,7 +63,7 @@ class CategoriesController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = Category::latest()->paginate();
+        $$module_name = Category::latest()->fastPaginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -255,7 +255,7 @@ class CategoriesController extends Controller
 
         $$module_name_singular = Category::findOrFail($id);
 
-        $posts = $$module_name_singular->posts()->latest()->paginate();
+        $posts = $$module_name_singular->posts()->latest()->fastPaginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -367,7 +367,7 @@ class CategoriesController extends Controller
 
         $module_action = 'Trash List';
 
-        $$module_name = Category::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
+        $$module_name = Category::onlyTrashed()->orderBy('deleted_at', 'desc')->fastPaginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name);
 

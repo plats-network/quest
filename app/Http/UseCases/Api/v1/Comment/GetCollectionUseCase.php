@@ -25,7 +25,7 @@ final class GetCollectionUseCase
 
         if (! empty($query['limit'])) {
             return new CommentCollection(
-                $comments->paginate($query['limit'], ['*'], 'page', $query['page'])
+                $comments->fastPaginate($query['limit'], ['*'], 'page', $query['page'])
             );
         }
 

@@ -220,7 +220,7 @@ class CommentsController extends Controller
             ->where('log_name', '=', $module_name)
             ->where('subject_id', '=', $id)
             ->latest()
-            ->paginate();
+            ->fastPaginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -327,7 +327,7 @@ class CommentsController extends Controller
 
         $module_action = 'Trash List';
 
-        $$module_name = Comment::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
+        $$module_name = Comment::onlyTrashed()->orderBy('deleted_at', 'desc')->fastPaginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name);
 

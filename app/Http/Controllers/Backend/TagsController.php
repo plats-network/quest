@@ -94,7 +94,7 @@ class TagsController extends BackendBaseController
 
         $$module_name_singular = Tag::findOrFail($id);
 
-        $posts = $$module_name_singular->posts()->latest()->paginate();
+        $posts = $$module_name_singular->posts()->latest()->fastPaginate();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 

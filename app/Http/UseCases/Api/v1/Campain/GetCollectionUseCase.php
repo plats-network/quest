@@ -38,7 +38,7 @@ final class GetCollectionUseCase
         }
         if (! empty($query['limit'])) {
             return new CampainCollection(
-                $campains->paginate($query['limit'], ['*'], 'page', $query['page'])
+                $campains->fastPaginate($query['limit'], ['*'], 'page', $query['page'])
             );
         }
 

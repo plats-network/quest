@@ -53,7 +53,7 @@ class TasksController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = Post::latest()->with(['category', 'tags', 'comments'])->paginate();
+        $$module_name = Post::latest()->with(['category', 'tags', 'comments'])->fastPaginate();
 
         return view(
             "quest.posts.index",

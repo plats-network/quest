@@ -57,7 +57,7 @@ class CommentsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = Comment::latest()->published()->paginate();
+        $$module_name = Comment::latest()->published()->fastPaginate();
 
         return view(
             "quest.comments.index",

@@ -21,7 +21,7 @@ class CategoryIndex extends Component
         $users = Category::where('name', 'like', $searchTerm)
             ->orWhere('email', 'like', $searchTerm)
             ->orderBy('id', 'desc')
-            ->with(['permissions', 'roles', 'providers'])->paginate();
+            ->with(['permissions', 'roles', 'providers'])->fastPaginate();
 
         return view('livewire.category-index', compact('users'));
     }

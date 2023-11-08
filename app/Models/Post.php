@@ -563,4 +563,28 @@ class Post extends BaseModel
 
         return $isComplete;
     }
+    //Get facebook share url
+    //https://www.facebook.com/sharer/sharer.php?u=#url
+    public function getFacebookShareUrlAttribute()
+    {
+        $url = route('quest.posts.show', ['id' => $this->id, 'slug' => $this->slug]);
+
+        return 'https://www.facebook.com/sharer/sharer.php?u=' . $url;
+    }
+    //Get twitter share url
+    //http://twitter.com/share?text=text goes here&url=http://url
+    public function getTwitterShareUrlAttribute()
+    {
+        $url = route('quest.posts.show', ['id' => $this->id, 'slug' => $this->slug]);
+
+        return 'http://twitter.com/share?text=' . $this->name . '&url=' . $url;
+    }
+    //Get Instagram share url
+    //https://www.instagram.com/?url=#url
+    public function getInstagramShareUrlAttribute()
+    {
+        $url = route('quest.posts.show', ['id' => $this->id, 'slug' => $this->slug]);
+
+        return 'https://www.instagram.com/?url=' . $url;
+    }
 }

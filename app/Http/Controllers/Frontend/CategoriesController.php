@@ -53,7 +53,7 @@ class CategoriesController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = Category::with(['posts'])->paginate();
+        $$module_name = Category::with(['posts'])->fastPaginate();
 
         return view(
             "frontend.categories.index",
@@ -81,7 +81,7 @@ class CategoriesController extends Controller
         $module_action = __('Show');
 
         $$module_name_singular = Category::findOrFail($id);
-        $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->paginate();
+        $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->fastPaginate();
 
         return view(
             "frontend.categories.show",

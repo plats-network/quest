@@ -713,7 +713,7 @@ class UserController extends Controller
         $module_action = 'Deleted List';
         $page_heading = $module_title;
 
-        $$module_name = User::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
+        $$module_name = User::onlyTrashed()->orderBy('deleted_at', 'desc')->fastPaginate();
 
         Log::info(label_case($module_action).' '.label_case($module_name).' by User:'.auth()->user()->name);
 

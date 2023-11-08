@@ -25,7 +25,7 @@ final class GetCollectionUseCase
 
         if (! empty($query['limit'])) {
             return new TagCollection(
-                $tags->paginate($query['limit'], ['*'], 'page', $query['page'])
+                $tags->fastPaginate($query['limit'], ['*'], 'page', $query['page'])
             );
         }
 

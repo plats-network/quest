@@ -60,7 +60,7 @@ class TasksController extends Controller
 
         $$module_name = Task::latest()
             ->where('post_id', $post_id)
-            ->paginate();
+            ->fastPaginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 

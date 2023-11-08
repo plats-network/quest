@@ -60,7 +60,7 @@ final class StoreUseCase
 
                 //TRANSFER_ACTIVITY set name is Transfer Activity
                 if ($task['entry_type'] == 'TRANSFER_ACTIVITY') {
-                    $dataTask[$key]['name'] = 'Transfer Activity';
+                    $dataTask[$key]['name'] = 'Transaction Activity';
                 }
             }
         }

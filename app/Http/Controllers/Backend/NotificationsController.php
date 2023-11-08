@@ -57,7 +57,7 @@ class NotificationsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = auth()->user()->notifications()->paginate();
+        $$module_name = auth()->user()->notifications()->fastPaginate();
         $unread_notifications_count = auth()->user()->unreadNotifications()->count();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
