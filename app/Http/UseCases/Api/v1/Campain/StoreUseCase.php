@@ -40,17 +40,26 @@ final class StoreUseCase
                     $screenName = Str::after($task['value'], 'screen_name=');
                     $dataTask[$key]['name'] = 'Follow Twitter' . ' ' . $screenName;
                 }
+
                 //Case entry type TWITTER_LIKE
                 if ($task['entry_type'] == 'TWITTER_LIKE') {
                     //Get screen_name from value
                     $screenName = Str::after($task['value'], 'screen_name=');
                     $dataTask[$key]['name'] = 'Like Twitter' . ' ' . $screenName;
                 }
+
                 //Case entry type TWITTER_RETWEET
                 if ($task['entry_type'] == 'TWITTER_RETWEET') {
                     //Get screen_name from value
                     $screenName = Str::after($task['value'], 'screen_name=');
                     $dataTask[$key]['name'] = 'Retweet Twitter' . ' ' . $screenName;
+                }
+
+                //Case entry type TWITTER_HASH_TAG
+                if ($task['entry_type'] == 'TWITTER_HASHTAG') {
+                    //Get screen_name from value
+                    $hashTag = Str::after($task['value'], 'hash_tag=');
+                    $dataTask[$key]['name'] = 'Hash Tag Twitter' . ' ' . $hashTag;
                 }
 
                 //TOKEN_HOLDERS set name is Token Holders

@@ -58,7 +58,7 @@ class StoreRequest extends FormRequest
             'published_at' => 'nullable',
             'start_at' => 'nullable',
             'end_at' => 'nullable',
-            //tasks array
+            //tasks array not empty
             'tasks' => 'nullable|array',
         ];
     }
@@ -85,9 +85,17 @@ class StoreRequest extends FormRequest
             //All task network name
             $taskNetworks = Task::getAllNetworkName();
             $taskTokenType = Task::getAllNetworkName();
+            //Check isset tasks
+
+
 
             $tasks = $validator->safe()->tasks;
+            //Check not empty tasks then show error need create with task
+            if (empty($tasks)){
+                $validator->errors()->add('tasks', 'Tasks is empty. Need create with task');
+            }
             //Foreach tasks then check entry type task
+
             foreach ($tasks as $task) {
                 //Check entry type task
                 //Check entry_type in key value of $taskTypes

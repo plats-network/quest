@@ -124,8 +124,10 @@ Route::group(['middleware' => ['web'], 'as' => 'quest.', ], function () {
     Route::any('tasks/checkStatus', [PostsController::class, 'checkStatus'])->name('tasks.checkStatus');
 
     //$user->favorite($post);
-    Route::post('posts/{post}/favorite', [PostsController::class, 'favoritePost'])->name('posts.favoritePost');
+    Route::post('posts/favorite', [PostsController::class, 'favoritePost'])->name('posts.favoritePost');
 
+    //starQuest
+    Route::post('posts/starQuest', [PostsController::class, 'starQuest'])->name('posts.starQuest');
     /*
     *
     *  Categories Routes

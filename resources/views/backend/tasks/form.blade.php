@@ -65,7 +65,8 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-5">
+
+        <div class="row mb-3">
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     <?php
@@ -87,6 +88,25 @@
                     $field_lable = 'Action Url';
                     $field_placeholder = $field_lable;
                     $required = "required";
+                    ?>
+                    {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5" id="hash_tag_div" style="display:  block">
+            <div class="col-12 col-sm-6">
+
+            </div>
+
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <?php
+                    $field_name = 'hash_tag';
+                    $field_lable = 'Hash Tag';
+                    $field_placeholder = $field_lable;
+                    $required = "";
                     ?>
                     {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                     {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
@@ -167,6 +187,12 @@
                     $('#taskBlockChain').show();
                 } else {
                     $('#taskBlockChain').hide();
+                }
+                //Case hash_tag
+                if (entry_type == 'TWITTER_HASHTAG') {
+                    $('#hash_tag_div').show();
+                } else {
+                    $('#hash_tag_div').hide();
                 }
             });
         });

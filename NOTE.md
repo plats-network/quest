@@ -267,6 +267,7 @@ Frontend https://plats-quest.vaix.group/
 > su deploy
 > php artisan storage:link
 > git checkout composer.lock
+> git branch --show-current
 > 
 > git fetch --all
 > git pull origin master

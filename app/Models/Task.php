@@ -556,6 +556,13 @@ class Task extends BaseModel
 
         return $tweetId;
     }
+    //getTwitterHashtagAttribute
+    public function getTwitterHashtagAttribute()
+    {
+        $hashtag = $this->hash_tag;
+
+        return $hashtag;
+    }
 
     //Get twitter retweet id from value url
     public function getTwitterRetweetIdAttribute()
@@ -572,7 +579,6 @@ class Task extends BaseModel
             //Get id
             $tweetId = $this->getTweetIdFromUrl($url);
         }
-
 
 
         return $tweetId;

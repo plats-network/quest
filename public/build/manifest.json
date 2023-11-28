@@ -1,14 +1,14 @@
 {
-  "_ModalWallet-7b30bda6.js": {
-    "file": "assets/ModalWallet-7b30bda6.js",
+  "_ModalWallet-b8064b70.js": {
+    "file": "assets/ModalWallet-b8064b70.js",
     "imports": [
       "resources/js/deposit.jsx",
       "_contract-metadata-fa83a96e.js",
-      "_axios-82afda87.js"
+      "_axios-3a76d256.js"
     ]
   },
-  "_axios-82afda87.js": {
-    "file": "assets/axios-82afda87.js"
+  "_axios-3a76d256.js": {
+    "file": "assets/axios-3a76d256.js"
   },
   "_contract-metadata-fa83a96e.js": {
     "file": "assets/contract-metadata-fa83a96e.js",
@@ -16,10 +16,10 @@
       "resources/js/deposit.jsx"
     ]
   },
-  "_module.esm-8b1418e8.js": {
-    "file": "assets/module.esm-8b1418e8.js",
+  "_module.esm-b47c1e59.js": {
+    "file": "assets/module.esm-b47c1e59.js",
     "imports": [
-      "_axios-82afda87.js"
+      "_axios-3a76d256.js"
     ]
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
@@ -73,41 +73,41 @@
     "src": "resources/js/ModalWallet.jsx"
   },
   "resources/js/app-frontend.js": {
-    "file": "assets/app-frontend-8b2266ac.js",
+    "file": "assets/app-frontend-918d262b.js",
     "imports": [
-      "_module.esm-8b1418e8.js",
-      "_axios-82afda87.js"
+      "_module.esm-b47c1e59.js",
+      "_axios-3a76d256.js"
     ],
     "isEntry": true,
     "src": "resources/js/app-frontend.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-72a29957.js",
+    "file": "assets/app-c6c954fe.js",
     "imports": [
-      "_module.esm-8b1418e8.js",
-      "_axios-82afda87.js"
+      "_module.esm-b47c1e59.js",
+      "_axios-3a76d256.js"
     ],
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/js/connect-wallet-admin.jsx": {
-    "file": "assets/connect-wallet-admin-94b2dc02.js",
+    "file": "assets/connect-wallet-admin-aa41c591.js",
     "imports": [
       "resources/js/deposit.jsx",
       "_contract-metadata-fa83a96e.js",
-      "_ModalWallet-7b30bda6.js",
-      "_axios-82afda87.js"
+      "_ModalWallet-b8064b70.js",
+      "_axios-3a76d256.js"
     ],
     "isEntry": true,
     "src": "resources/js/connect-wallet-admin.jsx"
   },
   "resources/js/connect-wallet.jsx": {
-    "file": "assets/connect-wallet-44a8993c.js",
+    "file": "assets/connect-wallet-98fbedba.js",
     "imports": [
       "resources/js/deposit.jsx",
       "_contract-metadata-fa83a96e.js",
-      "_ModalWallet-7b30bda6.js",
-      "_axios-82afda87.js"
+      "_ModalWallet-b8064b70.js",
+      "_axios-3a76d256.js"
     ],
     "isEntry": true,
     "src": "resources/js/connect-wallet.jsx"

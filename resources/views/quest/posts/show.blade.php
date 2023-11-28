@@ -72,14 +72,14 @@ use App\Models\Task;
                                 </svg>
                                 <span class="sr-only">Icon description</span>
                             </button>
-                            <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                            <a href="{{$$module_name_singular->getTwitterShareUrlAttribute()}}" type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
                                 <svg class="w-4 h-4 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path fill="currentColor" d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z"/>
                                 </svg>
 
                                 <span class="sr-only">Icon description</span>
-                            </button>
-                            <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                            </a>
+                            <button id="btnStarQuest" data-id="{{$$module_name_singular->id}}" type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
                                 <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m11.479 1.712 2.367 4.8a.532.532 0 0 0 .4.292l5.294.769a.534.534 0 0 1 .3.91l-3.83 3.735a.534.534 0 0 0-.154.473l.9 5.272a.535.535 0 0 1-.775.563l-4.734-2.49a.536.536 0 0 0-.5 0l-4.73 2.487a.534.534 0 0 1-.775-.563l.9-5.272a.534.534 0 0 0-.154-.473L2.158 8.48a.534.534 0 0 1 .3-.911l5.294-.77a.532.532 0 0 0 .4-.292l2.367-4.8a.534.534 0 0 1 .96.004Z"/>
                                 </svg>
@@ -408,6 +408,41 @@ use App\Models\Task;
                     alert('Copied');
                 }, function(err) {
                     alert('Error');
+                });
+            });
+            //btnStarQuest Call Ajax Save Quest
+            $('#btnStarQuest').on('click', function () {
+                //Copy Link
+                var idQuest = $(this).data('id');
+                var url = '{{ route('quest.posts.starQuest') }}?quest_id=' + idQuest;
+                //Ajax Post
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    contentType:'application/json',
+                    data: {
+                        id: idQuest,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        //Check data status is false
+                        if(data['status'] == 0){
+                            //console.log(data);
+                            alert(data['success']);
+                        }else{
+                            //console.log(data);
+                            alert(data['success']);
+                        }
+                    },
+                    fail: function (data) {
+                        console.log(data);
+                        alert('Error');
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        alert('Error');
+                    }
                 });
             });
         });

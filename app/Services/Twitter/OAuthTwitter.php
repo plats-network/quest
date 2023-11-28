@@ -47,6 +47,23 @@ class OAuthTwitter implements TwitterInterface
         return (array) $response;
     }
 
+    //GET /2/users/:id/tweets
+    //https://api.twitter.com/2/users/:id/tweets
+    //Parameters: max_results, pagination_token, tweet.fields, expansions, media.fields, place.fields, poll.fields, user.fields
+    //Response: data, includes, errors, meta
+    public function getUserTweets($userTweetId)
+    {
+        $response = $this->twitter->get('users/' . $userTweetId . '/tweets', [], true);
+
+        if ($this->twitter->getLastHttpCode() !== 200) {
+            Log::error('Error getUserTweets: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
+            Log::channel('slack')->info('Error getUserTweets: ' . $this->twitter->getLastHttpCode() . ' ' . $response->title);
+
+        }
+
+        return (array) $response;
+    }
+
     //DELETE /2/tweets/:id
     //https://api.twitter.com/2/tweets/:id
     //Parameters: ids, expansions, tweet.fields, user.fields

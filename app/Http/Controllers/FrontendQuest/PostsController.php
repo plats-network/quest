@@ -246,6 +246,20 @@ class PostsController extends Controller
                     return response()->json(['success'=>'Task is completed']);
                 }
                 break;
+
+            case Task::TYPE_TWITTER_HASHTAG:
+                //Sample Url Action https://twitter.com/intent/retweet?tweet_id=1712857718367695177
+                $idTweet = $task->getTwitterRetweetIdAttribute();
+                $keyHashTag = $task->getTwitterHashtagAttribute(); //WorldCup
+                //$userTweetId, $keyHashTag
+
+                //Check if user has retw eeted
+                if ($questUser->hasTwitterHashtag($keyHashTag)){
+                    //Set completed
+                    $userTaskStatus->setCompleted();
+                    return response()->json(['success'=>'Task is completed']);
+                }
+                break;
             case Task::TYPE_TWITTER_LIKE:
                 //Check if user has liked
                 $idLike = $task->getTwitterLikeIdAttribute();
@@ -329,8 +343,11 @@ class PostsController extends Controller
     //Fake Status
 
     //favoritePost
-    public function favoritePost(Request $request, Post $post)
+    public function favoritePost(Request $request, $post_id)
     {
+        $quest_id = $request->quest_id;
+
+        $post = Post::findOrFail($post_id);
         $questUser = auth()->guard('quest')->user();
 
         if ($questUser->hasFavorited($post)) {

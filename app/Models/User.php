@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Spatie\MediaLibrary\HasMedia;
@@ -262,9 +263,10 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         $twitterApiService = new TwitterApiService();
         $twitterUserId = 1588364698239397888;
         $key = 'NEARProtocol';
+
         $socialRes = $twitterApiService->isFollowing($twitterUserId, $key);
 
-        dd($socialRes);
+        //dd($socialRes);
 
         return true;
     }
@@ -274,13 +276,60 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
     {
         //Check if user has Retweeted
 
-        $twitterUserID = $this->twitter_id;
+        $twitterUserID = $this->twitter_id; //1588364698239397888
 
         $isDone = false;
+
         $responseIDS = Twitter::getRetweetedBy($twitter_targetID);
+
         //Check if user has liked that $twitter_targetID in array $responseIDSLike
         if (in_array($twitterUserID, $responseIDS)) {
             $isDone = true;
+        }
+
+        return $isDone;
+    }
+
+    //hasTwitterHashtag
+    public function hasTwitterHashtag($keyHashTag)
+    {
+        //Check if user has Retweeted
+        $text = "#WorldCup   Update";
+        //dd(Str::contains($text, 'WorldCup'));
+
+
+        $twitterUserID = $this->twitter_id;
+        //arr $keyHashTag ex: ['NEARProtocol', 'NEARProtocol2']
+        $arrKeyHashTag = explode(',', $keyHashTag);
+
+        $isDone = false;
+        //Call Twitter API Get list tweets by user id
+        $responseIDS = Twitter::getUserTweets($twitterUserID);
+
+        //Check if user has hashtag that $keyHashTag in array $responseIDS
+        //foreach($data->data as $item) {
+        //    $contains = Str::contains($item->text, $key);
+        //
+        //    if ($contains) {
+        //            return $resultSuccess;
+        //          }
+        //       }
+
+        if (isset($responseIDS['data'])) {
+            foreach ($responseIDS['data'] as $item) {
+                foreach ($arrKeyHashTag as $valueHastag){
+                    $contains = Str::contains($item->text, $valueHastag);
+
+                    if ($contains) {
+                        $isDone = true;
+                    }
+                }
+
+            }
+        }else{
+            Log::info('Call api tweets', [
+                'code' => $responseIDS
+            ]);
         }
 
         return $isDone;
@@ -456,7 +505,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //Example:
         //
         //$return = $client->userFollows()->getFollowing()->performRequest();
+
         dd($return);
+
         /*   $response = $client->tweet()->create()
                ->performRequest([
                    'text' => 'Test Tweet... '
@@ -465,6 +516,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
                )
            ;
            dd($response);*/
+
         return false;
     }
 
