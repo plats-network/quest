@@ -281,10 +281,16 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         $isDone = false;
 
         $responseIDS = Twitter::getRetweetedBy($twitter_targetID);
-
+        Log::info('Call api tweets', [
+            'code' => $responseIDS
+        ]);
         //Check if user has liked that $twitter_targetID in array $responseIDSLike
         if (in_array($twitterUserID, $responseIDS)) {
             $isDone = true;
+        }else{
+            Log::info('User has not retweeted', [
+                'code' => $responseIDS
+            ]);
         }
 
         return $isDone;
@@ -305,7 +311,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         $isDone = false;
         //Call Twitter API Get list tweets by user id
         $responseIDS = Twitter::getUserTweets($twitterUserID);
-
+        Log::info('Call api tweets', [
+            'code' => $responseIDS
+        ]);
         //Check if user has hashtag that $keyHashTag in array $responseIDS
         //foreach($data->data as $item) {
         //    $contains = Str::contains($item->text, $key);
@@ -327,7 +335,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
 
             }
         }else{
-            Log::info('Call api tweets', [
+            Log::info('User has not hashtag', [
                 'code' => $responseIDS
             ]);
         }
@@ -355,6 +363,10 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //Check if user has liked that $twitter_targetID in array $responseIDSLike
         if (in_array($twitter_targetID, $responseIDSLike)) {
             $isLike = true;
+        }else{
+            Log::info('User has not liked', [
+                'code' => $responseIDSLike
+            ]);
         }
 
         return $isLike;
