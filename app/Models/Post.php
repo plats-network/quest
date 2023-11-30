@@ -127,6 +127,9 @@ class Post extends BaseModel
         'deleted_at'
     ];
 
+    protected $appends = ['finish'];
+
+
     use QueryCacheable;
 
     /**
@@ -563,6 +566,48 @@ class Post extends BaseModel
 
         return $isComplete;
     }
+
+    //IS Finish
+    public function isFinishQuest()
+    {
+        $start_at = $this->start_at;
+        $end_at = $this->end_at;
+
+        if (empty($start_at) && empty($end_at)) {
+            return false;
+        }
+
+        //IS complete
+        $isFinish = false;
+        $now = Carbon::now();
+        $end_at = Carbon::parse($end_at);
+        if ($now->gte($end_at)) {
+            $isFinish = true;
+        }
+
+        return $isFinish;
+    }
+    //Finish attribute
+    public function getFinishAttribute()
+    {
+        $start_at = $this->start_at;
+        $end_at = $this->end_at;
+
+        if (empty($start_at) && empty($end_at)) {
+            return false;
+        }
+
+        //IS complete
+        $isFinish = false;
+        $now = Carbon::now();
+        $end_at = Carbon::parse($end_at);
+        if ($now->gte($end_at)) {
+            $isFinish = true;
+        }
+
+        return $isFinish;
+    }
+
     //Get facebook share url
     //https://www.facebook.com/sharer/sharer.php?u=#url
     public function getFacebookShareUrlAttribute()
