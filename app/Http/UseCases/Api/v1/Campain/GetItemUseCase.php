@@ -88,7 +88,8 @@ final class GetItemUseCase
         }
 
         //Check empty User Win then fake data -24.10.2023
-        if (empty($userWinTasks)) {
+        $is_Default = false;
+        if (empty($userWinTasks) && $is_Default) {
             //{
             //            "user_id": 8,
             //            "wallet_address": "5Fbgdek6QeFodSo1LpNitvLKGjufXKWWRQ9Uw4TdKVeox8T2",
