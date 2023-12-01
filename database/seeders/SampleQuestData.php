@@ -207,6 +207,17 @@ class SampleQuestData extends Seeder
                 'entry_type' => Task::TYPE_TWITTER_QUOTE,
                 'status' => Task::STATUS_ACTIVE
             ],
+
+            //Twitter Hashtag
+            [
+                'name' => 'Tweet with Hashtag',
+                'description' => 'Tweet with Hashtag',
+                'value' => 'https://twitter.com/intent/tweet?text=%23OmniHub %23Airdrop https://twitter.com/omni_hub/status/1717151082013393010',
+                'slug' => uniqid(),
+                'entry_type' => Task::TYPE_TWITTER_HASHTAG,
+                'status' => Task::STATUS_ACTIVE
+            ],
+
             //Telegram https://t.me/derpdex
 
         ];

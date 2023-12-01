@@ -157,6 +157,9 @@ Route::group([ 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']]
 
     Route::patch('posts/trashed/{id}', [PostsController::class, 'restore'])->name('posts.restore');
 
+    //Delete Post
+    Route::get('posts/posts-delete', [PostsController::class, 'deleteItem'])->name('posts.deleteItem');
+
     Route::resource('posts', PostsController::class);
 
     //ajaxStartLuckyDraw

@@ -476,6 +476,28 @@ class PostsController extends Controller
 
     //ajaxStartLuckyDraw - Start Lucky Draw
 
+    //deleteItem
+    public function deleteItem(Request $request)
+    {
+        $id = $request->get('id');
+        $post = Post::query()
+            ->where('id', '=', $id)
+            ->first();
+        if (!$post) {
+            return response()->json([
+                'success' => false,
+                'status' => 1,
+                'message' => 'Post not found'
+            ]);
+        }
+        //Delete Post Task
+        $post->tasks()->delete();
+
+        //Delete Post
+        $post->forceDelete();
+
+        return redirect(route('backend.posts.index'));
+    }
     public function ajaxStartLuckyDraw(Request $request)
     {
         $post_id = $request->get('post_id');

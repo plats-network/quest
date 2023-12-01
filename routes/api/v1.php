@@ -121,6 +121,9 @@ Route::middleware('auth:sanctum')
         //ajaxStartLuckyDraw
         Route::post('campains/lucky-draw', [CampainController::class, 'luckyDraw'])->name('posts.ajaxStartLuckyDraw');
 
+        //Update is_prize
+        Route::post('campains/update-is-prize', [CampainController::class, 'updateIsPrize'])->name('posts.updateIsPrize');
+
         //Task
         Route::apiResource('tasks', TaskController::class);
 

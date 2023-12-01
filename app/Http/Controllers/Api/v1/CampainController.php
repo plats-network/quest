@@ -116,4 +116,53 @@ class CampainController extends Controller
             'message' => 'Lucky draw success'
         ]);
     }
+
+    //updateIsPrize
+    public function updateIsPrize(Request $request, Campain $campain): JsonResponse
+    {
+        $post_id = $request->input('post_id');
+        //Validate post_id
+        //Validate field friend_theme_id  required
+        $request->validate([
+            'post_id' => 'required',
+
+        ]);
+
+        //Model Post
+        $post = Post::query()
+            ->where('id', '=', $post_id)
+            ->first();
+        //Check post
+        if (!$post) {
+            return response()->json([
+                'success' => false,
+                'status' => 1,
+                'message' => 'Post not found'
+            ]);
+        }
+
+        //is_prize
+        if ($post->is_prize == true) {
+            return response()->json([
+                'success' => false,
+                'status' => 1,
+                'message' => 'Post is prize'
+            ]);
+        }
+        //Update is_prize
+        $post->is_prize = true;
+        $post->save();
+        //$total_point = $post->total_point;
+        $total_token = $post->total_token;
+
+        //Create Reward For Random 5 user has play task
+        UserReward::createReward($post_id, $total_token);
+
+        return response()->json([
+            'success' => true,
+            'status' => 1,
+            'message' => 'Lucky draw success'
+        ]);
+
+    }
 }

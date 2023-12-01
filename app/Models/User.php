@@ -300,8 +300,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
     public function hasTwitterHashtag($keyHashTag)
     {
         //Check if user has Retweeted
-        $text = "#WorldCup   Update";
-        //dd(Str::contains($text, 'WorldCup'));
+        $text = "#WordCup   Update";
+        dd(Str::contains($text, '#WordCup'));
 
 
         $twitterUserID = $this->twitter_id;

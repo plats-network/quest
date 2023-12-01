@@ -87,6 +87,7 @@ class Task extends BaseModel
             self::NETWORK_TYPE_POLKADOT => 'Polkadot',
         ];
     }
+
     //Status Active
     const STATUS_ACTIVE = 'Active';
     //Status Inactive
@@ -362,7 +363,7 @@ class Task extends BaseModel
     {
         $name = $this->name;
         //Check type is TRANSFER_TYPE_ACTIVITY and name contain Token Holder then rename to Transaction Activity
-        if ($this->entry_type == self::TRANSFER_TYPE_ACTIVITY){
+        if ($this->entry_type == self::TRANSFER_TYPE_ACTIVITY) {
             //check name contain text Token Holder
             if (strpos($name, 'Token Holder') !== false) {
                 $name = str_replace('Token Holder', 'Transaction Activity', $name);
@@ -372,6 +373,7 @@ class Task extends BaseModel
 
         return ucfirst($name);
     }
+
     //status_color
     public function getStatusColorAttribute()
     {
@@ -520,6 +522,17 @@ class Task extends BaseModel
     {
         return 'https://twitter.com/hashtag/' . $this->value;
     }
+    //Get value hashtag url
+    //https://twitter.com/intent/tweet?text=Hello%20world&hashtags=WorldCup
+    public function getHashtagValueAttribute()
+    {
+        $hashTag = $this->hash_tag;
+        //Remover # from hashtag
+        $hashTag = str_replace('#', '', $hashTag);
+        $url = 'https://twitter.com/intent/tweet?text=Hello%20world&hashtags=' . $hashTag;
+
+        return $url;
+    }
 
     //Get Twitter Tweet User Name
     // https://twitter.com/intent/follow?screen_name=BreederDodo => Get BreederDodo
@@ -553,9 +566,9 @@ class Task extends BaseModel
         }
 
 
-
         return $tweetId;
     }
+
     //getTwitterHashtagAttribute
     public function getTwitterHashtagAttribute()
     {
@@ -583,6 +596,7 @@ class Task extends BaseModel
 
         return $tweetId;
     }
+
     //getTwitterFollowIdAttribute
     public function getTwitterFollowIdAttribute()
     {
@@ -606,13 +620,13 @@ class Task extends BaseModel
     //Private function get tweet id from url
     private function getTweetIdFromUrl($url)
     {
-        $valueID ='';
+        $valueID = '';
         //Check is https://twitter.com/taylorotwell/status/1718996388107669914
         //Case https://x.com/Aleph__Zero/status/1706317615654641668
         //Get id,. example 1718996388107669914
         //check contain twitter.com
         if (strpos($url, 'twitter.com') !== false) {
-            $regex  = '#https?://twitter\.com/(?:\#!/)?(\w+)/status(es)?/(\d+)#is';
+            $regex = '#https?://twitter\.com/(?:\#!/)?(\w+)/status(es)?/(\d+)#is';
             if (preg_match($regex, $url, $match)) {
                 $valueID = $match[3];
             }
@@ -621,7 +635,7 @@ class Task extends BaseModel
         //Case url https://x.com/Aleph__Zero/status/1706317615654641668?s=20
         //Get id
         if (strpos($url, 'x.com') !== false) {
-            $regex  = '#https?://x\.com/(?:\#!/)?(\w+)/status(es)?/(\d+)#is';
+            $regex = '#https?://x\.com/(?:\#!/)?(\w+)/status(es)?/(\d+)#is';
             if (preg_match($regex, $url, $match)) {
                 $valueID = $match[3];
             }
