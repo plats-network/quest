@@ -455,16 +455,16 @@ class Post extends BaseModel
     //Get Created By Name
     public function getCreatedByName()
     {
-        if (empty($value)) {
+       /* if (empty($value)) {
             return 'Admin';
-        }
+        }*/
         $user = User::query()
                         ->where('id', '=', $this->created_by)
                        ->first();
         if ($user) {
             return $user->name;
         } else {
-            return '';
+            return 'Admin';
         }
 
     }
