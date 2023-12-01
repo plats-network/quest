@@ -122,6 +122,9 @@
                             <th>
                                 @lang('Task')
                             </th>
+                            <th>
+                                @lang('Created_by')
+                            </th>
                             <th class="text-end">
                                 @lang('Actions')
                             </th>
@@ -181,6 +184,10 @@
             {
                 data: 'task',
                 name: 'task'
+            },
+            {
+                data: 'created_by',
+                name: 'created_by'
             },
             {
                 data: 'action',

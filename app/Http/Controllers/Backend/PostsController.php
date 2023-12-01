@@ -102,7 +102,7 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = Post::select('id', 'name', 'category_name', 'status', 'updated_at', 'published_at', 'is_featured');
+        $$module_name = Post::select('id', 'name', 'created_by', 'category_name', 'status', 'updated_at', 'published_at', 'is_featured');
 
         $data = $$module_name;
 
@@ -130,6 +130,18 @@ class PostsController extends Controller
                 $module_name = $this->module_name;
 
                 return $data->category_name;
+            })
+            //created_by
+            ->editColumn('created_by', function ($data) {
+                $module_name = $this->module_name;
+                $user = User::query()
+                    ->where('id', '=', $data->created_by)
+                    ->first();
+                if ($user) {
+                    return $user->name;
+                } else {
+                    return '';
+                }
             })
             ->editColumn('updated_at', function ($data) {
                 $module_name = $this->module_name;
