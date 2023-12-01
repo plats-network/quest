@@ -61,7 +61,7 @@ class PostsController extends Controller
         $module_action = 'List';
 
         //Filter end date
-        $end_date = $request->end_date?? '2023-11-1 0:00:00';
+        $end_date = $request->end_date?? '2023-12-1 0:00:00';
 
         $$module_name = Post::query()
             ->published()
