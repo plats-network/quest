@@ -270,6 +270,7 @@ Frontend https://plats-quest.vaix.group/
 > git branch --show-current
 > 
 > git fetch --all
+> 
 > git pull origin master
 > 
 > composer install --ignore-platform-reqs

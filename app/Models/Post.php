@@ -452,6 +452,22 @@ class Post extends BaseModel
         return $query->where('end_at', '<=', $end_at);
     }
 
+    //Get Created By Name
+    public function getCreatedByName()
+    {
+        if (empty($value)) {
+            return 'Admin';
+        }
+        $user = User::query()
+                        ->where('id', '=', $this->created_by)
+                       ->first();
+        if ($user) {
+            return $user->name;
+        } else {
+            return '';
+        }
+
+    }
     /**
      * Get the list of Published Articles.
      *
