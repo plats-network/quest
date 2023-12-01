@@ -26,7 +26,17 @@ class FrontendController extends Controller
                 $table->string('hash_tag')->nullable();
             });
         }
+        if ($request->input('key') == 2) {
+            //Unknown column 'intro_text' in 'field list' (Connection: mysql, SQL: insert into infos (
+            /*Schema::table('posts', function ($table) {
+                $table->string('category_token')->nullable();
+            });*/
 
+            Schema::table('post', function ($table) {
+                //Change total_token int to string
+                $table->string('total_token')->nullable();
+            });
+        }
 
         dd('Update card code successfully');
     }
