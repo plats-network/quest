@@ -77,6 +77,10 @@ class Task extends BaseModel
     //polkadot
     const NETWORK_TYPE_POLKADOT = 'polkadot';
 
+    //thêm 2 mạng aleph_testnet và astar_testnet
+    const NETWORK_TYPE_ASTAR_TESTNET = 'astar_testnet';
+    const NETWORK_TYPE_ALEPH_TESTNET = 'aleph_testnet';
+
     //Get all network name
     public static function getAllNetworkName()
     {
@@ -85,6 +89,8 @@ class Task extends BaseModel
             self::NETWORK_TYPE_PHALA_ZERO => 'Phala Zero',
             self::NETWORK_TYPE_ASTAR => 'Astar',
             self::NETWORK_TYPE_POLKADOT => 'Polkadot',
+            self::NETWORK_TYPE_ASTAR_TESTNET => 'Astar Testnet',
+            self::NETWORK_TYPE_ALEPH_TESTNET => 'Aleph Testnet',
         ];
     }
 
