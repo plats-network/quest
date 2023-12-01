@@ -32,9 +32,9 @@ class FrontendController extends Controller
                 $table->string('category_token')->nullable();
             });*/
 
-            Schema::table('post', function ($table) {
+            Schema::table('posts', function ($table) {
                 //Change total_token int to string
-                $table->string('total_token')->nullable();
+                $table->string('total_token')->nullable()->change();
             });
         }
 
