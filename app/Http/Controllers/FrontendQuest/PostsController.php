@@ -59,10 +59,13 @@ class PostsController extends Controller
         $module_name_singular = Str::singular($module_name);
 
         $module_action = 'List';
+        //Filter end date
+        $end_date = '2023-12-1 0:00:00';
 
         $$module_name = Post::query()
             ->published()
             ->with(['category', 'tags', 'comments'])
+            ->where('created_at', '>=', $end_date)
             ->orderBy('id', 'desc')
             ->fastPaginate(8);
 
