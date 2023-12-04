@@ -648,4 +648,18 @@ class Post extends BaseModel
 
         return 'https://www.instagram.com/?url=' . $url;
     }
+    //getRewardText
+    //Show text: "Get [total reward] [token]"
+    public function getRewardTextAttribute()
+    {
+        $total_token = $this->total_token;
+        $category_token = $this->category_token;
+        $reward_type = $this->reward_type;
+
+        if (empty($total_token) || empty($category_token) || empty($reward_type)) {
+            return null;
+        }
+
+        return 'Get ' . $total_token . ' ' . $category_token;
+    }
 }

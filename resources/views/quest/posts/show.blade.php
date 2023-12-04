@@ -118,7 +118,9 @@ use App\Models\Task;
                            <p class="inline-block text-green-500 font-medium justify-between ml-5 mt-3"> {{$$module_name_singular->getStartAtEndAtTextAttribute()}}</p>
                         </div>
                     </div>
-                    <p class="inline-block text-green-500 font-medium" data-config-id="auto-txt-4-2">Get 1 OAT & 25 Points</p>
+                    <p class="inline-block text-green-500 font-medium" data-config-id="auto-txt-4-2">
+                        {{$$module_name_singular->getRewardTextAttribute()}}
+                    </p>
 
                 </div>
             </div>
