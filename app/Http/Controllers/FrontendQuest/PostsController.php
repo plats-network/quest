@@ -234,6 +234,11 @@ class PostsController extends Controller
             $userTaskStatus->save();
         }
 
+        //Check user task status is done, return true
+        if ($userTaskStatus->status == UserTaskStatus::STATUS_COMPLETED){
+            return response()->json(['success'=>'Task is completed']);
+        }
+
         switch ($task->entry_type){
             case Task::TYPE_TWITTER_FOLLOW:
                 //$userTaskStatus->url = 'https://twitter.com/'.$task->twitter_username;
