@@ -92,6 +92,7 @@ final class StoreUseCase
         //$data['email_verified_at'] = now();
 
         $campain = Campain::factory()->create($data);
+
         //Store Task
         $campain->tasks()->createMany($dataTask);
 

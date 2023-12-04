@@ -128,6 +128,7 @@ Route::group(['middleware' => ['web'], 'as' => 'quest.', ], function () {
 
     //starQuest
     Route::post('posts/starQuest', [PostsController::class, 'starQuest'])->name('posts.starQuest');
+
     /*
     *
     *  Categories Routes

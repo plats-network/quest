@@ -34,6 +34,7 @@ use App\Facades\Twitter;
  * @property string $address
  * @property string $number
  * @property string $city
+ * @property string $avatar_url
  * @property string $ZIP
  * @property string $email_verified_at
  * @property string $phone
@@ -127,6 +128,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         'wallet_address',
         'wallet_name',
         'stripe_id',
+        'avatar_url',
         'pm_type',
         'pm_last_four',
         'trial_ends_at',
@@ -264,7 +266,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         $twitterUserId = 1588364698239397888;
         $key = 'NEARProtocol';
 
-        $socialRes = $twitterApiService->isFollowing($twitterUserId, $key);
+        //Not check
+        //$socialRes = $twitterApiService->isFollowing($twitterUserId, $key);
 
         //dd($socialRes);
 
@@ -301,7 +304,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
     {
         //Check if user has Retweeted
         $text = "#WordCup   Update";
-        dd(Str::contains($text, '#WordCup'));
+        //'dd(Str::contains($text, '#WordCup'));
 
 
         $twitterUserID = $this->twitter_id;

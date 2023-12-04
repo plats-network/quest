@@ -13,6 +13,9 @@ final class GetCollectionUseCase
 {
     public function handle(array $query): CampainCollection
     {
+        //Filter end date
+        $end_date = $request->end_date?? '2023-12-1 0:00:00';
+
         $campains = Campain::query()
             ->when(! empty($query['search']), function (Builder $q) use ($query) {
                 return $q->where('name', 'like', '%'.$query['search'].'%')
@@ -21,7 +24,9 @@ final class GetCollectionUseCase
             ->when(! empty($query['startDate']) && ! empty($query['endDate']), function (Builder $q) use ($query) {
                 return $q->whereBetween(DB::raw('date(created_at)'), [$query['startDate'], $query['endDate']]);
             })
+            //->where('created_at', '>=', $end_date)
             ->orderBy('created_at', 'desc');
+
 
         //Filter by user created_by
         $user = auth('sanctum')->user();

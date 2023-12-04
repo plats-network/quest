@@ -56,6 +56,13 @@ class UserController extends Controller
         return $useCase->handle($user, $request->file('avatar'));
     }
 
+    //updateUserProfile
+    public function updateUserProfile(Request $request, UpdateUseCase $useCase, User $user): JsonResponse
+    {
+
+        return $useCase->handle($user, $request->all());
+    }
+
     public function destroy(DeleteRequest $request, DeleteUseCase $useCase, User $user): JsonResponse
     {
         return $useCase->handle($user);

@@ -106,6 +106,9 @@ Route::middleware('auth:sanctum')
 
         Route::patch('users/{user}/avatar', [UserController::class, 'updateAvatar']);
 
+        //Update user Profile Info
+        Route::post('update-user-profile', [UserController::class, 'updateUserProfile'])->name('update-user-profile');
+
         Route::apiResource('users', UserController::class);
 
         //Category routes

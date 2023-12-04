@@ -15,6 +15,12 @@ final class UpdateUseCase
     public function handle(User $user, array $data): JsonResponse
     {
         $user->update($data);
+        //Save avatar_url
+        if (isset($data['avatar_url'])) {
+            $user->avatar_url =saveImgBase64($data['avatar_url'], 'thumbnail');
+            $user->save();
+        }
+
 
         return $this->successResponse('User updated successfully.');
     }

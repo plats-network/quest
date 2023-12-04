@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('ZIP')->nullable();
             $table->timestamp('email_verified_at')->nullable();
 
+            $table->string('avatar_url')->nullable();
+
             $table->string('phone')->nullable();
             $table->string('role')->default('user');
 

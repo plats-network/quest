@@ -63,12 +63,19 @@ class PostsController extends Controller
         //Filter end date
         $end_date = $request->end_date?? '2023-12-1 0:00:00';
 
-        $$module_name = Post::query()
+         $query = Post::query()
             ->published()
             ->with(['category', 'tags', 'comments'])
             ->where('created_at', '>=', $end_date)
-            ->orderBy('id', 'desc')
-            ->fastPaginate(8);
+            ->orderBy('id', 'desc');
+
+         //Filter by created_by
+        $created_by = $request->created_by?? null;
+        if ($created_by){
+            $query->where('created_by', '=', $created_by);
+        }
+
+        $$module_name = $query->fastPaginate(8);
 
         return view(
             "quest.posts.index",
