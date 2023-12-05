@@ -467,7 +467,7 @@ use App\Models\Task;
                     }
 
                     //TRANSACTION_ACTIVITY
-                    if (dataAction == 'TRANSACTION_ACTIVITY`') {
+                    if (dataAction == 'TRANSACTION_ACTIVITY') {
                         //Get text
                         //text_transaction
                         var text = $(this).data('text_transaction');
