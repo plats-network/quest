@@ -370,12 +370,13 @@ use App\Models\Task;
                 alert('Task Completed');
 
             } );
-            $('.btnConfirmModal').on('click', function () {
+
+            $('#btnConfirmModal').on('click', function () {
                 //Alert Success
                 modalTask.hide();
             } );
 
-            $('.btnCancelModal').on('click', function () {
+            $('#btnCancelModal').on('click', function () {
                 //Alert Success
                 modalTask.hide();
 
