@@ -178,7 +178,7 @@ use App\Models\Task;
 
                                 </p>
 
-                                <button data-tooltip-target="tooltip-dark{{$task->id}}" data-isdone="@if(in_array($task->id, $arrTaskUserHasPlay))1 @endif" data-isopen="true" data-action="{{$task->type_value}}" data-tag_url="{{$task->getHashtagValueAttribute()}}" data-url="{{$task->value}}" type="button"
+                                <button data-tooltip-target="tooltip-dark{{$task->id}}" data-isdone="@if(in_array($task->id, $arrTaskUserHasPlay))1 @endif" data-isopen="true" data-action="{{$task->type_value}}" data-tag_url="{{$task->getHashtagValueAttribute()}}" data-url="{{$task->value}}" data-id="{{$task->id}}" type="button"
                                         data-text_holder="{{$task->getHolderTokenTextAttribute()}}" data-text_transaction="{{$task->getTransactionTextAttribute()}}"
                                         class="headingAction text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2">
                                     @if($task->entry_type == Task::TRANSFER_TYPE_HOLDERS)
@@ -261,11 +261,18 @@ use App\Models\Task;
                         <path d="M8 5.625c4.418 0 8-1.063 8-2.375S12.418.875 8 .875 0 1.938 0 3.25s3.582 2.375 8 2.375Zm0 13.5c4.963 0 8-1.538 8-2.375v-4.019c-.052.029-.112.054-.165.082a8.08 8.08 0 0 1-.745.353c-.193.081-.394.158-.6.231l-.189.067c-2.04.628-4.165.936-6.3.911a20.601 20.601 0 0 1-6.3-.911l-.189-.067a10.719 10.719 0 0 1-.852-.34 8.08 8.08 0 0 1-.493-.244c-.053-.028-.113-.053-.165-.082v4.019C0 17.587 3.037 19.125 8 19.125Zm7.09-12.709c-.193.081-.394.158-.6.231l-.189.067a20.6 20.6 0 0 1-6.3.911 20.6 20.6 0 0 1-6.3-.911l-.189-.067a10.719 10.719 0 0 1-.852-.34 8.08 8.08 0 0 1-.493-.244C.112 6.035.052 6.01 0 5.981V10c0 .837 3.037 2.375 8 2.375s8-1.538 8-2.375V5.981c-.052.029-.112.054-.165.082a8.08 8.08 0 0 1-.745.353Z"/>
                     </svg>
                     <h3 class="mb-1 text-xl font-bold text-gray-900 dark:text-white" id="text-model-task">Approaching Full Capacity</h3>
-
+                    <input type="hidden" id="task_confirm_id" value="">
+                    <div role="status" id="spinnerModal" class="hidden absolute -translate-x-1/2 -translate-y-1/2 top-1/4 left-1/2">
+                        <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg>
+                        <span class="sr-only">Loading...</span>
+                    </div>
                     <p class="mt-10"></p>
                     <!-- Modal footer -->
                     <div class="flex items-center mt-6 space-x-2 rtl:space-x-reverse">
-                        <button data-modal-hide="taskModal" id="btnConfirmModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Confirm</button>
+                        <button  id="btnConfirmModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Confirm
+
+                        </button>
                         <button data-modal-hide="taskModal" id="btnCancelModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
                     </div>
                 </div>
@@ -368,15 +375,60 @@ use App\Models\Task;
             $('.btnCheckStatusSuccess').on('click', function () {
                 //Alert Success
                 alert('Task Completed');
-
             } );
 
             $('#btnConfirmModal').on('click', function () {
                 //Alert Success
-                modalTask.hide();
+                //get input value. task_confirm_id
+                var id = $('#task_confirm_id').val();
+                //alert(id);
+                //spinnerModal remover hidden class
+                $('#spinnerModal').removeClass('hidden');
+                //modalTask.hide();
+                //$(this).addClass('animate-spin fill-blue-600');
+                //Call ajax
+                var url = '{{ route('quest.tasks.checkStatus') }}?task_id=' + id;
+                //Ajax Post
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    contentType:'application/json',
+
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (data) {
+                        console.log(data['status'])
+                        //Check data status is false
+                        if(data['status'] == 0){
+                            //console.log(data);
+                            //Remove class animate-spin fill-blue-600 to button
+                            $('#spinnerModal').addClass('hidden');
+                            alert(data['success']);
+                            modalTask.hide();
+                        }else{
+                            //console.log(data);
+                            alert(data['success']);
+                        }
+                    },
+                    fail: function (data) {
+
+
+                        //Remove class animate-spin fill-blue-600 to button
+                        alert('Error');
+                    },
+                    error: function (data) {
+
+                        //Remove class animate-spin fill-blue-600 to button
+
+                        alert('Error check status');
+                    }
+                });
             } );
 
             $('#btnCancelModal').on('click', function () {
+
                 //Alert Success
                 modalTask.hide();
 
@@ -467,11 +519,16 @@ use App\Models\Task;
                     if (dataAction == 'RETWEET') {
                         window.open(dataUrl, "myWindow", "width=1000,height=1000");
                     }
+
                     //TOKEN_HOLDER
                     if (dataAction == 'TOKEN_HOLDER') {
                         // show the modal
                         ///Get text
                         var text = $(this).data('text_holder');
+                        //get data id
+                        var id = $(this).data('id');
+                        //set task_confirm_id id
+                        $('#task_confirm_id').val(id);
                         //Set text
                         textModelTask.innerHTML = text;
                         modalTask.show();
@@ -485,7 +542,10 @@ use App\Models\Task;
 
                         //Set text
                         textModelTask.innerHTML = text;
-
+                        //get data id
+                        var id = $(this).data('id');
+                        //set task_confirm_id id
+                        $('#task_confirm_id').val(id);
                         modalTask.show();
                     }
                 }

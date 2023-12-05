@@ -658,6 +658,8 @@ class Task extends BaseModel
 
         return $text;
     }
+    //Get Holder Text Description
+
     //Transaction Text
     //TRANSACTION AT LEAST [ số token đã cài] [tên token]
     public function getTransactionTextAttribute()

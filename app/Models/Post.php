@@ -78,6 +78,9 @@ class Post extends BaseModel
 
     const CATEGORY_TOKEN_ASTR = 'ASTR';
 
+    //DOT Category
+    const CATEGORY_TOKEN_DOT = 'DOT';
+
     //Reward type
     //Token
     const REWARD_TYPE_TOKEN ='TOKEN';

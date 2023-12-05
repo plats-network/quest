@@ -65,9 +65,30 @@
             </div>
 
             <p class="mb-2 text-coolGray-500 font-medium" data-config-id="auto-txt-10-2">{{$$module_name_singular->content}}</p>
-            <p>
-                <a href="{{route('quest.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{$$module_name_singular->category_name}}</a>
-            </p>
+
+                <div class="flex flex-wrap xl:items-center -mx-4">
+                    <div class="w-full md:w-1/2 px-4 mb-16 md:mb-0">
+                        <a href="{{route('quest.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{$$module_name_singular->category_name}}</a>
+
+                    </div>
+                    <div class="w-full md:w-1/2 px-4">
+                        <button type="button" class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-2 py-1.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
+                            @if($$module_name_singular->category_token =='AZERO')
+                                <img class="w-6 h-5 me-2 -ms-1" src="https://plats-quest-admin.vaix.group/assets/alephzero-87aef38e.jpg" alt="">
+                            @endif
+                            @if($$module_name_singular->category_token =='PHA')
+                                <img class="w-6 h-5 me-2 -ms-1" src="https://cryptologos.cc/logos/astar-astr-logo.svg?v=029" alt="">
+                            @endif
+                            @if($$module_name_singular->category_token =='DOT')
+                                <img class="w-6 h-5 me-2 -ms-1" src="https://plats-quest-admin.vaix.group/assets/dot-ba662d9a.png" alt="">
+                            @endif
+                            @if($$module_name_singular->category_token =='ASTR')
+                                <img class="w-6 h-5 me-2 -ms-1" src="https://plats-quest-admin.vaix.group/assets/astar-2d29d334.jpeg" alt="">
+                            @endif
+                            {{$$module_name_singular->total_token}}
+                        </button>
+                    </div>
+                </div>
 
             </div>
         </div>
