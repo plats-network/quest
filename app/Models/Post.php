@@ -662,4 +662,19 @@ class Post extends BaseModel
 
         return 'Get ' . $total_token . ' ' . $category_token;
     }
+
+    //Get Holder Token Text
+    //HOLD AT LEAST [số token đã cài] [ tên token]
+    public function getHolderTokenTextAttribute()
+    {
+        $total_token = $this->total_token;
+        $category_token = $this->category_token;
+        $reward_type = $this->reward_type;
+
+        if (empty($total_token) || empty($category_token) || empty($reward_type)) {
+            return null;
+        }
+
+        return 'HOLD AT LEAST ' . $total_token . ' ' . $category_token;
+    }
 }

@@ -649,4 +649,21 @@ class Task extends BaseModel
 
         return $valueID;
     }
+
+    //Get Holder Token Text
+    //HOLD AT LEAST [số token đã cài] [ tên token]
+    public function getHolderTokenTextAttribute()
+    {
+        $text = 'HOLD AT LEAST ' . $this->total_token . ' ' . $this->category_token;
+
+        return $text;
+    }
+    //Transaction Text
+    //TRANSACTION AT LEAST [ số token đã cài] [tên token]
+    public function getTransactionTextAttribute()
+    {
+        $text = 'TRANSACTION AT LEAST ' . $this->total_token . ' ' . $this->category_token;
+
+        return $text;
+    }
 }

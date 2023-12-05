@@ -55,12 +55,12 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-7e8895c8.css",
+    "file": "assets/app-frontend-6e8ab5f0.css",
     "isEntry": true,
     "src": "resources/css/app-frontend.css"
   },
   "resources/css/app.css": {
-    "file": "assets/app-06b37a18.css",
+    "file": "assets/app-9a6acbf6.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -73,7 +73,7 @@
     "src": "resources/js/ModalWallet.jsx"
   },
   "resources/js/app-frontend.js": {
-    "file": "assets/app-frontend-918d262b.js",
+    "file": "assets/app-frontend-d147a555.js",
     "imports": [
       "_module.esm-b47c1e59.js",
       "_axios-3a76d256.js"
