@@ -23,6 +23,7 @@ return [
         'admin/*',
         'posts/*',
         'plats-quest.vaix.group/*',
+        'hackathon.plats.quest/*',
     ],
 
     'allowed_methods' => ['*'],
