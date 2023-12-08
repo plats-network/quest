@@ -1,16 +1,16 @@
-import { useEffect } from "react";
-import { useWallet, useAllWallets, useContract } from "useink";
+import {useEffect} from "react";
+import {useWallet, useAllWallets, useContract} from "useink";
 import metadata from "./contract-metadata.json";
 import axios from "axios";
-import { callApiConnect } from "./callApi";
+import {callApiConnect} from "./callApi";
 
-import { sortWallet } from "./utils/sortWallet";
+import {sortWallet} from "./utils/sortWallet";
 
 // de vao file .env
 const CONTRACT_ADDRESS = "5CDveQs6omBkWyVXYiZZeCFkpUHWVoSWxhgEREfikvRV7Dxm";
 
-export const ModalWallet = ({ setIsModal, setAccount }) => {
-    const { account, connect, accounts } = useWallet();
+export const ModalWallet = ({setIsModal, setAccount}) => {
+    const {account, connect, accounts} = useWallet();
     let wallets = useAllWallets();
     const contract = useContract(CONTRACT_ADDRESS, metadata);
     wallets = [...sortWallet(wallets)];
@@ -64,7 +64,7 @@ export const ModalWallet = ({ setIsModal, setAccount }) => {
                         padding: "8px 16px",
                     }}
                 >
-                    <div style={{ padding: "0 6px" }}>
+                    <div style={{padding: "0 6px"}}>
                         <h1
                             style={{
                                 color: "white",
