@@ -4,13 +4,16 @@ import metadata from "./contract-metadata.json";
 import axios from "axios";
 import { callApiConnect } from "./callApi";
 
+import { sortWallet } from "./utils/sortWallet";
+
 // de vao file .env
 const CONTRACT_ADDRESS = "5CDveQs6omBkWyVXYiZZeCFkpUHWVoSWxhgEREfikvRV7Dxm";
 
 export const ModalWallet = ({ setIsModal, setAccount }) => {
     const { account, connect, accounts } = useWallet();
-    const wallets = useAllWallets();
+    let wallets = useAllWallets();
     const contract = useContract(CONTRACT_ADDRESS, metadata);
+    wallets = [...sortWallet(wallets)];
 
     useEffect(() => {
         if (account?.address) {
