@@ -453,7 +453,7 @@ function saveImgBase64($content, $folder)
     $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $extension);
 
     //$storage = Storage::disk('cloudinary2');
-    $storage = Storage::disk('public');
+    $storage = Storage::disk('cloudinary2');
 
     $checkDirectory = $storage->exists($folder);
 
