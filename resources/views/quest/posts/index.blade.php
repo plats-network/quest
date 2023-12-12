@@ -153,7 +153,6 @@
                             </a>'!!}
                         </div>
                         <p class="mb-3">{{$$module_name_singular->intro}}</p>
-                        <a href="{{route('quest.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category?$module_name_singular->category->slug:''])}}" class="badge bg-primary">{{$$module_name_singular->category_name}}</a>
                         <p>
                             @foreach ($$module_name_singular->tags as $tag)
                             <a href="{{route('quest.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge bg-warning text-dark">{{$tag->name}}</a>
