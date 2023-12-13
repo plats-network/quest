@@ -332,7 +332,10 @@ class Post extends BaseModel
 
         try {
             $category = Category::findOrFail($value);
-            $this->attributes['category_name'] = $category->name;
+            if ($category){
+                $this->attributes['category_name'] = $category->name;
+            }
+
         } catch (\Exception $e) {
             $this->attributes['category_name'] = null;
         }
@@ -403,6 +406,12 @@ class Post extends BaseModel
         if (empty($value)) {
             return 'https://picsum.photos/1200/630?random=17';
         }
+        //https://hackathon.plats.quest/storage/thumbnail/img2023121202045674072500..jpg
+        //Check is local image. Contain 'storage'
+        if (Str::of($value)->contains('storage')) {
+            return 'https://picsum.photos/1200/630?random=17';
+        }
+
         if (!Str::startsWith($value, 'http')) {
             $value = url($value);
         }
