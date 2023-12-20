@@ -408,8 +408,10 @@ use App\Models\Task;
                             alert(data['success']);
                             modalTask.hide();
                         }else{
+                            $('#spinnerModal').addClass('hidden');
                             //console.log(data);
                             alert(data['success']);
+
                         }
                     },
                     fail: function (data) {
