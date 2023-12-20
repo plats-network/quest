@@ -74,6 +74,11 @@ class Task extends BaseModel
     //Astar
     const NETWORK_TYPE_ASTAR = 'astar';
 
+    //moonbeam
+    const NETWORK_TYPE_MOONBEAM = 'moonbeam';
+    //acala
+    const NETWORK_TYPE_ACALA = 'acala';
+
     //polkadot
     const NETWORK_TYPE_POLKADOT = 'polkadot';
 
@@ -89,6 +94,8 @@ class Task extends BaseModel
             self::NETWORK_TYPE_PHALA_ZERO => 'Phala Zero',
             self::NETWORK_TYPE_ASTAR => 'Astar',
             self::NETWORK_TYPE_POLKADOT => 'Polkadot',
+            self::NETWORK_TYPE_MOONBEAM => 'Moonbeam',
+            self::NETWORK_TYPE_ACALA => 'Acala',
             self::NETWORK_TYPE_ASTAR_TESTNET => 'Astar Testnet',
             self::NETWORK_TYPE_ALEPH_TESTNET => 'Aleph Testnet',
         ];
