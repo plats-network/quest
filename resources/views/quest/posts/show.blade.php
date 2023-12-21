@@ -420,7 +420,7 @@ use App\Models\Task;
 
                             //console.log(data);
                             alert(data['success']);
-
+                            modalTask.hide();
                         }
                     },
                     fail: function (data) {
