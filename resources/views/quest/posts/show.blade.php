@@ -409,6 +409,15 @@ use App\Models\Task;
                             modalTask.hide();
                         }else{
                             $('#spinnerModal').addClass('hidden');
+                            //Find button class btnCheckStatus has data id = id
+                            var selectButton = $('.btnCheckStatus[data-id="'+id+'"]');
+                            //Add class text-green-500
+                            selectButton.addClass('text-green-500');
+                            //Change SVG Value
+                            selectButton.html('<svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"> ' +
+                                '<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/> ' +
+                                '</svg>');
+
                             //console.log(data);
                             alert(data['success']);
 
