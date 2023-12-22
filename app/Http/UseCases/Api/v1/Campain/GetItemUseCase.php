@@ -105,24 +105,24 @@ final class GetItemUseCase
             //        }
             $userWinTasks = [
                 [
-                    'user_id' => 3,
+                    'user_id' => 300,
                     //Wallet Address
-                    'wallet_address' => '5G4URyHwDkRy29QvtofisCZhjqdjyUYMpvAUzzpBnhMNnY4z',
+                    'wallet_address' => '5HCG11Cna8izxKKxHnpwG5CrgnGgzxWL9DkBz2GU2NxXUBSs',
                     "reward_type"=>  $campain->reward_type,
                     "block_chain_network"=>  $campain->block_chain_network,
                     "category_token"=>  $campain->category_token,
                     "comapain_total_token"=>  $campain->total_token,
 
                     'user_name' =>'Dung',
-                    'total_point' => 0,
-                    'total_token' => 0,
+                    'total_point' => 10,
+                    'total_token' => 10,
                     'date_created' => null,
                     'date_transfered' => null,
                 ],
                 [
-                    'user_id' => 5,
+                    'user_id' => 500,
                     //Wallet Address
-                    'wallet_address' => '5Cu5qz2GSd1kaQFGiuqhKvTR2K7tJsrmffpfb6DFiwWoBcqt',
+                    'wallet_address' => '5Hdx9BzTpBXbzNxMduDvdfTHnz9KEjkiFXtRc5ZHSQmtCto5',
                     "reward_type"=>  $campain->reward_type,
                     "block_chain_network"=>  $campain->block_chain_network,
                     "category_token"=>  $campain->category_token,
@@ -137,8 +137,88 @@ final class GetItemUseCase
             ];
         }
 
+        $userWinTasksNew = [
+            [
+                'user_id' => 300,
+                //Wallet Address
+                'wallet_address' => '5HCG11Cna8izxKKxHnpwG5CrgnGgzxWL9DkBz2GU2NxXUBSs',
+                "reward_type"=>  $campain->reward_type,
+                "block_chain_network"=>  $campain->block_chain_network,
+                "category_token"=>  $campain->category_token,
+                "comapain_total_token"=>  $campain->total_token,
+
+                'user_name' =>'Player 1',
+                'total_point' => 10,
+                'total_token' => 10,
+                'date_created' => null,
+                'date_transfered' => null,
+            ],
+            [
+                'user_id' => 500,
+                //Wallet Address
+                'wallet_address' => '5Hdx9BzTpBXbzNxMduDvdfTHnz9KEjkiFXtRc5ZHSQmtCto5',
+                "reward_type"=>  $campain->reward_type,
+                "block_chain_network"=>  $campain->block_chain_network,
+                "category_token"=>  $campain->category_token,
+                "comapain_total_token"=>  $campain->total_token,
+
+                'user_name' => 'Chinh',
+                'total_point' => 100,
+                'total_token' => 100,
+                'date_created' => null,
+                'date_transfered' => null,
+            ],
+
+            [
+                'user_id' => 300,
+                //Wallet Address
+                'wallet_address' => '5FLSuUeS3DJ4ZBebJBA6b5DehEc143wC7gTkqWjNHbuHh12V',
+                "reward_type"=>  $campain->reward_type,
+                "block_chain_network"=>  $campain->block_chain_network,
+                "category_token"=>  $campain->category_token,
+                "comapain_total_token"=>  $campain->total_token,
+
+                'user_name' =>'Player 3',
+                'total_point' => 10,
+                'total_token' => 10,
+                'date_created' => null,
+                'date_transfered' => null,
+            ],
+            [
+                'user_id' => 500,
+                //Wallet Address
+                'wallet_address' => '5EJPcHtns4PFmE1JYf1SvBnqGZpVCPLMmwbGeReAHGhDWXUV',
+                "reward_type"=>  $campain->reward_type,
+                "block_chain_network"=>  $campain->block_chain_network,
+                "category_token"=>  $campain->category_token,
+                "comapain_total_token"=>  $campain->total_token,
+
+                'user_name' => 'Player 4',
+                'total_point' => 100,
+                'total_token' => 100,
+                'date_created' => null,
+                'date_transfered' => null,
+            ],
+            [
+                'user_id' => 500,
+                //Wallet Address
+                'wallet_address' => '5EhKeeRZFvv65no1CpchVYQVPfYEvLFAUiBvN64arL6Z8mPP',
+                "reward_type"=>  $campain->reward_type,
+                "block_chain_network"=>  $campain->block_chain_network,
+                "category_token"=>  $campain->category_token,
+                "comapain_total_token"=>  $campain->total_token,
+
+                'user_name' => 'Player 5',
+                'total_point' => 100,
+                'total_token' => 100,
+                'date_created' => null,
+                'date_transfered' => null,
+            ]
+        ];
         //Data User Win
-        $dataCampain['users_reward'] = $userWinTasks;
+        //$dataCampain['users_reward'] = $userWinTasks;
+        $dataCampain['users_reward'] = $userWinTasksNew;
+
 
         //Check Member Is Play task
         $isWin = false;
