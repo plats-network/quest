@@ -12,8 +12,10 @@ DungA123@
 - illness fancy goddess october vendor approve toddler canvas trim canvas length gloom
 
 # https://app.fractal.id/kyc/6cd96c86-4eab-40d3-8f7c-44aad7723946/uniqueness+idos+wallet-eth
+
 ETH
 0x541da95d8F21f5AbAB404424608C4A0817D09F8f
+
 #### Verion
 
 > php artisan serve
@@ -259,23 +261,40 @@ php artisan git-commit-checker:pre-commit-hook
 - docker-compose exec app php artisan key:generate
 
 ### Delopy Server
+
 Admin https://plats-quest-admin.vaix.group/
 Frontend https://plats-quest.vaix.group/
 
+[Site]
+Event:
+User:
+https://hackathon.plats.events
+Admin
+https://cws-hackathon.plats.events
+User:
+https://hackathon.plats.quest
+Admin:
+https://cws-hackathon.plats.quest
+
 > cd /var/www/plats/quest
-> 
+>
 > cd /var/www/quest
 > 
+> cd /var/www/hkt/quest-admin
+> cd /var/www/hkt/quest
+> cd /var/www/hkt/event
+>
 > sudo passwd deploy
 > su deploy
+> 
 > php artisan storage:link
 > git checkout composer.lock
 > git branch --show-current
-> 
+>
 > git fetch --all
-> 
+>
 > git pull origin master
-> 
+>
 > composer install --ignore-platform-reqs
 > php artisan migrate
 >

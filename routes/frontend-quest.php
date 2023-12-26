@@ -118,6 +118,9 @@ Route::group(['middleware' => ['web'], 'as' => 'quest.', ], function () {
 
     Route::get('posts/{id}/{slug?}', [PostsController::class, 'show'])->name('posts.show');
 
+    //Connect twitter
+    Route::get('connect/twitter', [PostsController::class, 'connectTwitter'])->name('posts.connectTwitter');
+
     //Task detail
     Route::get('tasks/{id}/{slug?}', [PostsController::class, 'show'])->name('tasks.show');
 

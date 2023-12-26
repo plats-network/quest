@@ -1,6 +1,6 @@
 {
-  "_ModalWallet-b8064b70.js": {
-    "file": "assets/ModalWallet-b8064b70.js",
+  "_ModalWallet-6c3322f1.js": {
+    "file": "assets/ModalWallet-6c3322f1.js",
     "imports": [
       "resources/js/deposit.jsx",
       "_contract-metadata-fa83a96e.js",
@@ -91,22 +91,22 @@
     "src": "resources/js/app.js"
   },
   "resources/js/connect-wallet-admin.jsx": {
-    "file": "assets/connect-wallet-admin-aa41c591.js",
+    "file": "assets/connect-wallet-admin-a1f6e873.js",
     "imports": [
       "resources/js/deposit.jsx",
       "_contract-metadata-fa83a96e.js",
-      "_ModalWallet-b8064b70.js",
+      "_ModalWallet-6c3322f1.js",
       "_axios-3a76d256.js"
     ],
     "isEntry": true,
     "src": "resources/js/connect-wallet-admin.jsx"
   },
   "resources/js/connect-wallet.jsx": {
-    "file": "assets/connect-wallet-98fbedba.js",
+    "file": "assets/connect-wallet-3c206b0c.js",
     "imports": [
       "resources/js/deposit.jsx",
       "_contract-metadata-fa83a96e.js",
-      "_ModalWallet-b8064b70.js",
+      "_ModalWallet-6c3322f1.js",
       "_axios-3a76d256.js"
     ],
     "isEntry": true,

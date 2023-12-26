@@ -83,7 +83,20 @@ class PostsController extends Controller
         );
     }
 
-    /**
+    public function connectTwitter(Request $request)
+    {
+        /** @var User $questUser */
+        $questUser = auth()->guard('quest')->user();
+        //Check user has login twitter
+        if ($questUser) {
+            $userTwitterID = $questUser->twitter_id;
+            //dd($userTwitterID);
+            return redirect()->route('quest.social.login', ['provider' => 'twitter'])
+                ->with('error', 'Please login twitter to play task');
+        }
+
+    }
+        /**
      * Display the specified resource.
      *
      * @param  int  $id
