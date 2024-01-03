@@ -170,6 +170,8 @@ class PostsController extends Controller
             $listTaskUserHasPlay = UserTaskStatus::query()
                 ->where('user_id', '=', $questUser->id)
                 ->where('post_id', '=', $id)
+                //status completed
+                ->where('status', '=', UserTaskStatus::STATUS_COMPLETED)
                 ->get();
             //Get id of task user has play
             foreach ($listTaskUserHasPlay as $taskUserHasPlay){
