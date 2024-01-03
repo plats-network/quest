@@ -370,6 +370,7 @@ class PostsController extends Controller
 
         //Delay 2s
         //sleep(1);
+        $userTaskStatus->setOpen();
 
         return response()->json([
             'status' => 0,
