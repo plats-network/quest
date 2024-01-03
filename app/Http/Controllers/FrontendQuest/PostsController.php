@@ -184,7 +184,6 @@ class PostsController extends Controller
             }
         }
 
-        dd($arrTaskUserHasPlay);
 
         //Check user has followed
         //$Value = $questUser->hasTwitterFollowed('Scroll_ZKP');
