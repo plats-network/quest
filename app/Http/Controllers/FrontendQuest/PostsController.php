@@ -173,7 +173,12 @@ class PostsController extends Controller
                 ->get();
             //Get id of task user has play
             foreach ($listTaskUserHasPlay as $taskUserHasPlay){
-                $arrTaskUserHasPlay[] = $taskUserHasPlay->task_id;
+                //Check if task is completed.   $this->status = self::STATUS_COMPLETED;
+                if ($taskUserHasPlay->status == UserTaskStatus::STATUS_COMPLETED){
+                    //$isShowReward = true;
+                    $arrTaskUserHasPlay[] = $taskUserHasPlay->task_id;
+                }
+
             }
         }
 
@@ -312,6 +317,7 @@ class PostsController extends Controller
                 $networkName = $task->block_chain_network;
                 $totalToken = $task->total_token;
                 $dataCheck = $questUser->hasTokenHolder($networkName, $totalToken );
+
                 if ($dataCheck['status'] == true){
                     //Set completed
                     $userTaskStatus->setCompleted();
