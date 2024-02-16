@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Space\TelegramLoginAuth\Contracts\Validation\ValidatorChain as ValidatorChainContract;
+use App\Space\TelegramLoginAuth\Validation\ValidatorChain;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +18,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        //Telegram Login Auth
+        $this->app->bind(ValidatorChainContract::class, ValidatorChain::class);
+
     }
 
     /**

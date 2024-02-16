@@ -143,6 +143,11 @@ Route::get('campains', [CampainController::class, 'index']);
 //Show
 Route::get('campains/{campain}', [CampainController::class, 'show']);
 
+//Telegram webhook
+Route::post('telegram-webhook', [\App\Http\Controllers\Api\v1\TelegramController::class, 'webhook']);
+
+//Telegram set webhook
+Route::get('telegram-set-webhook', [\App\Http\Controllers\Api\v1\TelegramController::class, 'setWebhook']);
 
 //API Token Holder
 Route::get('token-holders', [\App\Http\Controllers\Api\v1\Wallet\TokenHolderController::class, 'index']);

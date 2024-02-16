@@ -69,4 +69,8 @@ Route::middleware('auth:quest')->group(function () {
 Route::group(['namespace' => 'Auth', 'middleware' => 'auth:quest'], function () {
     Route::get('login/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('quest.social.login');
     Route::get('login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback'])->name('quest.social.login.callback');
+
+    //Telegram Auth
+    Route::get('telegram-callback', [\App\Http\Controllers\FrontendQuest\Auth\TelegramAuthController::class, 'handleTelegramCallback'])->name('telegramAuthAdmin');
+
 });

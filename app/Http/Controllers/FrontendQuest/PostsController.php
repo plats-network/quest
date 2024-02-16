@@ -314,6 +314,24 @@ class PostsController extends Controller
                 }
                 break;
 
+            case Task::TYPE_TELEGRAM_JOIN:
+                //Check if user has liked
+                $idLike = $task->getTwitterLikeIdAttribute();
+                //dd($idLike);
+
+                if ($idLike && $questUser->hasTelegramJoined($idLike)){
+                    //Set completed
+                    $userTaskStatus->setCompleted();
+
+                    return response()->json(['success'=>'Task is completed']);
+                }else{
+                    return response()->json([
+                        'status' => 0,
+                        'success'=>'Task is not completed'
+                    ]);
+                }
+                break;
+
             case Task::TRANSFER_TYPE_HOLDERS:
                 $wallet_address = $questUser->wallet_address;
                 $networkName = $task->block_chain_network;

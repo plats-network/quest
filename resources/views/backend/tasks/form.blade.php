@@ -95,6 +95,21 @@
             </div>
         </div>
 
+        <div class="row mb-3" id="groupTelegram">
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <?php
+                    $field_name = 'telegram_id';
+                    $field_lable = 'Telegram ID';
+                    $field_placeholder = $field_lable;
+                    $required = "";
+                    ?>
+                    {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                </div>
+            </div>
+        </div>
+
         <div class="row mb-5" id="hash_tag_div" style="display:  block">
             <div class="col-12 col-sm-6">
 
@@ -185,14 +200,23 @@
                 var entry_type = $(this).val();
                 if (entry_type == 'TOKEN_HOLDERS' || entry_type == 'TRANSFER_ACTIVITY') {
                     $('#taskBlockChain').show();
+                    $('#groupTelegram').hide();
                 } else {
                     $('#taskBlockChain').hide();
                 }
                 //Case hash_tag
                 if (entry_type == 'TWITTER_HASHTAG') {
                     $('#hash_tag_div').show();
+                    $('#groupTelegram').hide();
                 } else {
                     $('#hash_tag_div').hide();
+                }
+
+                //Case telegram_id
+                if (entry_type == 'TELEGRAM_JOIN') {
+                    $('#groupTelegram').show();
+                } else {
+                    $('#groupTelegram').hide();
                 }
             });
         });

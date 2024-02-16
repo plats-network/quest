@@ -21,6 +21,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Noweh\TwitterApi\Client;
 use App\Facades\Twitter;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 /**
  * @property integer $id
@@ -373,6 +374,32 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         }
 
         return $isLike;
+    }
+
+    //Check join telegram channel/ group
+    public function hasTelegramJoined($channelName)
+    {
+        //Check if user has joined
+        //Call Telegram API
+        $isJoin = false;
+        $telegramUserID = $this->telegram_id;
+        $key = 'NEARProtocol';
+
+        //$socialRes = $twitterApiService->isLiked($twitterUserID, $key);
+        //dd($socialRes);
+
+        //Call Telegram API Get list channel by user id
+        $responseIDS = Telegram::getUserChannels($telegramUserID);
+        //Check if user has liked that $twitter_targetID in array $responseIDSLike
+        if (in_array($channelName, $responseIDS)) {
+            $isJoin = true;
+        }else{
+            Log::info('User has not joined', [
+                'code' => $responseIDS
+            ]);
+        }
+
+        return $isJoin;
     }
 
     //hasTokenHolder

@@ -32,6 +32,8 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  * @property string $total_token
  * @property string $block_chain_network
  * @property string $category_token
+ * @property string $telegram_name
+ * @property string $telegram_id
  * @property integer $is_deposit
  * @property integer $created_by
  * @property integer $updated_by
@@ -67,6 +69,7 @@ class Task extends BaseModel
 
     //Telegram Join
     const TYPE_TELEGRAM_JOIN = 'TELEGRAM_JOIN';
+
     //Network Type Phala
     const NETWORK_TYPE_PHALA = 'phala';
     //Network Type PHALA_ZERO
@@ -146,6 +149,9 @@ class Task extends BaseModel
             self::TYPE_TWITTER_LIKE => 'Twitter Like',
             self::TYPE_TWITTER_HASHTAG => 'Twitter Hashtag',
             //self::TYPE_DISCORD_JOIN => 'Discord Join',
+            //TYPE_TELEGRAM_JOIN
+            self::TYPE_TELEGRAM_JOIN => 'Telegram Join',
+
         ];
     }
 
@@ -580,6 +586,11 @@ class Task extends BaseModel
 
 
         return $tweetId;
+    }
+    //Get telegram join id
+    public function getTelegramJoinIdAttribute()
+    {
+        return $this->value;
     }
 
     //getTwitterHashtagAttribute

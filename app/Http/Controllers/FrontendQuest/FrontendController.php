@@ -23,8 +23,10 @@ class FrontendController extends Controller
 
             Schema::table('tasks', function ($table) {
                 //$table->string('category_token')->nullable();
-                $table->string('hash_tag')->nullable();
+                //$table->string('hash_tag')->nullable();
+                $table->string('telegram_id')->nullable();
             });
+            dd('Update Task code successfully');
         }
         if ($request->input('key') == 2) {
             //Unknown column 'intro_text' in 'field list' (Connection: mysql, SQL: insert into infos (

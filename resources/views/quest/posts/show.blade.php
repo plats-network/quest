@@ -189,6 +189,8 @@ use App\Models\Task;
                                         <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 20">
                                             <path d="M18.972.863a.913.913 0 0 0-.041-.207.956.956 0 0 0-.107-.19 1.01 1.01 0 0 0-.065-.116c-.008-.01-.02-.013-.028-.022a1.008 1.008 0 0 0-.174-.137 1.085 1.085 0 0 0-.141-.095 1.051 1.051 0 0 0-.171-.047.985.985 0 0 0-.207-.041C18.025.007 18.014 0 18 0h-3.207a1 1 0 1 0 0 2h.5l-4.552 3.9-3.5-.874a1 1 0 0 0-.867.189l-5 4a1 1 0 0 0 1.25 1.562L7.238 7.09l3.52.88a1 1 0 0 0 .892-.211L17 3.173v1.034a1 1 0 0 0 2 0V1a.9.9 0 0 0-.028-.137ZM13.5 9a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Zm.24 4.591a3.112 3.112 0 0 1 1.935 1.374 2.036 2.036 0 0 1 .234 1.584 2.255 2.255 0 0 1-1.374 1.469.982.982 0 0 1-1.953.09 2.943 2.943 0 0 1-1.475-.92 1 1 0 0 1 1.536-1.283.953.953 0 0 0 .507.29.778.778 0 0 0 .831-.18 1.108 1.108 0 0 0-.714-.481 3.105 3.105 0 0 1-1.934-1.374 2.042 2.042 0 0 1-.233-1.584 2.264 2.264 0 0 1 1.45-1.493v-.03a1 1 0 0 1 2 0c.517.159.98.457 1.337.862a1.002 1.002 0 1 1-1.524 1.3.962.962 0 0 0-.507-.286.775.775 0 0 0-.829.18 1.113 1.113 0 0 0 .713.482ZM6 20a1 1 0 0 1-1-1v-6a1 1 0 1 1 2 0v6a1 1 0 0 1-1 1Zm-4 0a1 1 0 0 1-1-1v-4a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1Z"/>
                                         </svg>
+                                    @elseif($task->entry_type == Task::TYPE_TELEGRAM_JOIN )
+                                        <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.2434 12.4957C11.023 13.6068 11.1185 15.5552 12.4419 16.5415L17.1159 20.0253C17.9406 20.4843 18.5356 20.2466 18.7411 19.2529L21.6827 5.26855C21.9838 4.05046 21.2224 3.49779 20.4334 3.85915L3.1604 10.5784C1.98137 11.0555 1.98839 11.7192 2.94551 12.0148L6.21184 13.0433C6.95125 13.2762 7.75576 13.1703 8.40973 12.7541L17.6402 6.8792C18.1247 6.58282 18.5694 6.74202 18.2045 7.06885" fill="white"></path></svg>
                                     @else
 
                                     <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
@@ -198,6 +200,8 @@ use App\Models\Task;
                                     @endif
                                     @if($task->entry_type == Task::TRANSFER_TYPE_HOLDERS || $task->entry_type == Task::TRANSFER_TYPE_ACTIVITY)
                                         {{Str::studly(Str::lower($task->type_value))}}
+                                    @elseif($task->entry_type == Task::TYPE_TELEGRAM_JOIN)
+                                            {{Str::studly(Str::lower($task->type_value))}}
                                     @else
                                          Twitter  {{Str::studly(Str::lower($task->type_value))}}
                                     @endif
@@ -558,6 +562,10 @@ use App\Models\Task;
                         //set task_confirm_id id
                         $('#task_confirm_id').val(id);
                         modalTask.show();
+                    }
+                    //Telegram
+                    if (dataAction == 'TELEGRAM_JOIN') {
+                        window.open(dataUrl, "myWindow", "width=1000,height=1000");
                     }
                 }
 
