@@ -9,7 +9,7 @@
     <div class="container mx-auto flex px-5 items-center justify-center flex-col">
         <div class="text-center lg:w-2/3 w-full">
             <p class="mb-8 leading-relaxed">
-                <a href="{{route('frontend.comments.index')}}" class="outline outline-1 outline-gray-800 bg-gray-200 hover:bg-gray-100 text-gray-800 text-sm font-semibold mr-2 px-3 py-1 rounded dark:bg-gray-700 dark:text-gray-300">
+                <a href="{{route('frontend.comments.index')}}" class="outline outline-1 outline-gray-800 bg-gray-200 hover:bg-gray-100 text-gray-800 text-sm font-semibold mr-2 px-3 py-1 rounded">
                     {{ __("Comments") }}
                 </a>
             </p>
@@ -26,12 +26,12 @@
 <section class="bg-white text-gray-600 py-20 px-20">
     <div class="grid grid-cols-1 gap-6">
         <div class="">
-            <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div class=" bg-white rounded-lg border border-gray-200 shadow-md">
                 <div class="p-5 flex flex-col items-stretch">
-                    <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">
+                    <h2 class="mb-2 text-2xl tracking-tight text-gray-900">
                         Post of {{$$module_name_singular->name}}
                     </h2>
-                    <p class="my-4 flex-1 h-full font-normal text-gray-700 dark:text-gray-400">
+                    <p class="my-4 flex-1 h-full font-normal text-gray-700">
                         {!! $$module_name_singular->comment !!}
                     </p>
                     <p class="my-4">
@@ -52,7 +52,7 @@
 <section class="bg-white text-gray-600 py-20 px-20">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div class="col-span-2">
-            <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white text-center">
+            <h2 class="mb-2 text-2xl tracking-tight text-gray-900 text-center">
                 Post of {{$$module_name_singular->name}}
             </h2>
         </div>
@@ -61,7 +61,7 @@
             $post = $$module_name_singular->post;
             $post_details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
             @endphp
-            <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div class=" bg-white rounded-lg border border-gray-200 shadow-md">
                 <div class="flex flex-col items-stretch">
 
                     <a href="{{ $post_details_url }}">
@@ -69,11 +69,11 @@
                     </a>
                     <div class="p-5 flex flex-col items-stretch">
                         <a href="{{ $post_details_url }}">
-                            <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">
+                            <h2 class="mb-2 text-2xl tracking-tight text-gray-900">
                                 {{$post->name}}
                             </h2>
                         </a>
-                        <p class="flex-1 h-full mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        <p class="flex-1 h-full mb-3 font-normal text-gray-700">
                             {{$post->intro}}
                         </p>
                         <p class="card-text">
@@ -110,12 +110,12 @@
             </div>
         </div>
         <div class="">
-            <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div class=" bg-white rounded-lg border border-gray-200 shadow-md">
                 <div class="p-5 flex flex-col items-stretch">
-                    <h3 class="mb-2 text-xl tracking-tight text-gray-900 dark:text-white">
+                    <h3 class="mb-2 text-xl tracking-tight text-gray-900">
                         Other Comments of the this post
                     </h3>
-                    <!-- <p class="my-4 flex-1 h-full font-normal text-gray-700 dark:text-gray-400">
+                    <!-- <p class="my-4 flex-1 h-full font-normal text-gray-700">
                         {!! $$module_name_singular->comment !!}
                     </p>
                     <p class="my-4">

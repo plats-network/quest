@@ -34,6 +34,8 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  * @property string $category_token
  * @property string $telegram_name
  * @property string $telegram_id
+ * @property string $discord_name
+ * @property string $discord_id
  * @property integer $is_deposit
  * @property integer $created_by
  * @property integer $updated_by
@@ -151,7 +153,8 @@ class Task extends BaseModel
             //self::TYPE_DISCORD_JOIN => 'Discord Join',
             //TYPE_TELEGRAM_JOIN
             self::TYPE_TELEGRAM_JOIN => 'Telegram Join',
-
+            //Discord Join
+            self::TYPE_DISCORD_JOIN => 'Discord Join',
         ];
     }
 

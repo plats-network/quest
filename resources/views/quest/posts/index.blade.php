@@ -47,11 +47,11 @@
             <a class="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline" href="{{$details_url}}" data-config-id="auto-txt-11-2">{{$$module_name_singular->name}}</a>
             <div class="flex flex-row content-center my-4">
                 <address class="flex items-center mb-6 not-italic">
-                    <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                    <div class="inline-flex items-center mr-3 text-sm text-gray-900">
                         <img class="w-5 h-5 sm:w-8 sm:h-8 rounded-full" src="https://res.cloudinary.com/dhploi5y1/image/upload/v1696240313/a49dc6a0-8564-48dd-b99d-16b008957acc_oexjni.png" alt="Jese Leos">
                         <div>
-                            <a href="{{route('quest.index', ['created_by' => $$module_name_singular->created_by])}}" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{$$module_name_singular->getCreatedByName()}}
-                                <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full dark:bg-gray-700 dark:text-blue-400">
+                            <a href="{{route('quest.index', ['created_by' => $$module_name_singular->created_by])}}" rel="author" class="text-xl font-bold text-gray-900">{{$$module_name_singular->getCreatedByName()}}
+                                <span class="inline-flex items-center justify-center w-6 h-6 mr-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full">
                                               <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
                                                 <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
@@ -68,11 +68,11 @@
 
                 <div class="flex flex-wrap xl:items-center -mx-4">
                     <div class="w-full md:w-1/2 px-4 mb-16 md:mb-0">
-                        <a href="{{route('quest.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category?$$module_name_singular->category->slug:'123'])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{$$module_name_singular->category_name}}</a>
+                        <a href="{{route('quest.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category?$$module_name_singular->category->slug:'123'])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">{{$$module_name_singular->category_name}}</a>
 
                     </div>
                     <div class="w-full md:w-1/2 px-4">
-                        <button type="button" class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-2 py-1.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2">
+                        <button type="button" class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-2 py-1.5 text-center inline-flex items-center me-2 mb-2">
                             @if($$module_name_singular->category_token =='AZERO')
                                 <img class="w-6 h-5 me-2 -ms-1" src="https://plats-quest-admin.vaix.group/assets/alephzero-87aef38e.jpg" alt="">
                             @endif

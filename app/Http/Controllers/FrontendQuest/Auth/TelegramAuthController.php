@@ -28,42 +28,39 @@ class TelegramAuthController
             //Check has exits user
             //If not register => register => login
 
+            //Get  telegram user
             $telegramId = $user->getId();
+            $telegramUserName = $user->getUsername();
+            //dd($telegramId, $telegramUserName);
+
             $telegramFirstName = $user->getUsername();
 
-            /** @var User $userModel */
-            $userModel = User::query()
-                ->where('telegram_id', $telegramId)
-                ->first();
+            /** @var User $questUser */
+            $userLogin = auth()->guard('quest')->user();
+
 
             //Todo check is admin
 
             //Has exits user
-            if ($userModel) {
+            if ($userLogin->telegram_id) {
                 //Login user
                 //Log login history
+                //Save telegram ID to user
+                $userLogin->telegram_id = $telegramId;
+                $userLogin->telegram_username = $telegramUserName;
+                $userLogin->save();
                 //Send flash login success message
-                $request->session()->flash('success', 'Đăng nhập thành công.');
+                $request->session()->flash('success', 'Kết nối thành công!');
 
-                return redirect(route('admin.homeAdmin', ['send_job' => 1]));
+                return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id)]));
             } else {
-                //Create new user
-                $dataUserCreate = [
-                    'name' => $telegramId,
-                    'first_name' => $telegramFirstName,
-                    //'last_name' => $user->getLastName(),
-                    'email' => $telegramId.'@example.com',
-                    'password' => $user->getHash(),
-                    'is_guess' => 0,
-                    'telegram_id' => $user->getId(),
-                    //'token_api' => Str::random(16),
-                ];
-
-                $userCreate = User::create($dataUserCreate);
-
+                //Save telegram ID to user
+                $userLogin->telegram_id = $telegramId;
+                $userLogin->telegram_username = $telegramUserName;
+                $userLogin->save();
                 //event(new Registered($userCreate));
 
-                return redirect(route('quest.index'))->with('success', 'Đăng ký thành công. Vui lòng đăng nhập.');
+                return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id)]));
             }
 
         } catch (NotAllRequiredAttributesException $e) {
@@ -84,7 +81,7 @@ class TelegramAuthController
             Log::alert('Telegram Login Error: OutData');
         }
 
-        return redirect(route('admin.homeAdmin'))->with('success', 'User login!');
+        return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id)]));
         // ...
     }
 

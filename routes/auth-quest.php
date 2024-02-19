@@ -73,4 +73,6 @@ Route::group(['namespace' => 'Auth', 'middleware' => 'auth:quest'], function () 
     //Telegram Auth
     Route::get('telegram-callback', [\App\Http\Controllers\FrontendQuest\Auth\TelegramAuthController::class, 'handleTelegramCallback'])->name('telegramAuthAdmin');
 
+    //Discord Auth
+    Route::get('discord-callback', [\App\Http\Controllers\FrontendQuest\Auth\DiscordAuthController::class, 'handleDiscordCallback'])->name('discordAuthAdmin');
 });

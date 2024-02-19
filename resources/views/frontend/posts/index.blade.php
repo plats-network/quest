@@ -29,14 +29,14 @@
         @endphp
 
         <div class="w-full lg:w-1/3 lg:pt-6 px-4">
-            <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div class=" bg-white rounded-lg border border-gray-200 shadow-md">
                 <div class="flex flex-col items-stretch">
                     <a href="{{$details_url}}" class="overflow-hidden">
                         <img src="{{$$module_name_singular->featured_image}}" alt="" class="rounded-t-lg transform hover:scale-110 duration-200">
                     </a>
                     <div class="p-3 sm:p-5">
                         <a href="{{$details_url}}">
-                            <h2 class="mb-2 text-md sm:text-2xl tracking-tight text-gray-900 dark:text-white">
+                            <h2 class="mb-2 text-md sm:text-2xl tracking-tight text-gray-900">
                                 {{$$module_name_singular->name}}
                             </h2>
                         </a>
@@ -47,18 +47,18 @@
                                 <h6 class="text-muted text-sm small ml-2 mb-0">'.$$module_name_singular->created_by_name.'</h6>
                             </a>'!!}
                         </div>
-                        <p class="flex-1 h-full mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        <p class="flex-1 h-full mb-3 font-normal text-gray-700">
                             {{$$module_name_singular->intro}}
                         </p>
                         <p>
-                            <a href="{{route('frontend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">{{$$module_name_singular->category_name}}</a>
+                            <a href="{{route('frontend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">{{$$module_name_singular->category_name}}</a>
                         </p>
                         <p>
                             @foreach ($$module_name_singular->tags as $tag)
-                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">
+                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
                                 {{$tag->name}}
                             </a>
-                            <!-- text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 -->
+                            <!-- text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded -->
                             @endforeach
                         </p>
 

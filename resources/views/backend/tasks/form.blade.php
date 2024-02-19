@@ -1,3 +1,12 @@
+<?php
+/**
+ * @var App\Models\Post $$module_name_singular
+ * @var App\Models\Task $task
+ * @var array $categories
+ */
+use App\Models\Task;
+
+?>
 
 <div class="row mb-3">
     <div class="col-12 col-sm-8">
@@ -109,6 +118,21 @@
                 </div>
             </div>
         </div>
+        {{--Discord--}}
+        <div class="row mb-3" id="groupDiscord">
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <?php
+                    $field_name = 'discord_id';
+                    $field_lable = 'Discord ID';
+                    $field_placeholder = $field_lable;
+                    $required = "";
+                    ?>
+                    {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                </div>
+            </div>
+        </div>
 
         <div class="row mb-5" id="hash_tag_div" style="display:  block">
             <div class="col-12 col-sm-6">
@@ -195,6 +219,7 @@
             var taskBlockChain = $('#taskBlockChain');
             //taskBlockChain.hide();
             var arrTypeToken = ["TOKEN_HOLDERS", "TRANSFER_ACTIVITY"];
+            var entry_type = $('#entry_type').val();
             //Select entry_type on change
             $('#entry_type').on('change', function() {
                 var entry_type = $(this).val();
@@ -204,6 +229,7 @@
                 } else {
                     $('#taskBlockChain').hide();
                 }
+
                 //Case hash_tag
                 if (entry_type == 'TWITTER_HASHTAG') {
                     $('#hash_tag_div').show();
@@ -217,6 +243,13 @@
                     $('#groupTelegram').show();
                 } else {
                     $('#groupTelegram').hide();
+                }
+
+                //Case discord_id
+                if (entry_type == 'DISCORD_JOIN') {
+                    $('#groupDiscord').show();
+                } else {
+                    $('#groupDiscord').hide();
                 }
             });
         });

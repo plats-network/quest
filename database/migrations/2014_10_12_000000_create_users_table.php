@@ -39,22 +39,28 @@ class CreateUsersTable extends Migration
             $table->string('github_id')->nullable();
             $table->string('twitter_id')->nullable();
             $table->string('twitter_username')->nullable();
-           /* $table->string('linkedin_id')->nullable();
-            $table->string('instagram_id')->nullable();
-            $table->string('youtube_id')->nullable();
-            $table->string('pinterest_id')->nullable();
-            $table->string('skype_id')->nullable();
-            $table->string('tumblr_id')->nullable();
-            $table->string('reddit_id')->nullable();
-            $table->string('snapchat_id')->nullable();
-            $table->string('whatsapp_id')->nullable();
+
+            //Discord
+            $table->string('discord_id')->nullable();
+            $table->string('discord_username')->nullable();
+
+            /* $table->string('linkedin_id')->nullable();
+             $table->string('instagram_id')->nullable();
+             $table->string('youtube_id')->nullable();
+             $table->string('pinterest_id')->nullable();
+             $table->string('skype_id')->nullable();
+             $table->string('tumblr_id')->nullable();
+             $table->string('reddit_id')->nullable();
+             $table->string('snapchat_id')->nullable();
+             $table->string('whatsapp_id')->nullable();
+             $table->string('telegram_id')->nullable();
+             $table->string('wechat_id')->nullable();
+             $table->string('viber_id')->nullable();
+             $table->string('line_id')->nullable();
+             $table->string('wechatpay_id')->nullable();
+             $table->string('alipay_id')->nullable();*/
             $table->string('telegram_id')->nullable();
-            $table->string('wechat_id')->nullable();
-            $table->string('viber_id')->nullable();
-            $table->string('line_id')->nullable();
-            $table->string('wechatpay_id')->nullable();
-            $table->string('alipay_id')->nullable();*/
-            $table->string('telegram_id')->nullable();
+            $table->string('telegram_username')->nullable();
             //Zalo
             $table->string('zalo_id')->nullable();
 

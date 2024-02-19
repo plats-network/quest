@@ -9,7 +9,15 @@ DungA123@
   cake gasp demise lab mammal chaos figure puppy theme point coast agent
 -
 - Subwalet: sdfe3453$SsefA
+- gwJvAzj.eQ@7wRm
 - illness fancy goddess october vendor approve toddler canvas trim canvas length gloom
+
+
+
+Dot Pokadot
+14Xymz1AGRXH4yoXJTRj35AU8MuKDd4eVtsy6MSysagL8Pxc
+Azero
+5Fbgdek6QeFodSo1LpNitvLKGjufXKWWRQ9Uw4TdKVeox8T2
 
 # https://app.fractal.id/kyc/6cd96c86-4eab-40d3-8f7c-44aad7723946/uniqueness+idos+wallet-eth
 
@@ -311,3 +319,8 @@ https://cws-hackathon.plats.quest
 > php artisan db:seed --class=SampleQuestData
 > chmod -R 777 storage
 > php artisan migrate:reset && php artisan migrate --seed
+
+
+### Telegram
+ - App ID
+ - App Hash

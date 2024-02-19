@@ -86,7 +86,8 @@ class UserController extends Controller
     public function profile(Request $request, $id)
     {
         $id = decode_id($id);
-
+        /** @var User $questUser */
+        $questUser = auth()->guard('quest')->user();
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -127,6 +128,8 @@ class UserController extends Controller
     public function profileEdit(Request $request, $id)
     {
         $id = decode_id($id);
+        /** @var User $questUser */
+        $userLogin = auth()->guard('quest')->user();
 
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -155,7 +158,7 @@ class UserController extends Controller
 
         return view(
             "quest.users.profileEdit",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile', 'body_class')
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile', 'userLogin', 'body_class')
         );
     }
 

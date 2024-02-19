@@ -1,3 +1,12 @@
+<?php
+/**
+ * @var App\Models\Post $$module_name_singular
+ * @var App\Models\Task $task
+ * @var array $categories
+ */
+use App\Models\Task;
+
+?>
 @extends ('layouts.backend')
 
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection

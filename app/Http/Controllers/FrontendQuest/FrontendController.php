@@ -39,8 +39,17 @@ class FrontendController extends Controller
                 $table->string('status')->nullable()->change();
             });
         }
+        if ($request->input('key') == 3) {
 
-        dd('Update card code successfully');
+            Schema::table('users', function ($table) {
+                //Discord
+                $table->string('discord_id')->nullable();
+                $table->string('discord_username')->nullable();
+                $table->string('telegram_username')->nullable();
+            });
+        }
+
+        dd('Update DB successfully');
     }
     /**
      * Show the application dashboard.

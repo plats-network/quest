@@ -46,7 +46,11 @@ use Telegram\Bot\Laravel\Facades\Telegram;
  * @property string $google_id
  * @property string $github_id
  * @property string $twitter_id
+ * @property string $telegram_id
+ * @property string $discord_id
  * @property string $twitter_username
+ * @property string $telegram_username
+ * @property string $discord_username
  * @property string $contact_name
  * @property string $company_name
  * @property string $website
@@ -529,7 +533,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
             'access_token' => '4367425814-CNFG76nKC8d015vLKahxC4KT70Q4hIsGUnFRhj1',
             'access_token_secret' => 'pdYQB5xSPkkSE6LLtRDPmeUZZHHUHOLeY3YY1R2ynzeS8',
 
-           // 'access_token' => 'n4mU9cOsweKWnth4kyJeS1XkI',
+            // 'access_token' => 'n4mU9cOsweKWnth4kyJeS1XkI',
             //'access_token_secret' => 'HDhe6ZZPvK96SwBGwAj4YrYPWmSnUluv6oMjevMECbahNLgAOA',
 
             'consumer_key' => 'f6YoruRt1MotL8sfr7T465Yna',

@@ -8,7 +8,7 @@
     <div class="container mx-auto flex px-5 items-center justify-center flex-col">
         <div class="text-center lg:w-2/3 w-full">
             <p class="mb-8 leading-relaxed">
-                <a href="{{route('frontend.tags.index')}}" class="outline outline-1 outline-gray-800 bg-gray-200 hover:bg-gray-100 text-gray-800 text-sm font-semibold mr-2 px-3 py-1 rounded dark:bg-gray-700 dark:text-gray-300">
+                <a href="{{route('frontend.tags.index')}}" class="outline outline-1 outline-gray-800 bg-gray-200 hover:bg-gray-100 text-gray-800 text-sm font-semibold mr-2 px-3 py-1 rounded">
                     {{ __("Tags") }}
                 </a>
             </p>
@@ -32,17 +32,17 @@
         @endphp
 
         <div class="">
-            <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div class=" bg-white rounded-lg border border-gray-200 shadow-md">
                 <a href="{{$details_url}}">
                     <img class="rounded-t-lg" src="{{$post->featured_image}}" alt="{{$post->name}}" />
                 </a>
                 <div class="p-5 flex flex-col items-stretch">
                     <a href="{{$details_url}}">
-                        <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">
+                        <h2 class="mb-2 text-2xl tracking-tight text-gray-900">
                             {{$post->name}}
                         </h2>
                     </a>
-                    <p class="flex-1 h-full mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <p class="flex-1 h-full mb-3 font-normal text-gray-700">
                         {{$post->intro}}
                     </p>
 
