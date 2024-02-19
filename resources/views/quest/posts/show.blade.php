@@ -191,6 +191,11 @@ use App\Models\Task;
                                         </svg>
                                     @elseif($task->entry_type == Task::TYPE_TELEGRAM_JOIN )
                                         <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.2434 12.4957C11.023 13.6068 11.1185 15.5552 12.4419 16.5415L17.1159 20.0253C17.9406 20.4843 18.5356 20.2466 18.7411 19.2529L21.6827 5.26855C21.9838 4.05046 21.2224 3.49779 20.4334 3.85915L3.1604 10.5784C1.98137 11.0555 1.98839 11.7192 2.94551 12.0148L6.21184 13.0433C6.95125 13.2762 7.75576 13.1703 8.40973 12.7541L17.6402 6.8792C18.1247 6.58282 18.5694 6.74202 18.2045 7.06885" fill="white"></path></svg>
+                                    @elseif($task->entry_type == Task::TYPE_DISCORD_JOIN )
+                                        <svg class="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M19 5.6c-1.4-.7-2.8-1.1-4.2-1.3l-.5 1c-1.5-.2-3-.2-4.6 0l-.5-1c-1.4.2-2.8.6-4.1 1.3a17.4 17.4 0 0 0-3 11.6 18 18 0 0 0 5 2.5c.5-.5.8-1.1 1.1-1.7l-1.7-1c.2 0 .3-.2.4-.3a11.7 11.7 0 0 0 10.2 0l.4.3-1.7.9 1 1.7c1.9-.5 3.6-1.4 5.1-2.6.4-4-.6-8.2-3-11.5ZM8.6 14.8a2 2 0 0 1-1.8-2 2 2 0 0 1 1.8-2 2 2 0 0 1 1.8 2 2 2 0 0 1-1.8 2Zm6.6 0a2 2 0 0 1-1.8-2 2 2 0 0 1 1.8-2 2 2 0 0 1 1.8 2 2 2 0 0 1-1.8 2Z"/>
+                                        </svg>
+
                                     @else
 
                                     <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
