@@ -570,6 +570,10 @@ use App\Models\Task;
                     if (dataAction == 'TELEGRAM_JOIN') {
                         window.open(dataUrl, "myWindow", "width=1000,height=1000");
                     }
+                    //Discord
+                    if (dataAction == 'DISCORD_JOIN') {
+                        window.open(dataUrl, "myWindow", "width=1000,height=1000");
+                    }
                 }
 
 
