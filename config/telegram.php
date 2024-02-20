@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'admin_chat_id' => env('TELEGRAM_ADMIN_CHAT_ID', 'YOUR-ADMIN-CHAT-ID'),
     /*
     |--------------------------------------------------------------------------
     | Your Telegram Bots

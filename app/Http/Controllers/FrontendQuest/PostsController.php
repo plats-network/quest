@@ -255,7 +255,7 @@ class PostsController extends Controller
         }
 
         //Check user task status is done, return true
-        if ($userTaskStatus->status == UserTaskStatus::STATUS_COMPLETED){
+        if ($userTaskStatus->status == UserTaskStatus::STATUS_COMPLETED && $task->entry_type != Task::TYPE_TELEGRAM_JOIN){
             return response()->json(['success'=>'Task is completed']);
         }
 
@@ -315,11 +315,13 @@ class PostsController extends Controller
                 break;
 
             case Task::TYPE_TELEGRAM_JOIN:
-                //Check if user has liked
-                $idLike = $task->getTwitterLikeIdAttribute();
-                //dd($idLike);
+                //Check if user has join group or channel
+                $idTelegramUser =  $questUser->telegram_id;
 
-                if ($idLike && $questUser->hasTelegramJoined($idLike)){
+                //Get telegram group, channel id
+                $idGroup = $task->telegram_id;
+
+                if ($idTelegramUser && $questUser->hasTelegramJoined($idTelegramUser, $idGroup)){
                     //Set completed
                     $userTaskStatus->setCompleted();
 

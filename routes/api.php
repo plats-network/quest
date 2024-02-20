@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\TelegramBotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,7 @@ Route::name('api.')->group(function () {
             'connect-wallet' => route('api.connect-wallet'),
         ];
         return [
-            'message' => 'Hello World. API Working fine!',
+            'message' => 'Hello World. API Working fine 2!',
             'api' => $arrApi
         ];
     });
@@ -71,6 +72,19 @@ Route::name('api.')->group(function () {
 
     //Update Post total token and block chain network
     Route::post('update-post-total-token', [\App\Http\Controllers\FrontendQuest\FrontendController::class, 'updatePostTotalToken'])->name('update-post-total-token');
+
+    Route::get('send-message', [TelegramBotController::class, 'sendMessage'])->name('telegrapSendActivity');
+    Route::get('telegram-info', [TelegramBotController::class, 'index'])->name('telegramInfo');
+    Route::get('set-bot-webhook', [TelegramBotController::class, 'setConfigData'])->name('setBotInfo');
+    Route::get('get-bot-info', [TelegramBotController::class, 'getWebhookInfo'])->name('getBotInFor');
+
+    //Get  chat member
+    Route::get('get-chat-member', [TelegramBotController::class, 'getChatMember'])->name('getChatMember');
+
+    Route::any('telegram/webhook', [TelegramBotController::class, 'handle'])
+        ->middleware('api')
+        ->withoutMiddleware(['web'])
+        ->name('telegramWebhook');
 
 });
 

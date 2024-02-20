@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\v1\CategoryController;
 use App\Http\Controllers\Api\v1\CommentController;
 use App\Http\Controllers\Api\v1\TaskController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\TelegramBotController;
 
 //Ping
 Route::get('ping', function () {
@@ -86,6 +87,15 @@ Route::get('/', function () {
         'api' => $arrApi
     ];
 });
+
+Route::get('send-message', [TelegramBotController::class, 'sendMessage'])->name('telegrapSendActivity');
+Route::get('telegram-info', [TelegramBotController::class, 'index'])->name('telegramInfo');
+Route::get('set-bot-webhook', [TelegramBotController::class, 'setConfigData'])->name('setBotInfo');
+Route::get('get-bot-info', [TelegramBotController::class, 'getWebhookInfo'])->name('getBotInFor');
+
+//Get  chat member
+Route::get('get-chat-member', [TelegramBotController::class, 'getChatMember'])->name('getChatMember');
+
 
 Route::prefix('email')
     ->group(function () {

@@ -112,8 +112,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
     ];
 
     protected $casts = [
-        'deleted_at' => 'datetime',
-        'date_of_birth' => 'datetime',
+        'deleted_at'        => 'datetime',
+        'date_of_birth'     => 'datetime',
         'email_verified_at' => 'datetime',
     ];
 
@@ -181,7 +181,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
     //Get twitter id from user provider
     public function getTwitterIdNewAttribute()
     {
-        if ($this->twitter_id){
+        if ($this->twitter_id) {
             return $this->twitter_id;
         }
 
@@ -295,7 +295,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //Check if user has liked that $twitter_targetID in array $responseIDSLike
         if (in_array($twitterUserID, $responseIDS)) {
             $isDone = true;
-        }else{
+        } else {
             Log::info('User has not retweeted', [
                 'code' => $responseIDS
             ]);
@@ -333,7 +333,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
 
         if (isset($responseIDS['data'])) {
             foreach ($responseIDS['data'] as $item) {
-                foreach ($arrKeyHashTag as $valueHastag){
+                foreach ($arrKeyHashTag as $valueHastag) {
                     $contains = Str::contains($item->text, $valueHastag);
 
                     if ($contains) {
@@ -342,7 +342,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
                 }
 
             }
-        }else{
+        } else {
             Log::info('User has not hashtag', [
                 'code' => $responseIDS
             ]);
@@ -371,7 +371,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //Check if user has liked that $twitter_targetID in array $responseIDSLike
         if (in_array($twitter_targetID, $responseIDSLike)) {
             $isLike = true;
-        }else{
+        } else {
             Log::info('User has not liked', [
                 'code' => $responseIDSLike
             ]);
@@ -381,26 +381,42 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
     }
 
     //Check join telegram channel/ group
-    public function hasTelegramJoined($channelName)
+    public function hasTelegramJoined($idUser, $idGroup)
     {
         //Check if user has joined
         //Call Telegram API
         $isJoin = false;
         $telegramUserID = $this->telegram_id;
-        $key = 'NEARProtocol';
+
+        //Test ID Group
+        $idGroup = -1002018192831;
+        //$idUser = 706659637; //in Group
+        $idUser = 5211022547; //No in Group
 
         //$socialRes = $twitterApiService->isLiked($twitterUserID, $key);
         //dd($socialRes);
 
         //Call Telegram API Get list channel by user id
-        $responseIDS = Telegram::getUserChannels($telegramUserID);
-        //Check if user has liked that $twitter_targetID in array $responseIDSLike
-        if (in_array($channelName, $responseIDS)) {
-            $isJoin = true;
-        }else{
-            Log::info('User has not joined', [
-                'code' => $responseIDS
+        try {
+            $response = Telegram::getChatMember([
+                'chat_id' => $idGroup,
+                'user_id' => $idUser, //5211022547
             ]);
+            //Check if user has liked that $twitter_targetID in array $responseIDSLike
+            if ($response) {
+                $arrStatusJoin = ['creator', 'administrator', 'member', 'restricted'];
+                //Check member isJoin
+                if ($response->status && in_array($response->status, $arrStatusJoin)) {
+                    $isJoin = true;
+                }
+            } else {
+                Log::info('User has not joined', [
+                    'code' => 404
+                ]);
+            }
+        } catch (\Exception $e) {
+            //User not found
+            Log::info($e->getMessage());
         }
 
         return $isJoin;
@@ -421,14 +437,14 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
 
         Log::info('Url Token Holder Check ' . $url);
         $dataReturn = [
-            'status' => false,
+            'status'  => false,
             'message' => 'Check account fail'
         ];
         try {
             $response = Http::timeout(30)->get($url);
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
             Log::info('Conect to server fail');
-            $dataReturn['message'] = 'Conect to server fail URL: ' . $url ;;
+            $dataReturn['message'] = 'Conect to server fail URL: ' . $url;;
             $dataReturn['status'] = false;
             return $dataReturn;
         }
@@ -453,7 +469,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
             if ($balance >= $totalToken) {
                 $dataReturn['message'] = 'Has token holder';
                 $dataReturn['status'] = true;
-            }else{
+            } else {
                 $dataReturn['message'] = 'Has not token holder';
                 $dataReturn['status'] = false;
             }
@@ -477,14 +493,14 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         Log::info('Url Token Holder Check ' . $url);
 
         $dataReturn = [
-            'status' => false,
+            'status'  => false,
             'message' => 'Check account fail'
         ];
         try {
             $response = Http::timeout(30)->get($url);
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
             Log::info('Conect to server fail');
-            $dataReturn['message'] = 'Conect to server fail URL' . $url ;
+            $dataReturn['message'] = 'Conect to server fail URL' . $url;
             $dataReturn['status'] = false;
 
             return $dataReturn;
@@ -510,7 +526,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
             if ($balance >= $totalToken) {
                 $dataReturn['message'] = 'Has token holder';
                 $dataReturn['status'] = true;
-            }else{
+            } else {
                 $dataReturn['message'] = 'Has not token holder';
                 $dataReturn['status'] = false;
             }
@@ -530,13 +546,13 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         $settings = [
             'account_id' => 'czBDWnh3TzAwenBDUFE0NXhIcUY6MTpjaQ',
 
-            'access_token' => '4367425814-CNFG76nKC8d015vLKahxC4KT70Q4hIsGUnFRhj1',
+            'access_token'        => '4367425814-CNFG76nKC8d015vLKahxC4KT70Q4hIsGUnFRhj1',
             'access_token_secret' => 'pdYQB5xSPkkSE6LLtRDPmeUZZHHUHOLeY3YY1R2ynzeS8',
 
             // 'access_token' => 'n4mU9cOsweKWnth4kyJeS1XkI',
             //'access_token_secret' => 'HDhe6ZZPvK96SwBGwAj4YrYPWmSnUluv6oMjevMECbahNLgAOA',
 
-            'consumer_key' => 'f6YoruRt1MotL8sfr7T465Yna',
+            'consumer_key'    => 'f6YoruRt1MotL8sfr7T465Yna',
             'consumer_secret' => 'vR9y289BIp7RkP3DRsd5d2xcJho1sUEPaHVsukv63hKTaqe5Vm',
 
             'bearer_token' => 'AAAAAAAAAAAAAAAAAAAAAF7iqgEAAAAAc8htvpiOeEzvejxjq2lHezKk2pw%3DIrpZB5LFxdbceFa2NJ3ITkxXJrC3h1lllpzFz22VSWLTUmZlOD',

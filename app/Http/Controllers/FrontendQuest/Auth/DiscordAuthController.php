@@ -18,6 +18,7 @@ class DiscordAuthController
     public $user;
     //$code
     public $code;
+
     //Init
     public function redirectToDiscord()
     {
@@ -27,6 +28,7 @@ class DiscordAuthController
 # Setting bot token for related requests
         $GLOBALS['bot_token'] = null;
     }
+
     //handleDiscordCallback
     public function handleDiscordCallback(Request $request)
     {
@@ -43,11 +45,11 @@ class DiscordAuthController
         $code = $data['code'];
         $this->code = $code;
 
-        //Get user information
-        $client_id= env('DISCORD_CLIENT_ID');
-        $client_secret= env('DISCORD_CLIENT_SECRET');
-        $redirect_url= env('DISCORD_REDIRECT_URI');
-        $bot_token= env('DISCORD_BOT_TOKEN');
+        //Get user information - todo move to config
+        $client_id = env('DISCORD_CLIENT_ID');
+        $client_secret = env('DISCORD_CLIENT_SECRET');
+        $redirect_url = env('DISCORD_REDIRECT_URI');
+        $bot_token = env('DISCORD_BOT_TOKEN');
         $dataInit = $this->init($redirect_url, $client_id, $client_secret, $bot_token);
         $UserGet = $this->get_user();
 
@@ -81,13 +83,13 @@ class DiscordAuthController
     }
 
 
-
 # A function to generate a random string to be used as state | (protection against CSRF)
     function gen_state()
     {
         $_SESSION['state'] = bin2hex(openssl_random_pseudo_bytes(12));
         return $_SESSION['state'];
     }
+
     # A function to initialize and store access token in SESSION to be used for other requests
     function init($redirect_url, $client_id, $client_secret, $bot_token = null)
     {
@@ -98,11 +100,11 @@ class DiscordAuthController
         # Check if $state == $_SESSION['state'] to verify if the login is legit | CHECK THE FUNCTION get_state($state) FOR MORE INFORMATION.
         $url = $GLOBALS['base_url'] . "/api/oauth2/token";
         $data = array(
-            "client_id" => $client_id,
+            "client_id"     => $client_id,
             "client_secret" => $client_secret,
-            "grant_type" => "authorization_code",
-            "code" => $code,
-            "redirect_uri" => $redirect_url
+            "grant_type"    => "authorization_code",
+            "code"          => $code,
+            "redirect_uri"  => $redirect_url
         );
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -140,9 +142,9 @@ class DiscordAuthController
 //        $_SESSION['user_avatar'] = $results['avatar'];
 
         $dataUser = [
-            'username' => $results['username'],
-            'discrim' => $results['discriminator'],
-            'user_id' => $results['id'],
+            'username'    => $results['username'],
+            'discrim'     => $results['discriminator'],
+            'user_id'     => $results['id'],
             'user_avatar' => $results['avatar'],
         ];
         # Fetching email
