@@ -82,6 +82,31 @@ class DiscordAuthController
         }
     }
 
+    //disconnectDiscord
+    public function disconnectDiscord(Request $request)
+    {
+        /** @var User $questUser */
+        $userLogin = auth()->guard('quest')->user();
+        //Has exits set discord id
+        if ($userLogin->discord_id) {
+            //Login user
+            //Log login history
+            //Save discord ID to user
+            $userLogin->discord_id = null;
+            $userLogin->discord_username = null;
+
+            $userLogin->save();
+            //Send flash login success message
+            $request->session()->flash('success', 'Ngắt kết nối thành công!');
+
+            return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id)]));
+        } else {
+            //Send flash login success message
+            $request->session()->flash('success', 'Ngắt kết nối thành công!');
+
+            return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id)]));
+        }
+    }
 
 # A function to generate a random string to be used as state | (protection against CSRF)
     function gen_state()

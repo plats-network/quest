@@ -72,7 +72,12 @@ Route::group(['namespace' => 'Auth', 'middleware' => 'auth:quest'], function () 
 
     //Telegram Auth
     Route::get('telegram-callback', [\App\Http\Controllers\FrontendQuest\Auth\TelegramAuthController::class, 'handleTelegramCallback'])->name('telegramAuthAdmin');
+    //Disconnect telegram
+    Route::get('disconnect-telegram', [\App\Http\Controllers\FrontendQuest\Auth\TelegramAuthController::class, 'disconnectTelegram'])->name('disconnectTelegram');
 
     //Discord Auth
     Route::get('discord-callback', [\App\Http\Controllers\FrontendQuest\Auth\DiscordAuthController::class, 'handleDiscordCallback'])->name('discordAuthAdmin');
+
+    //Disconnect discord
+    Route::get('disconnect-discord', [\App\Http\Controllers\FrontendQuest\Auth\DiscordAuthController::class, 'disconnectDiscord'])->name('disconnectDiscord');
 });

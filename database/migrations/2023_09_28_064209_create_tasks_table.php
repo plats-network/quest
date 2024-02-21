@@ -45,6 +45,9 @@ return new class extends Migration {
             $table->string('twitter_username')->nullable();
             //Discord id
             $table->string('discord_id')->nullable();
+            ///Telegram id
+            $table->string('telegram_id')->nullable();
+            $table->string('address')->nullable();
 
             //Task transfered type Token Holder - Check Balance, Transaction Activity
             $table->string('transfer_type')->nullable()

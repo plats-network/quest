@@ -537,6 +537,71 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
 
         return $dataReturn;
     }
+    public function hasTransactionNFT($networkName, $totalToken)
+    {
+        //Call api Check accoutn
+        //http://209.97.161.136:8000/info-transfer?accountId=F3opxRbMKKF5x3YyiodUPKUsZJq8j8enDPvqH2MQqw1C7i7&chainId=phala
+        //Param accountId chainId
+        //Return true or false
+        $wallet_address = $this->wallet_address;
+        //$wallet_address = 'F3opxRbMKKF5x3YyiodUPKUsZJq8j8enDPvqH2MQqw1C7i7';
+        //$networkName to lower
+        $networkName = strtolower($networkName);
+        //Call
+        //http://209.97.161.136:3000/api/auth/check-nft?nftAddress=5F4fBoxKBwXZ5fprZPtkhXtesR7PXEWny6KqwWEHbZWXkg55&accountAddress=5FPAD1gvJBdV9icnrar6zqjyCEWZPdBfdaqKD38gbvpcZu86
+        $url = 'http://209.97.161.136:3000/api/auth/check-nft?nftAddress=' . $networkName . '&accountAddress=' . $wallet_address;
+        Log::info('NFT Check ' . $url);
+
+        $dataReturn = [
+            'status'  => false,
+            'message' => 'Check account fail'
+        ];
+        try {
+            $response = Http::timeout(30)->get($url);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            Log::info('Conect to server fail');
+            $dataReturn['message'] = 'Conect to server fail URL' . $url;
+            $dataReturn['status'] = false;
+
+            return $dataReturn;
+        }
+
+        //{
+        //    "success": true,
+        //    "data": {
+        //        "amount": "0.36975",
+        //        "timestamp": "2023-10-09T13:20:49.096Z"
+        //    }
+        //}
+        //{
+        //    "message": "OK",
+        //    "metadata": {
+        //        "data": true
+        //    },
+        //    "status": 200
+        //}
+        $res = $response->json();
+
+        $dataReturn['data'] = $res;
+        $dataReturn['url_call'] = $url;
+
+        Log::info('Check trasfer', $res);
+
+        //Check wallet balance > totalToken
+        if ($res['metadata']['data'] == true) {
+            $dataReturn['message'] = 'NFT Done';
+            $dataReturn['status'] = true;
+
+        }else {
+                $dataReturn['message'] = 'NFT Fall';
+                $dataReturn['status'] = false;
+        }
+        //Fail
+        //"success" => false
+        //  "message" => "No transfer records found for the given account ID."
+
+        return $dataReturn;
+    }
 
     public function hasTwitterFollowed2($username)
     {

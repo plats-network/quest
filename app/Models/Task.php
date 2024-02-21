@@ -36,6 +36,7 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  * @property string $telegram_id
  * @property string $discord_name
  * @property string $discord_id
+ * @property string $address
  * @property integer $is_deposit
  * @property integer $created_by
  * @property integer $updated_by
@@ -165,9 +166,9 @@ class Task extends BaseModel
             self::TYPE_TWITTER_HASHTAG => 'Twitter Hashtag',
             //self::TYPE_DISCORD_JOIN => 'Discord Join',
             //TYPE_TELEGRAM_JOIN
-            self::TYPE_TELEGRAM_JOIN => 'Telegram Join',
+            self::TYPE_TELEGRAM_JOIN => 'Join Telegram',
             //Discord Join
-            self::TYPE_DISCORD_JOIN => 'Discord Join',
+            self::TYPE_DISCORD_JOIN => 'Join Discord',
             self::NFT_TYPE => 'NFT Check',
         ];
     }

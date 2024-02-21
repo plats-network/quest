@@ -52,7 +52,7 @@ class TelegramAuthController
                 //Send flash login success message
                 $request->session()->flash('success', 'Kết nối thành công!');
 
-                return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id)]));
+                return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id), 'show_popup_tele' => 1]));
             } else {
                 //Save telegram ID to user
                 $userLogin->telegram_id = $telegramId;
@@ -60,7 +60,7 @@ class TelegramAuthController
                 $userLogin->save();
                 //event(new Registered($userCreate));
 
-                return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id)]));
+                return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id), 'show_popup_tele' => 1]));
             }
 
         } catch (NotAllRequiredAttributesException $e) {
@@ -81,7 +81,7 @@ class TelegramAuthController
             Log::alert('Telegram Login Error: OutData');
         }
 
-        return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id)]));
+        return redirect(route('quest.users.profileEdit', ['id' => encode_id($userLogin->id), 'show_popup_tele' => 1]));
         // ...
     }
 
@@ -140,5 +140,17 @@ class TelegramAuthController
 
         return redirect(route('admin.homeAdmin'))->with('success', 'User login!');
         // ...
+    }
+
+    //disconnectTelegram
+    public function disconnectTelegram(Request $request)
+    {
+        /** @var User $user */
+        $user = auth()->guard('quest')->user();
+        $user->telegram_id = null;
+        $user->telegram_username = null;
+        $user->save();
+
+        return redirect(route('quest.users.profileEdit', ['id' => encode_id($user->id), 'show_popup_tele' => 1]));
     }
 }

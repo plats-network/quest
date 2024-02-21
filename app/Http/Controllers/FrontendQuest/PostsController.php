@@ -392,6 +392,30 @@ class PostsController extends Controller
                     ]);
                 }
                 break;
+            case Task::NFT_TYPE:
+                $wallet_address = $questUser->wallet_address;
+                $nft_address = $task->address;
+                $dataCheck = $questUser->hasTransactionNFT($wallet_address, $nft_address );
+                if ($dataCheck['status'] == true){
+                    //Set completed
+                    $userTaskStatus->setCompleted();
+                    return response()->json([
+                        'status' => 1,
+                        'success'=>'Task is completed',
+                        'check' => $dataCheck,
+                        'task' => $task->toArray()
+                    ]);
+                }else{
+                    //Check if user has token holder
+                    $userTaskStatus->setOpen();
+                    return response()->json([
+                        'status' => 0,
+                        'success'=>'Task is not completed',
+                        'check' => $dataCheck,
+                        'task' => $task->toArray()
+                    ]);
+                }
+                break;
         }
 
 

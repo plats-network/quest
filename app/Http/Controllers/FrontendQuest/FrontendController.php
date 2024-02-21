@@ -28,6 +28,7 @@ class FrontendController extends Controller
             });
             dd('Update Task code successfully');
         }
+        
         if ($request->input('key') == 1) {
             //Unknown column 'intro_text' in 'field list' (Connection: mysql, SQL: insert into infos (
             /*Schema::table('posts', function ($table) {
