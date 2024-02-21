@@ -462,6 +462,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //    }
         //}
         $res = $response->json();
+        Log::info($res);
         $dataReturn['data'] = $res;
         $dataReturn['url_call'] = $url;
         Log::info('Check account', $res);
