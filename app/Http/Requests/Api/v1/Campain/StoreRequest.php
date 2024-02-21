@@ -120,7 +120,7 @@ class StoreRequest extends FormRequest
                     //https://twitter.com/intent/retweet?tweet_id=1708779829368357330
                     //Check contain text twitter.com or x.com
                     if (strpos($task['value'], 'twitter.com') === false && strpos($task['value'], 'x.com') === false){
-                        $validator->errors()->add('value', 'Twitter url ' . $task['value'] .' is invalid.');
+                       // $validator->errors()->add('value', 'Twitter url ' . $task['value'] .' is invalid.');
                     }
                 }
 
