@@ -75,6 +75,7 @@ class Task extends BaseModel
     //Network Type Phala
     const NETWORK_TYPE_PHALA = 'phala';
     //Network Type PHALA_ZERO
+
     const NETWORK_TYPE_PHALA_ZERO = 'aleph';
     //Astar
     const NETWORK_TYPE_ASTAR = 'astar';
@@ -90,6 +91,9 @@ class Task extends BaseModel
     //thêm 2 mạng aleph_testnet và astar_testnet
     const NETWORK_TYPE_ASTAR_TESTNET = 'astar_testnet';
     const NETWORK_TYPE_ALEPH_TESTNET = 'aleph_testnet';
+
+    //NFT
+    //Address
 
     //Get all network name
     public static function getAllNetworkName()
@@ -119,12 +123,21 @@ class Task extends BaseModel
 
     const TRANSFER_TYPE_ACTIVITY = 'TRANSFER_ACTIVITY';
 
+    //NFT Type
+    const NFT_TYPE = 'NFT_CHECK';
+
+    //NFT Network
+    const NFT_NETWORK = 'NFT_NETWORK';
+
+
     //Get all task type
     public static function getAllTaskType()
     {
         return [
             self::TRANSFER_TYPE_HOLDERS => 'Token Holder',
             self::TRANSFER_TYPE_ACTIVITY => 'Transaction Activity',
+            //NFT
+            self::NFT_TYPE => 'NFT',
         ];
     }
 
