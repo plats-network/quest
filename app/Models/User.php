@@ -467,7 +467,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         $dataReturn['url_call'] = $url;
         Log::info('Check account', $res);
         //Check wallet balance > totalToken
-        if ($res['joined']== true) {
+        if ($res['metadata']['joined'] == true) {
             $dataReturn['message'] = 'Has token holder';
             $dataReturn['status'] = true;
         } else {
