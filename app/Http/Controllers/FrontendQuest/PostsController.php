@@ -329,7 +329,13 @@ class PostsController extends Controller
             case Task::TYPE_TELEGRAM_JOIN:
                 //Check if user has join group or channel
                 $idTelegramUser =  $questUser->telegram_id;
-
+                //If not $idDiscordUser, return false
+                if (!$idTelegramUser){
+                    return response()->json([
+                        'status' => 0,
+                        'success'=>'Please connect telegram account first'
+                    ]);
+                }
                 //Get telegram group, channel id
                 $idGroup = $task->telegram_id;
 
@@ -349,6 +355,13 @@ class PostsController extends Controller
             case Task::TYPE_DISCORD_JOIN:
                 //Check if user has join group or channel
                 $idDiscordUser =  $questUser->discord_id;
+                //If not $idDiscordUser, return false
+                if (!$idDiscordUser){
+                    return response()->json([
+                        'status' => 0,
+                        'success'=>'Please connect discord account first'
+                    ]);
+                }
 
                 //Get telegram group, channel id
                 $idGroup = $task->discord_id;
