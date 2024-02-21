@@ -108,7 +108,8 @@ class PostsController extends Controller
         /** @var User $questUser */
         $questUser = auth()->guard('quest')->user();
         //Check user has login twitter
-        if ($questUser){
+        $isCheckTwitter = false;
+        if ($questUser && $isCheckTwitter){
             $userTwitterID = $questUser->twitter_id;
             //dd($userTwitterID);
             if (!$userTwitterID){
