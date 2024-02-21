@@ -467,7 +467,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         $dataReturn['url_call'] = $url;
         Log::info('Check account', $res);
         //Check wallet balance > totalToken
-        if ($res['metadata']['joined'] == true) {
+        if (isset($res['metadata']['joined']) && $res['metadata']['joined'] == true) {
             $dataReturn['message'] = 'Has token holder';
             $dataReturn['status'] = true;
         } else {
@@ -646,7 +646,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         Log::info('Check trasfer', $res);
 
         //Check wallet balance > totalToken
-        if ($res['metadata']['data'] == true) {
+        if (isset($res['metadata']['data']) && $res['metadata']['data'] == true) {
             $dataReturn['message'] = 'NFT Done';
             $dataReturn['status'] = true;
 
