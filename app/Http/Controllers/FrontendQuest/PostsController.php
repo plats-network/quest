@@ -183,7 +183,12 @@ class PostsController extends Controller
 
             }
         }
-
+        //Add new for check telegram
+        $isUserConnectTelegram = false;
+        if ($questUser && $questUser->telegram_id){
+            $isUserConnectTelegram = true;
+        }
+        $isUserConnectTelegram = false;
 
         //Check user has followed
         //$Value = $questUser->hasTwitterFollowed('Scroll_ZKP');
@@ -193,7 +198,9 @@ class PostsController extends Controller
 
         return view(
             "quest.posts.show",
-            compact('module_title',  'arrTaskUserHasPlay', 'hasFavorited','tasks','module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
+            compact('module_title',  'arrTaskUserHasPlay', 'hasFavorited','tasks','module_name', 'module_icon',
+                'isUserConnectTelegram', 'questUser',
+                'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
         );
     }
 
