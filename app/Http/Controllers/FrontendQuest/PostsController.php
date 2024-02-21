@@ -341,6 +341,26 @@ class PostsController extends Controller
                 }
                 break;
 
+            case Task::TYPE_DISCORD_JOIN:
+                //Check if user has join group or channel
+                $idDiscordUser =  $questUser->discord_id;
+
+                //Get telegram group, channel id
+                $idGroup = $task->discord_id;
+
+                if ($idDiscordUser && $questUser->hasDiscordJoined($idDiscordUser, $idGroup)){
+                    //Set completed
+                    $userTaskStatus->setCompleted();
+
+                    return response()->json(['success'=>'Task is completed']);
+                }else{
+                    return response()->json([
+                        'status' => 0,
+                        'success'=>'Task is not completed'
+                    ]);
+                }
+                break;
+
             case Task::TRANSFER_TYPE_HOLDERS:
                 $wallet_address = $questUser->wallet_address;
                 $networkName = $task->block_chain_network;

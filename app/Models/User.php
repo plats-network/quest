@@ -421,6 +421,46 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
 
         return $isJoin;
     }
+    public function hasDiscordJoined($idUser, $idGroup)
+    {
+        //Check if user has joined
+        //Call Telegram API
+        $isJoin = false;
+        $telegramUserID = $this->telegram_id;
+
+        //Test ID Group
+        $idGroup = -1002018192831;
+        //$idUser = 706659637; //in Group
+        //$idUser = 5211022547; //No in Group
+
+        //$socialRes = $twitterApiService->isLiked($twitterUserID, $key);
+        //dd($socialRes);
+
+        //Call Telegram API Get list channel by user id
+        try {
+            $response = Telegram::getChatMember([
+                'chat_id' => $idGroup,
+                'user_id' => $idUser, //5211022547
+            ]);
+            //Check if user has liked that $twitter_targetID in array $responseIDSLike
+            if ($response) {
+                $arrStatusJoin = ['creator', 'administrator', 'member', 'restricted'];
+                //Check member isJoin
+                if ($response->status && in_array($response->status, $arrStatusJoin)) {
+                    $isJoin = true;
+                }
+            } else {
+                Log::info('User has not joined', [
+                    'code' => 404
+                ]);
+            }
+        } catch (\Exception $e) {
+            //User not found
+            Log::info($e->getMessage());
+        }
+
+        return $isJoin;
+    }
 
     //hasTokenHolder
     public function hasTokenHolder($networkName, $totalToken)
