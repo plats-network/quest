@@ -168,6 +168,7 @@ class Task extends BaseModel
             self::TYPE_TELEGRAM_JOIN => 'Telegram Join',
             //Discord Join
             self::TYPE_DISCORD_JOIN => 'Discord Join',
+            self::NFT_TYPE => 'NFT Check',
         ];
     }
 
