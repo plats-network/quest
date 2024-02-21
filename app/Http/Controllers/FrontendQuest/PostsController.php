@@ -347,8 +347,8 @@ class PostsController extends Controller
 
                 //Get telegram group, channel id
                 $idGroup = $task->discord_id;
-
-                if ($idDiscordUser && $questUser->hasDiscordJoined($idDiscordUser, $idGroup)){
+                $dataCheck =$questUser->hasDiscordJoined($idDiscordUser, $idGroup);
+                if ($idDiscordUser && $dataCheck['status'] == true ){
                     //Set completed
                     $userTaskStatus->setCompleted();
 
