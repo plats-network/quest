@@ -15,6 +15,19 @@ class FrontendController extends Controller
     //updateDb
     public function updateDb(Request $request)
     {
+        if ($request->input('key') == 11) {
+            //Unknown column 'intro_text' in 'field list' (Connection: mysql, SQL: insert into infos (
+            /*Schema::table('posts', function ($table) {
+                $table->string('category_token')->nullable();
+            });*/
+
+            Schema::table('tasks', function ($table) {
+                //$table->string('category_token')->nullable();
+                //$table->string('hash_tag')->nullable();
+                $table->string('address')->nullable();
+            });
+            dd('Update Task code successfully');
+        }
         if ($request->input('key') == 1) {
             //Unknown column 'intro_text' in 'field list' (Connection: mysql, SQL: insert into infos (
             /*Schema::table('posts', function ($table) {
