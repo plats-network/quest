@@ -327,7 +327,7 @@ use App\Models\Task;
                         </li>
 
                         <li>
-                            <a href="{{route('quest.users.profileEdit', ['id' => encode_id($questUser->id)])}}" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600">
+                            <a href="{{route('quest.users.profileEdit', ['id' => encode_id($questUser?$questUser->id: 1)])}}" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600">
                                 <img class="w-4 h-4" src="https://www.svgrepo.com/show/354443/telegram.svg" alt="">
                                 <span class="flex-1 ms-3 whitespace-nowrap">Telegram</span>
                             </a>

@@ -26,7 +26,7 @@ class Authenticate extends Middleware
                     )
                 );
             }else{
-                return route('admin.loginAdmin');
+                return route('quest.index');
             }
         }
     }
