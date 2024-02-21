@@ -268,7 +268,10 @@ class PostsController extends Controller
         }
 
         //Check user task status is done, return true
-        if ($userTaskStatus->status == UserTaskStatus::STATUS_COMPLETED && $task->entry_type != Task::TYPE_TELEGRAM_JOIN){
+        if ($userTaskStatus->status == UserTaskStatus::STATUS_COMPLETED
+            && $task->entry_type != Task::TYPE_TELEGRAM_JOIN
+            && $task->entry_type != Task::TYPE_DISCORD_JOIN
+        ){
             return response()->json(['success'=>'Task is completed']);
         }
 
