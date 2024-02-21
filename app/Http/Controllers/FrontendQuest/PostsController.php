@@ -188,7 +188,7 @@ class PostsController extends Controller
         if ($questUser && $questUser->telegram_id){
             $isUserConnectTelegram = true;
         }
-        $isUserConnectTelegram = false;
+        //$isUserConnectTelegram = false;
 
         //Check user has followed
         //$Value = $questUser->hasTwitterFollowed('Scroll_ZKP');
