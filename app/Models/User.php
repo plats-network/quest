@@ -391,7 +391,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         //Test ID Group
         $idGroup = -1002018192831;
         //$idUser = 706659637; //in Group
-        $idUser = 5211022547; //No in Group
+        //$idUser = 5211022547; //No in Group
 
         //$socialRes = $twitterApiService->isLiked($twitterUserID, $key);
         //dd($socialRes);
