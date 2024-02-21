@@ -421,45 +421,61 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
 
         return $isJoin;
     }
+
     public function hasDiscordJoined($idUser, $idGroup)
     {
-        //Check if user has joined
-        //Call Telegram API
-        $isJoin = false;
-        $telegramUserID = $this->telegram_id;
 
-        //Test ID Group
-        $idGroup = -1002018192831;
-        //$idUser = 706659637; //in Group
-        //$idUser = 5211022547; //No in Group
+        //Call api Check accoutn
+        //http://209.97.161.136:8000/check-account?accountId=YQnbw3h6couUX48Ghs3qyzhdbyxA3Gu9KQCoi8z2CPBf9N3&chainId=phala
+        //Param accountId chainId
+        //Return true or false
+        $wallet_address = $this->wallet_address;
+        //$networkName to lower
+        //Call
+        $url = 'http://209.97.161.136:3000/api/verify/discord/join-channel';
 
-        //$socialRes = $twitterApiService->isLiked($twitterUserID, $key);
-        //dd($socialRes);
-
-        //Call Telegram API Get list channel by user id
+        Log::info('Discord Join Check ' . $url);
+        $dataReturn = [
+            'status'  => false,
+            'message' => 'Check account fail'
+        ];
         try {
-            $response = Telegram::getChatMember([
-                'chat_id' => $idGroup,
-                'user_id' => $idUser, //5211022547
-            ]);
-            //Check if user has liked that $twitter_targetID in array $responseIDSLike
-            if ($response) {
-                $arrStatusJoin = ['creator', 'administrator', 'member', 'restricted'];
-                //Check member isJoin
-                if ($response->status && in_array($response->status, $arrStatusJoin)) {
-                    $isJoin = true;
-                }
-            } else {
-                Log::info('User has not joined', [
-                    'code' => 404
+            $response = Http::timeout(30)->post($url,
+                [
+                    'id' => $idUser,
                 ]);
-            }
-        } catch (\Exception $e) {
-            //User not found
-            Log::info($e->getMessage());
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            Log::info('Conect to server fail');
+            $dataReturn['message'] = 'Conect to server fail URL: ' . $url;;
+            $dataReturn['status'] = false;
+            return $dataReturn;
+        }
+        //{
+        //    "success": true,
+        //    "data": {
+        //        "balance": "0.00000"
+        //    }
+        //}
+        //{
+        //    "message": {
+        //        "balance": 0
+        //    }
+        //}
+        $res = $response->json();
+        $dataReturn['data'] = $res;
+        $dataReturn['url_call'] = $url;
+        Log::info('Check account', $res);
+        //Check wallet balance > totalToken
+        if ($res['metadata']['data'] == true) {
+            $dataReturn['message'] = 'Has token holder';
+            $dataReturn['status'] = true;
+        } else {
+            $dataReturn['message'] = 'Has not token holder';
+            $dataReturn['status'] = false;
+
         }
 
-        return $isJoin;
+        return $dataReturn;
     }
 
     //hasTokenHolder
@@ -577,6 +593,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
 
         return $dataReturn;
     }
+
     public function hasTransactionNFT($networkName, $totalToken)
     {
         //Call api Check accoutn
@@ -632,9 +649,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
             $dataReturn['message'] = 'NFT Done';
             $dataReturn['status'] = true;
 
-        }else {
-                $dataReturn['message'] = 'NFT Fall';
-                $dataReturn['status'] = false;
+        } else {
+            $dataReturn['message'] = 'NFT Fall';
+            $dataReturn['status'] = false;
         }
         //Fail
         //"success" => false
