@@ -189,7 +189,12 @@ class PostsController extends Controller
             $isUserConnectTelegram = true;
         }
         //$isUserConnectTelegram = false;
-
+        //Is connect discord
+        $isUserConnectDiscord = false;
+        if ($questUser && $questUser->discord_id){
+            $isUserConnectDiscord = true;
+        }
+        //$isUserConnectDiscord = false;
         //Check user has followed
         //$Value = $questUser->hasTwitterFollowed('Scroll_ZKP');
         //$Value = $questUser->hasTwitterFollowed2('Scroll_ZKP');
@@ -199,7 +204,7 @@ class PostsController extends Controller
         return view(
             "quest.posts.show",
             compact('module_title',  'arrTaskUserHasPlay', 'hasFavorited','tasks','module_name', 'module_icon',
-                'isUserConnectTelegram', 'questUser',
+                'isUserConnectTelegram', 'questUser' , 'isUserConnectDiscord',
                 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
         );
     }

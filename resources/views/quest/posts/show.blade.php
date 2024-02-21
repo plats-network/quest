@@ -336,7 +336,7 @@ use App\Models\Task;
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                            <a href="{{route('quest.users.profileEdit', ['id' => encode_id($questUser?$questUser->id: 1)])}}" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
 
                                 <img class="w-4 h-4" src="https://www.svgrepo.com/show/353655/discord-icon.svg" alt="">
                                 <span class="flex-1 ms-3 whitespace-nowrap">Discord</span>
@@ -371,6 +371,7 @@ use App\Models\Task;
     <script type="text/javascript">
         $(document).ready(function () {
             let IsUserConnectTelegram = '{{ $isUserConnectTelegram? 1:0 }}';
+            let IsUserConnectDiscord = '{{ $isUserConnectDiscord? 1:0 }}';
 
             // set the modal menu element
             const $targetEl = document.getElementById('taskModal');
@@ -655,7 +656,14 @@ use App\Models\Task;
 
                     //Discord
                     if (dataAction == 'DISCORD_JOIN') {
-                        window.open(dataUrl, "myWindow", "width=1000,height=1000");
+                        if(IsUserConnectDiscord == 1) {
+                            //Redirect to discord
+                            window.open(dataUrl, "myWindow", "width=1000,height=1000");
+                        }
+                        else {
+                            //Show modal
+                            modalCrypto.show();
+                        }
                     }
                 }
 
