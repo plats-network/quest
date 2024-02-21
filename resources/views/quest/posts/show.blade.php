@@ -210,9 +210,9 @@ use App\Models\Task;
                                     @if($task->entry_type == Task::TRANSFER_TYPE_HOLDERS || $task->entry_type == Task::TRANSFER_TYPE_ACTIVITY)
                                         {{Str::studly(Str::lower($task->type_value))}}
                                     @elseif($task->entry_type == Task::TYPE_TELEGRAM_JOIN)
-                                            {{Str::studly(Str::lower($task->type_value))}}
+                                            Join Telegram
                                     @elseif($task->entry_type == Task::TYPE_DISCORD_JOIN)
-                                            {{Str::studly(Str::lower($task->type_value))}}
+                                            Join Discord
                                     @else
 
                                          Twitter  {{Str::studly(Str::lower($task->type_value))}}
