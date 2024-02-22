@@ -216,6 +216,8 @@ use App\Models\Task;
                                             Join Telegram
                                     @elseif($task->entry_type == Task::TYPE_DISCORD_JOIN)
                                             Join Discord
+                                    @elseif($task->entry_type == Task::NFT_TYPE)
+                                            Check NFT
                                     @else
 
                                          Twitter  {{Str::studly(Str::lower($task->type_value))}}
