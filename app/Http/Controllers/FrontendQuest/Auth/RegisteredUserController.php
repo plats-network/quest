@@ -51,11 +51,11 @@ class RegisteredUserController extends Controller
             'referred_by' => $referred_by
         ]);
 
+        event(new \App\Events\UserReferred(request()->cookie('ref'), $user));
+
         event(new Registered($user));
 
         Auth::guard('quest')::login($user);
-
-        event(new \App\Events\UserReferred(request()->cookie('ref'), $user));
 
         return redirect(RouteServiceProvider::HOME);
     }

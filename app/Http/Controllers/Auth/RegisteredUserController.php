@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        event(new \App\Events\UserReferred(request()->cookie('ref'), $user));
         event(new Registered($user));
 
         Auth::login($user);
