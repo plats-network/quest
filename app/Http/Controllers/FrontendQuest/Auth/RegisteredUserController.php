@@ -69,11 +69,11 @@ class RegisteredUserController extends Controller
                 // User who was sharing link
                 $provider = $referral->user;
                 //$provider->addCredits(15);
-                $provider->addPoints(15);
+                //$provider->addPoints(15);
                 // User who used the link
                 $userUsedLink = $user;
                 //$user->addCredits(20);
-                $userUsedLink->addPoints(20);
+                //$userUsedLink->addPoints(20);
                 //Level Up Add Points
 
             }
