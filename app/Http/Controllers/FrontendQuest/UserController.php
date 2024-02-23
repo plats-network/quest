@@ -66,6 +66,19 @@ class UserController extends Controller
     {
         return auth()->user()->referrals;
     }
+    //Referral Program Create
+    //ReferralProgram::create(['name'=>'Sign-up Bonus', 'uri' => 'register']);
+    public function createProgram()
+    {
+        //CHeck ReferralProgram
+        $model = ReferralProgram::where('name', 'Sign-up Bonus')->first();
+        if($model){
+            dd('Referral Program already created');
+        }
+        $model = ReferralProgram::create(['name' => 'Sign-up Bonus', 'uri' => 'register']);
+
+        dd('Done');
+    }
 
     //referralLink
     public function referralLink()

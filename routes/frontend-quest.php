@@ -86,6 +86,7 @@ Route::group(['middleware' => ['web'], 'as' => 'quest.', ], function () {
     });
 
     //https://blog.damirmiladinov.com/laravel/building-laravel-referral-system.html
+    Route::get('/referral-program-create', [UserController::class, 'createProgram'])->name('referral-program-create');
     Route::get('/referral-link', [UserController::class, 'referralLink'])->name('referral-link');
 
     Route::get('/referral', [UserController::class, 'referrals'])->name('referrer');
