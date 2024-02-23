@@ -157,25 +157,30 @@ class UserController extends Controller
         $id = decode_id($id);
         /** @var User $questUser */
         $questUser = auth()->guard('quest')->user();
-        $referral = \App\Models\ReferralLink::find(2);
-        if (!is_null($referral)) {
+        //Is Test Referral
+        $IsTestReferral = false;
+        if ($IsTestReferral){
+            $referral = \App\Models\ReferralLink::find(2);
+            if (!is_null($referral)) {
 
-            $modelAdd = \App\Models\ReferralRelationship::create([
-                'referral_link_id' => $referral->id,
-                'user_id' => $questUser->id
-            ]);
+                $modelAdd = \App\Models\ReferralRelationship::create([
+                    'referral_link_id' => $referral->id,
+                    'user_id' => $questUser->id
+                ]);
 
-            // Example...
-            if ($referral->program->name === 'Sign-up Bonus') {
-                // User who was sharing link
-                $provider = $referral->user;
-                //$provider->addCredits(15);
-                $provider->addPoints(15);
-                // User who used the link
-                $user = $questUser;
-                //$user->addCredits(20);
-                $user->addPoints(20);
-                //Level Up Add Points
+                // Example...
+                if ($referral->program->name === 'Sign-up Bonus') {
+                    // User who was sharing link
+                    $provider = $referral->user;
+                    //$provider->addCredits(15);
+                    $provider->addPoints(15);
+                    // User who used the link
+                    $user = $questUser;
+                    //$user->addCredits(20);
+                    $user->addPoints(20);
+                    //Level Up Add Points
+
+                }
 
             }
 
