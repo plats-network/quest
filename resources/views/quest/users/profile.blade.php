@@ -26,7 +26,7 @@
                 @endif
                 <div class="mt-10">
                     <h3>Referral Register</h3>
-                    @forelse(auth()->user()->getReferrals() as $referral)
+                    @forelse(auth('quest')->user()->getReferrals() as $referral)
                         <h4 class="hidden">
                             {{ $referral->program->name }}
                         </h4>

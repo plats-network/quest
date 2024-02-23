@@ -22,6 +22,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
+
+        $keyCookie = Cookie::get('ref');
         return view('auth.register');
     }
 
@@ -51,7 +53,33 @@ class RegisteredUserController extends Controller
             'referred_by' => $referred_by
         ]);
 
-        event(new \App\Events\UserReferred(request()->cookie('ref'), $user));
+        $keyCookie = Cookie::get('ref');
+
+        //event(new \App\Events\UserReferred($keyCookie, $user));
+        $referral = \App\Models\ReferralLink::find($keyCookie);
+        if (!is_null($referral)) {
+
+            $modelAdd = \App\Models\ReferralRelationship::create([
+                'referral_link_id' => $referral->id,
+                'user_id' => $user->id
+            ]);
+
+            // Example...
+            if ($referral->program->name === 'Sign-up Bonus') {
+                // User who was sharing link
+                $provider = $referral->user;
+                //$provider->addCredits(15);
+                $provider->addPoints(15);
+                // User who used the link
+                $userUsedLink = $user;
+                //$user->addCredits(20);
+                $userUsedLink->addPoints(20);
+                //Level Up Add Points
+
+            }
+
+        }
+
 
         event(new Registered($user));
 

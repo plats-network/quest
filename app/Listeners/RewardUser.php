@@ -24,6 +24,7 @@ class RewardUser
         //
         $referral = \App\Models\ReferralLink::find($event->referralId);
         if (!is_null($referral)) {
+
             \App\Models\ReferralRelationship::create(['referral_link_id' => $referral->id, 'user_id' => $event->user->id]);
 
             // Example...

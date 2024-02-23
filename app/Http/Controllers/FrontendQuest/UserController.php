@@ -70,8 +70,15 @@ class UserController extends Controller
     //ReferralProgram::create(['name'=>'Sign-up Bonus', 'uri' => 'register']);
     public function createProgram()
     {
+        //Auth User
+        $AuthUser = auth('quest')->user();
+        //Check $AuthUser
+        if (! $AuthUser) {
+            return redirect()->route('quest.login');
+        }
         //CHeck ReferralProgram
         $model = ReferralProgram::where('name', 'Sign-up Bonus')->first();
+
         if($model){
             dd('Referral Program already created');
         }
@@ -83,7 +90,12 @@ class UserController extends Controller
     //referralLink
     public function referralLink()
     {
-        $AuthUser = auth()->user();
+        $AuthUser = auth('quest')->user();
+        //Check $AuthUser
+        if (! $AuthUser) {
+            return redirect()->route('quest.login');
+        }
+
         $ReferralProgram = ReferralProgram::first();
 
         $ModelReferralLink = ReferralLink::query()
@@ -145,6 +157,31 @@ class UserController extends Controller
         $id = decode_id($id);
         /** @var User $questUser */
         $questUser = auth()->guard('quest')->user();
+        $referral = \App\Models\ReferralLink::find(2);
+        if (!is_null($referral)) {
+
+            $modelAdd = \App\Models\ReferralRelationship::create([
+                'referral_link_id' => $referral->id,
+                'user_id' => $questUser->id
+            ]);
+
+            // Example...
+            if ($referral->program->name === 'Sign-up Bonus') {
+                // User who was sharing link
+                $provider = $referral->user;
+                //$provider->addCredits(15);
+                $provider->addPoints(15);
+                // User who used the link
+                $user = $questUser;
+                //$user->addCredits(20);
+                $user->addPoints(20);
+                //Level Up Add Points
+
+            }
+
+        }
+
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -187,6 +224,8 @@ class UserController extends Controller
         $id = decode_id($id);
         /** @var User $questUser */
         $userLogin = auth()->guard('quest')->user();
+
+
 
         $module_title = $this->module_title;
         $module_name = $this->module_name;
