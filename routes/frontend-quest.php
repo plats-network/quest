@@ -81,6 +81,16 @@ Route::group(['middleware' => ['web'], 'as' => 'quest.', ], function () {
     //Wallet Login
     Route::any('wallet-login', [FrontendController::class, 'walletLogin'])->name('wallet-login');
 
+    Route::get('/cookie', function () {
+        return \Illuminate\Support\Facades\Cookie::get('referral');
+    });
+
+    //https://blog.damirmiladinov.com/laravel/building-laravel-referral-system.html
+    Route::get('/referral-link', [UserController::class, 'referralLink'])->name('referral-link');
+
+    Route::get('/referral', [UserController::class, 'referrals'])->name('referrer');
+    Route::get('/referrals', [UserController::class, 'referral'])->name('referrals');
+
     Route::group(['middleware' => ['auth:quest']], function () {
         /*
         *

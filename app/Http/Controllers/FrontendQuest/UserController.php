@@ -6,6 +6,8 @@ use App\Authorizable;
 use App\Events\Frontend\UserProfileUpdated;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
+use App\Models\ReferralLink;
+use App\Models\ReferralProgram;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Userprofile;
@@ -15,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Ramsey\Uuid\Uuid;
+use Vinkla\Hashids\Facades\Hashids;
 
 class UserController extends Controller
 {
@@ -46,6 +50,46 @@ class UserController extends Controller
 
         // module model name, path
         $this->module_model = "App\Models\User";
+    }
+
+    public function referral()
+    {
+        return 'http://example.test/?ref=' . Hashids::encode(auth()->user()->id);
+    }
+
+    public function referrer()
+    {
+        return auth()->user()->referrer;
+    }
+
+    public function referrals()
+    {
+        return auth()->user()->referrals;
+    }
+
+    //referralLink
+    public function referralLink()
+    {
+        $AuthUser = auth()->user();
+        $ReferralProgram = ReferralProgram::first();
+
+        $ModelReferralLink = ReferralLink::query()
+            ->where('user_id', $AuthUser->id)
+            ->where('referral_program_id', $ReferralProgram->id)
+            ->first();
+        //Check $ModelReferralLink
+        if (! $ModelReferralLink) {
+            $ModelReferralLink = new ReferralLink();
+            //Set code uuid
+            $ModelReferralLink->code = (string)Uuid::uuid1();
+            $ModelReferralLink->user_id = $AuthUser->id;
+            $ModelReferralLink->referral_program_id = $ReferralProgram->id;
+            $ModelReferralLink->save();
+        }
+
+
+        //https://quest-admin.test/register?ref=e24608ea-d21c-11ee-b43f-d8bbc122d9e7
+        dd($ModelReferralLink->getLinkAttribute());
     }
 
     /**

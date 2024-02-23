@@ -24,6 +24,23 @@
                     {{route('quest.users.profile', encode_id($$module_name_singular->id))}}
                 </a>
                 @endif
+                <div class="mt-10">
+                    <h3>Referral Register</h3>
+                    @forelse(auth()->user()->getReferrals() as $referral)
+                        <h4 class="hidden">
+                            {{ $referral->program->name }}
+                        </h4>
+                        <code>
+                            {{ $referral->link }}
+                        </code>
+                        <p>
+                            Number of referred users: {{ $referral->relationships()->count() }}
+                        </p>
+                    @empty
+                        No referrals
+                    @endforelse
+                </div>
+
                 <div class="mt-5 pt-5 flex border-t border-gray-200 w-40 mx-auto text-gray-500 items-center justify-between">
 
                     @if($userprofile->url_facebook)

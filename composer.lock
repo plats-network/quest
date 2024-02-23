@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86e39a98639eab774af2eb0f58830bd8",
+    "content-hash": "f8cefe041b33296e1702f2f9d714d948",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -2835,6 +2835,80 @@
                 }
             ],
             "time": "2023-12-11T17:09:12+00:00"
+        },
+        {
+            "name": "cjmellor/level-up",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cjmellor/level-up.git",
+                "reference": "e9917aa200b16c86f2d9a73b6213c6acb5cbd9d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cjmellor/level-up/zipball/e9917aa200b16c86f2d9a73b6213c6acb5cbd9d1",
+                "reference": "e9917aa200b16c86f2d9a73b6213c6acb5cbd9d1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0|^11.0",
+                "laravel/pint": "^1.10",
+                "php": "^8.1|^8.2",
+                "spatie/laravel-package-tools": "^1.15"
+            },
+            "require-dev": {
+                "driftingly/rector-laravel": "^0.21.0",
+                "nunomaduro/collision": "^7.5.2",
+                "orchestra/testbench": "^8.5.3|^9.0.0",
+                "pestphp/pest": "^2.6.1",
+                "pestphp/pest-plugin-arch": "^v2.0.2",
+                "pestphp/pest-plugin-laravel": "^2.0",
+                "pestphp/pest-plugin-type-coverage": "^2.0",
+                "plannr/laravel-fast-refresh-database": "^1.0.2",
+                "rector/rector": "^0.17.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LevelUp\\Experience\\LevelUpServiceProvider"
+                    ],
+                    "aliases": {
+                        "Experience": "LevelUp\\Experience\\Facades\\Experience"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LevelUp\\Experience\\": "src/",
+                    "LevelUp\\Experience\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Mellor",
+                    "email": "chris@mellor.pizza",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This package allows users to gain experience points (XP) and progress through levels by performing actions on your site. It can provide a simple way to track user progress and implement gamification elements into your application",
+            "homepage": "https://github.com/cjmellor/level-up",
+            "keywords": [
+                "Gamification",
+                "cjmellor",
+                "gamify",
+                "laravel",
+                "level-up"
+            ],
+            "support": {
+                "issues": "https://github.com/cjmellor/level-up/issues",
+                "source": "https://github.com/cjmellor/level-up/tree/v1.2.0"
+            },
+            "time": "2024-02-21T19:11:26+00:00"
         },
         {
             "name": "cloudinary-labs/cloudinary-laravel",
@@ -8468,6 +8542,72 @@
                 "source": "https://github.com/laravel/passport"
             },
             "time": "2024-02-09T16:27:49+00:00"
+        },
+        {
+            "name": "laravel/pint",
+            "version": "v1.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/pint.git",
+                "reference": "6b127276e3f263f7bb17d5077e9e0269e61b2a0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/6b127276e3f263f7bb17d5077e9e0269e61b2a0e",
+                "reference": "6b127276e3f263f7bb17d5077e9e0269e61b2a0e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-tokenizer": "*",
+                "ext-xml": "*",
+                "php": "^8.1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.49.0",
+                "illuminate/view": "^10.43.0",
+                "larastan/larastan": "^2.8.1",
+                "laravel-zero/framework": "^10.3.0",
+                "mockery/mockery": "^1.6.7",
+                "nunomaduro/termwind": "^1.15.1",
+                "pestphp/pest": "^2.33.6"
+            },
+            "bin": [
+                "builds/pint"
+            ],
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "App\\": "app/",
+                    "Database\\Seeders\\": "database/seeders/",
+                    "Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "An opinionated code formatter for PHP.",
+            "homepage": "https://laravel.com",
+            "keywords": [
+                "format",
+                "formatter",
+                "lint",
+                "linter",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/pint/issues",
+                "source": "https://github.com/laravel/pint"
+            },
+            "time": "2024-02-20T17:38:05+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -23778,72 +23918,6 @@
                 "source": "https://github.com/laravel/breeze"
             },
             "time": "2024-02-19T02:47:27+00:00"
-        },
-        {
-            "name": "laravel/pint",
-            "version": "v1.14.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/pint.git",
-                "reference": "6b127276e3f263f7bb17d5077e9e0269e61b2a0e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/6b127276e3f263f7bb17d5077e9e0269e61b2a0e",
-                "reference": "6b127276e3f263f7bb17d5077e9e0269e61b2a0e",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "ext-tokenizer": "*",
-                "ext-xml": "*",
-                "php": "^8.1.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.49.0",
-                "illuminate/view": "^10.43.0",
-                "larastan/larastan": "^2.8.1",
-                "laravel-zero/framework": "^10.3.0",
-                "mockery/mockery": "^1.6.7",
-                "nunomaduro/termwind": "^1.15.1",
-                "pestphp/pest": "^2.33.6"
-            },
-            "bin": [
-                "builds/pint"
-            ],
-            "type": "project",
-            "autoload": {
-                "psr-4": {
-                    "App\\": "app/",
-                    "Database\\Seeders\\": "database/seeders/",
-                    "Database\\Factories\\": "database/factories/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nuno Maduro",
-                    "email": "enunomaduro@gmail.com"
-                }
-            ],
-            "description": "An opinionated code formatter for PHP.",
-            "homepage": "https://laravel.com",
-            "keywords": [
-                "format",
-                "formatter",
-                "lint",
-                "linter",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/laravel/pint/issues",
-                "source": "https://github.com/laravel/pint"
-            },
-            "time": "2024-02-20T17:38:05+00:00"
         },
         {
             "name": "laravel/sail",

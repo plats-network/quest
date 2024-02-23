@@ -41,6 +41,9 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\SetLocale::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             'cors' => \App\Http\Middleware\Cors::class,
+
+            \App\Http\Middleware\CheckReferral::class,
+            \App\Http\Middleware\StoreReferralCode::class,
         ],
 
         'api' => [

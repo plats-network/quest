@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\Http;
+use LevelUp\Experience\Concerns\GiveExperience;
 use App\Models\Presenters\UserPresenter;
 use App\Models\Traits\HasHashedMediaTrait;
 use App\Services\Twitter\TwitterApiService;
@@ -92,7 +93,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
     use Favoriter;
 
     use HasApiTokens;
-
+    use GiveExperience;
     //Type gender Female
     const GENDER_MALE = 'Male';
     //Female
@@ -141,6 +142,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         'social_type',
         'twitter_id',
         'twitter_username',
+        'referred_by'
     ];
 
     protected static function boot()
@@ -202,6 +204,23 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
     public function userprofile()
     {
         return $this->hasOne(Userprofile::class);
+    }
+
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referred_by');
+    }
+
+    public function referrals()
+    {
+        return $this->hasMany(User::class, 'referred_by');
+    }
+
+    public function getReferrals()
+    {
+        return ReferralProgram::all()->map(function ($program) {
+            return ReferralLink::getReferral($this, $program);
+        });
     }
 
     /**
