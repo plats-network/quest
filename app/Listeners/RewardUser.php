@@ -32,11 +32,11 @@ class RewardUser
                 // User who was sharing link
                 $provider = $referral->user;
                 //$provider->addCredits(15);
-                $provider->addPoints(15);
+                //$provider->addPoints(15);
                 // User who used the link
                 $user = $event->user;
                 //$user->addCredits(20);
-                $user->addPoints(20);
+                //$user->addPoints(20);
                 //Level Up Add Points
 
             }
