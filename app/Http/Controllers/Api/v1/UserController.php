@@ -87,22 +87,26 @@ class UserController extends Controller
         //Limit 5
 
         $Top5UserReferal = ReferralRelationship::query()
-            ->select('user_id', DB::raw('count(user_id) as total_referal'))
-            ->groupBy('user_id')
+            ->select('referral_link_id', DB::raw('count(referral_link_id) as total_referal'))
+            ->groupBy('referral_link_id')
             ->orderBy('total_referal', 'desc')
             ->limit(5)
             ->get();
 
         $dataReturn = [];
         foreach ($Top5UserReferal as $Item){
+            ///Get referral_link then get user_id
+            $referalLink = \App\Models\ReferralLink::query()
+                ->where('id', '=', $Item->referral_link_id)
+                ->first();
 
             $modelUser = User::query()
-                ->where('id', '=', $Item->user_id)
+                ->where('id', '=', $referalLink->user_id)
                 ->first();
 
             $dataSet = [
-                'user_id' => $Item->user_id,
-                'wallet_address' => $modelUser->wallet_address,
+                'user_id' => $modelUser->id,
+                'wallet_address' => $modelUser->wallet_address??'',
                 'total_referal' => $Item->total_referal
             ];
 
