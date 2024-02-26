@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\v1\CampainController;
 use App\Http\Controllers\Api\v1\CategoryController;
 use App\Http\Controllers\Api\v1\CommentController;
 use App\Http\Controllers\Api\v1\TaskController;
+use App\Models\ReferralRelationship;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TelegramBotController;
 
@@ -156,6 +157,10 @@ Route::get('campains/{campain}', [CampainController::class, 'show']);
 //Get top 5 User have more referal
 Route::get('get-top-5-user-referal', [UserController::class, 'getTop5UserReferal'])->name('get-top-5-user-referal');
 
+//Test show ReferralRelationship
+Route::get('test-show-referral-relationship', function () {
+    return ReferralRelationship::all();
+});
 //Telegram webhook
 Route::post('telegram-webhook', [\App\Http\Controllers\Api\v1\TelegramController::class, 'webhook']);
 
