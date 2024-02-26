@@ -15,9 +15,11 @@ use App\Http\UseCases\Api\v1\User\GetItemUseCase;
 use App\Http\UseCases\Api\v1\User\StoreUseCase;
 use App\Http\UseCases\Api\v1\User\UpdateAvatarUseCase;
 use App\Http\UseCases\Api\v1\User\UpdateUseCase;
+use App\Models\ReferralRelationship;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @group User management
@@ -66,5 +68,55 @@ class UserController extends Controller
     public function destroy(DeleteRequest $request, DeleteUseCase $useCase, User $user): JsonResponse
     {
         return $useCase->handle($user);
+    }
+
+    //getTop5UserReferal
+    public function getTop5UserReferal(Request $request): JsonResponse
+    {
+
+        //$modelAdd = \App\Models\ReferralRelationship::create([
+        //                'referral_link_id' => $referral->id,
+        //                'user_id' => $user->id
+        //            ]);
+
+        //Find top 5 user have more referal
+        //From ReferralRelationship
+        //Group by user_id
+        //Count user_id
+        //Order by count user_id desc
+        //Limit 5
+
+        $Top5UserReferal = ReferralRelationship::query()
+            ->select('user_id', DB::raw('count(user_id) as total_referal'))
+            ->groupBy('user_id')
+            ->orderBy('total_referal', 'desc')
+            ->limit(5)
+            ->get();
+
+        $dataReturn = [];
+        foreach ($Top5UserReferal as $Item){
+
+            $modelUser = User::query()
+                ->where('id', '=', $Item->user_id)
+                ->first();
+
+            $dataSet = [
+                'user_id' => $Item->user_id,
+                'wallet_address' => $modelUser->wallet_address,
+                'total_referal' => $Item->total_referal
+            ];
+
+            $dataReturn[] = $dataSet;
+
+        }
+
+
+        return response()->json(
+            [
+                'status' => 'success',
+                'total_reward' => count($dataReturn),
+                'data' => $dataReturn
+            ]
+        );
     }
 }

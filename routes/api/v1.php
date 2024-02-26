@@ -54,37 +54,37 @@ Route::post('update-post-total-token', [\App\Http\Controllers\FrontendQuest\Fron
 Route::get('/', function () {
     $arrApi = [
         'connect-wallet' => [
-            'method' => 'POST',
-            'url' => '/api/v1/wallet-login',
-            'params' => [
+            'method'   => 'POST',
+            'url'      => '/api/v1/wallet-login',
+            'params'   => [
                 'wallet_address' => 'string',
-                'wallet_name' => 'string',
+                'wallet_name'    => 'string',
             ],
             'response' => [
                 'message' => 'string',
-                'token' => 'string',
-                'user' => 'object',
+                'token'   => 'string',
+                'user'    => 'object',
             ],
         ],
-        'register' => [
-            'method' => 'POST',
-            'url' => '/api/v1/register',
-            'params' => [
-                'name' => 'string',
-                'email' => 'string',
-                'password' => 'string',
+        'register'       => [
+            'method'   => 'POST',
+            'url'      => '/api/v1/register',
+            'params'   => [
+                'name'                  => 'string',
+                'email'                 => 'string',
+                'password'              => 'string',
                 'password_confirmation' => 'string',
             ],
             'response' => [
                 'message' => 'string',
-                'token' => 'string',
+                'token'   => 'string',
             ],
         ],
     ];
     return [
-        'message' => 'Hello World. API Working fine!',
+        'message'     => 'Hello World. API Working fine!',
         'date_update' => '2023-10-16',
-        'api' => $arrApi
+        'api'         => $arrApi
     ];
 });
 
@@ -152,6 +152,9 @@ Route::middleware('auth:sanctum')
 Route::get('campains', [CampainController::class, 'index']);
 //Show
 Route::get('campains/{campain}', [CampainController::class, 'show']);
+
+//Get top 5 User have more referal
+Route::get('get-top-5-user-referal', [UserController::class, 'getTop5UserReferal'])->name('get-top-5-user-referal');
 
 //Telegram webhook
 Route::post('telegram-webhook', [\App\Http\Controllers\Api\v1\TelegramController::class, 'webhook']);
