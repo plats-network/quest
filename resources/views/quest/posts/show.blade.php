@@ -147,6 +147,11 @@ use App\Models\Task;
                                         <img class="w-5 h-5 mr-2 shrink-0" src="https://www.svgrepo.com/show/353655/discord-icon.svg" alt="">
                                     @elseif($task->entry_type == Task::NFT_TYPE )
                                         <img class="w-5 h-5 mr-2 shrink-0" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkP290uEH2BjU5Hrlqu2hOmj1mzege9IVzuw&usqp=CAU" alt="">
+                                    @elseif($task->entry_type == Task::TASK_SOCIAL )
+                                        <svg class="w-5 h-5 mr-2 shrink-0 text-red-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4c0 1.1.9 2 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.8-3.1a5.5 5.5 0 0 0-2.8-6.3c.6-.4 1.3-.6 2-.6a3.5 3.5 0 0 1 .8 6.9Zm2.2 7.1h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1l-.5.8c1.9 1 3.1 3 3.1 5.2ZM4 7.5a3.5 3.5 0 0 1 5.5-2.9A5.5 5.5 0 0 0 6.7 11 3.5 3.5 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4c0 1.1.9 2 2 2h.5a6 6 0 0 1 3-5.2l-.4-.8Z" clip-rule="evenodd"/>
+  </svg>
+
                                     @else
                                         <img class="w-5 h-5 mr-2 shrink-0" src="https://www.svgrepo.com/show/452123/twitter.svg" alt="">
                                     @endif
@@ -183,7 +188,7 @@ use App\Models\Task;
 
                                 </p>
 
-                                <button data-tooltip-target="tooltip-dark{{$task->id}}" data-isdone="@if(in_array($task->id, $arrTaskUserHasPlay))1 @endif" data-isopen="true" data-action="{{$task->type_value}}" data-tag_url="{{$task->getHashtagValueAttribute()}}" data-url="{{$task->value}}" data-id="{{$task->id}}" type="button"
+                                <button data-tooltip-target="tooltip-dark{{$task->id}}" data-isdone="@if(in_array($task->id, $arrTaskUserHasPlay))1 @endif" data-isopen="true" data-action="{{$task->type_value}}" data-tag_url="{{$task->getHashtagValueAttribute()}}" data-url-referal="{{$task->task_referal_url}}" data-url="{{$task->value}}" data-id="{{$task->id}}" type="button"
                                         data-text_holder="{{$task->getHolderTokenTextAttribute()}}" data-text_transaction="{{$task->getTransactionTextAttribute()}}"
                                         class="headingAction text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2">
                                     @if($task->entry_type == Task::TRANSFER_TYPE_HOLDERS)
@@ -203,13 +208,18 @@ use App\Models\Task;
                                         </svg>
                                     @elseif($task->entry_type == Task::NFT_TYPE )
 
-                                    @else
+                                    @elseif($task->entry_type == Task::TASK_SOCIAL )
+                                        <svg class="w-4 h-4 mr-2 text-red-200 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd" d="M14.5 6.7a1 1 0 0 1 0-1.4 1 1 0 0 1 1.3 0l5.5 4.9a2 2 0 0 1 0 3l-5.5 5.1a1 1 0 0 1-1.5 0 1 1 0 0 1 .1-1.5l5.6-5v-.1l-5.5-5ZM8 16v-.4A4.1 4.1 0 0 0 5.3 18a1.7 1.7 0 0 1-2 1A1.7 1.7 0 0 1 2 17.2v-1.3c0-3.8 2.5-7 6-7.6v-.7a2 2 0 0 1 2-2.1 2 2 0 0 1 1.1.4l5.1 4.3a2.1 2.1 0 0 1 0 3.1l-5 4.3H11A2 2 0 0 1 8 16Z" clip-rule="evenodd"/>
+                                        </svg>
 
+                                    @else
                                     <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
                                         <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clip-rule="evenodd"/>
                                     </svg>
 
                                     @endif
+
                                     @if($task->entry_type == Task::TRANSFER_TYPE_HOLDERS || $task->entry_type == Task::TRANSFER_TYPE_ACTIVITY)
                                         {{Str::studly(Str::lower($task->type_value))}}
                                     @elseif($task->entry_type == Task::TYPE_TELEGRAM_JOIN)
@@ -218,6 +228,8 @@ use App\Models\Task;
                                             Join Discord
                                     @elseif($task->entry_type == Task::NFT_TYPE)
                                             Check NFT
+                                    @elseif($task->entry_type == Task::TASK_SOCIAL)
+                                            Copy link
                                     @else
 
                                          Twitter  {{Str::studly(Str::lower($task->type_value))}}
@@ -669,6 +681,16 @@ use App\Models\Task;
                             //Show modal
                             modalCrypto.show();
                         }
+                    }
+                    //Referal
+                    if (dataAction == 'REFERRAL') {
+                        //Copy Link to clipboard then alert
+                        var copyText = $(this).data('url-referal');
+                        navigator.clipboard.writeText(copyText).then(function() {
+                            alert('Link copied');
+                        }, function(err) {
+                            alert('Error');
+                        });
                     }
                 }
 

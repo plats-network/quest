@@ -161,6 +161,7 @@ Route::get('get-top-5-user-referal', [UserController::class, 'getTop5UserReferal
 Route::get('test-show-referral-relationship', function () {
     return ReferralRelationship::all();
 });
+
 //Telegram webhook
 Route::post('telegram-webhook', [\App\Http\Controllers\Api\v1\TelegramController::class, 'webhook']);
 

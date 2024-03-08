@@ -458,6 +458,30 @@ class PostsController extends Controller
                     ]);
                 }
                 break;
+            case Task::TASK_SOCIAL:
+
+                $dataCheck = $questUser->hasCompleteTaskReferal($task->id );
+
+                if ($dataCheck == true){
+                    //Set completed
+                    $userTaskStatus->setCompleted();
+                    return response()->json([
+                        'status' => 1,
+                        'success'=>'Task is completed',
+                        'check' => $dataCheck,
+                        'task' => $task->toArray()
+                    ]);
+                }else{
+                    //Check if user has token holder
+                    $userTaskStatus->setOpen();
+                    return response()->json([
+                        'status' => 0,
+                        'success'=>'Task is not completed',
+                        'check' => $dataCheck,
+                        'task' => $task->toArray()
+                    ]);
+                }
+                break;
         }
 
 

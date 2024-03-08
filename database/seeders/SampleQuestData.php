@@ -217,6 +217,45 @@ class SampleQuestData extends Seeder
                 'entry_type' => Task::TYPE_TWITTER_HASHTAG,
                 'status' => Task::STATUS_ACTIVE
             ],
+            //Telegram Join
+            [
+                'name' => 'Join Telegram',
+                'description' => 'Join Telegram',
+                'value' => 'https://t.me/derpdex',
+                'slug' => uniqid(),
+                'entry_type' => Task::TYPE_TELEGRAM_JOIN,
+                'status' => Task::STATUS_ACTIVE
+            ],
+
+            //Discord Join
+            [
+                'name' => 'Join Discord',
+                'description' => 'Join Discord',
+                'value' => 'https://discord.gg/derpdex',
+                'slug' => uniqid(),
+                'entry_type' => Task::TYPE_DISCORD_JOIN,
+                'status' => Task::STATUS_ACTIVE
+            ],
+
+            //NFT Check
+            [
+                'name' => 'Check NFT',
+                'description' => 'Check NFT',
+                'value' => 'https://opensea.io/collection/derpdex',
+                'slug' => uniqid(),
+                'entry_type' => Task::NFT_TYPE,
+                'status' => Task::STATUS_ACTIVE
+            ],
+
+            //Social Referal
+            [
+                'name' => 'Social Referal',
+                'description' => 'Social Referal',
+                'value' => 'https://x.com',
+                'slug' => uniqid(),
+                'entry_type' => Task::TASK_SOCIAL,
+                'status' => Task::STATUS_ACTIVE
+            ],
 
             //Telegram https://t.me/derpdex
 

@@ -674,6 +674,21 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         return $dataReturn;
     }
 
+    //Check has complete task referal
+    public function hasCompleteTaskReferal($idTask)
+    {
+        //Check if user has complete task referal
+        //Call Twitter API
+        $isDone = false;
+        $userTask = UserTaskStatus::where('user_id', $this->id)
+            ->where('task_id', $idTask)
+            ->first();
+        if ($userTask) {
+            $isDone = true;
+        }
+
+        return $isDone;
+    }
     public function hasTwitterFollowed2($username)
     {
         //Check if user has followed

@@ -16,6 +16,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use function Laravel\Prompts\select;
 
 /**
  * @property integer $id
@@ -73,6 +74,9 @@ class Task extends BaseModel
     //Telegram Join
     const TYPE_TELEGRAM_JOIN = 'TELEGRAM_JOIN';
 
+    //Task Social
+    const TASK_SOCIAL = 'SOCIAL';
+
     //Network Type Phala
     const NETWORK_TYPE_PHALA = 'phala';
     //Network Type PHALA_ZERO
@@ -100,12 +104,12 @@ class Task extends BaseModel
     public static function getAllNetworkName()
     {
         return [
-            self::NETWORK_TYPE_PHALA => 'Phala',
-            self::NETWORK_TYPE_PHALA_ZERO => 'Phala Zero',
-            self::NETWORK_TYPE_ASTAR => 'Astar',
-            self::NETWORK_TYPE_POLKADOT => 'Polkadot',
-            self::NETWORK_TYPE_MOONBEAM => 'Moonbeam',
-            self::NETWORK_TYPE_ACALA => 'Acala',
+            self::NETWORK_TYPE_PHALA         => 'Phala',
+            self::NETWORK_TYPE_PHALA_ZERO    => 'Phala Zero',
+            self::NETWORK_TYPE_ASTAR         => 'Astar',
+            self::NETWORK_TYPE_POLKADOT      => 'Polkadot',
+            self::NETWORK_TYPE_MOONBEAM      => 'Moonbeam',
+            self::NETWORK_TYPE_ACALA         => 'Acala',
             self::NETWORK_TYPE_ASTAR_TESTNET => 'Astar Testnet',
             self::NETWORK_TYPE_ALEPH_TESTNET => 'Aleph Testnet',
         ];
@@ -135,19 +139,19 @@ class Task extends BaseModel
     public static function getAllTaskType()
     {
         return [
-            self::TRANSFER_TYPE_HOLDERS => 'Token Holder',
+            self::TRANSFER_TYPE_HOLDERS  => 'Token Holder',
             self::TRANSFER_TYPE_ACTIVITY => 'Transaction Activity',
             //NFT
-            self::NFT_TYPE => 'NFT',
+            self::NFT_TYPE               => 'NFT',
         ];
     }
 
     public static function getStatus()
     {
         return [
-            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_ACTIVE   => 'Active',
             self::STATUS_INACTIVE => 'Inactive',
-            self::STATUS_DRAFT => 'Draft',
+            self::STATUS_DRAFT    => 'Draft',
         ];
     }
 
@@ -155,21 +159,23 @@ class Task extends BaseModel
     public static function getTaskType()
     {
         return [
-            self::TYPE_TWITTER_FOLLOW => 'Twitter Follow',
-            self::TYPE_TWITTER_TWEET => 'Twitter Tweet',
+            self::TYPE_TWITTER_FOLLOW  => 'Twitter Follow',
+            self::TYPE_TWITTER_TWEET   => 'Twitter Tweet',
             self::TYPE_TWITTER_RETWEET => 'Twitter Retweet',
-            self::TYPE_TWITTER_QUOTE => 'Twitter Quote',
+            self::TYPE_TWITTER_QUOTE   => 'Twitter Quote',
 
-            self::TRANSFER_TYPE_HOLDERS => 'Token Holder',
+            self::TRANSFER_TYPE_HOLDERS  => 'Token Holder',
             self::TRANSFER_TYPE_ACTIVITY => 'Transaction Activity',
-            self::TYPE_TWITTER_LIKE => 'Twitter Like',
-            self::TYPE_TWITTER_HASHTAG => 'Twitter Hashtag',
+            self::TYPE_TWITTER_LIKE      => 'Twitter Like',
+            self::TYPE_TWITTER_HASHTAG   => 'Twitter Hashtag',
             //self::TYPE_DISCORD_JOIN => 'Discord Join',
             //TYPE_TELEGRAM_JOIN
-            self::TYPE_TELEGRAM_JOIN => 'Join Telegram',
+            self::TYPE_TELEGRAM_JOIN     => 'Join Telegram',
             //Discord Join
-            self::TYPE_DISCORD_JOIN => 'Join Discord',
-            self::NFT_TYPE => 'NFT Check',
+            self::TYPE_DISCORD_JOIN      => 'Join Discord',
+            self::NFT_TYPE               => 'NFT Check',
+
+            self::TASK_SOCIAL => 'Social Task',
         ];
     }
 
@@ -204,6 +210,8 @@ class Task extends BaseModel
                 break;
             case self::TRANSFER_TYPE_HOLDERS:
                 return 'TOKEN_HOLDER';
+            case self::TASK_SOCIAL:
+                return 'REFERRAL';
                 break;
             case self::TRANSFER_TYPE_ACTIVITY:
                 return 'TRANSACTION_ACTIVITY'; //TO UPPER CASE is TRANSACTION_ACTIVITY
@@ -219,7 +227,7 @@ class Task extends BaseModel
     protected $table = 'tasks';
 
     public static $rules = [
-        'name' => 'required|unique:product_categories',
+        'name'  => 'required|unique:product_categories',
         'image' => 'image|mimes:jpg,jpeg,png',
     ];
 
@@ -453,8 +461,8 @@ class Task extends BaseModel
     public function prepareAttributes(): array
     {
         $fields = [
-            'name' => $this->name,
-            'image' => $this->image_url,
+            'name'           => $this->name,
+            'image'          => $this->image_url,
             'products_count' => $this->products()->count(),
         ];
 
@@ -467,7 +475,7 @@ class Task extends BaseModel
     public function prepareProductCategory(): array
     {
         $fields = [
-            'id' => $this->id,
+            'id'   => $this->id,
             'name' => $this->name,
         ];
 
@@ -605,6 +613,7 @@ class Task extends BaseModel
 
         return $tweetId;
     }
+
     //Get telegram join id
     public function getTelegramJoinIdAttribute()
     {
@@ -703,5 +712,12 @@ class Task extends BaseModel
         $text = 'TRANSACTION AT LEAST ' . $this->total_token . ' ' . $this->category_token;
 
         return $text;
+    }
+    //task_referal_url attribute
+    public function getTaskReferalUrlAttribute()
+    {
+        $UrlTaskReferal = route('quest.posts.show', $this->post_id);
+
+        return $UrlTaskReferal;
     }
 }
