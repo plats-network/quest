@@ -95,8 +95,8 @@ class StoreRequest extends FormRequest
                 $validator->errors()->add('tasks', 'Tasks is empty. Need create with task');
             }
             //Foreach tasks then check entry type task
-
             foreach ($tasks as $task) {
+                unset($task['value']);
                 //Check entry type task
                 //Check entry_type in key value of $taskTypes
                 if (isset($task['entry_type']) && !array_key_exists($task['entry_type'], $taskTypes)){
