@@ -94,6 +94,9 @@ class StoreRequest extends FormRequest
             if (empty($tasks)){
                 $validator->errors()->add('tasks', 'Tasks is empty. Need create with task');
             }
+   
+            $taskNetworks['phala_testnet'] = 'Phala Testnet';
+    
             //Foreach tasks then check entry type task
             foreach ($tasks as $task) {
                 unset($task['value']);
@@ -123,7 +126,7 @@ class StoreRequest extends FormRequest
                        // $validator->errors()->add('value', 'Twitter url ' . $task['value'] .' is invalid.');
                     }
                 }
-
+             
                 //Check key block_chain_network in $taskNetworks
                 if (isset($task['block_chain_network']) && !array_key_exists($task['block_chain_network'], $taskNetworks)){
                     $arrStringKeyValid = implode(', ', array_keys($taskNetworks));
