@@ -144,7 +144,7 @@ class StoreRequest extends FormRequest
                     $validator->errors()->add('category_token', $msgError);
                 }*/
             }
-            return;
+           
         });
     }
 }
