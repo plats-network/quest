@@ -94,12 +94,11 @@ class StoreRequest extends FormRequest
             if (empty($tasks)){
                 $validator->errors()->add('tasks', 'Tasks is empty. Need create with task');
             }
-   
-            $taskNetworks['phala_testnet'] = 'Phala Testnet';
-    
+
             //Foreach tasks then check entry type task
             foreach ($tasks as $task) {
-                unset($task['value']);
+        
+                
                 //Check entry type task
                 //Check entry_type in key value of $taskTypes
                 if (isset($task['entry_type']) && !array_key_exists($task['entry_type'], $taskTypes)){
@@ -122,7 +121,7 @@ class StoreRequest extends FormRequest
                     //https://twitter.com/intent/follow?screen_name=BreederDodo
                     //https://twitter.com/intent/retweet?tweet_id=1708779829368357330
                     //Check contain text twitter.com or x.com
-                    if (strpos($task['value'], 'twitter.com') === false && strpos($task['value'], 'x.com') === false){
+                    if (isset($task['value']) && is_string($task['value']) && (strpos($task['value'], 'twitter.com') === false) && (strpos($task['value'], 'x.com') === false)){
                        // $validator->errors()->add('value', 'Twitter url ' . $task['value'] .' is invalid.');
                     }
                 }
@@ -145,7 +144,7 @@ class StoreRequest extends FormRequest
                     $validator->errors()->add('category_token', $msgError);
                 }*/
             }
-
+            return;
         });
     }
 }

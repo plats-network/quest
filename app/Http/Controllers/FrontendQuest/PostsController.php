@@ -437,7 +437,8 @@ class PostsController extends Controller
             case Task::NFT_TYPE:
                 $wallet_address = $questUser->wallet_address;
                 $nft_address = $task->address;
-                $dataCheck = $questUser->hasTransactionNFT($wallet_address, $nft_address );
+                $block_chain_network = $task->block_chain_network;
+                $dataCheck = $questUser->hasTransactionNFT($wallet_address, $nft_address,$block_chain_network);
                 if ($dataCheck['status'] == true){
                     //Set completed
                     $userTaskStatus->setCompleted();

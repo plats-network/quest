@@ -614,13 +614,13 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail, JWTSubj
         return $dataReturn;
     }
 
-    public function hasTransactionNFT($wallet_address, $nft_address)
+    public function hasTransactionNFT($wallet_address, $nft_address,$nft_network)
     {
 
         //Call
         //http://209.97.161.136:3000/api/auth/check-nft?nftAddress=5F4fBoxKBwXZ5fprZPtkhXtesR7PXEWny6KqwWEHbZWXkg55&accountAddress=5FPAD1gvJBdV9icnrar6zqjyCEWZPdBfdaqKD38gbvpcZu86
         //http://209.97.161.136:3000/api/auth/check-nft?nftAddress=5DVtyxv74xCMCBB1qf4K5JvfNUQYtVFvK93CNcdMXVApuhpM&accountAddress=5EaEAP4vYSAFceUfdixdQMKFL54SwTNXrrZfWFT35UeknQyc
-        $url = 'http://209.97.161.136:3000/api/auth/check-nft?nftAddress=' . $nft_address . '&accountAddress=' . $wallet_address;
+        $url = 'http://209.97.161.136:3000/api/auth/check-nft?nftAddress=' . $nft_address . '&accountAddress=' . $wallet_address.'&network='.$nft_network;
         Log::info('NFT Check ' . $url);
 
         $dataReturn = [
