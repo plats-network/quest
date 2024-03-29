@@ -93,10 +93,10 @@ class Task extends BaseModel
     //polkadot
     const NETWORK_TYPE_POLKADOT = 'polkadot';
 
-    //thêm 2 mạng aleph_testnet và astar_testnet
+    //thêm 3 mạng aleph_testnet và astar_testnet
     const NETWORK_TYPE_ASTAR_TESTNET = 'astar_testnet';
     const NETWORK_TYPE_ALEPH_TESTNET = 'aleph_testnet';
-
+    const NETWORK_TYPE_PHALA_TESTNET = 'phala_testnet';
     //NFT
     //Address
 
@@ -112,6 +112,7 @@ class Task extends BaseModel
             self::NETWORK_TYPE_ACALA         => 'Acala',
             self::NETWORK_TYPE_ASTAR_TESTNET => 'Astar Testnet',
             self::NETWORK_TYPE_ALEPH_TESTNET => 'Aleph Testnet',
+            self::NETWORK_TYPE_PHALA_TESTNET => 'Phala Testnet',
         ];
     }
 
