@@ -159,7 +159,7 @@ class PostsController extends Controller
         if(!empty($questUser) && $linkShare === 'refernal' && !empty($taskData)){
            
             // return $questUser->id;
-           return $userTaskStatus = UserTaskStatus::query()
+            $userTaskStatus = UserTaskStatus::query()
                 ->where([
                     'user_id'=> $questUser->id,
                     'task_id'=>  $taskData->id,
@@ -167,7 +167,12 @@ class PostsController extends Controller
                     ])
                 ->first();
 
-            //cập nhật lại user_task_status param : status = 'Completed' 
+            //cập nhật lại nếu task này đang 'Open' 
+            if($userTaskStatus['status'] == "Open"){
+                
+                $userTaskStatus->setCompleted();
+            }
+            //cập nhật link share
             if(empty($userTaskStatus)){
                 
                 //Create new user task
