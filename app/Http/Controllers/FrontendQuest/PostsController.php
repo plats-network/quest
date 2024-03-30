@@ -148,10 +148,10 @@ class PostsController extends Controller
         event(new PostViewed($$module_name_singular));
 
         #query table task
-        $taskData = QuestTask::query()
+        return $taskData = QuestTask::query()
               ->where('post_id',  $id)
-              ->where('name',  'Refernal')
-              ->first();
+            //   ->where('name',  'Refernal')
+              ->get();
   
         $linkShare = $request->query('share');
         
