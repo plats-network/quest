@@ -147,22 +147,22 @@ class PostsController extends Controller
 
         event(new PostViewed($$module_name_singular));
 
-              #query table task
-              $task = QuestTask::query()
+        #query table task
+        return $taskData = QuestTask::query()
               ->where('post_id',  $id)
-              ->where('name',  'Refernal')
-              ->first();
+            //   ->where('name',  'Refernal')
+              ->get();
   
         $linkShare = $request->query('share');
         
         //isUserConnectLink Share
-        if(!empty($questUser) && $linkShare === 'refernal' && !empty($task)){
+        if(!empty($questUser) && $linkShare === 'refernal' && !empty($taskData)){
         
             // return $questUser->id;
             $userTaskStatus = UserTaskStatus::query()
                 ->where([
                     'user_id'=> $questUser->id,
-                    'task_id'=>  $task->id,
+                    'task_id'=>  $taskData->id,
                     'post_id'=> $id
                     ])
                 ->first();
@@ -173,8 +173,8 @@ class PostsController extends Controller
                 //Create new user task
                 $userTaskStatus = new UserTaskStatus();
                 $userTaskStatus->user_id = auth()->guard('quest')->user()->id;
-                $userTaskStatus->task_id = $task->id;
-                $userTaskStatus->post_id = $task->post_id;
+                $userTaskStatus->task_id = $taskData->id;
+                $userTaskStatus->post_id = $taskData->post_id;
                 $userTaskStatus->status = UserTaskStatus::STATUS_COMPLETED;
 
                 $userTaskStatus->setCompleted();
