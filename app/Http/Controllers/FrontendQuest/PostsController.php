@@ -127,7 +127,6 @@ class PostsController extends Controller
             }
         }
 
-
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -195,13 +194,40 @@ class PostsController extends Controller
         if ($questUser && $questUser->discord_id){
             $isUserConnectDiscord = true;
         }
+        
+        $linkShare = $request->query('share');
+
+        #query table task
+        $task = QuestTask::select('id')
+            ->where('post_id',  $id)
+            ->first();
+
+        //isUserConnectLink Share
+        if(!empty($questUser) && $linkShare === 'referal' && !empty($task)){
+
+            // return $dataCheck = $questUser->hasCompleteTaskReferal($id);
+            // return $task_id = $request->task_id;
+
+            $questUser = auth()->guard('quest')->user();
+
+            // return $questUser->id;
+            $userTaskStatus = UserTaskStatus::query()
+                ->where('user_id', $questUser->id)
+                ->where('task_id', $task->id)
+                ->first();
+
+            //cập nhật lại user_task_status param : status = 'Completed' 
+            if(!empty($userTaskStatus)){
+                
+                $userTaskStatus->setCompleted();
+            }
+        }
         //$isUserConnectDiscord = false;
         //Check user has followed
         //$Value = $questUser->hasTwitterFollowed('Scroll_ZKP');
         //$Value = $questUser->hasTwitterFollowed2('Scroll_ZKP');
         //dd($Value);
         //$questUser->hasTwitterFollowed2('Scroll_ZKP');
-
         return view(
             "quest.posts.show",
             compact('module_title',  'arrTaskUserHasPlay', 'hasFavorited','tasks','module_name', 'module_icon',
@@ -253,6 +279,7 @@ class PostsController extends Controller
             ->where('user_id', $questUser->id)
             ->where('task_id', $task_id)
             ->first();
+        
         //Check if user task exists
         if (!$userTaskStatus){
             //Create new user task
@@ -266,7 +293,7 @@ class PostsController extends Controller
 
             $userTaskStatus->save();
         }
-
+      
         //Check user task status is done, return true
         if ($userTaskStatus->status == UserTaskStatus::STATUS_COMPLETED
             && $task->entry_type != Task::TYPE_TELEGRAM_JOIN
@@ -274,7 +301,7 @@ class PostsController extends Controller
         ){
             return response()->json(['success'=>'Task is completed']);
         }
-
+        
         switch ($task->entry_type){
             case Task::TYPE_TWITTER_FOLLOW:
                 //$userTaskStatus->url = 'https://twitter.com/'.$task->twitter_username;
@@ -463,9 +490,9 @@ class PostsController extends Controller
 
                 $dataCheck = $questUser->hasCompleteTaskReferal($task->id );
 
-                if ($dataCheck == true){
+                if ($userTaskStatus === 'Completed'){
                     //Set completed
-                    $userTaskStatus->setCompleted();
+                    // $userTaskStatus->setCompleted();
                     return response()->json([
                         'status' => 1,
                         'success'=>'Task is completed',
@@ -473,6 +500,7 @@ class PostsController extends Controller
                         'task' => $task->toArray()
                     ]);
                 }else{
+                    
                     //Check if user has token holder
                     $userTaskStatus->setOpen();
                     return response()->json([
