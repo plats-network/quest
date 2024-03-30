@@ -147,6 +147,41 @@ class PostsController extends Controller
 
         event(new PostViewed($$module_name_singular));
 
+              #query table task
+              $task = QuestTask::query()
+              ->where('post_id',  $id)
+              ->where('name',  'Refernal')
+              ->first();
+  
+        $linkShare = $request->query('share');
+        
+        //isUserConnectLink Share
+        if(!empty($questUser) && $linkShare === 'refernal' && !empty($task)){
+        
+            // return $questUser->id;
+            $userTaskStatus = UserTaskStatus::query()
+                ->where([
+                    'user_id'=> $questUser->id,
+                    'task_id'=>  $task->id,
+                    'post_id'=> $id
+                    ])
+                ->first();
+
+            //cập nhật lại user_task_status param : status = 'Completed' 
+            if(empty($userTaskStatus)){
+                
+                //Create new user task
+                $userTaskStatus = new UserTaskStatus();
+                $userTaskStatus->user_id = auth()->guard('quest')->user()->id;
+                $userTaskStatus->task_id = $task->id;
+                $userTaskStatus->post_id = $task->post_id;
+                $userTaskStatus->status = UserTaskStatus::STATUS_COMPLETED;
+
+                $userTaskStatus->setCompleted();
+
+                $userTaskStatus->save();
+            }
+        }
         //Kiểm tra còn được play task ko
         $isShowReward = false;
         //UserReward
@@ -194,34 +229,8 @@ class PostsController extends Controller
         if ($questUser && $questUser->discord_id){
             $isUserConnectDiscord = true;
         }
-        
-        $linkShare = $request->query('share');
-
-        #query table task
-        $task = QuestTask::select('id')
-            ->where('post_id',  $id)
-            ->first();
-
-        //isUserConnectLink Share
-        if(!empty($questUser) && $linkShare === 'referal' && !empty($task)){
-
-            // return $dataCheck = $questUser->hasCompleteTaskReferal($id);
-            // return $task_id = $request->task_id;
-
-            $questUser = auth()->guard('quest')->user();
-
-            // return $questUser->id;
-            $userTaskStatus = UserTaskStatus::query()
-                ->where('user_id', $questUser->id)
-                ->where('task_id', $task->id)
-                ->first();
-
-            //cập nhật lại user_task_status param : status = 'Completed' 
-            if(!empty($userTaskStatus)){
-                
-                $userTaskStatus->setCompleted();
-            }
-        }
+            
+  
         //$isUserConnectDiscord = false;
         //Check user has followed
         //$Value = $questUser->hasTwitterFollowed('Scroll_ZKP');
