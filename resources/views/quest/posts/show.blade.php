@@ -686,7 +686,7 @@ use App\Models\Task;
                     if (dataAction == 'REFERRAL') {
                         //Copy Link to clipboard then alert
                         var copyText = $(this).data('url-referal');
-                        navigator.clipboard.writeText(copyText+"?share=referal").then(function() {
+                        navigator.clipboard.writeText(copyText+"?share=refernal").then(function() {
                             alert('Link copied');
                         }, function(err) {
                             alert('Error');
