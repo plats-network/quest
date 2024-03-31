@@ -167,9 +167,22 @@ class PostsController extends Controller
                     'post_id'=> $id
                     ])
                 ->first();
-                // return $userTaskStatus;
-            // return $questUser;
-            //cập nhật link share
+
+            //nếu chưa có link thì tạo
+            if(empty($userTaskStatus)){
+
+                 //Create new user task
+                $userTaskStatus = new UserTaskStatus();
+                $userTaskStatus->user_id = auth()->guard('quest')->user()->id;
+                $userTaskStatus->task_id = $taskData->id;
+                $userTaskStatus->post_id =  $id;
+                $userTaskStatus->status = UserTaskStatus::STATUS_OPEN;
+
+                $userTaskStatus->setOpen();
+
+                $userTaskStatus->save();
+            }
+            //cập nhật link share Completed
             if(!empty($userTaskStatus) && $questUser->id != $userTaskStatus->user_id){
                 
                 $userTaskStatus->setCompleted();
