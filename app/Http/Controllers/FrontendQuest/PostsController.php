@@ -154,37 +154,24 @@ class PostsController extends Controller
               ->first();
   
         $linkShare = $request->query('share');
+
+        $useridShare = $request->query('userid');
         
         //isUserConnectLink Share
-        if(!empty($questUser) && $linkShare === 'refernal' && !empty($taskData)){
+        if(!empty($questUser) && $linkShare === 'refernal' && !empty($taskData) && !empty($useridShare)){
            
-            // return $questUser->id;
             $userTaskStatus = UserTaskStatus::query()
                 ->where([
-                    'user_id'=> $questUser->id,
+                    'user_id'=> $useridShare,
                     'task_id'=>  $taskData->id,
                     'post_id'=> $id
                     ])
                 ->first();
-
-            //cập nhật lại nếu task này đang 'Open' 
-            if($userTaskStatus['status'] == "Open"){
-                
-                $userTaskStatus->setCompleted();
-            }
+            // return $questUser;
             //cập nhật link share
-            if(empty($userTaskStatus)){
+            if(!empty($userTaskStatus) && $questUser->id != $userTaskStatus->user_id){
                 
-                //Create new user task
-                $userTaskStatus = new UserTaskStatus();
-                $userTaskStatus->user_id = auth()->guard('quest')->user()->id;
-                $userTaskStatus->task_id = $taskData->id;
-                $userTaskStatus->post_id = $taskData->post_id;
-                $userTaskStatus->status = UserTaskStatus::STATUS_COMPLETED;
-
                 $userTaskStatus->setCompleted();
-
-                $userTaskStatus->save();
             }
         }
         //Kiểm tra còn được play task ko
