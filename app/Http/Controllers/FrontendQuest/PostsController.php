@@ -167,8 +167,8 @@ class PostsController extends Controller
                     'post_id'=> $id
                     ])
                 ->first();
-            var_dump($userTaskStatus);
-            return $questUser;
+                // return $userTaskStatus;
+            // return $questUser;
             //cập nhật link share
             if(!empty($userTaskStatus) && $questUser->id != $userTaskStatus->user_id){
                 
