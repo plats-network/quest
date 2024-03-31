@@ -156,6 +156,28 @@ class PostsController extends Controller
         $linkShare = $request->query('share');
 
         $useridShare = $request->query('userid');
+
+
+        $userTaskStatus = UserTaskStatus::query()
+                ->where([
+                    'user_id'=> auth()->guard('quest')->user()->id,
+                    'task_id'=>  $tasks->first()->id,
+                    'post_id'=> $id
+                    ])
+                ->first();
+
+        //user chua tao task
+        if(empty($userTaskStatus)){
+
+            //Create new user task
+            $userTaskStatus = new UserTaskStatus();
+            $userTaskStatus->user_id = auth()->guard('quest')->user()->id;
+            $userTaskStatus->task_id =  $tasks->first()->id;
+            $userTaskStatus->post_id =  $id;
+            $userTaskStatus->status = UserTaskStatus::STATUS_OPEN;
+            $userTaskStatus->setOpen();
+            $userTaskStatus->save();
+        }
         
         //isUserConnectLink Share
         if(!empty($questUser) && $linkShare === 'refernal' && !empty($taskData) && !empty($useridShare)){
@@ -168,20 +190,6 @@ class PostsController extends Controller
                     ])
                 ->first();
 
-            //nếu chưa có link thì tạo
-            if(empty($userTaskStatus)){
-
-                 //Create new user task
-                $userTaskStatus = new UserTaskStatus();
-                $userTaskStatus->user_id = auth()->guard('quest')->user()->id;
-                $userTaskStatus->task_id = $taskData->id;
-                $userTaskStatus->post_id =  $id;
-                $userTaskStatus->status = UserTaskStatus::STATUS_OPEN;
-
-                $userTaskStatus->setOpen();
-
-                $userTaskStatus->save();
-            }
             //cập nhật link share Completed
             if(!empty($userTaskStatus) && $questUser->id != $userTaskStatus->user_id){
                 
