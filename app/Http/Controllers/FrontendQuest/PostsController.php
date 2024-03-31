@@ -157,17 +157,16 @@ class PostsController extends Controller
 
         $useridShare = $request->query('userid');
 
-
         $userTaskStatus = UserTaskStatus::query()
                 ->where([
-                    'user_id'=> auth()->guard('quest')->user()->id,
+                    'user_id'=> auth()->guard('quest')->user()->id ?? null,
                     'task_id'=>  $tasks->first()->id,
                     'post_id'=> $id
                     ])
                 ->first();
 
         //user chua tao task
-        if(empty($userTaskStatus)){
+        if(empty($userTaskStatus) && isset($questUser)){
 
             //Create new user task
             $userTaskStatus = new UserTaskStatus();
@@ -180,7 +179,7 @@ class PostsController extends Controller
         }
         
         //isUserConnectLink Share
-        if(!empty($questUser) && $linkShare === 'refernal' && !empty($taskData) && !empty($useridShare)){
+        if(!empty($questUser) && $linkShare === 'refernal' && !empty($taskData) && !empty($useridShare) && isset($questUser)){
            
             $userTaskStatus = UserTaskStatus::query()
                 ->where([
